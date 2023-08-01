@@ -1,0 +1,422 @@
+
+/* Reconfigurando algumas classes de CSS do Materialize para se adaptar melhor ao site */
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+/* NAVBAR */
+
+nav .brand-logo {
+    font-size: 1.6rem;
+}
+
+nav .brand-logo i,
+nav .brand-logo [class^="mdi-"], nav .brand-logo [class*="mdi-"],
+nav .brand-logo i.material-icons {
+  float: left;
+  margin-right: 15px;
+  font-size: 2.4rem;
+}
+
+#nome-nav {
+    font-size: large;
+}
+
+#nav-color {
+  color: black;
+}
+
+#nav-image {
+  width: 40px;
+  height: 40px;
+  margin-top: 12px;
+}
+
+#nav-mobile-icon{
+    display: none;
+}
+
+#nav-name{
+  font-size: 18px;
+}
+
+#nav-title-icon{
+    font-size: 35px;
+}
+
+.sidenav .collapsible {
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+
+.dropdown-content {
+    min-width: 150px;
+}
+
+.dropdown-content li > a, .dropdown-content li > span {
+  color: #000;
+}
+
+
+/* Conteudo da pagina */
+
+.flash-message-success {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #d4edda;
+  color: #155724;
+  font-size: 14px;
+  text-transform: uppercase;
+  padding: 10px;
+  animation: flash 1.5s ease-in-out;
+  margin-top: 20px;
+}
+
+.flash-message-error {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 10px;
+  animation: flash 1.5s ease-in-out;
+  margin-top: 20px;
+}
+
+.flash-message-content {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  justify-content: center;
+}
+
+.flash-message-icon {
+  margin-right: 10px;
+}
+
+.flash-message-close {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  color: inherit;
+}
+
+@keyframes flash {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+#modal-alerta {
+  text-align: center;
+  color: #0c3350;
+}
+
+#modal-icon-alert {
+  font-size: 50px;
+}
+
+
+
+#blueColor {
+  color: #0c3350;
+}
+
+#main {
+  min-height: calc(100% - 50px); 
+}
+
+#main-title{
+  left: 0px;
+  top: 0px;
+}
+
+#selectColor {
+  color: #01579b;
+}
+
+#titleColor {
+  color: #0c3350;
+}
+
+#title-bv {
+  color: #031523d4;
+  font-size: 30px;
+}
+
+
+#title-card {
+  color: #054160df;
+  font-size: 32px;
+}
+
+#mobile-side {
+  font-size: 18px;
+}
+
+#mobile-side1 {
+  font-size: 12px;
+}
+
+
+/* label focus color */
+.input-field input:focus + label {
+  color: #0c3350 !important;
+}
+
+/* label underline focus color */
+.row .input-field input:focus {
+  border-bottom: 1px solid #0c3350 !important;
+  box-shadow: 0 1px 0 0 #0c3350 !important
+}
+
+/* icon prefix focus color */
+.input-field .prefix.active {
+  color:  #0c3350;
+}
+
+#tableContainer {
+  margin: 20px;
+}
+
+.dropdown-content li > a, .dropdown-content li > span {
+  padding: 14px 2px;
+}
+
+#td-text {
+  font-size: 22px;
+  font-weight: bolder;
+}
+
+#action-table-mobile {
+  display: none;
+}
+
+#strong {
+  font-weight: bold;
+}
+
+#mobile-fixed-action {
+  transition: transform 0.2s cubic-bezier(0.55, 0.085, 0.68, 0.53) 0s;
+  background-color: 0s linear 0.2s; 
+  text-align: center; 
+  width: 100%; 
+  bottom: 0px; 
+  left: 0px; 
+  overflow: hidden; 
+  background-color: #0c3350
+}
+
+#card-mobile {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  border-radius: 20px;
+  background-color: #0c3350;
+}
+
+#card-mobile p {
+  font-family: 'Roboto', sans-serif;
+  font-size: 22px;
+  text-align: center;
+  margin-right: 50px;
+  font-weight: bolder;
+  color: rgb(234, 236, 243);
+}
+
+#icon-card-mobile {
+  margin-right: 12px;
+  margin-left: 25px;
+  font-size: 37px;
+  color: rgb(234, 236, 243);
+}
+
+#card-title {
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  color: #0c3350;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+
+}
+
+#card-text {
+  font-size: 18px;
+  padding: 5px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#card-btn {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+#assessment-mobile {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  border-radius: 20px;
+  background-color: #0c3350;
+}
+
+#assessment-mobile p {
+  font-family: 'Roboto', sans-serif;
+  font-size: 22px;
+  text-align: center;
+  margin-right: 50px;
+  font-weight: bolder;
+  color: rgb(234, 236, 243);
+}
+
+#assessment-icon-img {
+  width: 80px;
+  height: 80px;
+}
+
+#img-perfil-mobile {
+  margin-left: 104px;
+}
+
+#perfil-mobile-text {
+  font-size: 22px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.footer {
+  background-color: transparent;
+  padding: 10px;
+  text-align: center;
+  font-size: 18px;
+}
+
+footer#fixar-rodape {
+  border-top: 1px solid #333;
+  bottom: 0;
+  left: 0;
+  height: 40px;
+  position: fixed;
+  width: 100%;
+}
+
+
+/* Algumas medias para desktops pequenos */
+@media only screen and (min-width: 993px) {
+    nav .brand-logo {
+        font-size: 2.6rem;
+    }
+
+    nav a.sidenav-trigger {
+        display: flex;
+      }
+
+    #nav-drop {
+        display: flex;
+    }
+
+    #cancelBtn {
+      margin-right: 120px;
+    }
+
+    #sendBtn {
+      margin-left: 120px;
+    }
+
+}
+
+/* Algumas medidas para mobille */
+@media screen and (max-width: 992px) { 
+    #button-report {
+        display: none;
+    }
+
+    #nav-mobile-icon{
+        display: flex;
+    }
+
+    /* label color */
+    .input-field label {
+      color: #000;
+      font-size: 22px;
+    }
+    
+    #botao-cancelar {
+      display: none;
+    }
+
+    #td-text {
+      font-size: 14px;
+      font-weight: bolder;
+    }
+
+    #action-table-mobile {
+      display: inline-block;
+    }
+
+    #action-table-desktop {
+      display: none;
+    }
+
+
+
+}
+
+/* Preloader */
+#loader {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 1;
+    width: 150px;
+    height: 150px;
+    margin: -75px 0 0 -75px;
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #01579b;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+  }
+  
+  @-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  /* Add animation to "page content" */
+  .animate-bottom {
+    position: relative;
+    -webkit-animation-name: animatebottom;
+    -webkit-animation-duration: 1s;
+    animation-name: animatebottom;
+    animation-duration: 1s
+  }
+  
+  @-webkit-keyframes animatebottom {
+    from { bottom:-100px; opacity:0 } 
+    to { bottom:0px; opacity:1 }
+  }
+  
+  @keyframes animatebottom { 
+    from{ bottom:-100px; opacity:0 } 
+    to{ bottom:0; opacity:1 }
+  }
+  
+  #myDiv {
+    display: none;
+  }
+
+/* Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif; */
