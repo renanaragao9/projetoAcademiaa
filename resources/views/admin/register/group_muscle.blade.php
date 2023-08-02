@@ -27,7 +27,7 @@
                       <i class="material-icons right">save</i>
                     </button>
                 
-                      <a href="{{ route('admin.home') }}" class="waves-effect waves-light btn right light-blue darken-4" id="botao-cancelar"><i class="material-icons right">cancel</i>Cancelar</a>
+                      <a href="{{ route('admin.home') }}" class="waves-effect waves-light btn right light-blue darken-4" id="botao-cancelar"><i class="material-icons left">arrow_back</i>Voltar</a>
                   </div>
                 </div>
               </form>

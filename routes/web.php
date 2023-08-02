@@ -37,6 +37,7 @@ Route::prefix('admin/grupo_muscular/')->group(function() {
     Route::post('/store', [GroupMuscleController::class, 'store'])->name('admin.register.groupmuscle.create');
     Route::get('/edit/{id}', [GroupMuscleController::class, 'edit'])->name('admin.edit.groupmuscle');
     Route::put('/update/{id}', [GroupMuscleController::class, 'update'])->name('admin.edit.groupmuscle.update');
+    Route::delete('/delete/{id}', [GroupMuscleController::class, 'destroy'])->name('admin.groupmuscle.destroy');
     
 });
 

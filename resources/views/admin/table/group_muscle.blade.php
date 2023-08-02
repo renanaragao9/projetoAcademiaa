@@ -37,7 +37,11 @@
 
                 <!-- Botão de ações Desktop-->
                 <a href="{{ route('admin.edit.groupmuscle', $musclegroup->id_gmuscle)}}" class="btn-floating tooltipped orange darken-4 btn-large waves-effect waves-light red" id="action-table-desktop" data-position="bottom" data-tooltip="Editar"><i class="material-icons">edit</i></a>
-                <a class="btn-floating tooltipped red darken-4 btn-large waves-effect waves-light red" id="action-table-desktop" data-position="bottom" data-tooltip="Excluir"><i class="material-icons">delete_forever</i></a>
+                <form action="{{ route('admin.groupmuscle.destroy', $musclegroup->id_gmuscle) }}" method="POST">
+                  @csrf
+                  @method('DELETE')
+                    <button class="btn-floating tooltipped red darken-4 btn-large waves-effect waves-light red" id="action-table-desktop" data-position="bottom" data-tooltip="Excluir"><i class="material-icons">delete_forever</i></button>
+                  </form>
               </td>
             </tr>
           @endforeach

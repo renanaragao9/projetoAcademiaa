@@ -16,7 +16,7 @@
                 <div class="row">                  
                   <div class="input-field col s12 l12">
                     <h3 id="titleColor" class="center">Edição do Grupo Muscular:</h3>
-                    <h4 id="titleColor" class="center">{{$muscleGroup->name_gmuscle}}</h4>
+                    <h4 id="titleColor" class="center">({{$muscleGroup->name_gmuscle}})</h4>
                   </div>
 
                   <input type="hidden" name="id_gmuscle" value="{{$muscleGroup->id_gmuscle}}">
@@ -31,7 +31,7 @@
                       <i class="material-icons right">save</i>
                     </button>
                 
-                      <a href="{{ route('admin.home') }}" class="waves-effect waves-light btn right light-blue darken-4" id="botao-cancelar"><i class="material-icons right">cancel</i>Cancelar</a>
+                    <a href="{{ route('admin.table.groupmuscle') }}" class="waves-effect waves-light btn right light-blue darken-4" id="botao-cancelar"><i class="material-icons left">arrow_back</i>Voltar</a>  
                   </div>
                 </div>
               </form>
@@ -45,13 +45,13 @@
   <div id="modal-alerta" class="modal">
     <div class="modal-content">
       <i class="material-icons" id="modal-icon-alert">info</i>
-      <h4>Confirmação de Cadastro</h4>
-      <p>Deseja realmente cadastrar o Grupo Muscular ?</p>
+      <h4>Confirmação de Edição</h4>
+      <p>Deseja realmente editar o grupo muscular ( {{$muscleGroup->name_gmuscle}} ) ?</p>
     </div>
 
     <div class="modal-footer">
       <a href="#" class="modal-close waves-effect waves-green btn-flat right" id="cancelBtn">Cancelar</a>
-      <a href="#" class="modal-close waves-effect waves-green btn light-blue darken-4 left" id="sendBtn">Cadastrar</a>
+      <a href="#" class="modal-close waves-effect waves-green btn light-blue darken-4 left" id="sendBtn">Editar</a>
     </div>
   </div>
   <!-- Fim de conteudo -->

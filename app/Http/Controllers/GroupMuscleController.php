@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\muscle_group;
+use App\Models\exercise;
 
 class GroupMuscleController extends Controller
 {
@@ -50,8 +51,21 @@ class GroupMuscleController extends Controller
 
         muscle_group::findOrFail($request->id_gmuscle)->update($data);
 
-        $muscleGroups = muscle_group::all();
+        return redirect()->back()->with('msg-success', 'Grupo muscular editado com sucesso!');
+    }
 
-        return redirect()->back()->with('msg-success', 'Grupo muscular cadastrado com sucesso!');
+    public function destroy($id) {
+
+        $muscle_group = muscle_group::find($id);
+
+        // Verificar se o grupo muscular está sendo usado em exercises
+        $isUsedInExercises = exercise::where('id_gmuscle_fk', $id)->exists();
+        if ($isUsedInExercises) {
+            return redirect()->back()->with('msg-error', 'Este grupo muscular está associado a exercícios e não pode ser excluído.');
+        }
+
+        $muscle_group->delete();
+
+        return redirect()->back()->with('msg-success', 'Grupo muscular deletado com sucesso!');
     }
 }
