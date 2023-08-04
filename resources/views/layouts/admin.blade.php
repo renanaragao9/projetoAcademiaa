@@ -221,6 +221,17 @@
                             <i class="material-icons">close</i>
                         </button>
                     </div>
+                @elseif(session('msg-warning'))
+                    <div class="flash-message-warning">
+                        <div class="flash-message-content">
+                            <p>{{ session('msg-warning') }}</p>
+                            <i class="material-icons success-message-icon right">warning</i>
+                        </div>
+
+                        <button class="flash-message-close" onclick="this.parentElement.style.display='none'">
+                            <i class="material-icons">close</i>
+                        </button>
+                    </div>
                 @endif
                 
                 @yield('content')

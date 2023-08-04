@@ -61,7 +61,7 @@ class GroupMuscleController extends Controller
         // Verificar se o grupo muscular está sendo usado em exercises
         $isUsedInExercises = exercise::where('id_gmuscle_fk', $id)->exists();
         if ($isUsedInExercises) {
-            return redirect()->back()->with('msg-error', 'Este grupo muscular está associado a exercícios e não pode ser excluído.');
+            return redirect()->back()->with('msg-warning', 'Este grupo muscular está associado a exercícios e não pode ser excluído. Entre em contato com o administrador do sistema!');
         }
 
         $muscle_group->delete();
