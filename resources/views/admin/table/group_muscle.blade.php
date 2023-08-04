@@ -33,23 +33,28 @@
                 <!-- Dropdown de botões -->
                 <ul id="dropdown1" class="dropdown-content">
                   <li><a href="{{ route('admin.edit.groupmuscle', $musclegroup->id_gmuscle)}}" class="orange darken-4">Editar<i class="material-icons">edit</i></a></li>
-                  <li class="indigo darken-4">
-                      <form action="{{ route('admin.groupmuscle.destroy', $musclegroup->id_gmuscle) }}" method="POST" >
+                  <li>
+                    <form action="{{ route('admin.groupmuscle.destroy', $musclegroup->id_gmuscle) }}" method="POST" class="delete-form">
                       @csrf
                       @method('DELETE')
-                          <button class="btn waves-effect waves-light indigo darken-4" onclick="confirmSubmit()" id="mobile-botton"><i class="material-icons left">delete_forever</i>Deletar</button>
-                      </form>
+                      <input type="hidden" name="id" value="{{ $musclegroup->id_gmuscle }}">
+                      <button class="btn waves-effect waves-light red accent-4 delete-button" data-position="bottom" data-tooltip="Excluir" id="mobile-botton">Excluir
+                        <i class="material-icons left" id="mobile-botton-icon">delete_forever</i>
+                      </button>
+                    </form>
                   </li>
                 </ul>
 
                 <!-- Botão de ações Desktop-->
                 <a href="{{ route('admin.edit.groupmuscle', $musclegroup->id_gmuscle)}}" class="btn-floating tooltipped orange darken-4 btn-large waves-effect waves-light red" id="action-table-desktop" data-position="bottom" data-tooltip="Editar"><i class="material-icons">edit</i></a>
                 
-                <form action="{{ route('admin.groupmuscle.destroy', $musclegroup->id_gmuscle) }}" method="POST">
+                <form action="{{ route('admin.groupmuscle.destroy', $musclegroup->id_gmuscle) }}" method="POST" class="delete-form">
                   @csrf
                   @method('DELETE')
-                    <button class="btn-floating tooltipped red darken-4 btn-large waves-effect waves-light red" id="action-table-desktop" data-position="bottom" data-tooltip="Excluir" onclick="confirmSubmit()"><i class="material-icons">delete_forever</i></button>
+                  <input type="hidden" name="id" value="{{ $musclegroup->id_gmuscle }}">
+                  <button class="btn-floating tooltipped red darken-4 btn-large waves-effect waves-light red delete-button" data-position="bottom" data-tooltip="Excluir"><i class="material-icons">delete_forever</i></button>
                 </form>
+
               </td>
             </tr>
           @endforeach
@@ -67,12 +72,12 @@
     <div class="modal-content">
       <i class="material-icons" id="modal-icon-alert">info</i>
       <h4>Confirmação de Exclusão</h4>
-      <p>Deseja realmente excluir esse registro ?</p>
+      <p>Deseja realmente excluir esse registro?</p>
     </div>
 
     <div class="modal-footer">
       <a href="#" class="modal-close waves-effect waves-green btn-flat right" id="cancelBtn">Cancelar</a>
-      <a href="#" class="modal-close waves-effect waves-green btn light-blue darken-4 left" id="sendBtn">Excluir</a>
+      <a href="#" class="modal-close waves-effect waves-green btn light-blue darken-4 left" id="confirmDeleteBtn">Excluir</a>
     </div>
   </div>
 
@@ -126,24 +131,25 @@
       let modal = document.getElementById('modal-alerta');
       let instance = M.Modal.init(modal);
 
-      let form = document.querySelector('#form_table_group_muscle');
+      let deleteButtons = document.querySelectorAll('.delete-button');
 
-      form.addEventListener('submit', function(event) {
-        event.preventDefault();
+      deleteButtons.forEach(function(button) {
+        button.addEventListener('click', function(event) {
+          event.preventDefault();
+          let form = button.closest('.delete-form');
+          instance.open();
 
-        instance.open();
-      });
+          let cancelBtn = document.querySelector('.modal-footer #cancelBtn');
+          cancelBtn.addEventListener('click', function() {
+            instance.close();
+          });
 
-      let cancelBtn = document.querySelector('.modal-footer .modal-close');
-
-      cancelBtn.addEventListener('click', function() {
-        instance.close();
-      });
-
-      let sendBtn = document.getElementById('sendBtn');
-
-      sendBtn.addEventListener('click', function() {
-        form.submit();
+          let confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
+          confirmDeleteBtn.addEventListener('click', function() {
+            form.submit();
+            instance.close(); // Fechar o modal após a exclusão ser confirmada e o formulário ser enviado.
+          });
+        });
       });
     });
     
