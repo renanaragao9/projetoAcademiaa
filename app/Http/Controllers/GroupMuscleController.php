@@ -66,6 +66,6 @@ class GroupMuscleController extends Controller
 
         $muscle_group->delete();
 
-        return redirect()->back()->with('msg-success', 'Grupo muscular deletado com sucesso!');
+        return redirect()->back()->with('msg-success', 'Grupo muscular excluído com sucesso!');
     }
 }

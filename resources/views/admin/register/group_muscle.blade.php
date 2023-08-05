@@ -23,11 +23,12 @@
                   </div>
 
                   <div class="input-field col s12 l12">      
-                    <button class="btn waves-effect waves-light light-blue darken-4" id="save-button" type="submit" name="action" onclick="confirmSubmit()">Cadastrar
+                    <button class="btn waves-effect waves-light light-blue darken-4 col s6 l5" id="save-button" type="submit" name="action" onclick="confirmSubmit()">Cadastrar
                       <i class="material-icons right">save</i>
                     </button>
-                
-                      <a href="{{ route('admin.home') }}" class="waves-effect waves-light btn right light-blue darken-4" id="botao-cancelar"><i class="material-icons left">arrow_back</i>Voltar</a>
+                      
+                      <a href="{{ route('admin.table.groupmuscle') }}" class="waves-effect waves-light btn right light-blue darken-4 col s5 l5" id=""><i class="material-icons right">table_rows</i>Tabela</a>
+                      <a href="{{ route('admin.home') }}" class="waves-effect waves-light btn right light-blue darken-4 col s12 l12" id="bottom-form-action"><i class="material-icons right">arrow_back</i>Voltar</a>
                   </div>
                 </div>
               </form>

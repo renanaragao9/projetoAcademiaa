@@ -205,44 +205,26 @@ nav .brand-logo i.material-icons {
   color:  #0c3350;
 }
 
-/* Tabelas */
-#tableContainer {
-  margin: 20px;
-}
-
 .dropdown-content li > a, .dropdown-content li > span {
   padding: 14px 2px;
 }
+
+/* Tabela */
 
 #td-text {
   font-size: 22px;
   font-weight: bolder;
 }
 
-#action-table-desktop {
-  margin-bottom: 8px;
+#bottom-table-action {
+  margin: 5px;
 }
 
-#action-table-mobile {
-  display: none;
-}
-
-#mobile-botton {
-  width: 100%;
-  height: 50px;
-  border:none!important;
-  color: #000;
-  font-size: 16px;
-  text-transform: none;
-  padding: 0 4px;
-  font-size: 16px;
+#bottom-form-action {
+  margin-top: 10px;
   
 }
 
-#mobile-botton-icon {
-  margin-right: -20px;
-  font-size: 24px;
-}
 
 #strong {
   font-weight: bold;
@@ -391,25 +373,11 @@ footer#fixar-rodape {
       font-size: 22px;
     }
     
-    #botao-cancelar {
-      display: none;
-    }
 
     #td-text {
       font-size: 14px;
       font-weight: bolder;
     }
-
-    #action-table-mobile {
-      display: inline-block;
-    }
-
-    #action-table-desktop {
-      display: none;
-    }
-
-
-
 }
 
 /* Preloader */

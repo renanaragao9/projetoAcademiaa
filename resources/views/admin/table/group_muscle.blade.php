@@ -24,35 +24,18 @@
         <tbody id="table-body">
           @foreach($muscleGroups as $musclegroup)
             <tr>
+              
               <td id="td-text">{{ $musclegroup->name_gmuscle }}</td>
+              
               <td>
-                
-                <!-- Botão de ação Mobile-->
-                <a class="waves-effect waves-light orange darken-4 btn-floating  dropdown-table" id="action-table-mobile" href="#!" data-target="dropdown1" href="#!" ><i class="material-icons">arrow_drop_down</i></a>
-                
-                <!-- Dropdown de botões -->
-                <ul id="dropdown1" class="dropdown-content">
-                  <li><a href="{{ route('admin.edit.groupmuscle', $musclegroup->id_gmuscle)}}" class="orange darken-4">Editar<i class="material-icons">edit</i></a></li>
-                  <li>
-                    <form action="{{ route('admin.groupmuscle.destroy', $musclegroup->id_gmuscle) }}" method="POST" class="delete-form">
-                      @csrf
-                      @method('DELETE')
-                      <input type="hidden" name="id" value="{{ $musclegroup->id_gmuscle }}">
-                      <button class="btn waves-effect waves-light red accent-4 delete-button" data-position="bottom" data-tooltip="Excluir" id="mobile-botton">Excluir
-                        <i class="material-icons left" id="mobile-botton-icon">delete_forever</i>
-                      </button>
-                    </form>
-                  </li>
-                </ul>
-
-                <!-- Botão de ações Desktop-->
-                <a href="{{ route('admin.edit.groupmuscle', $musclegroup->id_gmuscle)}}" class="btn-floating tooltipped orange darken-4 btn-large waves-effect waves-light red" id="action-table-desktop" data-position="bottom" data-tooltip="Editar"><i class="material-icons">edit</i></a>
+                <!-- Botão de ações-->
+                <a href="{{ route('admin.edit.groupmuscle', $musclegroup->id_gmuscle)}}" class="btn-floating tooltipped orange darken-4 btn-large waves-effect waves-light red" id="bottom-table-action" data-position="bottom" data-tooltip="Editar"><i class="material-icons">edit</i></a>
                 
                 <form action="{{ route('admin.groupmuscle.destroy', $musclegroup->id_gmuscle) }}" method="POST" class="delete-form">
                   @csrf
                   @method('DELETE')
-                  <input type="hidden" name="id" value="{{ $musclegroup->id_gmuscle }}">
-                  <button class="btn-floating tooltipped red darken-4 btn-large waves-effect waves-light red delete-button" data-position="bottom" data-tooltip="Excluir"><i class="material-icons">delete_forever</i></button>
+                    <input type="hidden" name="id" value="{{ $musclegroup->id_gmuscle }}">
+                    <button class="btn-floating tooltipped red darken-4 btn-large waves-effect waves-light red delete-button" id="bottom-table-action" data-position="bottom" data-tooltip="Excluir"><i class="material-icons">delete_forever</i></button>
                 </form>
 
               </td>
