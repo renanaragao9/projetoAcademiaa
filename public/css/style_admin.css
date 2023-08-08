@@ -180,6 +180,7 @@ nav .brand-logo i.material-icons {
   font-size: 32px;
 }
 
+
 #mobile-side {
   font-size: 18px;
 }
@@ -224,7 +225,6 @@ nav .brand-logo i.material-icons {
   margin-top: 10px;
   
 }
-
 
 #strong {
   font-weight: bold;
@@ -370,7 +370,7 @@ footer#fixar-rodape {
     /* label color */
     .input-field label {
       color: #000;
-      font-size: 22px;
+      font-size: 25px;
     }
     
 

@@ -6143,7 +6143,7 @@ textarea.materialize-textarea {
   outline: none;
   height: 3rem;
   width: 100%;
-  font-size: 16px;
+  font-size: 22px;
   margin: 0 0 8px 0;
   padding: 0;
   -webkit-box-shadow: none;
@@ -6533,8 +6533,9 @@ textarea.materialize-textarea + label:after, .select-wrapper + label:after {
   position: absolute;
   top: 0;
   left: 0;
-  font-size: 1rem;
+  font-size: 1.5rem;
   cursor: text;
+  
   -webkit-transition: color .2s ease-out, -webkit-transform .2s ease-out;
   transition: color .2s ease-out, -webkit-transform .2s ease-out;
   transition: transform .2s ease-out, color .2s ease-out;
