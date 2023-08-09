@@ -12,42 +12,49 @@
                     <div class="row">
                         <form class="col s12" id="form_exercise" action="{{ route('admin.register.exercise.create') }}" method="POST" enctype="multipart/form-data">
                           @csrf
-                            <div class="input-field col s12 l12" id="input-exercicio">
-                              <h3 id="titleColor" class="center">Cadastro de Exercício</h3>
-                            </div>
-                            
-                            <div class="input-field col s12 l12" id="input-exercicio">
-                              <input name="name_exercise" id="icon-nome" type="text" class="validate">
-                              <label for="icon-nome">Nome do Exercício:</label>
-                            </div>
-
-                            <div class="input-field col s12">
-                              <select name="id_gmuscle_fk" required>
-                                <option selected disabled>Selecione o Grupo Muscular:</option>
-                                
-                                @foreach ($muscleGroups as $muscleGroup)
-                                    <option value="{{ $muscleGroup->id_gmuscle }}">{{ $muscleGroup->name_gmuscle }}</option>
-                                @endforeach          
-                              </select>
-                            </div>
-
-                            <div class="file-field col s12 l12">
-                              <div class="btn light-blue darken-4">
-                                  <span>Imagem</span>
-                                  <input name="image_exercise" type="file" class="validate" multiple>
+                            <div class="row">
+                              <div class="input-field col s12 l12" id="input-exercicio">
+                                <h3 id="titleColor" class="center">Cadastro de Exercício</h3>
                               </div>
                               
-                              <div class="file-path-wrapper">
-                                  <input class="file-path validate" type="text" placeholder="Faça o download da imagem">
+                              <div class="input-field col s12 l12" id="input-exercicio">
+                                <input name="name_exercise" id="icon-nome" type="text" class="validate">
+                                <label for="icon-nome">Nome:</label>
                               </div>
-                            </div>
 
-                            <div class="input-field col s12 l12">      
-                              <button class="btn waves-effect waves-light light-blue darken-4" id="save-button" type="submit" name="action" onclick="confirmSubmit()">Cadastrar
-                                <i class="material-icons right">save</i>
-                              </button>
-                          
-                              <a href="{{ route('admin.home') }}" class="waves-effect waves-light btn right light-blue darken-4" id="botao-cancelar"><i class="material-icons left">arrow_back</i>Voltar</a>
+                              <div class="input-field col s12">
+                                <select name="id_gmuscle_fk" required>
+                                  <option selected disabled>Selecione o Grupo Muscular:</option>
+                                  
+                                  @foreach ($muscleGroups as $muscleGroup)
+                                      <option value="{{ $muscleGroup->id_gmuscle }}">{{ $muscleGroup->name_gmuscle }}</option>
+                                  @endforeach          
+                                </select>
+                                
+                              </div>
+
+                              <div class="file-field col s12 l12">
+                                <div class="btn light-blue darken-4">
+                                    <span>Imagem</span>
+                                    <input name="image_exercise" type="file" class="validate" multiple>
+                                </div>
+                                
+                                <div class="file-path-wrapper">
+                                    <input class="file-path validate" type="text" placeholder="Faça o download da imagem">
+                                </div>
+                              </div>
+
+                              <div class="input-field col s12 l12">      
+                                <button class="btn waves-effect waves-light light-blue darken-4 col s12 l5" id="save-button" type="submit" name="action" onclick="confirmSubmit()">Cadastrar
+                                  <i class="material-icons right">save</i>
+                                </button>
+                                  
+                                <a href="{{ route('admin.table.groupmuscle') }}" class="waves-effect waves-light btn right light-blue darken-4 col s12 l5" id=""><i class="material-icons right">table_rows</i>Tabela</a>
+                      
+                                <div class="input-field col s12 l12">
+                                  <a href="{{ route('admin.home') }}" class="waves-effect waves-light btn left light-blue darken-4 col s12 l5" id="bottom-form-action"><i class="material-icons right">arrow_back</i>Voltar</a>
+                                </div>
+                              </div>
                             </div>
                         </form>
                     </div>    

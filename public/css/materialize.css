@@ -3576,6 +3576,7 @@ table span.badge {
 .row .col.s12 {
   width: 100%;
   margin-left: auto;
+  margin-bottom: 30px;
   left: auto;
   right: auto;
 }
@@ -3977,6 +3978,7 @@ table span.badge {
   .row .col.l12 {
     width: 100%;
     margin-left: auto;
+    margin-bottom: 30px;
     left: auto;
     right: auto;
   }
@@ -5589,7 +5591,7 @@ button.btn-floating {
 }
 
 .dropdown-content li > a, .dropdown-content li > span {
-  font-size: 16px;
+  font-size: 20px;
   color: #26a69a;
   display: block;
   line-height: 22px;
@@ -7181,7 +7183,7 @@ select {
   height: 3rem;
   line-height: 3rem;
   width: 100%;
-  font-size: 16px;
+  font-size: 22px;
   margin: 0 0 8px 0;
   padding: 0;
   display: block;
