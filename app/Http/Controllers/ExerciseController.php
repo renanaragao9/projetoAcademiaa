@@ -8,14 +8,21 @@ use App\Models\muscle_group;
 
 class ExerciseController extends Controller
 {
-    public function index() {
+    public function show_table_exercises() {
+
+        $exercises = exercise::with('groupMuscle')->get();
         
+        return view('admin.table.exercise', ['exercises' => $exercises]);
+    }
+
+    public function create() {
+
         $muscleGroups = muscle_group::all();
 
         return view('admin.register.exercise', ['muscleGroups' => $muscleGroups]);
     }
 
-    public function create(Request $request) {
+    public function show(Request $request) {
         
         // Recupera os dados enviado pelo formulário através do POST e armazena em uma variavel
         $nameExercise = $request->input('name_exercise');

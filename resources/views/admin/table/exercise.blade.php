@@ -25,109 +25,31 @@
       <table class="highlight striped centered">
         <thead>
           <tr>
+            <th>Imagem</th>
             <th>Nome</th>
+            <th>Grupo Muscular</th>
             <th>Ação</th>
           </tr>
         </thead>
         <tbody id="table-body">
-          <tr>
-            <td id="td-text">Perna</td>
-            <td>
-      
-              <!-- Botão de ação Mobile-->
-              <a class="waves-effect waves-light orange darken-4 btn-floating  dropdown-table" id="action-table-mobile" href="#!" data-target="dropdown1" href="#!" ><i class="material-icons">arrow_drop_down</i></a>
+          @foreach( $exercises as $exercise)
+            <tr>
+              <td id="td-text"> <img src="/img/exercise/{{$exercise->image_exercise}}" alt="" class="circle materialboxed" id="table-image"></td>
+              <td id="td-text">{{ $exercise->name_exercise }}</td>
+              <td id="td-text">{{ $exercise->groupMuscle->name_gmuscle }}</td>
               
-              <!-- Dropdown de botões -->
-              <ul id="dropdown1" class="dropdown-content">
-                <li><a href="#!" class="orange darken-4">Editar<i class="material-icons">edit</i></a></li>
-                <li><a href="#!" class="red darken-4 white-text">Excluir<i class="material-icons">delete_forever</i></a></li>
-              </ul>
-
-              <!-- Botão de ações Desktop-->
-              <a class="btn-floating tooltipped orange darken-4 btn-large waves-effect waves-light red" id="action-table-desktop" data-position="bottom" data-tooltip="Editar"><i class="material-icons">edit</i></a>
-              <a class="btn-floating tooltipped red darken-4 btn-large waves-effect waves-light red" id="action-table-desktop" data-position="bottom" data-tooltip="Excluir"><i class="material-icons">delete_forever</i></a>
-            </td>
-          </tr>
-
-          <tr>
-            <td id="td-text">Costas</td>
-            <td>
-              
-              <!-- Botão de ação Mobile-->
-              <a class="waves-effect waves-light orange darken-4 btn-floating  dropdown-table" id="action-table-mobile" href="#!" data-target="dropdown1" href="#!" ><i class="material-icons">arrow_drop_down</i></a>
-              
-              <!-- Dropdown de botões -->
-              <ul id="dropdown1" class="dropdown-content">
-                <li><a href="#!" class="orange darken-4">Editar<i class="material-icons">edit</i></a></li>
-                <li><a href="#!" class="red darken-4 white-text">Excluir<i class="material-icons">delete_forever</i></a></li>
-              </ul>
-
-              <!-- Botão de ações Desktop-->
-              <a class="btn-floating tooltipped orange darken-4 btn-large waves-effect waves-light red" id="action-table-desktop" data-position="bottom" data-tooltip="Editar"><i class="material-icons">edit</i></a>
-              <a class="btn-floating tooltipped red darken-4 btn-large waves-effect waves-light red" id="action-table-desktop" data-position="bottom" data-tooltip="Excluir"><i class="material-icons">delete_forever</i></a>
-            </td>
-          </tr>
-
-          <tr>
-            <td id="td-text">Biceps</td>
-            <td>
-              
-              <!-- Botão de ação Mobile-->
-              <a class="waves-effect waves-light orange darken-4 btn-floating  dropdown-table" id="action-table-mobile" href="#!" data-target="dropdown1" href="#!" ><i class="material-icons">arrow_drop_down</i></a>
-              
-              <!-- Dropdown de botões -->
-              <ul id="dropdown1" class="dropdown-content">
-                <li><a href="#!" class="orange darken-4">Editar<i class="material-icons">edit</i></a></li>
-                <li><a href="#!" class="red darken-4 white-text">Excluir<i class="material-icons">delete_forever</i></a></li>
-              </ul>
-
-              <!-- Botão de ações Desktop-->
-              <a class="btn-floating tooltipped orange darken-4 btn-large waves-effect waves-light red" id="action-table-desktop" data-position="bottom" data-tooltip="Editar"><i class="material-icons">edit</i></a>
-              <a class="btn-floating tooltipped red darken-4 btn-large waves-effect waves-light red" id="action-table-desktop" data-position="bottom" data-tooltip="Excluir"><i class="material-icons">delete_forever</i></a>
-            </td>
-          </tr>
-
-          <tr>
-            <td id="td-text">Triceps</td>
-            <td>
-              
-              <!-- Botão de ação Mobile-->
-              <a class="waves-effect waves-light orange darken-4 btn-floating  dropdown-table" id="action-table-mobile" href="#!" data-target="dropdown1" href="#!" ><i class="material-icons">arrow_drop_down</i></a>
-              
-              <!-- Dropdown de botões -->
-              <ul id="dropdown1" class="dropdown-content">
-                <li><a href="#!" class="orange darken-4">Editar<i class="material-icons">edit</i></a></li>
-                <li><a href="#!" class="red darken-4 white-text">Excluir<i class="material-icons">delete_forever</i></a></li>
-              </ul>
-
-              <!-- Botão de ações Desktop-->
-              <a class="btn-floating tooltipped orange darken-4 btn-large waves-effect waves-light red" id="action-table-desktop" data-position="bottom" data-tooltip="Editar"><i class="material-icons">edit</i></a>
-              <a class="btn-floating tooltipped red darken-4 btn-large waves-effect waves-light red" id="action-table-desktop" data-position="bottom" data-tooltip="Excluir"><i class="material-icons">delete_forever</i></a>
-            </td>
-          </tr>
-
-          <tr>
-            <td id="td-text">Ombro</td>
-            <td>
-              
-              <!-- Botão de ação Mobile-->
-              <a class="waves-effect waves-light orange darken-4 btn-floating  dropdown-table" id="action-table-mobile" href="#!" data-target="dropdown1" href="#!" ><i class="material-icons">arrow_drop_down</i></a>
-              
-              <!-- Dropdown de botões -->
-              <ul id="dropdown1" class="dropdown-content">
-                <li><a href="#!" class="orange darken-4">Editar<i class="material-icons">edit</i></a></li>
-                <li><a href="#!" class="red darken-4 white-text">Excluir<i class="material-icons">delete_forever</i></a></li>
-              </ul>
-
-              <!-- Botão de ações Desktop-->
-              <a class="btn-floating tooltipped orange darken-4 btn-large waves-effect waves-light red" id="action-table-desktop" data-position="bottom" data-tooltip="Editar"><i class="material-icons">edit</i></a>
-              <a class="btn-floating tooltipped red darken-4 btn-large waves-effect waves-light red" id="action-table-desktop" data-position="bottom" data-tooltip="Excluir"><i class="material-icons">delete_forever</i></a>
-            </td>
-          </tr>
-
+              <td>
+                <!-- Botão de ações Desktop-->
+                <a class="btn-floating tooltipped orange darken-4 btn-large waves-effect waves-light red" id="action-table-desktop" data-position="bottom" data-tooltip="Editar"><i class="material-icons">edit</i></a>
+                <a class="btn-floating tooltipped red darken-4 btn-large waves-effect waves-light red" id="action-table-desktop" data-position="bottom" data-tooltip="Excluir"><i class="material-icons">delete_forever</i></a>
+              </td>
+            </tr>
+          @endforeach
+          
           <!-- Adicione mais registros aqui -->
         </tbody>
       </table>
+      
       <div id="no-results" class="no-results-message" style="display: none;">Nenhum registro encontrado</div>
       <div id="total-records" class="total-records"></div>
     </div>

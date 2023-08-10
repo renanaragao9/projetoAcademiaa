@@ -226,6 +226,11 @@ nav .brand-logo i.material-icons {
   
 }
 
+#table-image {
+  height: 100px;
+  width: 100px;
+}
+
 #strong {
   font-weight: bold;
 }

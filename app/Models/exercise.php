@@ -15,7 +15,7 @@ class exercise extends Model
 
     protected $fillable = ['name_exercise', 'image_exercise', 'id_gmuscle_fk'];
 
-    public function muscle_group() {
-        return $this->belongsTo('App\Models\muscle_group');
+    public function groupMuscle() {
+        return $this->belongsTo(muscle_group::class, 'id_gmuscle_fk');
     }
 }

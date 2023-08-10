@@ -16,6 +16,6 @@ class muscle_group extends Model
     protected $fillable = ['name_gmuscle'];
 
     public function exercises() {
-        return $this->hasMany('App\Models\exercise');
+        return $this->hasMany(exercise::class, 'id_gmuscle_fk');
     }
 }
