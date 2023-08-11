@@ -8,7 +8,7 @@
   <div class="card z-depth-5">
     <div class="card-content">
       <div class="col s12 l10">
-        <h3 class="center" id="titleColor" >Tabela de Grupo Muscular</h3>
+        <h3 class="center" id="titleColor" >Tabela dos Grupos Musculares</h3>
       </div>
       
       <input type="text" id="search" placeholder="Pesquisar...">

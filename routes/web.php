@@ -44,7 +44,10 @@ Route::prefix('admin/grupo_muscular/')->group(function() {
 Route::prefix('admin/exercicios/')->group(function() {
     route::get('/tabela', [ExerciseController::class, 'show_table_exercises'])->name('admin.table.exercise');
     route::get('/create', [ExerciseController::class, 'create'])->name('admin.register.exercise');
-    Route::post('/store', [ExerciseController:: class, 'show'])->name('admin.register.exercise.create');
+    Route::post('/store', [ExerciseController:: class, 'store'])->name('admin.register.exercise.create');
+    Route::get('/edit/{id}', [ExerciseController::class, 'edit'])->name('admin.edit.exercise');
+    Route::put('/update/{id}', [ExerciseController::class, 'update'])->name('admin.edit.exercise.update');
+    Route::delete('/delete/{id}', [ExerciseController::class, 'destroy'])->name('admin.exercise.destroy');
 
 });
 

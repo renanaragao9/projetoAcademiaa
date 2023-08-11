@@ -290,6 +290,12 @@ nav .brand-logo i.material-icons {
   margin-bottom: 30px;
 }
 
+#card-form-edit-image {
+  height: 150px;
+  width: 150px;
+}
+
+/* Pagina de avaliações */
 #assessment-mobile {
   display: flex;
   align-items: center;
@@ -320,7 +326,7 @@ nav .brand-logo i.material-icons {
   font-size: 22px;
   font-family: Arial, Helvetica, sans-serif;
 }
-
+ 
 .footer {
   background-color: transparent;
   padding: 10px;

@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Cadastro do Grupo Muscular')
+@section('title', 'Edição do Grupo Muscular')
 
 @section('content')
 
