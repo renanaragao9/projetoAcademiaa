@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\exercise;
-use App\Models\muscle_group;
+use App\Models\muscleGroup;
 
 class ExerciseController extends Controller
 {
@@ -17,7 +17,7 @@ class ExerciseController extends Controller
 
     public function create() {
 
-        $muscleGroups = muscle_group::all();
+        $muscleGroups = muscleGroup::all();
 
         return view('admin.register.exercise', ['muscleGroups' => $muscleGroups]);
     }
@@ -28,9 +28,9 @@ class ExerciseController extends Controller
         $nameExercise = $request->input('name_exercise');
         $nameGM = $request->input('name_gm');
 
-        if (empty($nameExercise) && empty($nameGM)) {
+        if (empty($nameExercise) || empty($nameGM)) {
             
-            return redirect()->back()->with('msg-error', 'Não foi possível cadastrar o Exercício, verifique se o campo não está vazio');
+            return redirect()->back()->with('msg-error', 'Não foi possível cadastrar o exercício, verifique se algum campo não está vazio');
         }
 
         else {
@@ -64,7 +64,7 @@ class ExerciseController extends Controller
         
         $exercises = exercise::findOrFail($id);
 
-        $muscleGroups = muscle_group::all();
+        $muscleGroups = muscleGroup::all();
 
         return view('admin.editions.exercise', ['exercises' => $exercises, 'muscleGroups' => $muscleGroups]);
     }
@@ -75,7 +75,7 @@ class ExerciseController extends Controller
         $nameExercise = $request->input('name_exercise');
         $nameGM = $request->input('name_gm');
 
-        if (empty($nameExercise) && empty($nameGM)) {
+        if (empty($nameExercise) || empty($nameGM)) {
             return redirect()->back()->with('msg-error', 'Não foi possível cadastrar o Exercício, verifique se o campo não está vazio');
         } 
         
@@ -87,10 +87,15 @@ class ExerciseController extends Controller
 
             // Upload e edição de imagem
             if ($request->hasFile('image_exercise') && $request->file('image_exercise')->isValid()) {
+                
                 $requestImage = $request->image_exercise;
+                
                 $extension = $requestImage->extension();
+                
                 $imageName = md5($requestImage->getClientOriginalName() . strtotime("now")) . "." . $extension;
+                
                 $requestImage->move(public_path('img/exercise'), $imageName);
+                
                 $exerciseUpdate['image_exercise'] = $imageName;
             }
 

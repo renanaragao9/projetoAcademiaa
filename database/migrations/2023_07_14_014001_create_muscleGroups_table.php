@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('muscle_groups', function (Blueprint $table) {
+        Schema::create('muscleGroup', function (Blueprint $table) {
             $table->bigIncrements('id_gmuscle');
             $table->string('name_gmuscle');
             $table->timestamps();
@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('muscle_groups');
+        Schema::dropIfExists('muscleGroup');
     }
 };

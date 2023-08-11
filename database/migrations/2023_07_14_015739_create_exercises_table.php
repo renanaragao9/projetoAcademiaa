@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('exercises', function (Blueprint $table) {
             $table->bigIncrements('id_exercise');
             $table->string('name_exercise', 180);
-            $table->string('image_exercise')->default('default_image');
+            $table->string('image_exercise')->default('default_image.jpg');
             $table->bigInteger('id_gmuscle_fk')->unsigned();
             $table->foreign('id_gmuscle_fk')->references('id_gmuscle')->on('muscle_groups');
             $table->timestamps();

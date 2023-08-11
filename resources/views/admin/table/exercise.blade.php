@@ -4,7 +4,7 @@
 
 @section('content')
   
-<!-- Inicio de conteudo -->
+  <!-- Inicio de conteudo -->
   <div class="card z-depth-5">
     <div class="card-content">
       <div class="col s12 l10">
@@ -24,6 +24,7 @@
             <th>Ação</th>
           </tr>
         </thead>
+        
         <tbody id="table-body">
           @foreach( $exercises as $exercise)
             <tr>
@@ -37,14 +38,12 @@
                 <form action="{{ route('admin.exercise.destroy', $exercise->id_exercise) }}" method="POST" class="delete-form">
                   @csrf
                   @method('DELETE')
-                    <input type="hidden" name="id" value="{{ $exercise->id_exercise }}">
-                    <button class="btn-floating tooltipped red darken-4 btn-large waves-effect waves-light red delete-button" id="bottom-table-action" data-position="bottom" data-tooltip="Excluir"><i class="material-icons">delete_forever</i></button>
+                  <input type="hidden" name="id" value="{{ $exercise->id_exercise }}">
+                  <button class="btn-floating tooltipped red darken-4 btn-large waves-effect waves-light red delete-button" id="bottom-table-action" data-position="bottom" data-tooltip="Excluir"><i class="material-icons">delete_forever</i></button>
                 </form>
               </td>
             </tr>
           @endforeach
-          
-          <!-- Adicione mais registros aqui -->
         </tbody>
       </table>
       
@@ -74,48 +73,44 @@
   <script>
     // Função para filtrar os registros da tabela
     function filterTable() {
-        let input = document.getElementById('search');
-        let filter = input.value.toLowerCase();
-        let rows = document.getElementById('table-body').getElementsByTagName('tr');
-        let noResultsMessage = document.getElementById('no-results');
-        let totalRecords = document.getElementById('total-records');
+      let input = document.getElementById('search');
+      let filter = input.value.toLowerCase();
+      let rows = document.getElementById('table-body').getElementsByTagName('tr');
+      let noResultsMessage = document.getElementById('no-results');
+      let totalRecords = document.getElementById('total-records');
+      let resultsFound = false;
+      let count = 0;
 
-        let resultsFound = false;
-        let count = 0;
+      for (let i = 0; i < rows.length; i++) {
+        let nome = rows[i].getElementsByTagName('td')[1].innerText.toLowerCase();
+        let grupo = rows[i].querySelector('.grupo-muscular').getAttribute('data-grupo').toLowerCase();
 
-        for (let i = 0; i < rows.length; i++) {
-          let nome = rows[i].getElementsByTagName('td')[1].innerText.toLowerCase();
-          let grupo = rows[i].querySelector('.grupo-muscular').getAttribute('data-grupo').toLowerCase();
-
-          if (nome.indexOf(filter) > -1 || grupo.indexOf(filter) > -1) {
-            rows[i].style.display = '';
-            resultsFound = true;
-            count++;
-          } else {
-            rows[i].style.display = 'none';
-          }
-        }
-
-        if (resultsFound) {
-          noResultsMessage.style.display = 'none';
+        if (nome.indexOf(filter) > -1 || grupo.indexOf(filter) > -1) {
+          rows[i].style.display = '';
+          resultsFound = true;
+          count++;
         } else {
-          noResultsMessage.style.display = 'block';
+          rows[i].style.display = 'none';
         }
-
-        totalRecords.innerText = "Total de registros encontrados: " + count;
       }
 
-      // Evento de input para acionar a filtragem ao digitar na caixa de pesquisa
-      document.getElementById('search').addEventListener('input', filterTable);
-    
-    // FIM da Função para filtrar os registros da tabela 
+      if (resultsFound) {
+        noResultsMessage.style.display = 'none';
+      } else {
+        noResultsMessage.style.display = 'block';
+      }
 
-    
+      totalRecords.innerText = "Total de registros encontrados: " + count;
+    }
+
+    // Evento de input para acionar a filtragem ao digitar na caixa de pesquisa
+    document.getElementById('search').addEventListener('input', filterTable);
+  
+      
     // Inicio da função do alerta modal ao excluír dados
     document.addEventListener('DOMContentLoaded', function() {
       let modal = document.getElementById('modal-alerta');
       let instance = M.Modal.init(modal);
-
       let deleteButtons = document.querySelectorAll('.delete-button');
 
       deleteButtons.forEach(function(button) {

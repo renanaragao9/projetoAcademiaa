@@ -24,20 +24,17 @@
         <tbody id="table-body">
           @foreach($muscleGroups as $musclegroup)
             <tr>
-              
               <td id="td-text">{{ $musclegroup->name_gmuscle }}</td>
-              
-              <td>
+              <td>    
                 <!-- Botão de ações-->
                 <a href="{{ route('admin.edit.groupmuscle', $musclegroup->id_gmuscle)}}" class="btn-floating tooltipped orange darken-4 btn-large waves-effect waves-light red" id="bottom-table-action" data-position="bottom" data-tooltip="Editar"><i class="material-icons">edit</i></a>
                 
                 <form action="{{ route('admin.groupmuscle.destroy', $musclegroup->id_gmuscle) }}" method="POST" class="delete-form">
                   @csrf
                   @method('DELETE')
-                    <input type="hidden" name="id" value="{{ $musclegroup->id_gmuscle }}">
-                    <button class="btn-floating tooltipped red darken-4 btn-large waves-effect waves-light red delete-button" id="bottom-table-action" data-position="bottom" data-tooltip="Excluir"><i class="material-icons">delete_forever</i></button>
+                  <input type="hidden" name="id" value="{{ $musclegroup->id_gmuscle }}">
+                  <button class="btn-floating tooltipped red darken-4 btn-large waves-effect waves-light red delete-button" id="bottom-table-action" data-position="bottom" data-tooltip="Excluir"><i class="material-icons">delete_forever</i></button>
                 </form>
-
               </td>
             </tr>
           @endforeach
@@ -77,7 +74,6 @@
         let rows = document.getElementById('table-body').getElementsByTagName('tr');
         let noResultsMessage = document.getElementById('no-results');
         let totalRecords = document.getElementById('total-records');
-
         let resultsFound = false;
         let count = 0;
 
@@ -104,16 +100,13 @@
       }
 
       // Evento de input para acionar a filtragem ao digitar na caixa de pesquisa
-      document.getElementById('search').addEventListener('input', filterTable);
-    
-    // FIM da Função para filtrar os registros da tabela 
+      document.getElementById('search').addEventListener('input', filterTable); 
 
-    
-    // Inicio da função do alerta modal ao excluír dados
+
+      // Inicio da função do alerta modal ao excluír dados
     document.addEventListener('DOMContentLoaded', function() {
       let modal = document.getElementById('modal-alerta');
       let instance = M.Modal.init(modal);
-
       let deleteButtons = document.querySelectorAll('.delete-button');
 
       deleteButtons.forEach(function(button) {
