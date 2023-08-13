@@ -76,29 +76,19 @@
             
                     <!-- Dropdown Menu -->
                     <li>
-                        <a href="{{ route('admin.home') }}" id="nav-name">Renan Aragão</a>
+                        <a href="{{ route('admin.home') }}" id="nav-name">{{Auth::user()->name}}</a>
                     </li>
                     
                     <li class="dropdown-trigger" data-target="dropdown">
-                        <img src="/img/renan.jpeg" alt="" id="nav-image" class="circle responsive-img"><i class="material-icons right">arrow_drop_down</i>
+                        <img src="/img/renan.jpeg" alt="" id="nav-image" class="circle responsive-img">
                     </li>
-                    
-                    <!-- Estrutura do Dropdown -->
-                    <ul id="dropdown" class="dropdown-content">
-                        <li>
-                            <a href="#!" class="black-text"><i class="material-icons" id="blueColor">person</i>Perfil</a>
-                        </li>
-                        
-                        <li>
-                            <a href="#!" class="black-text"><i class="material-icons" id="blueColor">view_cozy</i>Log</a>
-                        </li>
-                        
-                        <li class="divider"></li><li class="divider"></li><li class="divider"></li>
 
-                        <li>
-                            <a href="#!" class="black-text"><i class="material-icons" id="blueColor">logout</i>Sair</a>
-                        </li>
-                    </ul>
+                    <li>
+                        <a href="#" class="tooltipped" id="logout-link" data-position="left" data-tooltip="Sair"><i class="material-icons right">logout</i></a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -348,15 +338,13 @@
     <!-- Bloco de anotações -->
     <script src="/js/BlocoDeAnotacoes.js"></script>
 
-    <!-- Filtragem de pesquisa da tabela -->
-    <script src="/js/pesquisaTabela.js"></script>
-
     <!-- Editor de texto -->
     <script src="https://cdn.ckeditor.com/4.11.1/standard/ckeditor.js"></script>
 
     @yield('script')
 
     <script>
+
 
       // Dados de exemplo
       let data = {
@@ -383,7 +371,15 @@
         data: data,
         options: options
       });
+
+      // enviar form pela tag <a>
+      document.getElementById('logout-link').addEventListener('click', function(e) {
+        e.preventDefault();
+        document.getElementById('logout-form').submit();
+    });
     </script>
+
+    
   <!-- Fim das chamadas de Scripts -->
 </body>
 </html>

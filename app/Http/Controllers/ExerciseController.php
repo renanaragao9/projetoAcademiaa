@@ -26,7 +26,7 @@ class ExerciseController extends Controller
         
         // Recupera os dados enviado pelo formulário através do POST e armazena em uma variavel
         $nameExercise = $request->input('name_exercise');
-        $nameGM = $request->input('name_gm');
+        $nameGM = $request->input('id_gmuscle_fk');
 
         if (empty($nameExercise) || empty($nameGM)) {
             
@@ -73,7 +73,7 @@ class ExerciseController extends Controller
         
         // Recupera os dados enviados pelo formulário através do POST e armazena em variáveis
         $nameExercise = $request->input('name_exercise');
-        $nameGM = $request->input('name_gm');
+        $nameGM = $request->input('id_gmuscle_fk');
 
         if (empty($nameExercise) || empty($nameGM)) {
             return redirect()->back()->with('msg-error', 'Não foi possível cadastrar o Exercício, verifique se o campo não está vazio');

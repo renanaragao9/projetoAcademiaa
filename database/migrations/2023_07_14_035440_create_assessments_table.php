@@ -30,7 +30,7 @@ return new class extends Migration
             $table->string('calf');
 
             $table->bigInteger('id_user_fk')->unsigned();
-            $table->foreign('id_user_fk')->references('id_user')->on('users');
+            $table->foreign('id_user_fk')->references('id')->on('users');
 
             $table->timestamps();
         });

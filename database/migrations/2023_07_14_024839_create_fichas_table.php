@@ -23,13 +23,13 @@ return new class extends Migration
             $table->foreign('id_exercise_fk')->references('id_exercise')->on('exercises');
 
             $table->bigInteger('id_gmuscle_fk_to_ficha')->unsigned();
-            $table->foreign('id_gmuscle_fk_to_ficha')->references('id_gmuscle')->on('muscle_groups');
+            $table->foreign('id_gmuscle_fk_to_ficha')->references('id_gmuscle')->on('muscleGroup');
 
             $table->bigInteger('id_user_fk')->unsigned();
-            $table->foreign('id_user_fk')->references('id_user')->on('users');
+            $table->foreign('id_user_fk')->references('id')->on('users');
 
             $table->bigInteger('id_user_creator_fk')->unsigned();
-            $table->foreign('id_user_creator_fk')->references('id_user')->on('users');
+            $table->foreign('id_user_creator_fk')->references('id')->on('users');
 
             $table->timestamps();
         });
