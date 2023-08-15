@@ -10,7 +10,7 @@
             <div class="card white">
                 <div class="card-content">           
                     <div class="row">
-                        <form method="POST" action="{{ route('admin.user.update', $user->id) }}" class="col s12" >
+                        <form method="POST" action="{{ route('admin.user.update', $user->id) }}" class="col s12" id="form_exercise">
                             @method('PUT')
                             @csrf
                             <div class="input-field col s12 l12">
@@ -57,14 +57,14 @@
                             <input type="hidden" name="password" value="{{$user->password}}">
 
                             <div class="input-field col s12 l12">
-                                <button class="btn waves-effect waves-light light-blue darken-4 col s12 l5" id="save-button" type="submit" name="action" onclick="confirmSubmit()">Cadastrar
+                                <button class="btn waves-effect waves-light light-blue darken-4 col s12 l5" id="save-button" type="submit" name="action" onclick="confirmSubmit()">Editar
                                   <i class="material-icons right">save</i>
                                 </button>
                                   
                                 <a href="{{ route('admin.users') }}" class="waves-effect waves-light btn right light-blue darken-4 col s12 l5"><i class="material-icons right">table_rows</i>Alunos</a>
                       
                                 <div class="input-field col s12 l12">
-                                  <a href="{{ route('admin.home') }}" class="waves-effect waves-light btn left light-blue darken-4 col s12 l5" id="bottom-form-action"><i class="material-icons right">arrow_back</i>Voltar</a>
+                                  <a href="{{ route('admin.users') }}" class="waves-effect waves-light btn left light-blue darken-4 col s12 l5" id="bottom-form-action"><i class="material-icons right">arrow_back</i>Voltar</a>
                                 </div>
                               </div>
                         </form>
@@ -75,5 +75,54 @@
     </div>
 
     <!-- Fim de conteudo -->
+
+    <!-- Modal de alerta -->
+    <div id="modal-alerta" class="modal">
+        <div class="modal-content">
+            <i class="material-icons" id="modal-icon-alert">info</i>
+            <h4>Confirmação de Edição</h4>
+            <p>Deseja realmente editar o usuário: {{$user->name}} ?</p>
+        </div>
+
+        <div class="modal-footer">
+            <a href="#" class="modal-close waves-effect waves-green btn-flat right" id="cancelBtn">Cancelar</a>
+            <a href="#" class="modal-close waves-effect waves-green btn light-blue darken-4 left" id="sendBtn">Editar</a>
+        </div>
+    </div>
+
+@endsection
+
+@section('script')
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      let modal = document.getElementById('modal-alerta');
+      let instance = M.Modal.init(modal);
+
+      let form = document.querySelector('#form_exercise');
+
+      form.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        instance.open();
+      });
+
+      let cancelBtn = document.querySelector('.modal-footer .modal-close');
+
+      cancelBtn.addEventListener('click', function() {
+        instance.close();
+      });
+
+      let sendBtn = document.getElementById('sendBtn');
+
+      sendBtn.addEventListener('click', function() {
+        form.submit();
+      });
+    });
+    
+    {{-- 
+      o modal é estilizado usando as classes CSS fornecidas pelo Materialize CSS. Usamos a função M.Modal.init() para inicializar o modal e a função instance.open() para abrir o modal quando o formulário for submetido.
+      o evento submit é usado para interceptar o envio do formulário, e o modal é aberto nesse momento. Quando o botão "Enviar" dentro do modal é clicado, o formulário é enviado utilizando form.submit(). 
+      --}}
+  </script>
 
 @endsection

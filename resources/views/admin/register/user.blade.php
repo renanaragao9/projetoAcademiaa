@@ -10,7 +10,7 @@
             <div class="card white">
                 <div class="card-content">           
                     <div class="row">
-                        <form method="POST" action="{{ route('admin.user.store') }}" class="col s12" >
+                        <form method="POST" action="{{ route('admin.user.store') }}" class="col s12" id="form_exercise" >
                             @csrf
                             <div class="input-field col s12 l12">
                                 <h3 id="titleColor" class="center">Cadastro: Aluno(a)</h3>
@@ -18,7 +18,7 @@
 
                             <div class="input-field col s12 l6">
                                 <i class="material-icons prefix">account_circle</i>
-                                <input name="name" id="icon-nome" type="text" class="validate">
+                                <input name="name" id="icon-nome" type="text" class="validate" required>
                                 <label for="icon-nome">Nome</label>
                             </div>
                             
@@ -46,14 +46,14 @@
                             
                             <div class="input-field col s12 l6">
                                 <i class="material-icons prefix">mail</i>
-                                <input name="email" id="email" type="email" class="validate">
+                                <input name="email" id="email" type="email" class="validate" required>
                                 <label for="email">E-mail</label>
                                 <span class="helper-text" data-error="Email Inválido" data-success="Email Valido"></span>
                             </div>
                             
                             <div class="input-field col s12 l6">
                                 <i class="material-icons prefix">lock</i>
-                                <input name="password" id="password" type="password" class="validate">
+                                <input name="password" id="password" type="password" class="validate" required>
                                 <label for="password">Senha</label>
                             </div>
 
@@ -75,6 +75,55 @@
         </div>
     </div>
 
+    <!-- Modal de alerta -->
+    <div id="modal-alerta" class="modal">
+        <div class="modal-content">
+            <i class="material-icons" id="modal-icon-alert">info</i>
+            <h4>Confirmação de Cadastro</h4>
+            <p>Deseja realmente cadastrar o usuário ?</p>
+        </div>
+
+        <div class="modal-footer">
+            <a href="#" class="modal-close waves-effect waves-green btn-flat right" id="cancelBtn">Cancelar</a>
+            <a href="#" class="modal-close waves-effect waves-green btn light-blue darken-4 left" id="sendBtn">Cadastrar</a>
+        </div>
+    </div>
+
     <!-- Fim de conteudo -->
+
+@endsection
+
+@section('script')
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      let modal = document.getElementById('modal-alerta');
+      let instance = M.Modal.init(modal);
+
+      let form = document.querySelector('#form_exercise');
+
+      form.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        instance.open();
+      });
+
+      let cancelBtn = document.querySelector('.modal-footer .modal-close');
+
+      cancelBtn.addEventListener('click', function() {
+        instance.close();
+      });
+
+      let sendBtn = document.getElementById('sendBtn');
+
+      sendBtn.addEventListener('click', function() {
+        form.submit();
+      });
+    });
+    
+    {{-- 
+      o modal é estilizado usando as classes CSS fornecidas pelo Materialize CSS. Usamos a função M.Modal.init() para inicializar o modal e a função instance.open() para abrir o modal quando o formulário for submetido.
+      o evento submit é usado para interceptar o envio do formulário, e o modal é aberto nesse momento. Quando o botão "Enviar" dentro do modal é clicado, o formulário é enviado utilizando form.submit(). 
+      --}}
+  </script>
 
 @endsection

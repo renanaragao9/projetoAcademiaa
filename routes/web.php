@@ -63,6 +63,7 @@ Route::middleware(['auth'])->group(function() {
         route::post('/cadastrar', [UserController::class,'store'])->name('admin.user.store');
         route::get('/editar/{id}', [UserController::class, 'edit'])->name('admin.user.edit');
         Route::put('/atualizar/{id}', [UserController::class, 'update'])->name('admin.user.update');
+        Route::delete('deletar/{id}', [UserController::class, 'destroy'])->name('admin.user.destroy');
     });
 });
 require __DIR__.'/auth.php';

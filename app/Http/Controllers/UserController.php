@@ -70,4 +70,12 @@ class UserController extends Controller
         return redirect()->back()->with('msg-success', 'Aluno(a) editado com sucesso!');
     }
 
+    public function destroy($id) {
+        $user = User::findOrFail($id);
+
+        $user->delete();
+
+        return redirect()->back()->with('msg-success', 'Aluno excluído com sucesso!');
+    }
+
 }
