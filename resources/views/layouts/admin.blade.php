@@ -53,7 +53,7 @@
             <div class="nav-wrapper light-blue darken-4">
         
                 <!-- Botão hamburguer para o mobile-->
-                <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <a href="#" class="sidenav-trigger" data-target="slide-out"><i class="material-icons">menu</i></a>
 
                 <!-- Botão de sair para o mobile-->
                 <a href="#" data-target="slide-out" id="nav-mobile-icon" class="sidenav-trigger right"><i class="material-icons">logout</i></a>
@@ -108,7 +108,7 @@
             </li>
 
             <li class="collapsible">
-                <a href="{{ route('admin.users') }}" class="waves-effect"> Alunos <i class="material-icons left">group</i> </a>
+                <a href="{{ route('admin.users') }}" class="waves-effect"> Alunos <i class="material-icons left">group</i></a>
             </li>
             
             <li class="no-padding"></li>
@@ -119,7 +119,7 @@
                     <div class="collapsible-body blue accent-2">
                         <ul>
                             <li>
-                                <a href="{{ route('admin.register.user') }}"> Aluno <i class="material-icons">person</i></a>
+                                <a href="{{ route('admin.user.create') }}"> Aluno <i class="material-icons">person</i></a>
                             </li>
 
                             <li class="collapsible"></li>
@@ -344,7 +344,6 @@
     @yield('script')
 
     <script>
-
 
       // Dados de exemplo
       let data = {

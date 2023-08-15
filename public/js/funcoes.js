@@ -2,27 +2,28 @@ $(document).ready(function(){
 
     // Chamadas para ativar os dropdowns
 
-    $(".dropdown-trigger").dropdown({ 
-      coverTrigger: false,
-    });
-    
-    $(".dropdown-table").dropdown({ 
-      coverTrigger: false,
-    });
-
-    // Chamada para o Modal
-    $('.modal').modal();
-
-    // Chamada para ativar o dropdown da navbar
-    $('.collapsible').collapsible();
-
-    // Chamada para ativar o sidenav lateral
-    $('.sidenav').sidenav();
-
     // Chamada para o botao flutuante
     $('.fixed-action-btn').floatingActionButton({
       hoverEnabled: false
     });
+
+    // Chamada para ativar o sidenav lateral
+    $('.sidenav').sidenav();
+
+    // Chamada para ativar o dropdown da navbar
+    $('.collapsible').collapsible();
+
+    /*
+      $(".dropdown-trigger").dropdown({ 
+        coverTrigger: false,
+      });
+      
+      $(".dropdown-table").dropdown({ 
+        coverTrigger: false,
+      });
+    */
+    // Chamada para o Modal
+    $('.modal').modal();
 
     // Chamada para ampliação da imagem
     $('.materialboxed').materialbox();

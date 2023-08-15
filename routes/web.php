@@ -25,30 +25,30 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth'])->group(function() {
+    
     Route::prefix('admin')->group(function() {
         Route::get('/home', [AdminController::class, 'home'])->name('admin.home');
-        Route::get('/alunos', [AdminController::class, 'users'])->name('admin.users');
         route::get('/estatistica', [AdminController::class, 'statistic'])->name('admin.statistic');
         route::get('/chamados', [AdminController::class, 'called'])->name('admin.called');
     });
     
     Route::prefix('admin/grupo_muscular/')->group(function() {
         Route::get('/tabela', [GroupMuscleController::class, 'show_table_groupMuscles'])->name('admin.table.groupmuscle');
-        Route::get('/create', [GroupMuscleController::class, 'create'])->name('admin.register.groupmuscle');
-        Route::post('/store', [GroupMuscleController::class, 'store'])->name('admin.register.groupmuscle.create');
-        Route::get('/edit/{id}', [GroupMuscleController::class, 'edit'])->name('admin.edit.groupmuscle');
-        Route::put('/update/{id}', [GroupMuscleController::class, 'update'])->name('admin.edit.groupmuscle.update');
-        Route::delete('/delete/{id}', [GroupMuscleController::class, 'destroy'])->name('admin.groupmuscle.destroy');
+        Route::get('/criar', [GroupMuscleController::class, 'create'])->name('admin.register.groupmuscle');
+        Route::post('/cadastrar', [GroupMuscleController::class, 'store'])->name('admin.register.groupmuscle.create');
+        Route::get('/editar/{id}', [GroupMuscleController::class, 'edit'])->name('admin.edit.groupmuscle');
+        Route::put('/atualizar/{id}', [GroupMuscleController::class, 'update'])->name('admin.edit.groupmuscle.update');
+        Route::delete('/deletar/{id}', [GroupMuscleController::class, 'destroy'])->name('admin.groupmuscle.destroy');
         
     });
     
     Route::prefix('admin/exercicios/')->group(function() {
         route::get('/tabela', [ExerciseController::class, 'show_table_exercises'])->name('admin.table.exercise');
-        route::get('/create', [ExerciseController::class, 'create'])->name('admin.register.exercise');
-        Route::post('/store', [ExerciseController:: class, 'store'])->name('admin.register.exercise.create');
-        Route::get('/edit/{id}', [ExerciseController::class, 'edit'])->name('admin.edit.exercise');
-        Route::put('/update/{id}', [ExerciseController::class, 'update'])->name('admin.edit.exercise.update');
-        Route::delete('/delete/{id}', [ExerciseController::class, 'destroy'])->name('admin.exercise.destroy');
+        route::get('/criar', [ExerciseController::class, 'create'])->name('admin.register.exercise');
+        Route::post('/cadastrar', [ExerciseController:: class, 'store'])->name('admin.register.exercise.create');
+        Route::get('/editar/{id}', [ExerciseController::class, 'edit'])->name('admin.edit.exercise');
+        Route::put('/atualizar/{id}', [ExerciseController::class, 'update'])->name('admin.edit.exercise.update');
+        Route::delete('/deletar/{id}', [ExerciseController::class, 'destroy'])->name('admin.exercise.destroy');
     
     });
     
@@ -56,11 +56,13 @@ Route::middleware(['auth'])->group(function() {
         route::get('/ficha', [FichaController::class, 'index'])->name('admin.register.ficha');
         route::post('/ficha', [FichaController::class, 'create'])->name('admin.register.ficha.create');
     });
-    
+
     Route::prefix('admin/alunos')->group(function() {
-        Route::get('/aluno', [UserController::class, 'index'])->name('admin.register.user');
+        Route::get('/tabela', [UserController::class, 'users'])->name('admin.users');
+        Route::get('/criar', [UserController::class, 'create'])->name('admin.user.create');
+        route::post('/cadastrar', [UserController::class,'store'])->name('admin.user.store');
+        route::get('/editar/{id}', [UserController::class, 'edit'])->name('admin.user.edit');
+        Route::put('/atualizar/{id}', [UserController::class, 'update'])->name('admin.user.update');
     });
 });
-
-
 require __DIR__.'/auth.php';
