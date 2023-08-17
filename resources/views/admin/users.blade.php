@@ -13,7 +13,7 @@
         </div>
         <div id="total-records" class="total-records"></div>
         <input type="text" id="search" placeholder="Pesquisar...">
-        <table class="highlight striped centered">
+        <table class="highlight striped centered responsive-table">
           <thead>
             <tr>
               <th>Nome</th>
@@ -73,6 +73,41 @@
 
 @section('script')
   <script>
+
+    // Função para filtrar os registros da tabela
+    function filterTable() {
+        let input = document.getElementById('search');
+        let filter = input.value.toLowerCase();
+        let rows = document.getElementById('table-body').getElementsByTagName('tr');
+        let noResultsMessage = document.getElementById('no-results');
+        let totalRecords = document.getElementById('total-records');
+        let resultsFound = false;
+        let count = 0;
+
+        for (let i = 0; i < rows.length; i++) {
+          let nome = rows[i].getElementsByTagName('td')[0].innerText.toLowerCase();
+          let acao = rows[i].getElementsByTagName('td')[1].innerText.toLowerCase();
+
+          if (nome.indexOf(filter) > -1 || acao.indexOf(filter) > -1) {
+            rows[i].style.display = '';
+            resultsFound = true;
+            count++;
+          } else {
+            rows[i].style.display = 'none';
+          }
+        }
+
+        if (resultsFound) {
+          noResultsMessage.style.display = 'none';
+        } else {
+          noResultsMessage.style.display = 'block';
+        }
+
+        totalRecords.innerText = "Total de registros encontrados: " + count;
+      }
+
+      // Evento de input para acionar a filtragem ao digitar na caixa de pesquisa
+      document.getElementById('search').addEventListener('input', filterTable); 
     
     // Inicio da função do alerta modal ao excluír dados
     document.addEventListener('DOMContentLoaded', function() {

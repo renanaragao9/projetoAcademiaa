@@ -231,6 +231,11 @@ nav .brand-logo i.material-icons {
   width: 100px;
 }
 
+.delete-form {
+  margin: 0;
+  padding: 0;
+}
+
 #strong {
   font-weight: bold;
 }
@@ -386,7 +391,7 @@ footer#fixar-rodape {
     
 
     #td-text {
-      font-size: 14px;
+      font-size: 18px;
       font-weight: bolder;
     }
 }
