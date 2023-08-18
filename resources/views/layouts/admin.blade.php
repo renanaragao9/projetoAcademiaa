@@ -133,6 +133,12 @@
                             <li>
                                 <a href="{{ route('admin.register.groupmuscle') }}"> Grupo Muscular <i class="material-icons">fitness_center</i></a>
                             </li>
+
+                            <li class="collapsible"></li>
+
+                            <li>
+                                <a href="{{ route('admin.register.training') }}"> Divisão de Treino <i class="material-icons">fitness_center</i></a>
+                            </li>
                         </ul>
                     </div>
                 </li>
@@ -163,7 +169,7 @@
                                 <li class="collapsible"></li>
                                 
                                 <li>
-                                    <a href="#!"> Grupos de exercicios <i class="material-icons">table_chart</i></a>
+                                    <a href="{{ route('admin.table.training') }}"> Divisões do Treino <i class="material-icons">table_chart</i></a>
                                 </li>
                             </ul>
                         </div>
