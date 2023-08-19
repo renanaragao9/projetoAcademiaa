@@ -9,7 +9,7 @@
     <div class="card z-depth-5">
       <div class="card-content">
         <div class="col s12 l12">
-          <h3 class="center" id="titleColor" >Lista de alunos</h3>
+          <h3 class="center" id="titleColor">Lista de alunos</h3>
         </div>
         <div id="total-records" class="total-records"></div>
         <input type="text" id="search" placeholder="Pesquisar...">
@@ -25,10 +25,10 @@
             @foreach ($users as $user)
               <tr>
                 <td id="td-text">{{ $user->name }}</td>
-                <td id="td-text"><a href="#">{{ $user->email }}</a></td>
+                <td id="td-text">{{ $user->email }}</td>
                 <td>                              
                   <!-- Botão de ação Desktop-->
-                  <a href="{{ route('admin.register.ficha') }}" class="btn-floating tooltipped light-blue darken-4 btn-large waves-effect waves-light red" id="action-table-desktop" data-position="bottom" data-tooltip="Ficha"><i class="material-icons">backup_table</i></a>
+                  <a href="{{ route('admin.register.ficha', $user->id) }}" class="btn-floating tooltipped light-blue darken-4 btn-large waves-effect waves-light red" id="action-table-desktop" data-position="bottom" data-tooltip="Ficha"><i class="material-icons">backup_table</i></a>
                   <a class="btn-floating tooltipped grey darken-4 btn-large waves-effect waves-light red" id="action-table-desktop" data-position="bottom" data-tooltip="Avaliação"><i class="material-icons">assignment</i></a>
                   <a class="btn-floating tooltipped teal darken-4 btn-large waves-effect waves-light red" id="action-table-desktop" data-position="bottom" data-tooltip="Resetar senha"><i class="material-icons">lock_reset</i></a>
                   <a href="{{ route('admin.user.edit', $user->id) }}" class="btn-floating tooltipped orange darken-4 btn-large waves-effect waves-light red" id="action-table-desktop" data-position="bottom" data-tooltip="Resetar senha"><i class="material-icons">edit</i></a>

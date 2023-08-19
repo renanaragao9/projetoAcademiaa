@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('fichas', function (Blueprint $table) {
             $table->bigIncrements('id_ficha');
+            $table->string('order');
             $table->string('serie');
             $table->string('repetition');
             $table->string('weight');
@@ -30,6 +31,9 @@ return new class extends Migration
 
             $table->bigInteger('id_user_creator_fk')->unsigned();
             $table->foreign('id_user_creator_fk')->references('id')->on('users');
+
+            $table->bigInteger('id_training_fk')->unsigned();
+            $table->foreign('id_training_fk')->references('id_training')->on('training_division');
 
             $table->timestamps();
         });

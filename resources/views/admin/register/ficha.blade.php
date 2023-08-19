@@ -3,20 +3,6 @@
 @section('title', 'Cadastro de Ficha')
 
 @section('content')
-
-    <!--Divs para titulo e Reporte -->
-      <div class="row">
-        <div class="col s12 l10">
-          <h3 id="titleColor">Cadastro de Ficha</h3>
-          <h5 id="titleColor">Aluno: Renan Aragão</h5>
-        </div>
-        
-        <div class="col l2" id="button-report">
-          <h2>
-            <a class="waves-effect waves-light btn blue accent-2"><i class="material-icons left" >bug_report</i>Reportar</a>
-          </h2>
-        </div>
-      </div>
       
       <!-- Inicio de conteudo -->
       <div class="row">
@@ -28,24 +14,51 @@
                   @csrf
                   <div class="row">
 
+                    <div class="input-field col s12 l12" id="input-exercicio">
+                      <h3 id="titleColor" class="center">Ficha de Treino</h3>
+                      <h4 id="titleColor" class="center">Aluno: {{ $user->name }}</h4>
+                    </div>
+
                     <div class="input-field col s12">
                       <h4 class="center">Divisão do Treino</h4>
                     </div>
 
                     <div class="input-field col s12 l6">
+                      <select name="id_training_fk" id="ficha">
+                        <option value="" disabled selected>Selecione</option>
+                        
+                        @foreach ($trainings as $training)
+                          <option value="{{ $training->id_training }}"> {{$training->name_training}} </option>
+                        @endforeach
+                      </select>
+                      <label>Treino</label>
+                    </div>
+                    
+                    <div class="input-field col s12 l6">
+                      <select name="order" id="ficha">
+                        <option value="" disabled selected>Selecione</option>
+                        
+                        @foreach ($numbers as $number)
+                          <option value="{{$number}}"> {{$number}}° </option>
+                        @endforeach
+                      </select>
+                      <label>Ordem do exercício</label>
+                    </div>
+
+                    <div class="input-field col s12 l6">
                       <select name="id_gmuscle_fk_to_ficha" id="groupMuscle">
                         <option value="" disabled selected>Selecione</option>
-                        <option value="1">Peito</option>
-                        <option value="2">Costas</option>
-                        <option value="3">Perna</option>
-                        <!-- Adicione mais opções de groupMusc aqui -->
+                        
+                        @foreach ($muscleGroups as $muscleGroup)
+                          <option value="{{$muscleGroup->id_gmuscle}}"> {{$muscleGroup->name_gmuscle}} </option>
+                        @endforeach
                       </select>
                       <label>Grupo Muscular</label>
                     </div>
                     
                     <div class="input-field col s12 l6">
-                      <select name="id_exercise_fk" id="ficha">
-                        <option value="" disabled selected>Selecione</option>
+                      <select name="id_exercise_fk" id="exercises">
+
                       </select>
                       <label>Exercício</label>
                     </div>
@@ -73,13 +86,18 @@
                       <input name="rest" id="rest" type="tel" class="validate">
                       <label for="rest">Descanso:</label>
                     </div>
-                  </div>
+
+                    <div class="input-field col s12 l6">
+                      <input type="hidden" name="id_user_fk" value="{{ $user->id }}">
+                      <input type="hidden" name="id_user_creator_fk" value="{{ Auth::user()->id }}">
+                    </div>
 
                   <div class="input-field col s12">
-                    <textarea name="observation" id="observation" class="materialize-textarea" data-length="250"></textarea>
+                    <textarea name="description" id="observation" class="materialize-textarea" data-length="250"></textarea>
                     <label for="observation">Observação:</label>
                   </div>
 
+                </div>
                   <div class="input-field col s12 l12">      
                     <button class="btn waves-effect waves-light light-blue darken-4" id="save-button" type="submit" name="action" onclick="confirmSubmit()">Cadastrar
                       <i class="material-icons right">save</i>
@@ -112,62 +130,36 @@
 
 @section('script')
   <script>
-    document.addEventListener('DOMContentLoaded', function() 
-    {
-      let groupMuscleSelect = document.getElementById('groupMuscle');
-      let fichaSelect = document.getElementById('ficha');
-
-      let groupMusc = {
-        Peito: ['Supino Reto', 'Crucifixo', 'Supino Declinado'],
-        Costas: ['Barra fixa', 'Puxada', 'Remada'],
-        Perna: ['Leg 45º', 'Passada', 'Agachamento']
-        // Adicione mais grupos aqui
-      };
-
-      groupMuscleSelect.addEventListener('change', function() 
-      {
-        let groupMuscl = this.value;
-        fichaSelect.innerHTML = ''; // Limpar as opções do select
-
-        if (groupMuscl !== '') 
-        {
-          let ficha = groupMusc[groupMuscl];
-          
-          for (let i = 0; i < ficha.length; i++) {
-            let option = document.createElement('option');
-            option.value = ficha[i];
-            option.text = ficha[i];
-            fichaSelect.appendChild(option);
-          }
-        }
-        M.FormSelect.init(fichaSelect); // Reinitialize o select para atualizar as opções
-      });
-
-      M.FormSelect.init(groupMuscleSelect);
-
-      // Parte dos modais
+    //Função para popular o select exercicio atraves da escolha do select Grupo Muscular
+    $(document).ready(function () {
+      $('select').formSelect();
       
-      let modal = document.getElementById('modal-alerta');
-      let instance = M.Modal.init(modal);
-
-      let form = document.querySelector('#form_ficha');
-
-      form.addEventListener('submit', function(event) {
-        event.preventDefault();
-
-        instance.open();
-      });
-
-      let cancelBtn = document.querySelector('.modal-footer .modal-close');
-
-      cancelBtn.addEventListener('click', function() {
-        instance.close();
-      });
-
-      let sendBtn = document.getElementById('sendBtn');
-
-      sendBtn.addEventListener('click', function() {
-        form.submit();
+      $('#groupMuscle').change(function () {
+        var muscleGroupId = $(this).val();
+          if (muscleGroupId) {
+            $.ajax({
+              url: 'select/' + muscleGroupId,
+              type: 'GET',
+              success: function (data) {
+                  $('#exercises').empty();
+                  $('#exercises').append($('<option>', {
+                    value: '',
+                    text: 'Selecionar'
+                  }));
+                  $.each(data, function (index, exercise) {
+                    $('#exercises').append($('<option>', {
+                      value: exercise.id_exercise,
+                      text: exercise.name_exercise
+                    }));
+                  });
+                  
+                  $('#exercises').formSelect();
+              }
+            });
+          } else {
+              $('#exercises').empty();
+              $('#exercises').formSelect();
+          }
       });
     });
   </script>
