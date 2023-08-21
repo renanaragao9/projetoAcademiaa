@@ -10,7 +10,7 @@
         <div class="card white">
             <div class="card-content">           
               <div class="row">
-                <form class="col s12" id="form_ficha" action="{{ route('admin.register.ficha.create') }}" method="POST" enctype="multipart/form-data">
+                <form class="col s12" id="form_group_muscle" action="{{ route('admin.register.ficha.create') }}" method="POST" enctype="multipart/form-data">
                   @csrf
                   <div class="row">
 
@@ -24,7 +24,7 @@
                     </div>
 
                     <div class="input-field col s12 l6">
-                      <select name="id_training_fk" id="ficha">
+                      <select name="id_training_fk" id="ficha" required>
                         <option value="" disabled selected>Selecione</option>
                         
                         @foreach ($trainings as $training)
@@ -35,7 +35,7 @@
                     </div>
                     
                     <div class="input-field col s12 l6">
-                      <select name="order" id="ficha">
+                      <select name="order" id="ficha" required>
                         <option value="" disabled selected>Selecione</option>
                         
                         @foreach ($numbers as $number)
@@ -46,7 +46,7 @@
                     </div>
 
                     <div class="input-field col s12 l6">
-                      <select name="id_gmuscle_fk_to_ficha" id="groupMuscle">
+                      <select name="id_gmuscle_fk_to_ficha" id="groupMuscle" required>
                         <option value="" disabled selected>Selecione</option>
                         
                         @foreach ($muscleGroups as $muscleGroup)
@@ -57,7 +57,7 @@
                     </div>
                     
                     <div class="input-field col s12 l6">
-                      <select name="id_exercise_fk" id="exercises">
+                      <select name="id_exercise_fk" id="exercises" required>
 
                       </select>
                       <label>Exercício</label>
@@ -68,27 +68,28 @@
                     </div>
                     
                     <div class="input-field col s12 l6">
-                        <input name="serie" id="serie" type="tel" class="validate">
+                        <input name="serie" id="serie" type="number" class="validate" required>
                         <label for="serie">Série:</label>
                     </div>
                     
                     <div class="input-field col s12 l6">                      
-                      <input name="repetition" id="repetition" type="tel" class="validate">
+                      <input name="repetition" id="repetition" type="number" class="validate" required>
                       <label for="repetition">Repetição:</label>
                     </div>
                     
                     <div class="input-field col s12 l6">
-                        <input name="weight" id="weight" type="tel" class="validate">
+                        <input name="weight" id="weight" type="number" class="validate">
                         <label for="weight">Peso:</label>
                     </div>
                     
                     <div class="input-field col s12 l6">
-                      <input name="rest" id="rest" type="tel" class="validate">
+                      <input name="rest" id="rest" type="number" class="validate" required>
                       <label for="rest">Descanso:</label>
                     </div>
 
                     <div class="input-field col s12 l6">
                       <input type="hidden" name="id_user_fk" value="{{ $user->id }}">
+                      <input type="hidden" name="name" value="{{ $user->name }}">
                       <input type="hidden" name="id_user_creator_fk" value="{{ Auth::user()->id }}">
                     </div>
 
@@ -97,13 +98,16 @@
                     <label for="observation">Observação:</label>
                   </div>
 
-                </div>
                   <div class="input-field col s12 l12">      
-                    <button class="btn waves-effect waves-light light-blue darken-4" id="save-button" type="submit" name="action" onclick="confirmSubmit()">Cadastrar
+                    <button class="btn waves-effect waves-light light-blue darken-4 col s12 l5" id="save-button" type="submit" name="action" onclick="confirmSubmit()">Cadastrar
                       <i class="material-icons right">save</i>
                     </button>
-              
-                    <a href="{{ route('admin.home') }}" class="waves-effect waves-light btn right light-blue darken-4" id="botao-cancelar"><i class="material-icons right">cancel</i>Cancelar</a>
+                      
+                    <a href="{{ route('admin.users') }}" class="waves-effect waves-light btn right light-blue darken-4 col s12 l5" id=""><i class="material-icons right">table_rows</i>Alunos</a>
+          
+                    <div class="input-field col s12 l12">
+                      <a href="{{ route('admin.users') }}" class="waves-effect waves-light btn left light-blue darken-4 col s12 l5" id="bottom-form-action"><i class="material-icons right">arrow_back</i>Voltar</a>
+                    </div>
                   </div>
                 </form>
               </div>    
@@ -117,7 +121,7 @@
         <div class="modal-content">
           <i class="material-icons" id="modal-icon-alert">info</i>
           <h4>Confirmação de Cadastro</h4>
-          <p>Deseja realmente cadastrar o exercício da ficha ?</p>
+          <p>Deseja realmente cadastrar o exercício na ficha de {{$user->name}} ?</p>
         </div>
 
         <div class="modal-footer">
@@ -162,5 +166,35 @@
           }
       });
     });
+
+    document.addEventListener('DOMContentLoaded', function() {
+      let modal = document.getElementById('modal-alerta');
+      let instance = M.Modal.init(modal);
+
+      let form = document.querySelector('#form_group_muscle');
+
+      form.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        instance.open();
+      });
+
+      let cancelBtn = document.querySelector('.modal-footer .modal-close');
+
+      cancelBtn.addEventListener('click', function() {
+        instance.close();
+      });
+
+      let sendBtn = document.getElementById('sendBtn');
+
+      sendBtn.addEventListener('click', function() {
+        form.submit();
+      });
+    });
+    
+    {{-- 
+      o modal é estilizado usando as classes CSS fornecidas pelo Materialize CSS. Usamos a função M.Modal.init() para inicializar o modal e a função instance.open() para abrir o modal quando o formulário for submetido.
+      o evento submit é usado para interceptar o envio do formulário, e o modal é aberto nesse momento. Quando o botão "Enviar" dentro do modal é clicado, o formulário é enviado utilizando form.submit(). 
+      --}}
   </script>
 @endsection

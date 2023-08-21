@@ -41,11 +41,16 @@ class FichaController extends Controller
     }
 
 
-    public function update(Request $request) {
+    public function store(Request $request) {
 
-        $ficha = $request->all();
+        $name = $request->input('name');
 
         
+
+        $ficha = $request->all();
+        
         ficha::create($ficha);
+
+        return redirect()->back()->with('msg-success', 'Exercício do aluno '.$name.' cadastrado com sucesso!');
     }
 }

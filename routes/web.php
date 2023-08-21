@@ -64,7 +64,7 @@ Route::middleware(['auth'])->group(function() {
     Route::prefix('admin/fichas/')->group(function() {
         route::get('/ficha_aluno/{id}', [FichaController::class, 'create'])->name('admin.register.ficha');
         route::get('ficha_aluno/select/{muscleGroup}', [FichaController::class, 'getSelect'])->name('getSelect');
-        route::post('/cadastrar', [FichaController::class, 'update'])->name('admin.register.ficha.create');
+        route::post('/cadastrar', [FichaController::class, 'store'])->name('admin.register.ficha.create');
     });
 
     Route::prefix('admin/alunos')->group(function() {
