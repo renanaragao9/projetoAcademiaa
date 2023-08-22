@@ -22,7 +22,7 @@
                   <input type="hidden" name="id_gmuscle" value="{{$muscleGroup->id_gmuscle}}">
 
                   <div class="input-field col s12 l12">
-                    <input name="name_gmuscle" type="text" class="validate" id="icon-nome" value="{{$muscleGroup->name_gmuscle}}" required>
+                    <input name="name_gmuscle" type="text" class="validate" id="icon-nome" value="{{$muscleGroup->name_gmuscle}}" >
                     <label for="icon-nome">Nome:</label>
                   </div>
 

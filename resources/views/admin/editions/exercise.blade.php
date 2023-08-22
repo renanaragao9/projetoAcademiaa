@@ -22,7 +22,7 @@
                 </div>
                 
                 <div class="input-field col s12 l12" id="input-exercicio">
-                  <input name="name_exercise" type="text" class="validate" id="icon-nome" value="{{ $exercises->name_exercise }}">
+                  <input name="name_exercise" type="text" class="validate" id="icon-nome" value="{{ $exercises->name_exercise }}" required>
                   <label for="icon-nome">Nome:</label>
                 </div>
 

@@ -24,40 +24,37 @@ class ExerciseController extends Controller
 
     public function store(Request $request) {
         
-        // Recupera os dados enviado pelo formulário através do POST e armazena em uma variavel
-        $nameExercise = $request->input('name_exercise');
-        $nameGM = $request->input('id_gmuscle_fk');
+        // Verifica se o dado está vazio
+        $request->validate([
+            'name_exercise' => 'required',
+            'id_gmuscle_fk' => 'required'
+        ] , [
+            'name_exercise.required' => 'O campo nome não pode está vazio',
+            'id_gmuscle_fk.required' => 'O campo grupo muscular não pode está vazio'
+        ]);
 
-        if (empty($nameExercise) || empty($nameGM)) {
+        $exerciseCreate = new exercise;
+
+        $exerciseCreate->name_exercise = $request->name_exercise;
+        $exerciseCreate->id_gmuscle_fk = $request->id_gmuscle_fk;      
+
+        // Image Upload
+        if($request->hasFile('image_exercise') && $request->file('image_exercise')->isValid()) {
             
-            return redirect()->back()->with('msg-error', 'Não foi possível cadastrar o exercício, verifique se algum campo não está vazio');
+            $requestImage = $request->image_exercise;
+
+            $extension = $requestImage->extension();
+
+            $imageName = md5($requestImage->getClientOriginalName() . strtotime("now")) . "." . $extension;
+
+            $requestImage->move(public_path('img/exercise'), $imageName);
+
+            $exerciseCreate->image_exercise = $imageName;
         }
 
-        else {
-            
-            $exerciseCreate = new exercise;
+        $exerciseCreate->save();
 
-            $exerciseCreate->name_exercise = $request->name_exercise;
-            $exerciseCreate->id_gmuscle_fk = $request->id_gmuscle_fk;      
-
-            // Image Upload
-            if($request->hasFile('image_exercise') && $request->file('image_exercise')->isValid()) {
-                
-                $requestImage = $request->image_exercise;
-
-                $extension = $requestImage->extension();
-
-                $imageName = md5($requestImage->getClientOriginalName() . strtotime("now")) . "." . $extension;
-
-                $requestImage->move(public_path('img/exercise'), $imageName);
-
-                $exerciseCreate->image_exercise = $imageName;
-            }
-
-            $exerciseCreate->save();
-
-            return redirect()->back()->with('msg-success', 'Exercício cadastrado com sucesso!');
-        }
+        return redirect()->back()->with('msg-success', 'Exercício cadastrado com sucesso!');
     }
 
     public function edit($id) {
@@ -71,38 +68,37 @@ class ExerciseController extends Controller
 
     public function update(Request $request) {
         
-        // Recupera os dados enviados pelo formulário através do POST e armazena em variáveis
-        $nameExercise = $request->input('name_exercise');
-        $nameGM = $request->input('id_gmuscle_fk');
-
-        if (empty($nameExercise) || empty($nameGM)) {
-            return redirect()->back()->with('msg-error', 'Não foi possível cadastrar o Exercício, verifique se o campo não está vazio');
-        } 
+        // Verifica se o dado está vazio
+        $request->validate([
+            'name_exercise' => 'required',
+            'id_gmuscle_fk' => 'required'
+        ] , [
+            'name_exercise.required' => 'O campo nome não pode está vazio',
+            'id_gmuscle_fk.required' => 'O campo grupo muscular não pode está vazio'
+        ]);
         
-        else {
-            $exerciseUpdate = [
-                'name_exercise' => $request->name_exercise,
-                'id_gmuscle_fk' => $request->id_gmuscle_fk,
-            ];
+        $exerciseUpdate = [
+            'name_exercise' => $request->name_exercise,
+            'id_gmuscle_fk' => $request->id_gmuscle_fk,
+        ];
 
-            // Upload e edição de imagem
-            if ($request->hasFile('image_exercise') && $request->file('image_exercise')->isValid()) {
-                
-                $requestImage = $request->image_exercise;
-                
-                $extension = $requestImage->extension();
-                
-                $imageName = md5($requestImage->getClientOriginalName() . strtotime("now")) . "." . $extension;
-                
-                $requestImage->move(public_path('img/exercise'), $imageName);
-                
-                $exerciseUpdate['image_exercise'] = $imageName;
-            }
-
-            Exercise::findOrFail($request->id_exercise)->update($exerciseUpdate);
-
-            return redirect()->back()->with('msg-success', 'Exercício editado com sucesso!');
+        // Upload e edição de imagem
+        if ($request->hasFile('image_exercise') && $request->file('image_exercise')->isValid()) {
+            
+            $requestImage = $request->image_exercise;
+            
+            $extension = $requestImage->extension();
+            
+            $imageName = md5($requestImage->getClientOriginalName() . strtotime("now")) . "." . $extension;
+            
+            $requestImage->move(public_path('img/exercise'), $imageName);
+            
+            $exerciseUpdate['image_exercise'] = $imageName;
         }
+
+        Exercise::findOrFail($request->id_exercise)->update($exerciseUpdate);
+
+        return redirect()->back()->with('msg-success', 'Exercício editado com sucesso!');
     }
 
     public function destroy($id) {

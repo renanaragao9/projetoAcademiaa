@@ -44,13 +44,31 @@ class FichaController extends Controller
     public function store(Request $request) {
 
         $name = $request->input('name');
+        
+        $request->validate([
+            'id_training_fk' => 'required',
+            'id_gmuscle_fk_to_ficha' => 'required',
+            'id_exercise_fk' => 'required',
+            'serie' => 'required',
+            'repetition' => 'required',
+            'id_user_fk' => 'required',
+            'name' => 'required',
+            'id_user_creator_fk' => 'required',
+        ], [ 
+            'id_training_fk.required' => 'O campo treino é obrigatorio',
+            'id_gmuscle_fk_to_ficha.required' => 'O campo grupo muscular é obrigatorio',
+            'id_exercise_fk.required' => 'O campo exercício é obrigatorio',
+            'serie.required' => 'O campo serie é obrigatorio',
+            'repetition.required' => 'O campo repetição é obrigatorio',
+        ]);
+
 
         
-
         $ficha = $request->all();
         
         ficha::create($ficha);
 
         return redirect()->back()->with('msg-success', 'Exercício do aluno '.$name.' cadastrado com sucesso!');
     }
+    
 }

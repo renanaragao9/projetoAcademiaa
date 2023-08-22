@@ -227,7 +227,17 @@
                         <button class="flash-message-close" onclick="this.parentElement.style.display='none'">
                             <i class="material-icons">close</i>
                         </button>
-                    </div>
+                    </div>                
+                @elseif($errors->any())
+                    <div class="flash-message-warning">
+                        <div class="flash-message-content">
+                            <ul>
+                                @foreach($errors->all() as $error)
+                                    <li>{{ $error }} <i class="material-icons success-message-icon right">warning</i></li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div> 
                 @endif
                 
                 @yield('content')

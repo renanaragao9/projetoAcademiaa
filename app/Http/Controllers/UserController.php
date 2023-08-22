@@ -29,6 +29,16 @@ class UserController extends Controller
 
     public function store(Request $request) 
     {
+
+        // Verifica se o dado está vazio
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+        ] , [
+            'name.required' => 'O campo nome não pode está vazio',
+            'email.required' => 'O campo email não pode está vazio',
+        ]);
+
         // Validação do Email
         $email = $request->input('email');
         $existingEmail = User::where('email', $email)->first();
@@ -63,11 +73,32 @@ class UserController extends Controller
 
     public function update(Request $request) {
 
-        $user = $request->all();
+         // Verifica se o dado está vazio
+         $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+        ] , [
+            'name.required' => 'O campo nome não pode está vazio',
+            'email.required' => 'O campo email não pode está vazio',
+        ]);
 
-        User::findOrFail($request->id)->update($user);
+        // Validação do Email
+        $email = $request->input('email');
+        $existingEmail = User::where('email', $email)->first();
+        
+        if ($existingEmail) {
 
-        return redirect()->back()->with('msg-success', 'Aluno(a) editado com sucesso!');
+            // O email existe no banco de dados
+            return redirect()->back()->with('msg-warning', 'Error: E-mail já cadastrado!');
+        
+        } else {
+
+            $user = $request->all();
+
+            User::findOrFail($request->id)->update($user);
+
+            return redirect()->back()->with('msg-success', 'Aluno(a) editado com sucesso!');
+        }
     }
 
     public function destroy($id) {

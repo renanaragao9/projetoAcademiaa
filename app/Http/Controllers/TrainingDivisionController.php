@@ -22,21 +22,17 @@ class TrainingDivisionController extends Controller
     
     public function store(Request $request) {
         
-        // Recupera os dados enviado pelo formulário através do POST e armazena em uma variavel
-        $dados_tg = $request->input('name_training');
-
         // Verifica se o dado está vazio
-        if (empty($dados_tg)) {
+        $request->validate([
+            'name_training' => 'required'
+        ] , [
+            'name_training.required' => 'O campo nome não pode está vazio'
+        ]);
             
-            return redirect()->back()->with('msg-error', 'Não foi possível cadastrar a Divisão de Treino. Verifique se algum campo não está vazio e tente novamente!');
-        }
+        training_division::create($request->all());
 
-        else {
-            
-            training_division::create($request->all());
-
-            return redirect()->back()->with('msg-success', 'Divisão de treino cadastrado com sucesso!');
-        }
+        return redirect()->back()->with('msg-success', 'Divisão de treino cadastrado com sucesso!');
+        
     }
 
     public function edit($id) {
@@ -47,6 +43,13 @@ class TrainingDivisionController extends Controller
     }
 
     public function update(Request $request) {
+
+         // Verifica se o dado está vazio
+         $request->validate([
+            'name_training' => 'required'
+        ] , [
+            'name_training.required' => 'O campo nome não pode está vazio'
+        ]);
         
         $data = $request->all();
 

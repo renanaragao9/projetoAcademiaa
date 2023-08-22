@@ -21,22 +21,16 @@ class GroupMuscleController extends Controller
     }
     
     public function store(Request $request) {
+
+        $request->validate([
+            'name_gmuscle' => 'required'
+        ] , [
+            'name_gmuscle.required' => 'O campo nome não pode está vazio'
+        ]);
         
-        // Recupera os dados enviado pelo formulário através do POST e armazena em uma variavel
-        $dados_gm = $request->input('name_gmuscle');
+        muscleGroup::create($request->all());
 
-        // Verifica se o dado está vazio
-        if (empty($dados_gm)) {
-            
-            return redirect()->back()->with('msg-error', 'Não foi possível cadastrar o Grupo Muscular. Verifique se algum campo não está vazio e tente novamente!');
-        }
-
-        else {
-            
-            muscleGroup::create($request->all());
-
-            return redirect()->back()->with('msg-success', 'Grupo muscular cadastrado com sucesso!');
-        }
+        return redirect()->back()->with('msg-success', 'Grupo muscular cadastrado com sucesso!');
     }
 
     public function edit($id) {
@@ -47,6 +41,12 @@ class GroupMuscleController extends Controller
     }
 
     public function update(Request $request) {
+
+        $request->validate([
+            'name_gmuscle' => 'required'
+        ] , [
+            'name_gmuscle.required' => 'O campo nome não pode está vazio'
+        ]);
         
         $data = $request->all();
 

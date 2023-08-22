@@ -83,7 +83,7 @@
                     </div>
                     
                     <div class="input-field col s12 l6">
-                      <input name="rest" id="rest" type="number" class="validate" required>
+                      <input name="rest" id="rest" type="number" class="validate">
                       <label for="rest">Descanso:</label>
                     </div>
 
