@@ -70,5 +70,16 @@ class FichaController extends Controller
 
         return redirect()->back()->with('msg-success', 'Exercício do aluno '.$name.' cadastrado com sucesso!');
     }
+
+    public function show_table_exercise_user($id) {
+        
+        $fichaUsers = ficha::with(['exercise', 'muscleGroup', 'user', 'creator', 'training'])
+        ->where('id_user_fk', $id)
+        ->get();
+
+        $userName = $fichaUsers->first();
+
+        return view('admin.table.tableUser', ['fichaUsers' => $fichaUsers, 'userName' => $userName]);
+    }
     
 }

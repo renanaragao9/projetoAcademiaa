@@ -18,4 +18,5 @@ class exercise extends Model
     public function groupMuscle() {
         return $this->belongsTo(muscleGroup::class, 'id_gmuscle_fk');
     }
+
 }
