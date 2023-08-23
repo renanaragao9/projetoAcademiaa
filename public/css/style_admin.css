@@ -394,6 +394,10 @@ footer#fixar-rodape {
       font-size: 18px;
       font-weight: bolder;
     }
+
+    .caret {
+      display: none;
+    }
 }
 
 /* Preloader */

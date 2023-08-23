@@ -79,7 +79,20 @@ class FichaController extends Controller
 
         $userName = $fichaUsers->first();
 
-        return view('admin.table.tableUser', ['fichaUsers' => $fichaUsers, 'userName' => $userName]);
+        $numbers = ['1', '2', '3', '4' , '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15'];
+
+        return view('admin.table.tableUser', [
+            'fichaUsers' => $fichaUsers, 
+            'userName' => $userName,
+            'numbers' => $numbers
+        ]);
+    }
+
+    public function updateOrder(Request $request) {
+        
+        $newOrder = $request->input('order');
+
+        return redirect()->back()->with('success', 'Pedido atualizado com sucesso!');
     }
     
 }

@@ -19,7 +19,7 @@
       <table class="highlight striped centered">
         <thead>
           <tr>
-          <th>Div. Treivo</th>
+          <th>Div. Treino</th>
             <th>Exercício</th>
             <th>Ordem</th>
             <th>Ação</th>
@@ -31,7 +31,16 @@
             <tr>
               <td id="td-text">{{ $fichaUser->training->name_training }}</td>
               <td id="td-text"> {{ $fichaUser->exercise->name_exercise }} </td>
-              <td id="td-text">{{ $fichaUser->order }}</td>
+              <td id="td-text"> 
+                <div class="col s12 m4 l4 offset-l4 offset-m4">
+                  <select name="order" id="ficha" required>          
+                    @foreach ($numbers as $number)
+                      <option value="{{$number}}" {{ $number == $fichaUser->order ? "selected='selected'" : "" }}> {{$number}}° </option>
+                    @endforeach
+                    <button class="btn"></button>
+                  </select>
+                </div>
+              </td>
               <td>
                 <!-- Botão de ações Desktop-->
                 <a href="#" class="btn-floating tooltipped orange darken-4 btn-large waves-effect waves-light red" id="action-table-desktop" data-position="bottom" data-tooltip="Editar"><i class="material-icons">edit</i></a>
@@ -47,11 +56,14 @@
           @endforeach
         </tbody>
       </table>
-      
       <div id="no-results" class="no-results-message" style="display: none;">Nenhum registro encontrado</div>
       <div id="total-records" class="total-records"></div>
     </div>
   </div>
+
+  <button class="btn waves-effect waves-light light-blue darken-4 right col s12 l6" id="save-button" type="submit" name="action" onclick="confirmSubmit()">Salvar ordem
+    <i class="material-icons right">save</i>
+  </button>
   
   <!-- Fim de conteudo -->
   
