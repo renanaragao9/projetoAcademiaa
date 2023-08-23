@@ -58,15 +58,16 @@ Route::middleware(['auth'])->group(function() {
         Route::get('/editar/{id}', [ExerciseController::class, 'edit'])->name('admin.edit.exercise');
         Route::put('/atualizar/{id}', [ExerciseController::class, 'update'])->name('admin.edit.exercise.update');
         Route::delete('/deletar/{id}', [ExerciseController::class, 'destroy'])->name('admin.exercise.destroy');
-    
+        
     });
     
     Route::prefix('admin/fichas/')->group(function() {
+        route::get('/tabela/aluno/{id}', [FichaController::class, 'show_table_exercise_user'])->name('admin.ficha.table-user');
         route::get('/ficha_aluno/{id}', [FichaController::class, 'create'])->name('admin.register.ficha');
         route::get('ficha_aluno/select/{muscleGroup}', [FichaController::class, 'getSelect'])->name('getSelect');
         route::post('/cadastrar', [FichaController::class, 'store'])->name('admin.register.ficha.create');
-        route::get('/tabela/aluno/{id}', [FichaController::class, 'show_table_exercise_user'])->name('admin.ficha.table-user');
-        Route::post('tabela/aluno/atualizar-orders', [FichaController::class, 'updateOrder']);
+        Route::get('/editar/{id}', [FichaController::class, 'edit'])->name('admin.edit.ficha');
+        
     });
 
     Route::prefix('admin/alunos')->group(function() {

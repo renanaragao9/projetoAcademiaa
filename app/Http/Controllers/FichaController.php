@@ -88,11 +88,26 @@ class FichaController extends Controller
         ]);
     }
 
-    public function updateOrder(Request $request) {
+    public function edit($id) {
         
-        $newOrder = $request->input('order');
+        $ficha = ficha::findOrFail($id);
 
-        return redirect()->back()->with('success', 'Pedido atualizado com sucesso!');
+        $numbers = ['1', '2', '3', '4' , '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15'];
+
+        $trainings = training_division::all();
+
+        $muscleGroups = muscleGroup::all();
+
+        $exercises = exercise::all();
+
+        return view('admin.editions.ficha', [
+            'ficha' => $ficha, 
+            'numbers' => $numbers,
+            'trainings' => $trainings,
+            'muscleGroups' => $muscleGroups,
+            'exercises' => $exercises,
+            
+        ]);
     }
     
 }
