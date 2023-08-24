@@ -70,22 +70,22 @@
                     </div>
                     
                     <div class="input-field col s12 l6">
-                        <input name="serie" id="serie" type="number" class="validate" required>
+                        <input name="serie" id="serie" type="number" class="validate" value="{{ $ficha->serie }}" required>
                         <label for="serie">Série:</label>
                     </div>
                     
                     <div class="input-field col s12 l6">                      
-                      <input name="repetition" id="repetition" type="number" class="validate" required>
+                      <input name="repetition" id="repetition" type="number" class="validate" value="{{ $ficha->repetition }}" required>
                       <label for="repetition">Repetição:</label>
                     </div>
                     
                     <div class="input-field col s12 l6">
-                        <input name="weight" id="weight" type="number" class="validate">
+                        <input name="weight" id="weight" type="number" class="validate" value="{{ $ficha->weight }}">
                         <label for="weight">Peso:</label>
                     </div>
                     
                     <div class="input-field col s12 l6">
-                      <input name="rest" id="rest" type="number" class="validate">
+                      <input name="rest" id="rest" type="number" class="validate" value="{{ $ficha->rest }}">
                       <label for="rest">Descanso:</label>
                     </div>
 
@@ -95,20 +95,16 @@
                     </div>
 
                   <div class="input-field col s12">
-                    <textarea name="description" id="observation" class="materialize-textarea" data-length="250"></textarea>
+                    <textarea name="description" id="observation" class="materialize-textarea" data-length="250">{{ $ficha->description }}</textarea>
                     <label for="observation">Observação:</label>
                   </div>
 
-                  <div class="input-field col s12 l12">      
-                    <button class="btn waves-effect waves-light light-blue darken-4 col s12 l5" id="save-button" type="submit" name="action" onclick="confirmSubmit()">Cadastrar
+                  <div class="input-field col s12 l12">
+                    <button class="btn waves-effect waves-light light-blue darken-4 col s12 l5" id="save-button" type="submit" name="action" onclick="confirmSubmit()">Editar
                       <i class="material-icons right">save</i>
                     </button>
                       
-                    <a href="{{ route('admin.ficha.table-user', $ficha->id_user_fk)}}" class="waves-effect waves-light btn right light-blue darken-4 col s12 l5" id=""><i class="material-icons right">table_rows</i>Ficha</a>
-          
-                    <div class="input-field col s12 l12">
-                      <a href="{{ route('admin.home') }}" class="waves-effect waves-light btn left light-blue darken-4 col s12 l5" id="bottom-form-action"><i class="material-icons right">arrow_back</i>Voltar</a>
-                    </div>
+                    <a href="{{ route('admin.ficha.table-user', $ficha->id_user_fk)}}" class="waves-effect waves-light btn right light-blue darken-4 col s12 l5" id=""><i class="material-icons right">arrow_back</i>Voltar</a>
                   </div>
                 </form>
               </div>    
@@ -121,7 +117,7 @@
       <div id="modal-alerta" class="modal">
         <div class="modal-content">
           <i class="material-icons" id="modal-icon-alert">info</i>
-          <h4>Confirmação de Cadastro</h4>
+          <h4>Confirmação de Edição</h4>
           <p>Deseja realmente editar o exercício na ficha de {{$ficha->user->name}} ?</p>
         </div>
 

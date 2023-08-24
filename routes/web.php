@@ -67,6 +67,7 @@ Route::middleware(['auth'])->group(function() {
         route::get('ficha_aluno/select/{muscleGroup}', [FichaController::class, 'getSelect'])->name('getSelect');
         route::post('/cadastrar', [FichaController::class, 'store'])->name('admin.register.ficha.create');
         Route::get('/editar/{id}', [FichaController::class, 'edit'])->name('admin.edit.ficha');
+        Route::put('/atualizar/{id}', [FichaController::class, 'update'])->name('admin.update.ficha');
         
     });
 

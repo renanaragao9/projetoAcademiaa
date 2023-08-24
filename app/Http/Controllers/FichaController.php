@@ -109,5 +109,30 @@ class FichaController extends Controller
             
         ]);
     }
+
+    public function update(Request $request) {
+
+        $request->validate([
+            'id_training_fk' => 'required',
+            'id_gmuscle_fk_to_ficha' => 'required',
+            'id_exercise_fk' => 'required',
+            'serie' => 'required',
+            'repetition' => 'required',
+            'id_user_fk' => 'required',
+            'name' => 'required',
+            'id_user_creator_fk' => 'required',
+        ], [ 
+            'id_training_fk.required' => 'O campo treino é obrigatorio',
+            'id_gmuscle_fk_to_ficha.required' => 'O campo grupo muscular é obrigatorio',
+            'id_exercise_fk.required' => 'O campo exercício é obrigatorio',
+            'serie.required' => 'O campo serie é obrigatorio',
+            'repetition.required' => 'O campo repetição é obrigatorio',
+        ]);
+
+        
+
+        $exerciseVerify = 
+
+    }
     
 }

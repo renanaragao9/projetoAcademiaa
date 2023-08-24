@@ -51,10 +51,6 @@
       <div id="total-records" class="total-records"></div>
     </div>
   </div>
-
-  <button class="btn waves-effect waves-light light-blue darken-4 right col s12 l6" id="save-button" type="submit" name="action" onclick="confirmSubmit()">Salvar ordem
-    <i class="material-icons right">save</i>
-  </button>
   
   <!-- Fim de conteudo -->
   
