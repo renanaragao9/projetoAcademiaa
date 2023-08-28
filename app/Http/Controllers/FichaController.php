@@ -119,7 +119,6 @@ class FichaController extends Controller
             'serie' => 'required',
             'repetition' => 'required',
             'id_user_fk' => 'required',
-            'name' => 'required',
             'id_user_creator_fk' => 'required',
         ], [ 
             'id_training_fk.required' => 'O campo treino é obrigatorio',
@@ -129,9 +128,11 @@ class FichaController extends Controller
             'repetition.required' => 'O campo repetição é obrigatorio',
         ]);
 
+        $fichaUpdate = $request->all();
         
+        ficha::findOrFail($request->id_ficha)->update($fichaUpdate);
 
-        $exerciseVerify = 
+        return redirect()->back()->with('msg-success', 'Ficha atualizada com sucesso!');
 
     }
     

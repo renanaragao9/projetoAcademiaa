@@ -10,8 +10,9 @@
         <div class="card white">
             <div class="card-content">           
               <div class="row">
-                <form class="col s12" id="form_group_muscle" action="{{ route('admin.register.ficha.create') }}" method="POST" enctype="multipart/form-data">
+                <form class="col s12" id="form_group_muscle" action="{{ route('admin.update.ficha', $ficha->id_ficha) }}" method="POST" enctype="multipart/form-data">
                   @csrf
+                  @method('PUT')
                   <div class="row">
 
                     <div class="input-field col s12 l12" id="input-exercicio">
@@ -46,7 +47,7 @@
                     </div>
 
                     <div class="input-field col s12 l6">
-                      <select name="id_gmuscle_fk_to_ficha" id="groupMuscle" required>
+                      <select name="id_gmuscle_fk_to_ficha" id="groupMuscle"  required>
                         <option value="" disabled selected>Selecione</option>
                         
                         @foreach ($muscleGroups as $muscleGroup)
@@ -92,6 +93,7 @@
                     <div class="input-field col s12 l6">
                       <input type="hidden" name="id_user_fk" value="{{ $ficha->id_user_fk }}">
                       <input type="hidden" name="id_user_creator_fk" value="{{ Auth::user()->id }}">
+                      <input type="hidden" name="id_ficha" value="{{ $ficha->id_ficha }}">
                     </div>
 
                   <div class="input-field col s12">
