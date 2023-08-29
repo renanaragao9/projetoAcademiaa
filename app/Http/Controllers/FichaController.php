@@ -12,6 +12,30 @@ use App\Models\exercise;
 
 class FichaController extends Controller
 {
+
+    public function show_table_exercise_user($id) {
+        
+        $fichaUsers = ficha::with(['exercise', 'muscleGroup', 'user', 'creator', 'training'])
+        ->where('id_user_fk', $id)
+        ->get();
+
+
+         // Verificar se há resultados na consulta
+        if ($fichaUsers->isEmpty()) {
+            return redirect()->back()->with('msg-warning', 'Aluno sem ficha.');
+        }
+
+        $userName = $fichaUsers->first();
+
+        $numbers = ['1', '2', '3', '4' , '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15'];
+
+        return view('admin.table.tableUser', [
+            'fichaUsers' => $fichaUsers, 
+            'userName' => $userName,
+            'numbers' => $numbers
+        ]);
+    }
+
     public function create($id) {
 
         $user = user::findOrFail($id);
@@ -71,23 +95,6 @@ class FichaController extends Controller
         return redirect()->back()->with('msg-success', 'Exercício do aluno '.$name.' cadastrado com sucesso!');
     }
 
-    public function show_table_exercise_user($id) {
-        
-        $fichaUsers = ficha::with(['exercise', 'muscleGroup', 'user', 'creator', 'training'])
-        ->where('id_user_fk', $id)
-        ->get();
-
-        $userName = $fichaUsers->first();
-
-        $numbers = ['1', '2', '3', '4' , '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15'];
-
-        return view('admin.table.tableUser', [
-            'fichaUsers' => $fichaUsers, 
-            'userName' => $userName,
-            'numbers' => $numbers
-        ]);
-    }
-
     public function edit($id) {
         
         $ficha = ficha::findOrFail($id);
@@ -134,6 +141,15 @@ class FichaController extends Controller
 
         return redirect()->back()->with('msg-success', 'Ficha atualizada com sucesso!');
 
+    }
+
+    public function destroy($id) {
+        
+        $fichaUser = Ficha::findOrFail($id);
+
+        $fichaUser->delete();
+
+        return redirect()->back()->with('msg-success', 'Ficha excluída com sucesso!');
     }
     
 }

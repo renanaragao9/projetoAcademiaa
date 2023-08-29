@@ -68,9 +68,9 @@ Route::middleware(['auth'])->group(function() {
         route::post('/cadastrar', [FichaController::class, 'store'])->name('admin.register.ficha.create');
         Route::get('/editar/{id}', [FichaController::class, 'edit'])->name('admin.edit.ficha');
         Route::put('/atualizar/{id}', [FichaController::class, 'update'])->name('admin.update.ficha');
-        
+        Route::delete('deletar/{id}', [FichaController::class, 'destroy'])->name('admin.ficha.destroy');
     });
-
+    
     Route::prefix('admin/alunos')->group(function() {
         Route::get('/tabela', [UserController::class, 'users'])->name('admin.users');
         Route::get('/criar', [UserController::class, 'create'])->name('admin.user.create');

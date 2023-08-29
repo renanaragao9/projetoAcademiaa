@@ -29,7 +29,7 @@
                         <option value="" disabled selected>Selecione</option>
                         
                         @foreach ($trainings as $training)
-                          <option value="{{ $training->id_training }}" {{$ficha->id_training_fk == $training->id_training ? "selected='selected'" : "" }} > {{$training->name_training}} </option>
+                          <option value="{{ $training->id_training }}" {{$ficha->id_training_fk == $training->id_training ? "selected='selected'" : "disabled" }} > {{$training->name_training}} </option>
                         @endforeach
                       </select>
                       <label>Treino</label>
@@ -51,7 +51,7 @@
                         <option value="" disabled selected>Selecione</option>
                         
                         @foreach ($muscleGroups as $muscleGroup)
-                          <option value="{{$muscleGroup->id_gmuscle}}" {{ $ficha->id_gmuscle_fk_to_ficha == $muscleGroup->id_gmuscle ? "selected='selected'" : "" }}> {{$muscleGroup->name_gmuscle}} </option>
+                          <option value="{{$muscleGroup->id_gmuscle}}" {{ $ficha->id_gmuscle_fk_to_ficha == $muscleGroup->id_gmuscle ? "selected='selected'" : "disabled" }}> {{$muscleGroup->name_gmuscle}} </option>
                         @endforeach
                       </select>
                       <label>Grupo Muscular</label>
@@ -60,7 +60,7 @@
                     <div class="input-field col s12 l6">
                       <select name="id_exercise_fk" required>
                         @foreach ($exercises as $exercise)
-                          <option value="{{$exercise->id_exercise}}" {{ $ficha->id_exercise_fk == $exercise->id_exercise ? "selected='selected'" : "" }}> {{$exercise->name_exercise}} - {{ $exercise->groupMuscle->name_gmuscle }} </option>
+                          <option value="{{$exercise->id_exercise}}" {{ $ficha->id_exercise_fk == $exercise->id_exercise ? "selected='selected'" : "disabled" }}> {{$exercise->name_exercise}} - {{ $exercise->groupMuscle->name_gmuscle }} </option>
                         @endforeach
                       </select>
                       <label>Exercício</label>
@@ -125,7 +125,7 @@
 
         <div class="modal-footer">
           <a href="#" class="modal-close waves-effect waves-green btn-flat right" id="cancelBtn">Cancelar</a>
-          <a href="#" class="modal-close waves-effect waves-green btn light-blue darken-4 left" id="sendBtn">Cadastrar</a>
+          <a href="#" class="modal-close waves-effect waves-green btn light-blue darken-4 left" id="sendBtn">Editar</a>
         </div>
       </div>
       <!-- Fim Inicio de conteudo -->
