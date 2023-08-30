@@ -15,10 +15,14 @@ class FichaController extends Controller
 
     public function show_table_exercise_user($id) {
         
-        $fichaUsers = ficha::with(['exercise', 'muscleGroup', 'user', 'creator', 'training'])
-        ->where('id_user_fk', $id)
-        ->get();
 
+        $fichaUsers = ficha::join('training_division', 'fichas.id_training_fk', '=', 'training_division.id_training')
+            ->with(['muscleGroup', 'user', 'creator'])
+            ->select('fichas.*', 'training_division.name_training as name_training')
+            ->where('fichas.id_user_fk', $id)
+            ->orderBy('name_training', 'asc')
+            ->orderBy('order', 'asc')
+        ->get();
 
          // Verificar se há resultados na consulta
         if ($fichaUsers->isEmpty()) {
@@ -44,7 +48,7 @@ class FichaController extends Controller
 
         $numbers = ['1', '2', '3', '4' , '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15'];
 
-        $muscleGroups = muscleGroup::all();
+        $muscleGroups = muscleGroup::orderBy('name_gmuscle', 'asc')->get();
 
         $exercises = exercise::all();
 
@@ -59,7 +63,7 @@ class FichaController extends Controller
 
     public function getSelect($muscleGroupId) {
         
-        $selectExercises = exercise::where('id_gmuscle_fk', $muscleGroupId)->get();
+        $selectExercises = exercise::where('id_gmuscle_fk', $muscleGroupId)->orderBy('name_exercise', 'asc')->get();
 
         return response()->json($selectExercises);
     }
@@ -149,7 +153,7 @@ class FichaController extends Controller
 
         $fichaUser->delete();
 
-        return redirect()->back()->with('msg-success', 'Ficha excluída com sucesso!');
+        return redirect()->back()->with('msg-success', 'Exercício da ficha excluída com sucesso!');
     }
     
 }

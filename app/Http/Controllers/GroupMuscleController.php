@@ -10,7 +10,7 @@ class GroupMuscleController extends Controller
 {
     public function show_table_groupMuscles() {
 
-        $muscleGroups = muscleGroup::all();
+        $muscleGroups = muscleGroup::orderBy('name_gmuscle', 'asc')->get();
 
         return view('admin.table.muscleGroup', ['muscleGroups' => $muscleGroups]);
     }

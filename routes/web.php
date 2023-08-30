@@ -33,7 +33,7 @@ Route::middleware(['auth'])->group(function() {
         route::get('/chamados', [AdminController::class, 'called'])->name('admin.called');
     });
 
-    Route::prefix('admin/divisao_do_treino/')->group(function() {
+    Route::prefix('admin/divisao-do-treino/')->group(function() {
         Route::get('/tabela', [TrainingDivisionController::class, 'show_table_training'])->name('admin.table.training');
         Route::get('/criar', [TrainingDivisionController::class, 'create'])->name('admin.register.training');
         Route::post('/cadastrar', [TrainingDivisionController::class, 'store'])->name('admin.register.training.create');
@@ -42,7 +42,7 @@ Route::middleware(['auth'])->group(function() {
         Route::delete('/deletar/{id}', [TrainingDivisionController::class, 'destroy'])->name('admin.training.destroy');
     });
     
-    Route::prefix('admin/grupo_muscular/')->group(function() {
+    Route::prefix('admin/grupo-muscular/')->group(function() {
         Route::get('/tabela', [GroupMuscleController::class, 'show_table_groupMuscles'])->name('admin.table.groupmuscle');
         Route::get('/criar', [GroupMuscleController::class, 'create'])->name('admin.register.groupmuscle');
         Route::post('/cadastrar', [GroupMuscleController::class, 'store'])->name('admin.register.groupmuscle.create');

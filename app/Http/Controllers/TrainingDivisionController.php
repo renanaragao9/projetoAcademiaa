@@ -10,7 +10,7 @@ class TrainingDivisionController extends Controller
 {
     public function show_table_training() {
 
-        $trainings = training_division::all();
+        $trainings = training_division::orderBy('name_training', 'asc')->get();
 
         return view('admin.table.trainingDivision', ['trainings' => $trainings]);
     }
