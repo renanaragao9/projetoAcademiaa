@@ -8,8 +8,10 @@ use App\Models\exercise;
 
 class GroupMuscleController extends Controller
 {
+
     public function show_table_groupMuscles() {
 
+        // Chama os registro do banco de dados e envia para a tabela por ordem de nome crescente (A-Z)
         $muscleGroups = muscleGroup::orderBy('name_gmuscle', 'asc')->get();
 
         return view('admin.table.muscleGroup', ['muscleGroups' => $muscleGroups]);
@@ -22,6 +24,7 @@ class GroupMuscleController extends Controller
     
     public function store(Request $request) {
 
+        // Verifica se os dados não está vazio
         $request->validate([
             'name_gmuscle' => 'required'
         ] , [
@@ -34,7 +37,8 @@ class GroupMuscleController extends Controller
     }
 
     public function edit($id) {
-        
+
+        // Recebe o ID passado pela rota e utiliza o comando Select e Where do SQL
         $muscleGroup = muscleGroup::findOrFail($id);
 
         return view('admin.editions.muscleGroup', ['muscleGroup' => $muscleGroup]);
@@ -42,6 +46,7 @@ class GroupMuscleController extends Controller
 
     public function update(Request $request) {
 
+        // Verifica se os dados não está vazio
         $request->validate([
             'name_gmuscle' => 'required'
         ] , [
@@ -50,6 +55,7 @@ class GroupMuscleController extends Controller
         
         $data = $request->all();
 
+        // Recebe o request acima e envia um comando SELECT, Where e UPDATE para atualizar o registro da tabela
         muscleGroup::findOrFail($request->id_gmuscle)->update($data);
 
         return redirect()->back()->with('msg-success', 'Grupo muscular editado com sucesso!');

@@ -11,7 +11,7 @@
         <div class="card-content">           
           <div class="row">
             <form class="col s12" id="form_exercise" action="{{ route('admin.register.exercise.create') }}" method="POST" enctype="multipart/form-data">
-            @csrf
+              @csrf
               <div class="row">
                 <div class="input-field col s12 l12" id="input-exercicio">
                   <h3 id="titleColor" class="center">Cadastro de Exercício</h3>
@@ -62,22 +62,21 @@
     </div>
   </div>
 
-    <!-- Modal de alerta -->
-    <div id="modal-alerta" class="modal">
-        <div class="modal-content">
-            <i class="material-icons" id="modal-icon-alert">info</i>
-            <h4>Confirmação de Cadastro</h4>
-            <p>Deseja realmente cadastrar o Exercício ?</p>
-        </div>
-
-        <div class="modal-footer">
-            <a href="#" class="modal-close waves-effect waves-green btn-flat right" id="cancelBtn">Cancelar</a>
-            <a href="#" class="modal-close waves-effect waves-green btn light-blue darken-4 left" id="sendBtn">Cadastrar</a>
-        </div>
+  <!-- Modal de alerta -->
+  <div id="modal-alerta" class="modal">
+    <div class="modal-content">
+        <i class="material-icons" id="modal-icon-alert">info</i>
+        <h4>Confirmação de Cadastro</h4>
+        <p>Deseja realmente cadastrar o Exercício ?</p>
     </div>
 
-    <!-- Fim de conteudo -->
+    <div class="modal-footer">
+        <a href="#" class="modal-close waves-effect waves-green btn-flat right" id="cancelBtn">Cancelar</a>
+        <a href="#" class="modal-close waves-effect waves-green btn light-blue darken-4 left" id="sendBtn">Cadastrar</a>
+    </div>
+  </div>
 
+<!-- Fim de conteudo -->
 @endsection
 
 @section('script')

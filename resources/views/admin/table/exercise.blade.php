@@ -7,8 +7,9 @@
   <!-- Inicio de conteudo -->
   <div class="card z-depth-5">
     <div class="card-content">
-      <div class="col s12 l10">
+      <div class="col s12 l12">
         <h3 class="center" id="titleColor" >Tabela dos Exercícios</h3>
+        <a href="{{ route('admin.register.exercise') }}" class="waves-effect waves-light btn left light-blue darken-4 col s12 l2" id="bottom-form-action"><i class="material-icons right">arrow_back</i>Voltar</a>
       </div>
     </div>
 
@@ -18,7 +19,7 @@
       <table class="highlight striped centered">
         <thead>
           <tr>
-            <th>Imagem</th>
+            <th class="hide-on-small-only">Imagem</th>
             <th>Nome</th>
             <th>Grupo Muscular</th>
             <th>Ação</th>
@@ -28,7 +29,7 @@
         <tbody id="table-body">
           @foreach( $exercises as $exercise)
             <tr>
-              <td id="td-text"> <img src="/img/exercise/{{$exercise->image_exercise}}" alt="" class="circle materialboxed" id="table-image"></td>
+              <td id="td-text" class="hide-on-small-only"> <img src="/img/exercise/{{$exercise->image_exercise}}" alt="" class="circle materialboxed" id="table-image"></td>
               <td id="td-text">{{ $exercise->name_exercise }}</td>
               <td class="grupo-muscular" data-grupo="{{ $exercise->groupMuscle->name_gmuscle }}" id="td-text">{{ $exercise->groupMuscle->name_gmuscle }}</td>
               <td>

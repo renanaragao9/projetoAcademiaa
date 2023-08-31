@@ -10,7 +10,9 @@
       <div class="card-content">
         <div class="col s12 l12">
           <h3 class="center" id="titleColor">Lista de alunos</h3>
+          <a href="{{ route('admin.user.create') }}" class="waves-effect waves-light btn left light-blue darken-4 col s12 l2" id="bottom-form-action"><i class="material-icons right">arrow_back</i>Voltar</a>
         </div>
+        
         <div id="total-records" class="total-records"></div>
         <input type="text" id="search" placeholder="Pesquisar...">
         <table class="highlight striped centered responsive-table">
@@ -53,7 +55,6 @@
       </div>
     </div>
   </div>
-  <!-- Fim de conteudo -->
   
   <!-- Modal de alerta -->
   <div id="modal-alerta" class="modal">
@@ -68,7 +69,8 @@
       <a href="#" class="modal-close waves-effect waves-green btn light-blue darken-4 left" id="confirmDeleteBtn">Excluir</a>
     </div>
   </div>
-  
+    
+<!-- Fim de conteudo -->
 @endsection
 
 @section('script')

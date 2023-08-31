@@ -76,6 +76,7 @@
       <i class="material-icons" id="modal-icon-alert">info</i>
       <h4>Confirmação de Cadastro</h4>
       <p>Deseja realmente editar o exercício: {{$exercises->name_exercise}} ?</p>
+      <p class="warning-modal">* A edição pode acarretar em mudanças nos exercícios das fichas já criadas</p>
     </div>
 
     <div class="modal-footer">

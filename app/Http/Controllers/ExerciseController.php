@@ -4,13 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\exercise;
+use App\Models\ficha;
 use App\Models\muscleGroup;
 
 class ExerciseController extends Controller
 {
     public function show_table_exercises() {
 
-        $exercises = exercise::with('groupMuscle')->get();
+        // Chama os registro do banco de dados e envia para a tabela por ordem de nome crescente (A-Z)
+        $exercises = exercise::with('groupMuscle')->orderBy('name_exercise', 'ASC')->orderBy('id_gmuscle_fk', 'asc')->get();
         
         return view('admin.table.exercise', ['exercises' => $exercises]);
     }
@@ -24,12 +26,13 @@ class ExerciseController extends Controller
 
     public function store(Request $request) {
         
-        // Verifica se o dado está vazio
+        // Verifica se os dados não está vazio
         $request->validate([
-            'name_exercise' => 'required',
+            'name_exercise' => 'required|unique:exercises,name_exercise',
             'id_gmuscle_fk' => 'required'
         ] , [
             'name_exercise.required' => 'O campo nome não pode está vazio',
+            'name_exercise.unique' => 'Já existe um exercício com esse nome',
             'id_gmuscle_fk.required' => 'O campo grupo muscular não pode está vazio'
         ]);
 
@@ -68,7 +71,7 @@ class ExerciseController extends Controller
 
     public function update(Request $request) {
         
-        // Verifica se o dado está vazio
+        // Verifica se os dados não está vazio
         $request->validate([
             'name_exercise' => 'required',
             'id_gmuscle_fk' => 'required'
@@ -96,6 +99,7 @@ class ExerciseController extends Controller
             $exerciseUpdate['image_exercise'] = $imageName;
         }
 
+        // Recebe o ID passado pela rota e utiliza o comando Select e Where do SQL
         Exercise::findOrFail($request->id_exercise)->update($exerciseUpdate);
 
         return redirect()->back()->with('msg-success', 'Exercício editado com sucesso!');
@@ -103,6 +107,13 @@ class ExerciseController extends Controller
 
     public function destroy($id) {
         
+         // Verifica se a divisão de treino está sendo usada em fichas
+         $isUsedInFicha = ficha::where('id_exercise_fk', $id)->exists();
+        
+         if ($isUsedInFicha) {
+             return redirect()->back()->with('msg-warning', 'Este exercício está associado a fichas e não pode ser excluído. Entre em contato com o administrador do sistema!');
+         }
+
         $exercise = Exercise::findOrFail($id);
         $imageName = $exercise->image_exercise;
 
@@ -116,7 +127,7 @@ class ExerciseController extends Controller
 
     // Excluir exercício do banco de dados
     $exercise->delete();
-
+        
         return redirect()->back()->with('msg-success', 'Exercício excluído com sucesso!');
     }
 }

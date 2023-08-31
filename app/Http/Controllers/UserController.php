@@ -18,7 +18,8 @@ class UserController extends Controller
 
     public function users() {
 
-        $users = User::all();
+         // Chama os registro do banco de dados e envia para a tabela por ordem de nome crescente (A-Z)
+        $users = User::orderBy('name', 'asc')->get();
 
         return view('admin.users', ['users' => $users]);
     }
@@ -30,7 +31,7 @@ class UserController extends Controller
     public function store(Request $request) 
     {
 
-        // Verifica se o dado está vazio
+        // Verifica se os dados não está vazio
         $request->validate([
             'name' => 'required',
             'email' => 'required',
@@ -73,7 +74,7 @@ class UserController extends Controller
 
     public function update(Request $request) {
 
-         // Verifica se o dado está vazio
+         // Verifica se os dados não está vazio
          $request->validate([
             'name' => 'required',
             'email' => 'required',
@@ -95,6 +96,7 @@ class UserController extends Controller
 
             $user = $request->all();
 
+            // Recebe o ID passado pela rota e utiliza o comando Select e Where do SQL
             User::findOrFail($request->id)->update($user);
 
             return redirect()->back()->with('msg-success', 'Aluno(a) editado com sucesso!');
@@ -102,8 +104,10 @@ class UserController extends Controller
     }
 
     public function destroy($id) {
+
         $user = User::findOrFail($id);
 
+        // Exclui o aluno no banco de dados
         $user->delete();
 
         return redirect()->back()->with('msg-success', 'Aluno excluído com sucesso!');

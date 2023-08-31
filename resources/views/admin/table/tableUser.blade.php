@@ -7,7 +7,7 @@
   <!-- Inicio de conteudo -->
   <div class="card z-depth-5">
     <div class="card-content">
-      <div class="col s12 l10">
+      <div class="col s12 l12">
         <h3 class="center" id="titleColor" >Tabela de exercícios</h3>
         <h4 class="center" id="titleColor"> Aluno: {{$userName->user->name}}</h4>
       </div>

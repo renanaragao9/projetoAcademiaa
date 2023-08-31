@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\training_division;
+use App\Models\ficha;
 use Illuminate\Http\Request;
 
 class TrainingDivisionController extends Controller
 {
     public function show_table_training() {
 
+        // Chama os registro do banco de dados e envia para a tabela por ordem de nome crescente (A-Z)
         $trainings = training_division::orderBy('name_training', 'asc')->get();
 
         return view('admin.table.trainingDivision', ['trainings' => $trainings]);
@@ -22,7 +24,7 @@ class TrainingDivisionController extends Controller
     
     public function store(Request $request) {
         
-        // Verifica se o dado está vazio
+        // Verifica se os dados não está vazio
         $request->validate([
             'name_training' => 'required'
         ] , [
@@ -36,7 +38,8 @@ class TrainingDivisionController extends Controller
     }
 
     public function edit($id) {
-        
+
+        // Recebe o ID passado pela rota e utiliza o comando Select e Where do SQL
         $training = training_division::findOrFail($id);
 
         return view('admin.editions.trainingDivision', ['training' => $training]);
@@ -44,7 +47,7 @@ class TrainingDivisionController extends Controller
 
     public function update(Request $request) {
 
-         // Verifica se o dado está vazio
+         // Verifica se os dados não está vazio
          $request->validate([
             'name_training' => 'required'
         ] , [
@@ -53,6 +56,7 @@ class TrainingDivisionController extends Controller
         
         $data = $request->all();
 
+        // Recebe o request acima e envia um comando SELECT, Where e UPDATE para atualizar o registro da tabela
         training_division::findOrFail($request->id_training)->update($data);
 
         return redirect()->back()->with('msg-success', 'Divisão de treino editado com sucesso!');
@@ -60,11 +64,18 @@ class TrainingDivisionController extends Controller
 
     public function destroy($id) {
 
+        // Verifica se a divisão de treino está sendo usada em fichas
+        $isUsedInFicha = ficha::where('id_training_fk', $id)->exists();
+        
+        if ($isUsedInFicha) {
+            return redirect()->back()->with('msg-warning', 'Esta divisão de treino está associado a fichas e não pode ser excluído. Entre em contato com o administrador do sistema!');
+        }
+
         $training = training_division::find($id);
 
-        // Excluir exercício do banco de dados
+        // Excluir a divisão de treino no banco de dados
         $training->delete();
 
-        return redirect()->back()->with('msg-success', 'Grupo muscular excluído com sucesso!');
+        return redirect()->back()->with('msg-success', 'Divisão de Treino excluído com sucesso!');
     }
 }
