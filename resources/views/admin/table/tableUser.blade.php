@@ -10,6 +10,7 @@
       <div class="col s12 l12">
         <h3 class="center" id="titleColor" >Tabela de exercícios</h3>
         <h4 class="center" id="titleColor"> Aluno: {{$userName->user->name}}</h4>
+        <a href="{{ route('admin.register.ficha', $userName->id_user_fk) }}" class="waves-effect waves-light btn left light-blue darken-4 col s12 l2" id="bottom-form-action"><i class="material-icons right">arrow_back</i>Voltar</a>
       </div>
     </div>
 
@@ -19,7 +20,7 @@
       <table class="highlight striped centered">
         <thead>
           <tr>
-          <th>Div. Treino</th>
+            <th>Div. Treino</th>
             <th>Exercício</th>
             <th>Ordem</th>
             <th>Ação</th>

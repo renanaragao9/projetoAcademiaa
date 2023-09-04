@@ -40,7 +40,7 @@
             </li>
             
             <li>
-                <a class="btn-floating modal-trigger light-blue darken-4" href="#user-modal"><i class="material-icons">person_add</i></a>
+                <a class="btn-floating modal-trigger light-blue darken-4" href="{{ route('admin.user.create') }}"><i class="material-icons">person_add</i></a>
             </li>
         </ul>
     </div>
@@ -104,8 +104,8 @@
             </li>
             
             <li class="collapsible">
-                <a href="index_mobile.html" class="waves-effect"> Ficha <i class="material-icons" id="nav-title-icon">library_books</i> </a>
-            </li>
+                <a href="#" class="waves-effect"> Ficha <i class="material-icons" id="nav-title-icon">library_books</i> </a>
+            </li> 
 
             <li class="collapsible">
                 <a href="{{ route('admin.users') }}" class="waves-effect"> Alunos <i class="material-icons left">group</i></a>

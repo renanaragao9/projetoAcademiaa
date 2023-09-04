@@ -15,7 +15,7 @@
                   <div class="row">
 
                     <div class="input-field col s12 l12" id="input-exercicio">
-                      <h3 id="titleColor" class="center">Ficha de Treino</h3>
+                      <h3 id="titleColor" class="center">Cadastro de Ficha</h3>
                       <h4 id="titleColor" class="center">Aluno: {{ $user->name }}</h4>
                     </div>
 
@@ -106,7 +106,7 @@
                     <a href="{{ route('admin.ficha.table-user', $user->id)}}" class="waves-effect waves-light btn right light-blue darken-4 col s12 l5" id=""><i class="material-icons right">table_rows</i>Ficha</a>
           
                     <div class="input-field col s12 l12">
-                      <a href="{{ route('admin.home') }}" class="waves-effect waves-light btn left light-blue darken-4 col s12 l5" id="bottom-form-action"><i class="material-icons right">arrow_back</i>Voltar</a>
+                      <a href="{{ route('admin.users') }}" class="waves-effect waves-light btn left light-blue darken-4 col s12 l5" id="bottom-form-action"><i class="material-icons right">arrow_back</i>Voltar</a>
                     </div>
                   </div>
                 </form>

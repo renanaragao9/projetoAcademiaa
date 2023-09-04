@@ -7,6 +7,7 @@ use App\Http\Controllers\GroupMuscleController;
 use App\Http\Controllers\TableController;
 use App\Http\Controllers\TrainingDivisionController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AssessmentController;
 use Illuminate\Support\Facades\Route;
 use PHPUnit\Framework\Attributes\Group;
 
@@ -60,17 +61,7 @@ Route::middleware(['auth'])->group(function() {
         Route::delete('/deletar/{id}', [ExerciseController::class, 'destroy'])->name('admin.exercise.destroy');
         
     });
-    
-    Route::prefix('admin/fichas/')->group(function() {
-        route::get('/tabela/aluno/{id}', [FichaController::class, 'show_table_exercise_user'])->name('admin.ficha.table-user');
-        route::get('/ficha_aluno/{id}', [FichaController::class, 'create'])->name('admin.register.ficha');
-        route::get('ficha_aluno/select/{muscleGroup}', [FichaController::class, 'getSelect'])->name('getSelect');
-        route::post('/cadastrar', [FichaController::class, 'store'])->name('admin.register.ficha.create');
-        Route::get('/editar/{id}', [FichaController::class, 'edit'])->name('admin.edit.ficha');
-        Route::put('/atualizar/{id}', [FichaController::class, 'update'])->name('admin.update.ficha');
-        Route::delete('deletar/{id}', [FichaController::class, 'destroy'])->name('admin.ficha.destroy');
-    });
-    
+
     Route::prefix('admin/alunos')->group(function() {
         Route::get('/tabela', [UserController::class, 'users'])->name('admin.users');
         Route::get('/criar', [UserController::class, 'create'])->name('admin.user.create');
@@ -79,5 +70,22 @@ Route::middleware(['auth'])->group(function() {
         Route::put('/atualizar/{id}', [UserController::class, 'update'])->name('admin.user.update');
         Route::delete('deletar/{id}', [UserController::class, 'destroy'])->name('admin.user.destroy');
     });
+    
+    Route::prefix('admin/fichas/')->group(function() {
+        route::get('/tabela/aluno/{id}', [FichaController::class, 'show_table_exercise_user'])->name('admin.ficha.table-user');
+        route::get('/ficha-aluno/{id}', [FichaController::class, 'create'])->name('admin.register.ficha');
+        route::get('ficha-aluno/select/{muscleGroup}', [FichaController::class, 'getSelect'])->name('getSelect');
+        route::post('/cadastrar', [FichaController::class, 'store'])->name('admin.register.ficha.create');
+        Route::get('/editar/{id}', [FichaController::class, 'edit'])->name('admin.edit.ficha');
+        Route::put('/atualizar/{id}', [FichaController::class, 'update'])->name('admin.update.ficha');
+        Route::delete('deletar/{id}', [FichaController::class, 'destroy'])->name('admin.ficha.destroy');
+    });
+
+    Route::prefix('admin/avaliacao')->group(function() {
+        //Route::get('/tabela', [UserController::class, 'users'])->name('admin.users');
+        Route::get('/avaliacao-aluno/{id}', [AssessmentController::class, 'create'])->name('admin.assessment.create');
+        route::post('/cadastrar', [AssessmentController::class, 'store'])->name('admin.register.assessment.create');
+    });
+    
 });
 require __DIR__.'/auth.php';
