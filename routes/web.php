@@ -82,9 +82,11 @@ Route::middleware(['auth'])->group(function() {
     });
 
     Route::prefix('admin/avaliacao')->group(function() {
-        //Route::get('/tabela', [UserController::class, 'users'])->name('admin.users');
+        Route::get('/tabela-aluno/{id}', [AssessmentController::class, 'show_table_assessment'])->name('admin.table.assessment');
         Route::get('/avaliacao-aluno/{id}', [AssessmentController::class, 'create'])->name('admin.assessment.create');
         route::post('/cadastrar', [AssessmentController::class, 'store'])->name('admin.register.assessment.create');
+        Route::get('/editar/{id}', [AssessmentController::class, 'edit'])->name('admin.edit.assessment');
+        Route::put('/atualizar/{id}', [AssessmentController::class, 'update'])->name('admin.assessment.update');
     });
     
 });

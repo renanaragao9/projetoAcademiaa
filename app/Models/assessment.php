@@ -14,4 +14,8 @@ class assessment extends Model
     protected $primaryKey = 'id_assessment';
 
     protected $fillable = ['goal', 'observation', 'term', 'height', 'weight', 'arm', 'forearm', 'shoulder', 'breastplate', 'waist', 'abdomen', 'hip', 'thigh', 'calf', 'id_user_fk', 'observation'];
+
+    public function user() {
+        return $this->belongsTo(User::class, 'id_user_fk');
+    }
 }
