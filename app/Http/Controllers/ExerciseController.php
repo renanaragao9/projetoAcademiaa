@@ -13,6 +13,11 @@ class ExerciseController extends Controller
 
         // Chama os registro do banco de dados e envia para a tabela por ordem de nome crescente (A-Z)
         $exercises = exercise::with('groupMuscle')->orderBy('name_exercise', 'ASC')->orderBy('id_gmuscle_fk', 'asc')->get();
+
+        // Verificar se há resultados na consulta
+        if ($exercises->isEmpty()) {
+            return redirect()->back()->with('msg-warning', 'Não há exercício cadastrado.');
+        }
         
         return view('admin.table.exercise', ['exercises' => $exercises]);
     }

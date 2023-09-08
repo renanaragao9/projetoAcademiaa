@@ -14,6 +14,11 @@ class GroupMuscleController extends Controller
         // Chama os registro do banco de dados e envia para a tabela por ordem de nome crescente (A-Z)
         $muscleGroups = muscleGroup::orderBy('name_gmuscle', 'asc')->get();
 
+        // Verificar se há resultados na consulta
+        if ($muscleGroups->isEmpty()) {
+            return redirect()->back()->with('msg-warning', 'Não há grupo muscular cadastrado.');
+        }
+
         return view('admin.table.muscleGroup', ['muscleGroups' => $muscleGroups]);
     }
 

@@ -39,10 +39,10 @@
                 <!-- Botão de ações Desktop-->
                 <a href="{{ route('admin.edit.assessment', $userAssessment->id_assessment) }}" class="btn-floating tooltipped orange darken-4 btn-large waves-effect waves-light red" id="action-table-desktop" data-position="bottom" data-tooltip="Editar"><i class="material-icons">edit</i></a>
                 
-                <form action="#" method="POST" class="delete-form">
+                <form action="{{ route('admin.assessment.destroy', $userAssessment->id_assessment) }}" method="POST" class="delete-form">
                   @csrf
                   @method('DELETE')
-                  <input type="hidden" name="id" value="$fichaUser->id_ficha">
+                  <input type="hidden" name="id" value="$userAssessment->id_assessment">
                   <button class="btn-floating tooltipped red darken-4 btn-large waves-effect waves-light red delete-button" id="bottom-table-action" data-position="bottom" data-tooltip="Excluir"><i class="material-icons">delete_forever</i></button>
                 </form>
               </td>

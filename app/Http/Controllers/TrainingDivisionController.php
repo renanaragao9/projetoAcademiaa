@@ -14,6 +14,11 @@ class TrainingDivisionController extends Controller
         // Chama os registro do banco de dados e envia para a tabela por ordem de nome crescente (A-Z)
         $trainings = training_division::orderBy('name_training', 'asc')->get();
 
+        // Verificar se há resultados na consulta
+        if ($muscleGroups->isEmpty()) {
+            return redirect()->back()->with('msg-warning', 'Não há divisão de treino cadastrado.');
+        }
+
         return view('admin.table.trainingDivision', ['trainings' => $trainings]);
     }
 

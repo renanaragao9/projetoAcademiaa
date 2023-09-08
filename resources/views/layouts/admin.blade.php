@@ -32,7 +32,7 @@
             </li>
             
             <li>
-                <a class="btn-floating light-blue darken-4" href="{{ route('admin.called') }}"><i class="material-icons">forum</i></a>
+                <a class="btn-floating light-blue darken-4" href="{{ route('admin.called.index') }}"><i class="material-icons">forum</i></a>
             </li> 
 
             <li>
@@ -182,7 +182,7 @@
             </li>
             
             <li class="collapsible">
-                <a href="{{ route('admin.called') }}" class="waves-effect"> Chamados <i class="material-icons">forum</i></a>
+                <a href="{{ route('admin.called.index') }}" class="waves-effect"> Chamados <i class="material-icons">forum</i></a>
             </li>
         </ul>
     </header>

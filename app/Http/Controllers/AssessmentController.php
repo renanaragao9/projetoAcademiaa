@@ -12,9 +12,14 @@ class AssessmentController extends Controller
 
     public function show_table_assessment($id) {
         
-        $userAssessments = assessment::where('id_user_fk', $id)->get();
+        $userAssessments = assessment::where('id_user_fk', $id)->orderBy('created_at', 'desc')->get();
 
         $user = $userAssessments->first();
+
+        // Verificar se há resultados na consulta
+        if ($userAssessments->isEmpty()) {
+            return redirect()->back()->with('msg-warning', 'Aluno sem avaliação.');
+        }
 
         return view('admin.table.assessment', ['userAssessments' => $userAssessments, 'user' => $user]);
     }
@@ -53,7 +58,7 @@ class AssessmentController extends Controller
         
         $assessment = assessment::findOrFail($id);
 
-        $user = user::findOrFail($id);
+        $user = user::findOrFail($assessment->id_user_fk);
 
         return view('admin.editions.assessment', ['assessment' => $assessment, 'user' => $user]);
     }
@@ -79,5 +84,14 @@ class AssessmentController extends Controller
         assessment::findOrFail($request->id)->update($data);
 
         return redirect()->back()->with('msg-success', 'Avaliação editada com sucesso!');
+    }
+
+    public function destroy($id) {
+        
+        $assessmentUser = assessment::findOrFail($id);
+
+        $assessmentUser->delete();
+
+        return redirect()->back()->with('msg-success', 'Exercício da ficha excluída com sucesso!');
     }
 }

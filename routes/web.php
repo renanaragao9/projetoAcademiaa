@@ -8,6 +8,7 @@ use App\Http\Controllers\TableController;
 use App\Http\Controllers\TrainingDivisionController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AssessmentController;
+use App\Http\Controllers\CalledController;
 use Illuminate\Support\Facades\Route;
 use PHPUnit\Framework\Attributes\Group;
 
@@ -31,7 +32,6 @@ Route::middleware(['auth'])->group(function() {
     Route::prefix('admin')->group(function() {
         Route::get('/home', [AdminController::class, 'home'])->name('admin.home');
         route::get('/estatistica', [AdminController::class, 'statistic'])->name('admin.statistic');
-        route::get('/chamados', [AdminController::class, 'called'])->name('admin.called');
     });
 
     Route::prefix('admin/divisao-do-treino/')->group(function() {
@@ -87,6 +87,12 @@ Route::middleware(['auth'])->group(function() {
         route::post('/cadastrar', [AssessmentController::class, 'store'])->name('admin.register.assessment.create');
         Route::get('/editar/{id}', [AssessmentController::class, 'edit'])->name('admin.edit.assessment');
         Route::put('/atualizar/{id}', [AssessmentController::class, 'update'])->name('admin.assessment.update');
+        Route::delete('deletar/{id}', [AssessmentController::class, 'destroy'])->name('admin.assessment.destroy');
+    });
+
+    Route::prefix('admin/chamados')->group(function() {
+        Route::get('lista-chamados', [CalledController::class, 'called'])->name('admin.called.index');
+        
     });
     
 });

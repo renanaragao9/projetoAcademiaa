@@ -25,12 +25,12 @@
                     </div>
 
                     <div class="input-field col s12 l6">
-                      <input name="goal" id="goal" type="text" class="validate" value="{{ $assessment->goal }}" required>
+                      <input name="goal" id="goal" type="text" class="validate" value="{{ $assessment->goal }}" readonly  required>
                       <label for="meta">Meta</label>
                     </div>
                     
                     <div class="input-field col s12 l6">
-                      <input name="term" id="term" type="text" class="validate" value="{{ $assessment->term }}" required>
+                      <input name="term" id="term" type="text" class="validate" value="{{ $assessment->term }}" readonly required>
                       <label for="meta">Meta</label>
                     </div>
                     
