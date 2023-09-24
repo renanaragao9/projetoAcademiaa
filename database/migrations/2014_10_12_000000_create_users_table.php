@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->string('sexo')->nullable();
             $table->dateTime('date')->nullable();
+            $table->integer('profile')->default(0);
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

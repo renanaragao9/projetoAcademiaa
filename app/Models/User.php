@@ -28,6 +28,7 @@ class User extends Authenticatable
         'phone',
         'sexo',
         'date',
+        'profile',
         'email',
         'password',
     ];
@@ -61,6 +62,14 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function fichas() {
+        return $this->hasMany(Ficha::class, 'id_user_fk');
+    }
+
+    public function assessments() {
+        return $this->hasMany(assessment::class, 'id_user_fk');
+    }
 
 
     

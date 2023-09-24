@@ -57,6 +57,16 @@
                 <label for="password">Senha</label>
               </div>
 
+              <div class="input-field col s12">
+                <i class="material-icons prefix">assignment_ind</i>
+                <select name="profile">
+                  <option selected value="0">Aluno</option>
+                  <option value="1">Professor</option>
+                  <option value="2">Administrador</option>
+                </select>
+                <label>Perfil</label>
+              </div>    
+
               <div class="input-field col s12 l12">      
                 <button class="btn waves-effect waves-light light-blue darken-4 col s12 l5" id="save-button" type="submit" name="action" onclick="confirmSubmit()">Cadastrar
                   <i class="material-icons right">save</i>

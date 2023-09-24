@@ -75,10 +75,14 @@ Route::middleware(['auth'])->group(function() {
         route::get('/tabela/aluno/{id}', [FichaController::class, 'show_table_exercise_user'])->name('admin.ficha.table-user');
         route::get('/ficha-aluno/{id}', [FichaController::class, 'create'])->name('admin.register.ficha');
         route::get('ficha-aluno/select/{muscleGroup}', [FichaController::class, 'getSelect'])->name('getSelect');
-        route::post('/cadastrar', [FichaController::class, 'store'])->name('admin.register.ficha.create');
+        route::post('ficha-aluno/cadastrar', [FichaController::class, 'store'])->name('admin.register.ficha.create');
+        route::get('/redirecionando', [FichaController::class, 'redirect_success'])->name('redirect.success');
+        route::get('/redirecionandoo', [FichaController::class, 'redirect_error'])->name('redirect.error');
         Route::get('/editar/{id}', [FichaController::class, 'edit'])->name('admin.edit.ficha');
         Route::put('/atualizar/{id}', [FichaController::class, 'update'])->name('admin.update.ficha');
         Route::delete('deletar/{id}', [FichaController::class, 'destroy'])->name('admin.ficha.destroy');
+        Route::delete('/delete-all/{id}', [FichaController::class, 'destroy_all'])->name('admin.ficha.deletefichas');
+
     });
 
     Route::prefix('admin/avaliacao')->group(function() {

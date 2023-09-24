@@ -130,7 +130,7 @@
         <div class="modal-content">
           <i class="material-icons" id="modal-icon-alert">info</i>
           <h4>Confirmação da Avaliação</h4>
-          <p>Deseja salvar a avaliação do aluno: {{ $user->name }} ?</p>
+          <p>Deseja cadastrar a avaliação do aluno: {{ $user->name }} ?</p>
         </div>
 
         <div class="modal-footer">

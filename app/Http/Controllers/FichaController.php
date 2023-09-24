@@ -71,32 +71,38 @@ class FichaController extends Controller
 
     public function store(Request $request) {
 
-        $name = $request->input('name');
-        
-        $request->validate([
-            'id_training_fk' => 'required',
-            'id_gmuscle_fk_to_ficha' => 'required',
-            'id_exercise_fk' => 'required',
-            'serie' => 'required',
-            'repetition' => 'required',
-            'id_user_fk' => 'required',
-            'name' => 'required',
-            'id_user_creator_fk' => 'required',
-        ], [ 
-            'id_training_fk.required' => 'O campo treino é obrigatorio',
-            'id_gmuscle_fk_to_ficha.required' => 'O campo grupo muscular é obrigatorio',
-            'id_exercise_fk.required' => 'O campo exercício é obrigatorio',
-            'serie.required' => 'O campo serie é obrigatorio',
-            'repetition.required' => 'O campo repetição é obrigatorio',
-        ]);
+        // Array vindo do JS da view com todos os dados da ficha
+        $dadosArray = $request->input('dados');
 
+        print_r($dadosArray);
 
+        // Integem sobre o array e salva os dados no banco de dados
+        foreach ($dadosArray as $dado) {
+            Ficha::create([
+                'id_training_fk' => $dado['id_training_fk'],
+                'order' => $dado['order'],
+                'id_gmuscle_fk_to_ficha' => $dado['id_gmuscle_fk_to_ficha'],
+                'id_exercise_fk' => $dado['id_exercise_fk'],
+                'serie' => $dado['serie'],
+                'repetition' => $dado['repetition'],
+                'weight' => $dado['weight'],
+                'rest' => $dado['rest'],
+                'description' => $dado['description'],
+                'id_user_fk' => $dado['id_user_fk'],
+                'id_user_creator_fk' => $dado['id_user_creator_fk'],
+            ]);
+        }
         
-        $ficha = $request->all();
-        
-        ficha::create($ficha);
-
-        return redirect()->back()->with('msg-success', 'Exercício do aluno '.$name.' cadastrado com sucesso!');
+        return redirect()->route('admin.users')->with('msg-success', 'Ficha criada com sucesso!');
+    }
+    
+    // Redireciona as mensages de sucesso ou erro na criação da ficha.
+    public function redirect_success() {
+        return redirect()->back()->with('msg-success', 'Ficha criada com sucesso');
+    }
+    
+    public function redirect_error() {
+        return redirect()->back()->with('msg-error', 'Não foi possível cadastrar a ficha, verifique se não há algum campo vazio');
     }
 
     public function edit($id) {
@@ -155,5 +161,16 @@ class FichaController extends Controller
 
         return redirect()->back()->with('msg-success', 'Exercício da ficha excluída com sucesso!');
     }
+
+    public function destroy_all($id) {
+        
+        $user = User::findOrFail($id);
+
+        // Exclui todas as fichas relacionadas ao usuário
+        $user->fichas()->delete();
+    
+        return redirect()->back()->with('msg-success', 'Todas as fichas do aluno foram excluídas com sucesso.');
+    }
+
     
 }

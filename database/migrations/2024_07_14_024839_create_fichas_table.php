@@ -16,24 +16,24 @@ return new class extends Migration
             $table->string('order')->nullable();
             $table->string('serie');
             $table->string('repetition');
-            $table->string('weight');
+            $table->string('weight')->nullable();
             $table->string('rest')->nullable();
             $table->string('description')->nullable();
 
             $table->bigInteger('id_exercise_fk')->unsigned();
-            $table->foreign('id_exercise_fk')->references('id_exercise')->on('exercises');
+            $table->foreign('id_exercise_fk')->references('id_exercise')->on('exercises')->onDelete('cascade');
 
             $table->bigInteger('id_gmuscle_fk_to_ficha')->unsigned();
-            $table->foreign('id_gmuscle_fk_to_ficha')->references('id_gmuscle')->on('muscleGroup');
+            $table->foreign('id_gmuscle_fk_to_ficha')->references('id_gmuscle')->on('muscleGroup')->onDelete('cascade');
 
             $table->bigInteger('id_user_fk')->unsigned();
-            $table->foreign('id_user_fk')->references('id')->on('users');
+            $table->foreign('id_user_fk')->references('id')->on('users')->onDelete('cascade');
 
             $table->bigInteger('id_user_creator_fk')->unsigned();
             $table->foreign('id_user_creator_fk')->references('id')->on('users');
 
             $table->bigInteger('id_training_fk')->unsigned();
-            $table->foreign('id_training_fk')->references('id_training')->on('training_division');
+            $table->foreign('id_training_fk')->references('id_training')->on('training_division')->onDelete('cascade');
 
             $table->timestamps();
         });

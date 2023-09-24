@@ -14,23 +14,22 @@ return new class extends Migration
         Schema::create('assessments', function (Blueprint $table) {
             $table->bigIncrements('id_assessment');
             $table->string('goal');
-            $table->string('observation');
-            $table->string('start_date');
+            $table->string('observation')->nullable();
             $table->string('term');
             $table->string('height');
             $table->string('weight');
-            $table->string('arm');
-            $table->string('forearm');
-            $table->string('shoulder');
-            $table->string('breastplate');
-            $table->string('waist');
-            $table->string('abdomen');
-            $table->string('hip');
-            $table->string('thigh');
-            $table->string('calf');
+            $table->string('arm')->nullable();
+            $table->string('forearm')->nullable();
+            $table->string('shoulder')->nullable();
+            $table->string('breastplate')->nullable();
+            $table->string('waist')->nullable();
+            $table->string('abdomen')->nullable();
+            $table->string('hip')->nullable();
+            $table->string('thigh')->nullable();
+            $table->string('calf')->nullable();
 
             $table->bigInteger('id_user_fk')->unsigned();
-            $table->foreign('id_user_fk')->references('id')->on('users');
+            $table->foreign('id_user_fk')->references('id')->on('users')->onDelete('cascade');
 
             $table->timestamps();
         });

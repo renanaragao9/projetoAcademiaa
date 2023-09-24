@@ -15,7 +15,7 @@ class TrainingDivisionController extends Controller
         $trainings = training_division::orderBy('name_training', 'asc')->get();
 
         // Verificar se há resultados na consulta
-        if ($muscleGroups->isEmpty()) {
+        if ($trainings->isEmpty()) {
             return redirect()->back()->with('msg-warning', 'Não há divisão de treino cadastrado.');
         }
 

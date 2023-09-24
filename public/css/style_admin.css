@@ -28,8 +28,6 @@ nav .brand-logo i.material-icons {
   color: black;
 }
 
-
-
 #nav-image {
   width: 40px;
   height: 40px;
@@ -300,6 +298,10 @@ nav .brand-logo i.material-icons {
 #card-form-edit-image {
   height: 150px;
   width: 150px;
+}
+
+.warning-modal {
+  color: red;
 }
 
 /* Pagina de avaliações */

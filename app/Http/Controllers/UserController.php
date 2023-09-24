@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Ficha;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -12,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use Carbon\Carbon;
 
 class UserController extends Controller
 {
@@ -49,12 +51,12 @@ class UserController extends Controller
             return redirect()->back()->with('msg-warning', 'Error: E-mail já cadastrado!');
         
         } else {
-            // O email não existe no banco de dados
             $user = User::create([
                 'name' => $request->name,
                 'phone' => $request->phone,
                 'sexo' => $request->sexo,
                 'date' => $request->date,
+                'profile' => $request->profile,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
             ]);
@@ -68,6 +70,9 @@ class UserController extends Controller
     public function edit($id) {
         
         $user = User::findOrFail($id);
+
+        // Formate a data do formato 'Y/m/d' para 'd/m/Y'
+        $user->date = date('d/m/Y', strtotime($user->date));
 
         return view('admin.editions.user', ['user' => $user]);
     }
@@ -83,34 +88,44 @@ class UserController extends Controller
             'email.required' => 'O campo email não pode está vazio',
         ]);
 
-        // Validação do Email
-        $email = $request->input('email');
-        $existingEmail = User::where('email', $email)->first();
-        
-        if ($existingEmail) {
-
-            // O email existe no banco de dados
-            return redirect()->back()->with('msg-warning', 'Error: E-mail já cadastrado!');
-        
-        } else {
-
-            $user = $request->all();
-
-            // Recebe o ID passado pela rota e utiliza o comando Select e Where do SQL
-            User::findOrFail($request->id)->update($user);
-
-            return redirect()->back()->with('msg-success', 'Aluno(a) editado com sucesso!');
+        $userId = $request->id;
+        $newEmail = $request->input('email');
+        $user = User::findOrFail($userId);
+    
+        // Verifica se o novo email é diferente do email atual do usuário
+        if ($newEmail !== $user->email) {
+    
+            // Verifica se o novo email já existe no banco de dados
+            $existingEmail = User::where('email', $newEmail)->first();
+            
+            if ($existingEmail) {
+                // O email já existe no banco de dados
+                return redirect()->back()->with('msg-warning', 'Error: E-mail já cadastrado!');
+            }
         }
+    
+        // Se chegou aqui, o email pode ser editado
+        $user->update($request->all());
+    
+        return redirect()->back()->with('msg-success', 'Aluno(a) editado com sucesso!');
     }
 
     public function destroy($id) {
 
         $user = User::findOrFail($id);
 
+         // Verificar se o aluno está relacionado a fichas
+        if ($user->fichas()->count() > 0) {
+            return redirect()->back()->with('msg-warning', 'Não foi possível excluir o aluno, pois há uma ficha em seu nome.');
+        }
+
+        if ($user->assessments()->count() > 0) {
+            return redirect()->back()->with('msg-warning', 'Não foi possível excluir o aluno, pois há uma avaliação em seu nome.');
+        }
+
         // Exclui o aluno no banco de dados
         $user->delete();
 
         return redirect()->back()->with('msg-success', 'Aluno excluído com sucesso!');
     }
-
 }
