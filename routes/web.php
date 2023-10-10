@@ -9,6 +9,7 @@ use App\Http\Controllers\TrainingDivisionController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AssessmentController;
 use App\Http\Controllers\CalledController;
+use App\Http\Controllers\StudentsController;
 use Illuminate\Support\Facades\Route;
 use PHPUnit\Framework\Attributes\Group;
 
@@ -95,9 +96,13 @@ Route::middleware(['auth'])->group(function() {
     });
 
     Route::prefix('admin/chamados')->group(function() {
-        Route::get('lista-chamados', [CalledController::class, 'called'])->name('admin.called.index');
+        Route::get('lista-chamados', [CalledController::class, 'called'])->name('admin.called');
         
     });
     
+    Route::prefix('alunos/')->group(function() {
+       route::get('inicio', [StudentsController::class, 'index'])->name('alunos.inicio');
+    });
+
 });
 require __DIR__.'/auth.php';

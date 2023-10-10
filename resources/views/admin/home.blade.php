@@ -21,7 +21,7 @@
 
   <!--Div para o bloco de notas -->
   <div class="row">
-    <div class="col s12 z-depth-3">
+    <div class="col s12">
       <div class="card-panel">
         <h4 id="titleColor"> Bloco de anotações</h4>
   
@@ -46,12 +46,12 @@
   
   <!--Divs para estatísticas aluno, fichas, chamados etc... -->
   <div class="row">
-    <div class="col s12 m6 l3 z-depth-3">
-      <a href="#" class="black-text">
+    <div class="col s12 m6 l3 ">
+      <a href="{{ route('admin.users') }}" class="black-text">
         <div class="card-panel center">
           <i class="material-icons medium" id="blueColor">supervisor_account</i>
           <h5>Alunos</h5>
-          <h3 class="count">350</h3>
+          <h3 class="count">{{count($users)}}</h3>
           <div class="progress grey lighten-1">
             <div class="determinate blue accent-2" style="width: 35%;"></div>
           </div>
@@ -59,8 +59,8 @@
       </a>
     </div>
 
-    <div class="col s12 m6 l3 z-depth-3">
-      <a href="#" class="black-text">
+    <div class="col s12 m6 l3">
+      <a href="{{ route('admin.called') }}" class="black-text">
         <div class="card-panel center">
           <i class="material-icons medium" id="blueColor">forum</i>
           <h5>Chamados</h5>
@@ -72,12 +72,12 @@
       </a>
     </div>
 
-    <div class="col s12 m6 l3 z-depth-3">
+    <div class="col s12 m6 l3">
       <a href="#" class="black-text">
         <div class="card-panel center">
           <i class="material-icons medium" id="blueColor">format_list_bulleted</i>
           <h5>Fichas</h5>
-          <h3 class="count">350</h3>
+          <h3 class="count">{{ count($fichas) }}</h3>
           <div class="progress grey lighten-1">
             <div class="determinate blue accent-2" style="width: 78%;"></div>
           </div>
@@ -85,12 +85,12 @@
       </a>
     </div>
       
-    <div class="col s12 m6 l3 z-depth-3">
+    <div class="col s12 m6 l3">
       <a href="#" class="black-text">
         <div class="card-panel center ">
             <i class="material-icons medium" id="blueColor">analytics</i>
             <h5>Avaliações</h5>
-            <h3 class="count">350</h3>
+            <h3 class="count">{{ count($assessment) }}</h3>
             <div class="progress grey lighten-1">
               <div class="determinate blue accent-2" style="width: 61%;"></div>
             </div>
@@ -101,7 +101,7 @@
       
   <!--Div para chamados -->
   <div class="row">
-    <div class="col s12 z-depth-3">      
+    <div class="col s12">      
       <ul class="collection">   
         <li class="collection-item avatar">
           <h4 id="titleColor">Chamados</h4>
