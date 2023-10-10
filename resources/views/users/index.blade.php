@@ -10,7 +10,7 @@
       <!--Divs para titulo e Reporte -->
       <div class="row">
         <div class="col s12 l10">
-          <h3 id="title-bv">Bom dia, Renan. <p>tenha um bom treino!</p> </h3>
+          <h3 id="title-bv">Bom dia, Renan. <p>tenha um bom treino</p> </h3>
         </div>
         
         <div class="col l2" id="button-report">
