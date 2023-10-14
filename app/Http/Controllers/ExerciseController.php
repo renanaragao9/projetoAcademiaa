@@ -58,6 +58,25 @@ class ExerciseController extends Controller
             $requestImage->move(public_path('img/exercise'), $imageName);
 
             $exerciseCreate->image_exercise = $imageName;
+            
+        }
+
+        // GIF Upload
+        if ($request->hasFile('gif_exercise') && $request->file('gif_exercise')->isValid()) {
+            $requestGif = $request->gif_exercise;
+
+            $extension = $requestGif->extension();
+
+            // Verificar se a extensão do arquivo é .gif
+            if ($extension !== 'gif') {
+                return redirect()->back()->with('msg-error', 'Por favor, envie um arquivo GIF válido.');
+            }
+
+            $gifName = md5($requestGif->getClientOriginalName() . strtotime("now")) . "." . $extension;
+
+            $requestGif->move(public_path('img/exercise'), $gifName);
+
+            $exerciseCreate->gif_exercise = $gifName;
         }
 
         $exerciseCreate->save();

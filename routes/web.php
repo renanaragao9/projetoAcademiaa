@@ -100,8 +100,10 @@ Route::middleware(['auth'])->group(function() {
         
     });
     
+    // Rotas para os Alunos
     Route::prefix('alunos/')->group(function() {
-       route::get('inicio', [StudentsController::class, 'index'])->name('alunos.inicio');
+       route::get('inicio', [StudentsController::class, 'index'])->name('students.start');
+       route::get('ficha/{id}', [StudentsController::class, 'ficha'])->name('students.ficha');
     });
 
 });

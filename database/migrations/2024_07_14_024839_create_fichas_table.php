@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('order')->nullable();
             $table->string('serie');
             $table->string('repetition');
-            $table->string('weight')->nullable();
-            $table->string('rest')->nullable();
+            $table->string('weight')->default('Livre');
+            $table->string('rest')->default('00:30s');
             $table->string('description')->nullable();
 
             $table->bigInteger('id_exercise_fk')->unsigned();

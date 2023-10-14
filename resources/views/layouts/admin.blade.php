@@ -104,7 +104,7 @@
             </li>
             
             <li class="collapsible">
-                <a href="#" class="waves-effect"> Ficha <i class="material-icons" id="nav-title-icon">library_books</i> </a>
+                <a href="{{ route('students.start') }}" class="waves-effect"> Ficha <i class="material-icons" id="nav-title-icon">library_books</i> </a>
             </li> 
 
             <li class="collapsible">

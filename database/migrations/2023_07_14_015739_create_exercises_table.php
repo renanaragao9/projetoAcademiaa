@@ -15,6 +15,7 @@ return new class extends Migration
             $table->bigIncrements('id_exercise');
             $table->string('name_exercise', 180);
             $table->string('image_exercise')->default('default_image.jpg');
+            $table->string('gif_exercise')->default('default_gif.gif');
             $table->bigInteger('id_gmuscle_fk')->unsigned();
             $table->foreign('id_gmuscle_fk')->references('id_gmuscle')->on('muscleGroup')->onDelete('cascade');
             $table->timestamps();

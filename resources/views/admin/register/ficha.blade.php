@@ -79,12 +79,12 @@
                                 </div>
 
                                 <div class="input-field col s12 l6">
-                                    <input name="weight" id="weight" type="number" class="validate">
+                                    <input name="weight" id="weight" type="number" class="validate" placeholder="Livre">
                                     <label for="weight">Peso:</label>
                                 </div>
 
                                 <div class="input-field col s12 l6">
-                                    <input name="rest" id="rest" type="number" class="validate">
+                                    <input name="rest" id="rest" type="number" class="validate" placeholder="00:30s">
                                     <label for="rest">Descanso:</label>
                                 </div>
 

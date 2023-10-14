@@ -49,7 +49,7 @@
       <!-- Card da ficha-->
       @foreach ($fichas as $ficha)
         <div class="row">
-          <a href="ficha_perna.html">
+          <a href="{{ route('students.ficha', $ficha->id_training_fk) }}">
             <div class="card horizontal z-depth-3 waves-light" id="card-mobile">
               <div class="card-image">
                 <i class="material-icons" id="icon-card-mobile">fitness_center</i>

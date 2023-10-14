@@ -43,6 +43,17 @@
                   </div>
                 </div>
 
+                <div class="file-field col s12 l12">
+                  <div class="btn light-blue darken-4">
+                    <span>Gif</span>
+                    <input name="gif_exercise" type="file" class="validate" multiple>
+                  </div>
+                  
+                  <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text" placeholder="Faça o download de um GIF">
+                  </div>
+                </div>
+
                 <div class="input-field col s12 l12">      
                   <button class="btn waves-effect waves-light light-blue darken-4 col s12 l5" id="save-button" type="submit" name="action" onclick="confirmSubmit()">Cadastrar
                     <i class="material-icons right">save</i>
