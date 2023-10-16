@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\training_division;
 use App\Models\muscleGroup;
 use App\Models\exercise;
+use App\Models\assessment;
 
 
 class StudentsController extends Controller
@@ -82,5 +83,30 @@ class StudentsController extends Controller
             'firstName' => $firstName,
             'numbers' => $numbers
         ]);
+    }
+
+    public function assessment() {
+       
+        // Pega o id do usúario logado
+        $userId = auth()->user()->id;
+
+        // envia a relação de fichas do aluno. OBS: Esse codigo terá que ir em todos as views para o leyout funcionar bem
+        $fichas = Ficha::where('id_user_fk', $userId)
+        ->select('fichas.id_training_fk', 'training_division.name_training')
+        ->join('training_division', 'fichas.id_training_fk', '=', 'training_division.id_training')
+        ->distinct()
+        ->get();
+
+        $fullName = auth()->user()->name;
+        $nameParts = explode(' ', $fullName);
+        $firstName = $nameParts[0];
+
+        $studentAssessments = assessment::where('id_user_fk', $userId)->orderby('id_assessment', 'DESC')->get();
+
+        return view('users.assessment', [
+            'fichas' => $fichas,
+            'firstName' => $firstName,
+            'studentAssessments' => $studentAssessments
+        ]);           
     }
 }

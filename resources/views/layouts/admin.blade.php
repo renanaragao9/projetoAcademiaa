@@ -56,8 +56,16 @@
                 <a href="#" class="sidenav-trigger" data-target="slide-out"><i class="material-icons">menu</i></a>
 
                 <!-- Botão de sair para o mobile-->
-                <a href="#" data-target="slide-out" id="nav-mobile-icon" class="sidenav-trigger right"><i class="material-icons">logout</i></a>
-
+                <ul class="right" id="nav-mobile-icon">
+                    <li>
+                        <a href="#" class="tooltipped rigth" id="logout-link-mobile" data-target="slide-out"  data-tooltip="Sair"><i class="material-icons right">logout</i></a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </li>
+                </ul>
+                
+                
                 <!-- Logo Central-->
                 <a href="{{ route('admin.home') }}" class="brand-logo center"><i class="material-icons left" >fitness_center</i>Israel Dantas</a>
 
@@ -386,12 +394,6 @@
         data: data,
         options: options
       });
-
-      // enviar form pela tag <a>
-      document.getElementById('logout-link').addEventListener('click', function(e) {
-        e.preventDefault();
-        document.getElementById('logout-form').submit();
-    });
     </script>
 
     

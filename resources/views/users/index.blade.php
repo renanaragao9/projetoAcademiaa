@@ -74,7 +74,7 @@
       
       <!-- Card da avaliação -->
       <div class="row">
-        <a href="avaliacao_aluno.html">
+        <a href="{{ route('students.assessment', Auth::user()->id) }}">
           <div class="card horizontal z-depth-3" id="card-mobile">
             <div class="card-image">
               <i class="material-icons" id="icon-card-mobile">analytics</i>

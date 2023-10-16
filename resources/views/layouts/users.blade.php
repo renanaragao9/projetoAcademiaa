@@ -39,29 +39,16 @@
         <!-- Botão hamburguer para o mobile-->
         <a href="#" data-target="slide-out" class="sidenav-trigger"> <i class="material-icons">menu</i> </a>
 
-        <!-- Botão de sair para o mobile-->
-        <a href="#" data-target="slide-out" id="nav-mobile-icon" class="sidenav-trigger right"> <i class="material-icons"> logout </i></a>
-
         <!-- Logo Central-->
-        <a href="index_mobile.html" class="brand-logo center"><i class="material-icons left" >fitness_center</i> Israel Dantas </a>
+        <a href="{{ route('students.start') }}" class="brand-logo center"><i class="material-icons left" >fitness_center</i> Israel Dantas </a>
         
-        <ul class="right hide-on-med-and-down">              
+        <ul class="right">              
           <li>
-              <a href="sass.html"></a>
+            <a href="#" class="tooltipped" id="logout-link" data-position="left" data-tooltip="Sair"><i class="material-icons right">logout</i></a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
           </li>
-          
-          <li>
-            <!-- Dropdown Menu -->
-            <li><a href="#!" id="nav-name">{{ auth()->user()->name }}</a></li>
-            <li class="dropdown-trigger" data-target="dropdown"><img src="/img/renan.jpeg" alt="" id="nav-image" class="circle responsive-img"><i class="material-icons right">arrow_drop_down</i></li>
-            <!-- Estrutura do Dropdown -->
-            <ul id="dropdown" class="dropdown-content">
-              <li><a href="#!" class="black-text"><i class="material-icons" id="blueColor">person</i>Perfil</a></li>
-              <li><a href="#!" class="black-text"><i class="material-icons" id="blueColor">view_cozy</i>Log</a></li>
-              <li class="divider"></li><li class="divider"></li><li class="divider"></li>
-              <li><a href="#!" class="black-text"><i class="material-icons" id="blueColor">logout</i>Sair</a></li>
-            </ul>
-          </li> 
         </ul>
       </div>
     </nav>
@@ -82,7 +69,7 @@
   
       <li><a class="subheader collapsible">Conteúdo</a></li>
 
-      <li class="collapsible"><a href="index.html" class="waves-effect" id="mobile-side"> Painel de controle <i class="material-icons">speed</i></a></li>
+      <li class="collapsible"><a href="{{ route('admin.home') }}" class="waves-effect" id="mobile-side"> Painel de controle <i class="material-icons">speed</i></a></li>
       <li class="collapsible"><a href="#!" class="waves-effect" id="mobile-side"> Perfil <i class="material-icons">person</i></a></li>
       <li class="collapsible"><a href="avaliacao_aluno.html" class="waves-effect" id="mobile-side"> Avaliação <i class="material-icons">analytics</i></a></li>
       <li class="collapsible"><a href="chamados_aluno.html" class="waves-effect" id="mobile-side"> Chamados <i class="material-icons">forum</i></a></li>
@@ -90,7 +77,7 @@
       <li><a class="subheader collapsible">Ficha</a></li>
 
       @foreach ($fichas as $ficha)
-        <li class="collapsible"><a href="ficha_perna.html" class="waves-effect" id="mobile-side"> {{$ficha->name_training}} <i class="material-icons">fitness_center</i></a></li>
+        <li class="collapsible"><a href="{{ route('students.ficha', $ficha->id_training_fk) }}" class="waves-effect" id="mobile-side"> {{$ficha->name_training}} <i class="material-icons">fitness_center</i></a></li>
       @endforeach
     </ul>       
   </header>
@@ -130,6 +117,7 @@
     @yield('script')
 
     <script>
+
       document.addEventListener('DOMContentLoaded', function() {
         let elems = document.querySelectorAll('.fixed-mobile');
         let instances = M.FloatingActionButton.init(elems, {

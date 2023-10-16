@@ -62,15 +62,15 @@
                       <input name="forearm" id="forearm" type="text" class="validate">
                       <label for="forearm">Antebraço:</label>
                     </div>
-                    
-                    <div class="input-field col s12 l4">
-                      <input name="shoulder" id="shoulder" type="text" class="validate">
-                      <label for="shoulder">Ombro:</label>
-                    </div>
 
                     <div class="input-field col s12 l4">
                       <input name="breastplate" id="breastplate" type="text" class="validate">
                       <label for="breastplate">Peitoral:</label>
+                    </div>
+
+                    <div class="input-field col s12 l4">
+                      <input name="back" id="back" type="text" class="validate">
+                      <label for="back">Costas:</label>
                     </div>
 
                     <div class="input-field col s12 l4">
@@ -79,13 +79,13 @@
                     </div>
 
                     <div class="input-field col s12 l4">
-                      <input name="abdomen" id="abdomen" type="text" class="validate">
-                      <label for="abdomen">Abdômen:</label>
+                      <input name="hip" id="hip" type="text" class="validate">
+                      <label for="hip">Quadril:</label>
                     </div>
 
                     <div class="input-field col s12 l4">
-                      <input name="hip" id="hip" type="text" class="validate">
-                      <label for="hip">Quadril:</label>
+                      <input name="glute" id="glute" type="text" class="validate">
+                      <label for="glute">Glúteo:</label>
                     </div>
 
                     <div class="input-field col s12 l4">

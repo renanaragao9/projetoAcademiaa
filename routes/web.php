@@ -104,6 +104,7 @@ Route::middleware(['auth'])->group(function() {
     Route::prefix('alunos/')->group(function() {
        route::get('inicio', [StudentsController::class, 'index'])->name('students.start');
        route::get('ficha/{id}', [StudentsController::class, 'ficha'])->name('students.ficha');
+       route::get('avaliacao/{id}', [StudentsController::class,'assessment'])->name('students.assessment');
     });
 
 });

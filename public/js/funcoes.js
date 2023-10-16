@@ -61,6 +61,18 @@ $(document).ready(function(){
 
 });
 
+ // enviar logout pela tag <a> com desktop
+ document.getElementById('logout-link').addEventListener('click', function(e) {
+  e.preventDefault();
+  document.getElementById('logout-form').submit();
+});
+
+// enviar logout pela tag <a> com o mobille
+  document.getElementById('logout-link-mobile').addEventListener('click', function(e) {
+  e.preventDefault();
+  document.getElementById('logout-form').submit();
+});
+
 document.addEventListener('DOMContentLoaded', function() {
   var elems = document.querySelectorAll('.tooltipped');
   var instances = M.Tooltip.init(elems, options);

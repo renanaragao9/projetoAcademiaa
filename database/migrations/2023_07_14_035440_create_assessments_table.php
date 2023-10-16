@@ -20,11 +20,11 @@ return new class extends Migration
             $table->string('weight');
             $table->string('arm')->nullable();
             $table->string('forearm')->nullable();
-            $table->string('shoulder')->nullable();
             $table->string('breastplate')->nullable();
+            $table->string('back')->nullable();
             $table->string('waist')->nullable();
-            $table->string('abdomen')->nullable();
             $table->string('hip')->nullable();
+            $table->string('glute')->nullable();
             $table->string('thigh')->nullable();
             $table->string('calf')->nullable();
 
