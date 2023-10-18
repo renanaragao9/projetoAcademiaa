@@ -105,6 +105,7 @@ Route::middleware(['auth'])->group(function() {
        route::get('inicio', [StudentsController::class, 'index'])->name('students.start');
        route::get('ficha/{id}', [StudentsController::class, 'ficha'])->name('students.ficha');
        route::get('avaliacao/{id}', [StudentsController::class,'assessment'])->name('students.assessment');
+       route::get('called/{id}', [StudentsController::class,'called'])->name('students.called');
     });
 
 });

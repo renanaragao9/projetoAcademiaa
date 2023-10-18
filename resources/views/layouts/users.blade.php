@@ -25,8 +25,8 @@
   <!-- Botão flutuante Fixo-->
   <div class="fixed-action-btn toolbar direction-top active" id="mobile-fixed-action">
     <ul>
-      <li class="waves-effect waves-light"> <a href="avaliacao_aluno.html"> <i class="material-icons">analytics</i> </a> </li>
-      <li class="waves-effect waves-light"> <a href="index_mobile.html"> <i class="material-icons">home</i> </a> </li>
+      <li class="waves-effect waves-light"> <a href="{{ route('students.assessment', Auth::user()->id) }}"> <i class="material-icons">analytics</i> </a> </li>
+      <li class="waves-effect waves-light"> <a href="{{ route('students.start')}} "> <i class="material-icons">home</i> </a> </li>
       <li class="waves-effect waves-light"> <a href="chamados_aluno.html"> <i class="material-icons">forum</i> </a> </li>
     </ul>
   </div>
@@ -71,7 +71,7 @@
 
       <li class="collapsible"><a href="{{ route('admin.home') }}" class="waves-effect" id="mobile-side"> Painel de controle <i class="material-icons">speed</i></a></li>
       <li class="collapsible"><a href="#!" class="waves-effect" id="mobile-side"> Perfil <i class="material-icons">person</i></a></li>
-      <li class="collapsible"><a href="avaliacao_aluno.html" class="waves-effect" id="mobile-side"> Avaliação <i class="material-icons">analytics</i></a></li>
+      <li class="collapsible"><a href="{{ route('students.assessment', Auth::user()->id) }}" class="waves-effect" id="mobile-side"> Avaliação <i class="material-icons">analytics</i></a></li>
       <li class="collapsible"><a href="chamados_aluno.html" class="waves-effect" id="mobile-side"> Chamados <i class="material-icons">forum</i></a></li>
 
       <li><a class="subheader collapsible">Ficha</a></li>

@@ -12,14 +12,7 @@
         <div class="col s12 l10">
           <h3 id="title-bv">Bom dia, {{$firstName}}. <p>tenha um bom treino</p> </h3>
         </div>
-        
-        <div class="col l2" id="button-report">
-          <h2>
-            <a class="waves-effect waves-light btn modal-trigger blue accent-2" href="#report-modal"><i class="material-icons left" >bug_report</i>Reportar</a>
-          </h2>
-        </div>
-      </div>
-
+      </div>  
       <!--Div para o bloco de notas -->
       <div class="row">
         <div class="col s12">
@@ -91,7 +84,7 @@
 
       <!-- Card de chamados -->
       <div class="row">
-        <a href="chamados_aluno.html">
+        <a href="{{ route('students.called', Auth::user()->id) }}">
           <div class="card horizontal z-depth-3" id="card-mobile">
             <div class="card-image">
               <i class="material-icons" id="icon-card-mobile">forum</i>

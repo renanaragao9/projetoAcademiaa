@@ -5,11 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\ficha;
-use App\Models\User;
-use App\Models\training_division;
-use App\Models\muscleGroup;
-use App\Models\exercise;
 use App\Models\assessment;
+use App\Models\called;
+use App\Models\user;
 
 
 class StudentsController extends Controller
@@ -108,5 +106,28 @@ class StudentsController extends Controller
             'firstName' => $firstName,
             'studentAssessments' => $studentAssessments
         ]);           
+    }
+
+    public function called($id) {
+        
+        // Pega o id do usúario logado
+        $userId = auth()->user()->id;
+
+        // envia a relação de fichas do aluno. OBS: Esse codigo terá que ir em todos as views para o leyout funcionar bem
+        $fichas = Ficha::where('id_user_fk', $userId)
+        ->select('fichas.id_training_fk', 'training_division.name_training')
+        ->join('training_division', 'fichas.id_training_fk', '=', 'training_division.id_training')
+        ->distinct()
+        ->get();
+
+        $called = called::where('id_user_fk', $userId);
+
+        $teachers = User::where('profile', 1)->get();
+
+        return view('users.called', [
+            'fichas' => $fichas,
+            'called' => $called,
+            'teachers' => $teachers
+        ]);
     }
 }
