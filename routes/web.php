@@ -97,6 +97,7 @@ Route::middleware(['auth'])->group(function() {
 
     Route::prefix('admin/chamados')->group(function() {
         Route::get('lista-chamados', [CalledController::class, 'called'])->name('admin.called');
+        Route::post('criar-chamado', [CalledController::class, 'store'])->name('admin.called.store');
         
     });
     

@@ -1,6 +1,6 @@
 @extends('layouts.users')
 
-@section('title', 'Painel do Aluno')
+@section('Chamado', 'Painel do Aluno')
 
 @section('content')
 
@@ -10,7 +10,7 @@
             <div class="card white">
                 <div class="card-content">           
                     <div class="row">
-                        <form class="col s12" id="form_exercise" action="{{ route('admin.register.exercise.create') }}" method="POST" enctype="multipart/form-data">
+                        <form class="col s12" id="form_called" action="{{ route('admin.called.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <div class="input-field col s12 l12" id="input-exercicio">
@@ -37,7 +37,7 @@
                                     <select name="urgency" id="create_called">
                                         <option selected disabled>Selecione uma Urgência:</option>
                                         <option value="Urgente">Urgente</option>
-                                        <option value="Médio">Médio</option>
+                                        <option value="Medio">Médio</option>
                                         <option value="Leve">Leve</option>
                                     </select>
                                     <label>Urgencia</label>
@@ -52,6 +52,8 @@
                                     <input name="subject" id="subject" type="text" class="validate" placeholder="Faça aqui um resumo da sua chamada" required>
                                     <label for="subject">Descrição:</label>
                                 </div>
+
+                                <input name="id_user_fk" type="hidden" value="{{auth::user()->id}}">
 
                                 <div class="input-field col s12 l12">      
                                     <button class="btn waves-effect waves-light light-blue darken-4 col s12 l5" id="save-button" type="submit" name="action" onclick="confirmSubmit()">Criar

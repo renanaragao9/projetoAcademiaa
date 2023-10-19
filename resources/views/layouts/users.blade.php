@@ -88,9 +88,57 @@
   <div style="display:none;" id="myDiv" class="animate-bottom">
   
   <!-- Conteúdo -->
-  <main>
-    @yield('content')
-  </main>
+    <main>
+      <div class="container">
+        <div class="row">
+            @if(session('msg-error'))
+                <div class="flash-message-error">
+                    <div class="flash-message-content">
+                        <p>{{ session('msg-error') }}</p>
+                        <i class="material-icons flash-message-icon">error</i>
+                    </div>
+
+                    <button class="flash-message-close" onclick="this.parentElement.style.display='none'">
+                        <i class="material-icons">close</i>
+                    </button>
+                </div>               
+            @elseif(session('msg-success'))
+                <div class="flash-message-success">
+                    <div class="flash-message-content">
+                        <p>{{ session('msg-success') }}</p>
+                        <i class="material-icons success-message-icon right">check_circle</i>
+                    </div>
+
+                    <button class="flash-message-close" onclick="this.parentElement.style.display='none'">
+                        <i class="material-icons">close</i>
+                    </button>
+                </div>
+            @elseif(session('msg-warning'))
+                <div class="flash-message-warning">
+                    <div class="flash-message-content">
+                        <p>{{ session('msg-warning') }}</p>
+                        <i class="material-icons success-message-icon right">warning</i>
+                    </div>
+
+                    <button class="flash-message-close" onclick="this.parentElement.style.display='none'">
+                        <i class="material-icons">close</i>
+                    </button>
+                </div>                
+            @elseif($errors->any())
+                <div class="flash-message-warning">
+                    <div class="flash-message-content">
+                        <ul>
+                            @foreach($errors->all() as $error)
+                                <li>{{ $error }} <i class="material-icons success-message-icon right">warning</i></li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div> 
+            @endif
+        </div>
+      </div>
+      @yield('content')
+    </main>
 
   <!-- Footer -->
   <footer class="section light-blue darken-4 white-text center">
