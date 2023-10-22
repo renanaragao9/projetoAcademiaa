@@ -27,7 +27,7 @@
     <ul>
       <li class="waves-effect waves-light"> <a href="{{ route('students.assessment', Auth::user()->id) }}"> <i class="material-icons">analytics</i> </a> </li>
       <li class="waves-effect waves-light"> <a href="{{ route('students.start')}} "> <i class="material-icons">home</i> </a> </li>
-      <li class="waves-effect waves-light"> <a href="chamados_aluno.html"> <i class="material-icons">forum</i> </a> </li>
+      <li class="waves-effect waves-light"> <a href="{{ route('students.called', Auth::user()->id) }}"> <i class="material-icons">forum</i> </a> </li>
     </ul>
   </div>
   
@@ -46,7 +46,7 @@
           <li>
             <a href="#" class="tooltipped" id="logout-link" data-position="left" data-tooltip="Sair"><i class="material-icons right">logout</i></a>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                @csrf
+              @csrf
             </form>
           </li>
         </ul>
@@ -58,7 +58,7 @@
       <li class="center">
         <div class="user-view">
           <div class="background">
-              <img src="/img/ocean.jpg">
+            <img src="/img/ocean.jpg">
           </div>
 
           <a href="#user"><img class="circle" id="img-perfil-mobile" src="/img/renan.jpeg"></a>
@@ -72,7 +72,7 @@
       <li class="collapsible"><a href="{{ route('admin.home') }}" class="waves-effect" id="mobile-side"> Painel de controle <i class="material-icons">speed</i></a></li>
       <li class="collapsible"><a href="#!" class="waves-effect" id="mobile-side"> Perfil <i class="material-icons">person</i></a></li>
       <li class="collapsible"><a href="{{ route('students.assessment', Auth::user()->id) }}" class="waves-effect" id="mobile-side"> Avaliação <i class="material-icons">analytics</i></a></li>
-      <li class="collapsible"><a href="chamados_aluno.html" class="waves-effect" id="mobile-side"> Chamados <i class="material-icons">forum</i></a></li>
+      <li class="collapsible"><a href="{{ route('students.called', Auth::user()->id) }}" class="waves-effect" id="mobile-side"> Chamados <i class="material-icons">forum</i></a></li>
 
       <li><a class="subheader collapsible">Ficha</a></li>
 
@@ -88,57 +88,57 @@
   <div style="display:none;" id="myDiv" class="animate-bottom">
   
   <!-- Conteúdo -->
-    <main>
-      <div class="container">
-        <div class="row">
-            @if(session('msg-error'))
-                <div class="flash-message-error">
-                    <div class="flash-message-content">
-                        <p>{{ session('msg-error') }}</p>
-                        <i class="material-icons flash-message-icon">error</i>
-                    </div>
+  <main>
+    <div class="container">
+      <div class="row">
+        @if(session('msg-error'))
+          <div class="flash-message-error">
+            <div class="flash-message-content">
+              <p>{{ session('msg-error') }}</p>
+              <i class="material-icons flash-message-icon">error</i>
+            </div>
 
-                    <button class="flash-message-close" onclick="this.parentElement.style.display='none'">
-                        <i class="material-icons">close</i>
-                    </button>
-                </div>               
-            @elseif(session('msg-success'))
-                <div class="flash-message-success">
-                    <div class="flash-message-content">
-                        <p>{{ session('msg-success') }}</p>
-                        <i class="material-icons success-message-icon right">check_circle</i>
-                    </div>
+            <button class="flash-message-close" onclick="this.parentElement.style.display='none'">
+              <i class="material-icons">close</i>
+            </button>
+          </div>               
+        @elseif(session('msg-success'))
+          <div class="flash-message-success">
+            <div class="flash-message-content">
+              <p>{{ session('msg-success') }}</p>
+              <i class="material-icons success-message-icon right">check_circle</i>
+            </div>
 
-                    <button class="flash-message-close" onclick="this.parentElement.style.display='none'">
-                        <i class="material-icons">close</i>
-                    </button>
-                </div>
-            @elseif(session('msg-warning'))
-                <div class="flash-message-warning">
-                    <div class="flash-message-content">
-                        <p>{{ session('msg-warning') }}</p>
-                        <i class="material-icons success-message-icon right">warning</i>
-                    </div>
+            <button class="flash-message-close" onclick="this.parentElement.style.display='none'">
+              <i class="material-icons">close</i>
+            </button>
+          </div>
+        @elseif(session('msg-warning'))
+          <div class="flash-message-warning">
+            <div class="flash-message-content">
+              <p>{{ session('msg-warning') }}</p>
+              <i class="material-icons success-message-icon right">warning</i>
+            </div>
 
-                    <button class="flash-message-close" onclick="this.parentElement.style.display='none'">
-                        <i class="material-icons">close</i>
-                    </button>
-                </div>                
-            @elseif($errors->any())
-                <div class="flash-message-warning">
-                    <div class="flash-message-content">
-                        <ul>
-                            @foreach($errors->all() as $error)
-                                <li>{{ $error }} <i class="material-icons success-message-icon right">warning</i></li>
-                            @endforeach
-                        </ul>
-                    </div>
-                </div> 
-            @endif
-        </div>
+            <button class="flash-message-close" onclick="this.parentElement.style.display='none'">
+              <i class="material-icons">close</i>
+            </button>
+          </div>                
+        @elseif($errors->any())
+          <div class="flash-message-warning">
+            <div class="flash-message-content">
+              <ul>
+                @foreach($errors->all() as $error)
+                  <li>{{ $error }} <i class="material-icons success-message-icon right">warning</i></li>
+                @endforeach
+              </ul>
+            </div>
+          </div> 
+        @endif
       </div>
-      @yield('content')
-    </main>
+    </div>
+    @yield('content')
+  </main>
 
   <!-- Footer -->
   <footer class="section light-blue darken-4 white-text center">

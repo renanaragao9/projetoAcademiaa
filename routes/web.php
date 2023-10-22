@@ -10,6 +10,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AssessmentController;
 use App\Http\Controllers\CalledController;
 use App\Http\Controllers\StudentsController;
+use App\Http\Controllers\StatisticsController;
 use Illuminate\Support\Facades\Route;
 use PHPUnit\Framework\Attributes\Group;
 
@@ -107,6 +108,7 @@ Route::middleware(['auth'])->group(function() {
        route::get('ficha/{id}', [StudentsController::class, 'ficha'])->name('students.ficha');
        route::get('avaliacao/{id}', [StudentsController::class,'assessment'])->name('students.assessment');
        route::get('called/{id}', [StudentsController::class,'called'])->name('students.called');
+       route::post('criando-estatistica', [StatisticsController::class, 'store'])->name('create_statistics');
     });
 
 });

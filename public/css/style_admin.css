@@ -35,7 +35,7 @@ nav .brand-logo i.material-icons {
 }
 
 #nav-mobile-icon{
-    display: none;
+  display: none;
 }
 
 #nav-name{
@@ -334,6 +334,18 @@ nav .brand-logo i.material-icons {
 #perfil-mobile-text {
   font-size: 22px;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+#error-not-traning {
+  font-size: 16px;
+  text-align: center;
+  padding-bottom: 450px;
+}
+
+#error-not-ficha {
+  font-size: 16px;
+  text-align: center;
+  font-weight: bolder ;
 }
  
 .footer {

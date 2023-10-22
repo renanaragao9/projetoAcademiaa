@@ -101,10 +101,16 @@ class StudentsController extends Controller
 
         $studentAssessments = assessment::where('id_user_fk', $userId)->orderby('id_assessment', 'DESC')->get();
 
+        $avaliacao_1 = Assessment::where('id_user_fk', $userId)->orderBy('id_assessment', 'DESC')->first();
+
+        $avaliacao_2 = Assessment::where('id_user_fk', $userId)->orderBy('id_assessment', 'DESC')->skip(1)->first();
+
         return view('users.assessment', [
             'fichas' => $fichas,
             'firstName' => $firstName,
-            'studentAssessments' => $studentAssessments
+            'studentAssessments' => $studentAssessments,
+            'avaliacao_1' => $avaliacao_1,
+            'avaliacao_2' => $avaliacao_2
         ]);           
     }
 

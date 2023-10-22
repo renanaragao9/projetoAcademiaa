@@ -4,7 +4,7 @@
 
 @section('content')
 
-<div class="container">
+  <div class="container">
     <div class="row">
       
       <!--Divs para titulo e Reporte -->
@@ -39,24 +39,28 @@
         </div>
       </div>
       
-      <!-- Card da ficha-->
-      @foreach ($fichas as $ficha)
-        <div class="row">
-          <a href="{{ route('students.ficha', $ficha->id_training_fk) }}">
-            <div class="card horizontal z-depth-3 waves-light" id="card-mobile">
-              <div class="card-image">
-                <i class="material-icons" id="icon-card-mobile">fitness_center</i>
-              </div>
-              
-              <div class="card-stacked">
-                <div class="card-content ">
-                  <p>{{$ficha->name_training}}</p>
+      @if($fichas->count() > 0)
+        <!-- Card da ficha-->
+        @foreach ($fichas as $ficha)
+          <div class="row">
+            <a href="{{ route('students.ficha', $ficha->id_training_fk) }}">
+              <div class="card horizontal z-depth-3 waves-light" id="card-mobile">
+                <div class="card-image">
+                  <i class="material-icons" id="icon-card-mobile">fitness_center</i>
+                </div>
+                
+                <div class="card-stacked">
+                  <div class="card-content ">
+                    <p>{{$ficha->name_training}}</p>
+                  </div>
                 </div>
               </div>
-            </div>
-          </a>
-        </div>    
-      @endforeach
+            </a>
+          </div>    
+        @endforeach
+      @else
+        <p id="error-not-ficha">Você ainda não possui uma ficha de treino.</p>
+      @endif
 
       <!-- Titulo -->
       <div class="row">
@@ -119,4 +123,4 @@
     </div>
   </div>
 
-  @endsection
+@endsection

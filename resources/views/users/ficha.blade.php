@@ -41,17 +41,27 @@
                     </div>
                 </div>
             </div>
+
+                    <div style="display: none">
+                        <form id="form_ficha" action="{{ route('create_statistics') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <input type="hidden" name="id_user_fk" value="{{ Auth::user()->id }}" readonly>
+                            <input type="hidden" name="id_ficha_fk" value="{{ $studentFicha->id_ficha }}" readonly>
+                
+                    </div>
         @endforeach
-        <div class="row center">
-            <div class="col s12 section scrollspy" id="id8">            
-            <button class="btn btn-large waves-effect waves-light orange darken-4" id="card-btn" type="submit" name="action">Finalizar treino
-                <i class="material-icons right">done</i>
-            </button>
-            </div>
+        
+                            <div class="row center">
+                                <div class="col s12 section scrollspy" id="id8">            
+                                <button class="btn btn-large waves-effect waves-light orange darken-4" id="card-btn" type="submit" name="action">Finalizar treino
+                                    <i class="material-icons right">done</i>
+                                </button>
+                            </div>
+                        </form>
         </div>
     </div>
 
-    <!-- Modal 1 -->
+    <!-- Modal -->
     @foreach ($studentFichas as $index => $studentFicha)
         <div id="modal{{$index}}" class="modal">
             <div class="modal-content">
@@ -68,10 +78,50 @@
         </div>
     @endforeach
 
+    <!-- Modal de alerta -->
+    <div id="modal-alerta" class="modal">
+        <div class="modal-content">
+            <i class="material-icons" id="modal-icon-alert">info</i>
+            <h4>Confirmação de Treino</h4>
+            <p>Deseja finalizar o treino ?</p>
+        </div>
+
+        <div class="modal-footer">
+            <a href="#" class="modal-close waves-effect waves-green btn-flat right" id="cancelBtn">Cancelar</a>
+            <a href="#" class="modal-close waves-effect waves-green btn light-blue darken-4 left" id="sendBtn">Sim</a>
+        </div>
+    </div>
+
     @section('script')
         <script>
+
+            document.addEventListener('DOMContentLoaded', function() {
+                let modal = document.getElementById('modal-alerta');
+                let instance = M.Modal.init(modal);
+
+                let form = document.querySelector('#form_ficha');
+
+                form.addEventListener('submit', function(event) {
+                    event.preventDefault();
+
+                    instance.open();
+                });
+
+                let cancelBtn = document.getElementById('cancelBtn');
+
+                cancelBtn.addEventListener('click', function() {
+                    instance.close();
+                });
+
+                let sendBtn = document.getElementById('sendBtn');
+
+                sendBtn.addEventListener('click', function() {
+                    form.submit();
+                });
+            });
+
             // Captura todos os links com a classe "proximo-link"
-            var linksProximo = document.querySelectorAll(".proximo-link");
+            let linksProximo = document.querySelectorAll(".proximo-link");
         
             // Adiciona um evento de clique a todos os links "Próximo"
             linksProximo.forEach(function(link) {
@@ -79,10 +129,10 @@
                     event.preventDefault(); // Previne o comportamento padrão de clicar em um link
         
                     // Obtém o ID do card de destino do atributo "data-target"
-                    var targetID = link.getAttribute("data-target");
+                    let targetID = link.getAttribute("data-target");
         
                     // Rola a página verticalmente para o card de destino
-                    var cardDestino = document.getElementById(targetID);
+                    let cardDestino = document.getElementById(targetID);
                     if (cardDestino) {
                         cardDestino.scrollIntoView({
                             behavior: "smooth"

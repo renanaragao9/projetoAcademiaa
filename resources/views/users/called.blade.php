@@ -76,8 +76,8 @@
   <div id="modal-alerta" class="modal">
     <div class="modal-content">
         <i class="material-icons" id="modal-icon-alert">info</i>
-        <h4>Confirmação de Cadastro</h4>
-        <p>Deseja realmente cadastrar o Exercício ?</p>
+        <h4>Confirmação de Chamado</h4>
+        <p>Deseja realmente cadastrar esse chamado ?</p>
     </div>
 
     <div class="modal-footer">
@@ -86,4 +86,33 @@
     </div>
   </div>
 
+@endsection
+
+@section('script')
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      let modal = document.getElementById('modal-alerta');
+      let instance = M.Modal.init(modal);
+
+      let form = document.querySelector('#form_called');
+
+      form.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        instance.open();
+      });
+
+      let cancelBtn = document.querySelector('.modal-footer .modal-close');
+
+      cancelBtn.addEventListener('click', function() {
+        instance.close();
+      });
+
+      let sendBtn = document.getElementById('sendBtn');
+
+      sendBtn.addEventListener('click', function() {
+        form.submit();
+      });
+    });
+  </script>
 @endsection
