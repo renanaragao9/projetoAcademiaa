@@ -70,7 +70,7 @@
       <li><a class="subheader collapsible">Conteúdo</a></li>
 
       <li class="collapsible"><a href="{{ route('admin.home') }}" class="waves-effect" id="mobile-side"> Painel de controle <i class="material-icons">speed</i></a></li>
-      <li class="collapsible"><a href="#!" class="waves-effect" id="mobile-side"> Perfil <i class="material-icons">person</i></a></li>
+      <li class="collapsible"><a href="{{ route('students.profile', Auth::user()->id) }}" class="waves-effect" id="mobile-side"> Perfil <i class="material-icons">person</i></a></li>
       <li class="collapsible"><a href="{{ route('students.assessment', Auth::user()->id) }}" class="waves-effect" id="mobile-side"> Avaliação <i class="material-icons">analytics</i></a></li>
       <li class="collapsible"><a href="{{ route('students.called', Auth::user()->id) }}" class="waves-effect" id="mobile-side"> Chamados <i class="material-icons">forum</i></a></li>
 

@@ -336,6 +336,21 @@ nav .brand-logo i.material-icons {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+
+#profile-title-mobile {
+  font-size: 22px;
+  font-weight: bolder;
+}
+
+#profile-subtitle-mobile {
+  font-weight: bolder;
+}
+
+#profile-text-mobile {
+  font-size: 20px;
+  padding: 5 0px;
+}
+
 #error-not-traning {
   font-size: 16px;
   text-align: center;

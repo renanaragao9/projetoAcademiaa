@@ -109,6 +109,7 @@ Route::middleware(['auth'])->group(function() {
        route::get('avaliacao/{id}', [StudentsController::class,'assessment'])->name('students.assessment');
        route::get('called/{id}', [StudentsController::class,'called'])->name('students.called');
        route::post('criando-estatistica', [StatisticsController::class, 'store'])->name('create_statistics');
+       route::get('perfil/{id}', [StudentsController::class, 'profile'])->name('students.profile');
     });
 
 });

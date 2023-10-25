@@ -136,4 +136,24 @@ class StudentsController extends Controller
             'teachers' => $teachers
         ]);
     }
+
+    public function profile() {
+        
+        // Pega o id do usúario logado
+        $userId = auth()->user()->id;
+
+        // envia a relação de fichas do aluno. OBS: Esse codigo terá que ir em todos as views para o leyout funcionar bem
+        $fichas = Ficha::where('id_user_fk', $userId)
+        ->select('fichas.id_training_fk', 'training_division.name_training')
+        ->join('training_division', 'fichas.id_training_fk', '=', 'training_division.id_training')
+        ->distinct()
+        ->get();
+
+        $userProfile = User::where('id', $userId)->first();
+
+        return view('users.profile', [
+            'fichas' => $fichas,
+            'userProfile' => $userProfile
+        ]);
+    }
 }
