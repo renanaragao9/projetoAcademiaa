@@ -110,6 +110,26 @@ class UserController extends Controller
         return redirect()->back()->with('msg-success', 'Aluno(a) editado com sucesso!');
     }
 
+    public function updateProfileImage(Request $request) {
+
+        $user = auth()->user();
+    
+        if ($request->hasFile('profile_photo_path')) {
+            $image = $request->file('profile_photo_path');
+            
+            // Gere um nome de arquivo aleatório usando a função uniqid() e adicione a extensão original
+            $imageName = uniqid() . '.' . $image->getClientOriginalExtension();
+            
+            $image->move(public_path('img/profile_photo_path'), $imageName);
+    
+            // Atualize o caminho da imagem no banco de dados (você deve ter um campo 'profile_image' na tabela de usuários)
+            $user->profile_photo_path = $imageName;
+            $user->save();
+        }
+    
+        return redirect()->back()->with('msg-success', 'Imagem do perfil atualizada com sucesso.');
+    }
+
     public function destroy($id) {
 
         $user = User::findOrFail($id);

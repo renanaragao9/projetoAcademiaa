@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\ficha;
 use App\Models\assessment;
 use App\Models\called;
+use App\Models\statistics;
 use App\Models\user;
 
 
@@ -149,11 +150,17 @@ class StudentsController extends Controller
         ->distinct()
         ->get();
 
+        $statistics = statistics::where('id_user_fk', $userId)->get();
+
+        $assessments = assessment::where('id_user_fk', $userId)->get();
+
         $userProfile = User::where('id', $userId)->first();
 
         return view('users.profile', [
             'fichas' => $fichas,
-            'userProfile' => $userProfile
+            'userProfile' => $userProfile,
+            'statistics' => $statistics,
+            'assessments' => $assessments
         ]);
     }
 }

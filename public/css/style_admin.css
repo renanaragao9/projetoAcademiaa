@@ -351,6 +351,11 @@ nav .brand-logo i.material-icons {
   padding: 5 0px;
 }
 
+#result_profile_imc {
+ font-size: 16px;
+ font-weight: bolder;
+}
+
 #error-not-traning {
   font-size: 16px;
   text-align: center;

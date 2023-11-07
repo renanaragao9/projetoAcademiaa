@@ -14,4 +14,9 @@ class statistics extends Model
     protected $primaryKey = 'id_statistic';
 
     protected $fillable = ['id_user_fk', 'id_ficha_fk'];
+
+    public function ficha()
+    {
+        return $this->belongsTo(Ficha::class, 'id_ficha_fk');
+    }
 }
