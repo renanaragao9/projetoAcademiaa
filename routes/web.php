@@ -33,7 +33,6 @@ Route::middleware(['auth'])->group(function() {
     
     Route::prefix('admin')->group(function() {
         Route::get('/home', [AdminController::class, 'home'])->name('admin.home');
-        route::get('/estatistica', [AdminController::class, 'statistic'])->name('admin.statistic');
     });
 
     Route::prefix('admin/divisao-do-treino/')->group(function() {
@@ -100,6 +99,7 @@ Route::middleware(['auth'])->group(function() {
     Route::prefix('admin/chamados')->group(function() {
         Route::get('lista-chamados', [CalledController::class, 'called'])->name('admin.called');
         Route::post('criar-chamado', [CalledController::class, 'store'])->name('admin.called.store');
+        Route::delete('deletar/{id}', [CalledController::class, 'destroy'])->name('admin.called.destroy');
         
     });
     
@@ -111,6 +111,10 @@ Route::middleware(['auth'])->group(function() {
        route::get('called/{id}', [StudentsController::class,'called'])->name('students.called');
        route::post('criando-estatistica', [StatisticsController::class, 'store'])->name('create_statistics');
        route::get('perfil/{id}', [StudentsController::class, 'profile'])->name('students.profile');
+    });
+
+    Route::prefix('estatisticas/')->group(function() {
+        route::get('/inicio', [StatisticsController::class, 'statistic'])->name('admin.statistic');
     });
 
 });

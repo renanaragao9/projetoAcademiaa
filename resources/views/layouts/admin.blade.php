@@ -73,14 +73,6 @@
                     <li>
                         <a href="sass.html"></a>
                     </li>
-                    
-                    <li>
-                        <a href="#!"><i class="material-icons right">notifications</i></a>
-                    </li>
-                    
-                    <li>
-                        <a href="#!"><i class="material-icons left">mail</i></a>
-                    </li>
             
                     <!-- Dropdown Menu -->
                     <li>
@@ -88,7 +80,7 @@
                     </li>
                     
                     <li class="dropdown-trigger" data-target="dropdown">
-                        <img src="/img/renan.jpeg" alt="" id="nav-image" class="circle responsive-img">
+                        <img src="/img/profile_photo_path/{{Auth::user()->profile_photo_path}}" alt="imagem-perfil" id="nav-image" class="circle responsive-img">
                     </li>
 
                     <li>
@@ -102,7 +94,7 @@
         </nav>
 
         <!-- Sidenav (Menu Lateral)-->
-        <ul id="slide-out" class="sidenav blue accent-2 text-grey darken-4">
+        <ul id="slide-out" class="sidenav light-blue darken-4 z-depth-5">
             <li class="collapsible center">
                 <a class="#!">Atalhos</a>
             </li>
@@ -124,7 +116,7 @@
             <ul class="collapsible collapsible-accordion">
                 <li>
                     <a class="collapsible-header waves-effect">Cadastro <i class="material-icons">folder_copy</i><i class="material-icons right">arrow_drop_down</i> </a>
-                    <div class="collapsible-body blue accent-2">
+                    <div class="collapsible-body light-blue darken-4">
                         <ul>
                             <li>
                                 <a href="{{ route('admin.user.create') }}"> Aluno <i class="material-icons">person</i></a>
@@ -156,7 +148,7 @@
                 <ul class="collapsible collapsible-accordion">
                     <li>
                         <a class="collapsible-header waves-effect"> Tabelas <i class="material-icons">table_view</i><i class="material-icons right">arrow_drop_down</i> </a>
-                        <div class="collapsible-body blue accent-2">
+                        <div class="collapsible-body light-blue darken-4">
                             <ul>
                                 <li>
                                     <a href="#!"> Fichas <i class="material-icons ">table_chart</i></a>

@@ -69,8 +69,5 @@ class User extends Authenticatable
 
     public function assessments() {
         return $this->hasMany(assessment::class, 'id_user_fk');
-    }
-
-
-    
+    }  
 }

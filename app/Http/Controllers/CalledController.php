@@ -9,8 +9,14 @@ use App\Models\called;
 class CalledController extends Controller
 {
     public function called() {
-       
-        return view('admin.called');
+
+        $calleds = called::join('users as users_user', 'calleds.id_user_fk', '=', 'users_user.id')
+        ->join('users as users_instrutor', 'calleds.id_instructor_fk', '=', 'users_instrutor.id')
+        ->select('calleds.*', 'users_user.profile_photo_path as user_photo', 'users_instrutor.name as instrutor_name')
+        ->orderBy('created_at', 'DESC')
+        ->get();
+
+        return view('admin.called', ['calleds' => $calleds]);
     }
 
     public function store(Request $request) {
@@ -30,6 +36,15 @@ class CalledController extends Controller
         called::create($request->all());
 
         return redirect()->back()->with('msg-success', 'Chamado cadastrado com sucesso!');
+    }
+
+    public function destroy($id) {
+        
+        $called = called::findOrFail($id);
+
+        $called->delete();
+
+        return redirect()->back()->with('msg-success', 'Chamado resolvido com sucesso!');
     }
 
 }

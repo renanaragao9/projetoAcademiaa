@@ -38,4 +38,16 @@ class StatisticsController extends Controller
 
         return redirect()->route('students.start')->with('msg-success', 'Treino finalizado com sucesso!');
     }
+
+    public function statistic() {
+
+        $statistics = statistics::join('users', 'statistics.id_user_fk', '=', 'users.id')
+        ->join('fichas', 'statistics.id_ficha_fk', '=', 'fichas.id_ficha')
+        ->join('training_division', 'fichas.id_training_fk', '=', 'training_division.id_training')
+        ->select('statistics.*', 'users.name', 'training_division.name_training')
+        ->orderBy('id_statistic', 'DESC')
+        ->get();
+
+        return view('admin.statistics', ['statistics' => $statistics]);
+    }
 }

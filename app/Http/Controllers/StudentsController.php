@@ -129,7 +129,7 @@ class StudentsController extends Controller
 
         $called = called::where('id_user_fk', $userId);
 
-        $teachers = User::where('profile', 1)->get();
+        $teachers = User::where('profile', 1)->orWhere('profile', 2)->get();
 
         return view('users.called', [
             'fichas' => $fichas,

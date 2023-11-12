@@ -182,7 +182,7 @@ nav .brand-logo i.material-icons {
 
 
 #mobile-side {
-  font-size: 18px;
+  font-size: 15px;
 }
 
 #mobile-side1 {
@@ -328,7 +328,10 @@ nav .brand-logo i.material-icons {
 }
 
 #img-perfil-mobile {
-  margin-left: 104px;
+  margin-left: 70px;
+  height: 125px;
+  width: 125px;
+  
 }
 
 #perfil-mobile-text {

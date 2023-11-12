@@ -91,8 +91,7 @@
                                 <div class="input-field col s12 l6">
                                     <input type="hidden" name="id_user_fk" id="id_user_fk" value="{{ $user->id }}">
                                     <input type="hidden" name="name" id="name" value="{{ $user->name }}">
-                                    <input type="hidden" name="id_user_creator_fk" id="id_user_creator_fk"
-                                        value="{{ Auth::user()->id }}">
+                                    <input type="hidden" name="id_user_creator_fk" id="id_user_creator_fk" value="{{ Auth::user()->id }}">
                                 </div>
 
                                 <div class="input-field col s12">
@@ -101,8 +100,7 @@
                                 </div>
 
                                 <div class="input-field col s12 l6 left">
-                                    <button type="button" id="adicionarDado"
-                                        class="btn waves-effect waves-light orange darken-4">Adicionar Exercicio</button>
+                                    <button type="button" id="adicionarDado" class="btn waves-effect waves-light orange darken-4"><i class="material-icons left">add</i>Adicionar Exercicio</button>
                                 </div>
                             </div>
                         </form>

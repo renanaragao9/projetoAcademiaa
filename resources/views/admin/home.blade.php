@@ -107,47 +107,44 @@
           <h4 id="titleColor">Chamados</h4>
           <p>Veja abaixo alguns de seus chamados</p>
         </li>
-        
-        <li class="collection-item avatar">
-            <img src="/img/renan.jpeg" alt="" class="circle">
-            <span class="title">Renan Aragão</span>
-            <p>Troca de senha</p>
-            <a href="#!" class="secondary-content"><i class="material-icons" id="blueColor">visibility</i></a>
-        </li>
-        
-        <li class="collection-item avatar">
-          <img src="/img/person1.jpg" alt="" class="circle">
-          <span class="title">Israel Dantas</span>
-          <p>Mudança de ficha</p>
-          <a href="#!" class="secondary-content"><i class="material-icons" id="blueColor">visibility</i></a>
-        </li>
-        
-        <li class="collection-item avatar">
-          <img src="/img/person2.jpg" alt="" class="circle">
-          <span class="title">Lucas Lima</span>
-          <p>Solicitação de Avaliação</p>
-          <a href="#!" class="secondary-content"><i class="material-icons" id="blueColor">visibility</i></a>
-        </li>
-        
-        <li class="collection-item avatar">
-          <img src="/img/person3.jpg" alt="" class="circle">
-          <span class="title">Ana Maria</span>
-          <p>Solicitação de ficha nova</p>
-          <a href="#!" class="secondary-content"><i class="material-icons" id="blueColor">visibility</i></a>
-        </li>
+        @foreach ($calleds as $called)
+          <li class="collection-item avatar">
+            <img src="/img/profile_photo_path/{{$called->user_photo }}" alt="" class="circle">
+            <span class="title">{{ $called->user_name }}</span>
+            <p>{{ $called->title }}</p>
+          </li>
+        @endforeach
       </ul>
     </div>
   </div>
 
-  <!--Div para o ChartJs -->
-  <div class="row">
-    <div class="col s12 ">
-      <div class="card">
-        <canvas id="chart"></canvas>
+  <!-- Inicio de conteudo -->
+  <div class="card">
+    <div class="card-content">
+      <div class="col s12 l12">
+        <h3 class="center" id="titleColor" >Alguns exercícios finalizados</h3>
       </div>
+
+      <table class="highlight striped centered" id="form_table_group_muscle">
+        <thead>
+          <tr>
+            <th>Aluno</th>
+            <th>Ficha</th>
+            <th>Dia</th>
+          </tr>
+        </thead>
+        
+        <tbody id="table-body">
+          @foreach($statistics as $statistic)
+            <tr>
+              <td>{{ $statistic->name }}</td>
+              <td>{{ $statistic->name_training }}</td>
+              <td>{{ \Carbon\Carbon::parse($statistic->created_at)->format('d/m/Y H:i:s') }}</td>
+            </tr>
+          @endforeach
+        </tbody>
+      </table>
     </div>
   </div>
-
   <!-- Fim de conteudo -->
-
 @endsection
