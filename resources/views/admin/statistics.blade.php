@@ -22,6 +22,31 @@
     </div>
   </div>
 
+  <div class="row">
+    <div class="col s12">
+      <div class="card ">
+        <canvas id="graficoUsuariosPorMes" width="400" height="200"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col s12">
+      <div class="card ">
+        <canvas id="graficoFichasPorMes" width="400" height="200"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col s12">
+      <div class="card ">
+        <canvas id="graficoAssessmentPorMes" width="400" height="200"></canvas>
+      </div>
+    </div>
+  </div>
+
+
   <!-- Inicio de conteudo -->
   <div class="card">
     <div class="card-content">
@@ -59,40 +84,5 @@
 @endsection
 
 @section('script')
-  <script>
-    // Função para filtrar os registros da tabela
-    function filterTable() {
-      let input = document.getElementById('search');
-      let filter = input.value.toLowerCase();
-      let rows = document.getElementById('table-body').getElementsByTagName('tr');
-      let noResultsMessage = document.getElementById('no-results');
-      let totalRecords = document.getElementById('total-records');
-      let resultsFound = false;
-      let count = 0;
-
-      for (let i = 0; i < rows.length; i++) {
-        let nome = rows[i].getElementsByTagName('td')[0].innerText.toLowerCase();
-        let acao = rows[i].getElementsByTagName('td')[1].innerText.toLowerCase();
-
-        if (nome.indexOf(filter) > -1 || acao.indexOf(filter) > -1) {
-          rows[i].style.display = '';
-          resultsFound = true;
-          count++;
-        } else {
-          rows[i].style.display = 'none';
-        }
-      }
-
-      if (resultsFound) {
-        noResultsMessage.style.display = 'none';
-      } else {
-        noResultsMessage.style.display = 'block';
-      }
-
-      totalRecords.innerText = "Total de registros encontrados: " + count;
-    }
-
-    // Evento de input para acionar a filtragem ao digitar na caixa de pesquisa
-    document.getElementById('search').addEventListener('input', filterTable); 
-  </script>
+  <script src="/js/paginas/statistics.js"></script>
 @endsection

@@ -33,6 +33,9 @@ Route::middleware(['auth'])->group(function() {
     
     Route::prefix('admin')->group(function() {
         Route::get('/home', [AdminController::class, 'home'])->name('admin.home');
+        Route::get('/users-por-mes', [AdminController::class, 'usersPorMes']);
+        Route::get('/fichas-por-mes', [AdminController::class, 'fichasPorMes']);
+        Route::get('/assessment-por-mes', [AdminController::class, 'assessmentPorMes']);
     });
 
     Route::prefix('admin/divisao-do-treino/')->group(function() {

@@ -39,5 +39,33 @@ class AdminController extends Controller
             'calleds' => $calleds,
             'statistics' => $statistics
         ]);
-    }  
+    }
+
+    public function usersPorMes() {
+        
+        $usersPorMes = User::selectRaw('COUNT(*) as total_users, MONTH(created_at) as month')
+            ->groupByRaw('YEAR(created_at), MONTH(created_at)')
+            ->orderByRaw('YEAR(created_at), MONTH(created_at)')
+            ->get();
+
+        return response()->json($usersPorMes);
+    }
+
+    public function fichasPorMes() {
+        $fichasPorMes = ficha::selectRaw('COUNT(*) as total_fichas, MONTH(created_at) as month')
+            ->groupByRaw('YEAR(created_at), MONTH(created_at)')
+            ->orderByRaw('YEAR(created_at), MONTH(created_at)')
+            ->get();
+
+        return response()->json($fichasPorMes);
+    }
+
+    public function assessmentPorMes() {
+        $assessmentPorMes = assessment::selectRaw('COUNT(*) as total_assessment, MONTH(created_at) as month')
+            ->groupByRaw('YEAR(created_at), MONTH(created_at)')
+            ->orderByRaw('YEAR(created_at), MONTH(created_at)')
+            ->get();
+
+        return response()->json($assessmentPorMes);
+    }
 }

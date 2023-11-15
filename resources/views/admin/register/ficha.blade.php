@@ -29,7 +29,7 @@
                                         <option value="" disabled selected>Selecione</option>
 
                                         @foreach ($trainings as $training)
-                                            <option value="{{ $training->id_training }}"> {{ $training->name_training }} -> {{$training->id_training}} </option>
+                                            <option value="{{ $training->id_training }}"> {{ $training->name_training }}</option>
                                         @endforeach
                                     </select>
                                     <label>Treino</label>
@@ -124,21 +124,18 @@
                         <hr>
 
                         <div class="input-field col s12 l12">
-                            <button class="btn waves-effect waves-light light-blue darken-4 col s12 l5" id="enviarDados"
-                                type="button" name="action" onclick="confirmSubmit()">Cadastrar
-                                <i class="material-icons right">save</i>
-                            </button>
+                            
+                            <a href="#modal-alerta_2" class="modal-trigger waves-effect waves-light btn left light-blue darken-4 col s12 l5"><i class="material-icons right">save</i>Cadastrar</a>
 
                             <a href="{{ route('admin.ficha.table-user', $user->id) }}" class="waves-effect waves-light btn right light-blue darken-4 col s12 l5" id=""><i class="material-icons right">table_rows</i>Ficha</a>
                                 
                             <a href="{{ route('admin.users') }}" class="waves-effect waves-light btn left light-blue darken-4 col s12 l5" id="bottom-form-action"><i class="material-icons right">arrow_back</i>Voltar</a>
                             
-                            <form id="form_group_muscle" method="post" action="{{ route('admin.ficha.deletefichas', $user->id) }}">
+                            <form id="form_ficha_delete" method="post" action="{{ route('admin.ficha.deletefichas', $user->id) }}">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="right btn waves-effect waves-light  red accent-4 col s12 l5" id="save-button" name="action" onclick="confirmSubmit()"><i class="material-icons left">warning</i> Excluir Todas as Fichas <i class="material-icons right">delete_forever</i></button>
-                            </form>
-                            
+                            </form>                 
                         </div>
                     </div>
                 </div>
@@ -146,22 +143,38 @@
         </div>
     </div>
 
-  <!-- Modal de alerta -->
-  <div id="modal-alerta" class="modal">
-    <div class="modal-content">
-        <i class="material-icons" id="modal-icon-alert">info</i>
-        <h4>Confirmação de Exclusão</h4>
-        <p>Deseja realmente excluir todos os exercícios da ficha de {{ $user->name }} ?</p>
-        <p class="warning-modal">* Essa ação não e reversível * </p>
+    <!-- Modal de alerta -->
+    <div id="modal-alerta" class="modal">
+        <div class="modal-content">
+            <i class="material-icons" id="modal-icon-alert">info</i>
+            <h4>Confirmação de Exclusão</h4>
+            <p>Deseja realmente excluir todos os exercícios da ficha de {{ $user->name }} ?</p>
+            <p class="warning-modal">* Essa ação não e reversível * </p>
+        </div>
+
+        <div class="modal-footer">
+            <a href="#" class="modal-close waves-effect waves-green btn-flat right" id="cancelBtn">Cancelar</a>
+            <a href="#" class="modal-close waves-effect waves-green btn light-blue darken-4 left" id="sendBtn">Exluir</a>
+        </div>
     </div>
 
-    <div class="modal-footer">
-        <a href="#" class="modal-close waves-effect waves-green btn-flat right" id="cancelBtn">Cancelar</a>
-        <a href="#" class="modal-close waves-effect waves-green btn light-blue darken-4 left"
-            id="sendBtn">Exluir</a>
+    <!-- 2° Modal de alerta -->
+    <div id="modal-alerta_2" class="modal">
+        <div class="modal-content center">
+            <i class="material-icons" id="modal-icon-alert">info</i>
+            <h4>Confirmação de Criação</h4>
+            <p>Deseja realmente criar a ficha do aluno {{ $user->name }} ?</p>
+        </div>
+
+        <div class="modal-footer">
+            <a href="#" class="modal-close waves-effect waves-green btn-flat right" id="cancelBtn">Cancelar</a>
+            <button class="btn waves-effect waves-light light-blue darken-4 left" id="enviarDados" type="button" name="action" onclick="confirmSubmit()">Criar
+                <i class="material-icons right">save</i>
+            </button>
+        </div>
     </div>
-  </div>
-  <!-- Fim Inicio de conteudo -->
+
+  <!-- Fim de conteudo -->
 @endsection
 
 @section('script')
@@ -186,7 +199,7 @@
                             $.each(data, function(index, exercise) {
                                 $('#id_exercise_fk').append($('<option>', {
                                     value: exercise.id_exercise,
-                                    text: exercise.name_exercise + " -> " + exercise.id_exercise
+                                    text: exercise.name_exercise
                                 }));
                             });
 
@@ -208,12 +221,14 @@
             let id_user_fk_valor = $("#id_user_fk").val();
             let id_user_creator_fk_valor = $("#id_user_creator_fk").val();
 
-            // Evento de clique no botão "Adicionar Dado"
+            // Evento de clique no botão "Adicionar Dados"
             $("#adicionarDado").on("click", function() {
                 let id_training_fk = $("#id_training_fk").val();
+                let nameTrainingSelected = $("#id_training_fk option:selected").text();
                 let order = $("#order").val();
                 let id_gmuscle_fk_to_ficha = $("#id_gmuscle_fk_to_ficha").val();
                 let id_exercise_fk = $("#id_exercise_fk").val();
+                let nameExerciseSelected = $("#id_exercise_fk option:selected").text();
                 let serie = $("#serie").val();
                 let repetition = $("#repetition").val();
                 let weight = $("#weight").val();
@@ -231,11 +246,8 @@
                     return; // Impede a execução adicional se campos obrigatórios estiverem vazios
                 }
 
-                console.log(description); // Usando o valor armazenado
-                console.log(id_user_creator_fk_valor); // Usando o valor armazenado
-
                 adicionarLinha(id_training_fk, id_exercise_fk, order, id_gmuscle_fk_to_ficha, serie,
-                    repetition, weight, rest, description, id_user_fk_valor, id_user_creator_fk_valor);
+                    repetition, weight, rest, description, id_user_fk_valor, id_user_creator_fk_valor, nameTrainingSelected, nameExerciseSelected);
 
                 // Limpar apenas os campos que devem ser limpos
                 $("#serie, #repetition, #weight, #rest, #description").val("");
@@ -243,11 +255,11 @@
 
             // Função para adicionar uma linha à tabela
             function adicionarLinha(id_training_fk, id_exercise_fk, order, id_gmuscle_fk_to_ficha, serie,
-                repetition, weight, rest, description, id_user_fk, id_user_creator_fk) {
+                repetition, weight, rest, description, id_user_fk, id_user_creator_fk, nameTrainingSelected, nameExerciseSelected) {
                 let row = $("<tr>");
-                row.append("<td>" + id_training_fk + "</td>");
+                row.append("<td>" + nameTrainingSelected + "</td>");
                 row.append("<td>" + order + "</td>");
-                row.append("<td>" + id_exercise_fk + "</td>");
+                row.append("<td>" + nameExerciseSelected + "</td>");
                 row.append("<td><button class='btn-excluir btn red'>Excluir</button></td>");
                 $("#tabelaDados tbody").append(row);
 
@@ -301,12 +313,11 @@
         });
 
         //Função para abrir a tela modal
-
         document.addEventListener('DOMContentLoaded', function() {
             let modal = document.getElementById('modal-alerta');
             let instance = M.Modal.init(modal);
 
-            let form = document.querySelector('#form_group_muscle');
+            let form = document.querySelector('#form_ficha_delete');
 
             form.addEventListener('submit', function(event) {
                 event.preventDefault();
@@ -326,5 +337,12 @@
                 form.submit();
             });
         });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var elems = document.querySelectorAll('.modal');
+            var instances = M.Modal.init(elems, {});
+        });
+
+        
     </script>
 @endsection

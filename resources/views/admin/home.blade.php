@@ -119,32 +119,78 @@
   </div>
 
   <!-- Inicio de conteudo -->
-  <div class="card">
-    <div class="card-content">
-      <div class="col s12 l12">
-        <h3 class="center" id="titleColor" >Alguns exercícios finalizados</h3>
-      </div>
-
-      <table class="highlight striped centered" id="form_table_group_muscle">
-        <thead>
-          <tr>
-            <th>Aluno</th>
-            <th>Ficha</th>
-            <th>Dia</th>
-          </tr>
-        </thead>
-        
-        <tbody id="table-body">
-          @foreach($statistics as $statistic)
+  <div class="row">
+    <div class="card">
+      <div class="card-content">
+        <div class="col s12 l12">
+          <h3 class="center" id="titleColor" >Alguns exercícios finalizados</h3>
+        </div>
+  
+        <table class="highlight striped centered" id="form_table_group_muscle">
+          <thead>
             <tr>
-              <td>{{ $statistic->name }}</td>
-              <td>{{ $statistic->name_training }}</td>
-              <td>{{ \Carbon\Carbon::parse($statistic->created_at)->format('d/m/Y H:i:s') }}</td>
+              <th>Aluno</th>
+              <th>Ficha</th>
+              <th>Dia</th>
             </tr>
-          @endforeach
-        </tbody>
-      </table>
+          </thead>
+          
+          <tbody id="table-body">
+            @foreach($statistics as $statistic)
+              <tr>
+                <td>{{ $statistic->name }}</td>
+                <td>{{ $statistic->name_training }}</td>
+                <td>{{ \Carbon\Carbon::parse($statistic->created_at)->format('d/m/Y H:i:s') }}</td>
+              </tr>
+            @endforeach
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
+
+  <div class="row">
+    <canvas id="graficoUsuariosPorMes" width="400" height="200"></canvas>
+  </div>
   <!-- Fim de conteudo -->
+@endsection
+
+@section('script')
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+      fetch('/admin/users-por-mes')
+          .then(response => response.json())
+          .then(data => {
+              const meses = [];
+              const usuariosCriados = [];
+
+              data.forEach(item => {
+                  meses.push(`Mês ${item.month}`);
+                  usuariosCriados.push(item.total_users);
+              });
+
+              var ctx = document.getElementById('graficoUsuariosPorMes').getContext('2d');
+              var myChart = new Chart(ctx, {
+                  type: 'bar',
+                  data: {
+                      labels: meses,
+                      datasets: [{
+                          label: 'Usuários Criados por Mês',
+                          data: usuariosCriados,
+                          backgroundColor: 'rgba(75, 192, 192, 0.5)',
+                          borderColor: 'rgba(75, 192, 192, 1)',
+                          borderWidth: 1
+                      }]
+                  },
+                  options: {
+                      scales: {
+                          y: {
+                              beginAtZero: true
+                          }
+                      }
+                  }
+              });
+          });
+  });
+</script>
 @endsection
