@@ -52,10 +52,8 @@
         <nav>
             <div class="nav-wrapper light-blue darken-4">
         
-                <!-- Botão hamburguer para o mobile-->
                 <a href="#" class="sidenav-trigger" data-target="slide-out"><i class="material-icons">menu</i></a>
 
-                <!-- Botão de sair para o mobile-->
                 <ul class="right" id="nav-mobile-icon">
                     <li>
                         <a href="#" class="tooltipped rigth" id="logout-link-mobile" data-target="slide-out"  data-tooltip="Sair"><i class="material-icons right">logout</i></a>
@@ -65,8 +63,6 @@
                     </li>
                 </ul>
                 
-                
-                <!-- Logo Central-->
                 <a href="{{ route('admin.home') }}" class="brand-logo center"><i class="material-icons left" >fitness_center</i>Israel Dantas</a>
 
                 <ul class="right hide-on-med-and-down">               
@@ -290,56 +286,6 @@
         </div>
     </div>
 
-  <!-- Add User Modal -->
-    <div id="user-modal" class="modal">
-        <div class="modal-content">
-            <h4>Adicionar Aluno</h4>
-            <form>
-                <div class="input-field col s12 l6">
-                    <i class="material-icons prefix">account_circle</i>
-                    <input id="icon-nome" type="text" class="validate">
-                    <label for="icon-nome">Nome</label>
-                </div>
-            
-                <div class="input-field col s12 l6">
-                    <i class="material-icons prefix">account_circle</i>
-                    <input id="icon_sobrenome" type="text" class="validate">
-                    <label for="icon_sobrenome">Sobrenome</label>
-                </div>
-            
-                <div class="input-field col s12 l6">
-                    <i class="material-icons prefix">phone</i>
-                    <input id="icon_telephone" type="tel" class="validate">
-                    <label for="icon_telephone">Telefone</label>
-                </div>
-            
-                <div class="input-field col s12 l6">
-                    <i class="material-icons prefix">calendar_month</i>                       
-                    <input type="date" class="datepicker">
-                    
-                </div>
-            
-                <div class="input-field col s12 l6">
-                    <i class="material-icons prefix">mail</i>
-                    <input id="email" type="email" class="validate">
-                    <label for="email">E-mail</label>
-                    <span class="helper-text" data-error="Email Inválido" data-success="Email Valido"></span>
-                </div>
-            
-                <div class="input-field col s12 l6">
-                    <i class="material-icons prefix">lock</i>
-                    <input id="password" type="password" class="validate">
-                    <label for="password">Senha</label>
-                    </div>
-                </div>
-            </form>
-            
-            <div class="modal-footer">
-                <a href="#!" class="modal-action modal-close btn light-blue darken-4 left white-text">Adicionar</a>
-            </div>
-        </div>
-    </div>
-
   <!-- Inicio das chamdas de Scripts -->
     
     <!-- Jquery-->
@@ -387,8 +333,6 @@
         options: options
       });
     </script>
-
-    
   <!-- Fim das chamadas de Scripts -->
 </body>
 </html>

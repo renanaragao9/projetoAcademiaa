@@ -16,6 +16,7 @@ class AdminController extends Controller
         $users = User::all();
         $fichas = ficha::all();
         $assessment = assessment::all();
+        $called = called::all();
 
         $calleds = called::join('users as users_user', 'calleds.id_user_fk', '=', 'users_user.id')
         ->join('users as users_instrutor', 'calleds.id_instructor_fk', '=', 'users_instrutor.id')
@@ -36,6 +37,7 @@ class AdminController extends Controller
             'users' => $users,
             'fichas' => $fichas,
             'assessment' => $assessment,
+            'called' => $called,
             'calleds' => $calleds,
             'statistics' => $statistics
         ]);
@@ -49,23 +51,5 @@ class AdminController extends Controller
             ->get();
 
         return response()->json($usersPorMes);
-    }
-
-    public function fichasPorMes() {
-        $fichasPorMes = ficha::selectRaw('COUNT(*) as total_fichas, MONTH(created_at) as month')
-            ->groupByRaw('YEAR(created_at), MONTH(created_at)')
-            ->orderByRaw('YEAR(created_at), MONTH(created_at)')
-            ->get();
-
-        return response()->json($fichasPorMes);
-    }
-
-    public function assessmentPorMes() {
-        $assessmentPorMes = assessment::selectRaw('COUNT(*) as total_assessment, MONTH(created_at) as month')
-            ->groupByRaw('YEAR(created_at), MONTH(created_at)')
-            ->orderByRaw('YEAR(created_at), MONTH(created_at)')
-            ->get();
-
-        return response()->json($assessmentPorMes);
     }
 }

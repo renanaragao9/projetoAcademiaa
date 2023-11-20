@@ -179,7 +179,6 @@
 
 @section('script')
     <script>
-        
         //Função para popular o select exercicio atraves da escolha do select Grupo Muscular
         $(document).ready(function() {
             $('select').formSelect();
@@ -212,16 +211,12 @@
                 }
             });
 
-        //Função para enviar varios exercicios para a ficha   
+             /* Função para enviar varios exercicios para a ficha */
             
-            // array de dados
             let dadosArray = [];
-
-            // Variáveis para armazenar os valores dos campos id_user_fk e id_user_creator_fk
             let id_user_fk_valor = $("#id_user_fk").val();
             let id_user_creator_fk_valor = $("#id_user_creator_fk").val();
 
-            // Evento de clique no botão "Adicionar Dados"
             $("#adicionarDado").on("click", function() {
                 let id_training_fk = $("#id_training_fk").val();
                 let nameTrainingSelected = $("#id_training_fk option:selected").text();
@@ -243,7 +238,7 @@
                     repetition === ""
                 ) {
                     alert("Por favor, preencha todos os campos obrigatórios.");
-                    return; // Impede a execução adicional se campos obrigatórios estiverem vazios
+                    return;
                 }
 
                 adicionarLinha(id_training_fk, id_exercise_fk, order, id_gmuscle_fk_to_ficha, serie,
@@ -262,7 +257,8 @@
                 row.append("<td>" + nameExerciseSelected + "</td>");
                 row.append("<td><button class='btn-excluir btn red'>Excluir</button></td>");
                 $("#tabelaDados tbody").append(row);
-
+                
+                // Puxa os dados da array para o banco de dados
                 dadosArray.push({
                     id_training_fk: id_training_fk,
                     id_exercise_fk: id_exercise_fk,
@@ -281,8 +277,8 @@
             // Evento de clique no botão "Excluir" em uma linha da tabela
             $("#tabelaDados").on("click", ".btn-excluir", function() {
                 let rowIndex = $(this).closest("tr").index();
-                dadosArray.splice(rowIndex, 1); // Remove o item do array
-                $(this).closest("tr").remove(); // Remove a linha da tabela
+                dadosArray.splice(rowIndex, 1);
+                $(this).closest("tr").remove();
             });
 
             // Evento de clique no botão "Enviar Dados para o Laravel"
@@ -314,14 +310,13 @@
 
         //Função para abrir a tela modal
         document.addEventListener('DOMContentLoaded', function() {
+           
             let modal = document.getElementById('modal-alerta');
             let instance = M.Modal.init(modal);
-
             let form = document.querySelector('#form_ficha_delete');
 
             form.addEventListener('submit', function(event) {
                 event.preventDefault();
-
                 instance.open();
             });
 
@@ -342,7 +337,6 @@
             var elems = document.querySelectorAll('.modal');
             var instances = M.Modal.init(elems, {});
         });
-
         
     </script>
 @endsection

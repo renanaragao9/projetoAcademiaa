@@ -6,14 +6,9 @@
 
   <!--Divs para titulo e Reporte -->
   <div class="row">
-    <div class="col s12 l10">
+    <div class="col s12 l12">
       <h3 id="titleColor">Painel Administrativo</h3>
-    </div>
-    
-    <div class="col l2" id="button-report">
-      <h2>
-        <a class="waves-effect waves-light btn modal-trigger blue accent-2" href="#report-modal"><i class="material-icons left" >bug_report</i>Reportar</a>
-      </h2>
+      <a class="waves-effect waves-light btn modal-trigger blue accent-2" href="#report-modal"><i class="material-icons left" >bug_report</i>Reportar</a>
     </div>
   </div>
   
@@ -23,7 +18,7 @@
   <div class="row">
     <div class="col s12">
       <div class="card-panel">
-        <h4 id="titleColor"> Bloco de anotações</h4>
+        <h4 id="titleColor"> Bloco de Anotações</h4>
   
         <form id="todo-form">
           <div class="input-field">
@@ -64,7 +59,7 @@
         <div class="card-panel center">
           <i class="material-icons medium" id="blueColor">forum</i>
           <h5>Chamados</h5>
-          <h3 class="count">350</h3>
+          <h3 class="count">{{ count($called) }}</h3>
           <div class="progress grey lighten-1">
             <div class="determinate blue accent-2" style="width: 54%;"></div>
           </div>
@@ -95,7 +90,7 @@
               <div class="determinate blue accent-2" style="width: 61%;"></div>
             </div>
         </div>
-        </a>
+      </a>
     </div>
   </div>
       
@@ -107,6 +102,7 @@
           <h4 id="titleColor">Chamados</h4>
           <p>Veja abaixo alguns de seus chamados</p>
         </li>
+
         @foreach ($calleds as $called)
           <li class="collection-item avatar">
             <img src="/img/profile_photo_path/{{$called->user_photo }}" alt="" class="circle">
@@ -152,45 +148,46 @@
   <div class="row">
     <canvas id="graficoUsuariosPorMes" width="400" height="200"></canvas>
   </div>
+  
   <!-- Fim de conteudo -->
 @endsection
 
 @section('script')
 <script>
   document.addEventListener("DOMContentLoaded", function() {
-      fetch('/admin/users-por-mes')
-          .then(response => response.json())
-          .then(data => {
-              const meses = [];
-              const usuariosCriados = [];
+    fetch('/admin/users-por-mes')
+        .then(response => response.json())
+        .then(data => {
+            const meses = [];
+            const usuariosCriados = [];
 
-              data.forEach(item => {
-                  meses.push(`Mês ${item.month}`);
-                  usuariosCriados.push(item.total_users);
-              });
+            data.forEach(item => {
+                meses.push(`Mês ${item.month}`);
+                usuariosCriados.push(item.total_users);
+            });
 
-              var ctx = document.getElementById('graficoUsuariosPorMes').getContext('2d');
-              var myChart = new Chart(ctx, {
-                  type: 'bar',
-                  data: {
-                      labels: meses,
-                      datasets: [{
-                          label: 'Usuários Criados por Mês',
-                          data: usuariosCriados,
-                          backgroundColor: 'rgba(75, 192, 192, 0.5)',
-                          borderColor: 'rgba(75, 192, 192, 1)',
-                          borderWidth: 1
-                      }]
-                  },
-                  options: {
-                      scales: {
-                          y: {
-                              beginAtZero: true
-                          }
-                      }
-                  }
-              });
-          });
+            var ctx = document.getElementById('graficoUsuariosPorMes').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: meses,
+                    datasets: [{
+                        label: 'Usuários Criados por Mês',
+                        data: usuariosCriados,
+                        backgroundColor: 'rgba(75, 192, 192, 0.5)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        });
   });
 </script>
 @endsection

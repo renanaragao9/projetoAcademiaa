@@ -46,7 +46,7 @@
             <a href="{{ route('students.ficha', $ficha->id_training_fk) }}">
               <div class="card horizontal z-depth-3 waves-light" id="card-mobile">
                 <div class="card-image">
-                  <i class="material-icons" id="icon-card-mobile">fitness_center</i>
+                  <i class="material-icons" id="icon-card-mobile">fitness_center</i> 
                 </div>
                 
                 <div class="card-stacked">
@@ -57,6 +57,9 @@
               </div>
             </a>
           </div>    
+          <div class="center" id="div-donwload-pdf">
+            <a href="{{route('students.pdf', $ficha->id_training_fk)}}" class="btn-small waves-effect waves-light orange darken-4">Baixar Ficha <i class="material-icons right">download</i> </a>
+          </div>
         @endforeach
       @else
         <p id="error-not-ficha">Você ainda não possui uma ficha de treino.</p>

@@ -4,13 +4,13 @@
 
 @section('content')
 
-  <!--Divs para titulo e Reporte -->
   <div class="row">
     <div class="card z-depth-5">
       <div class="card-content">
         <div class="col s12 l12">
-          <h3 class="center" id="titleColor">Lista de alunos</h3>
-          <a href="{{ route('admin.user.create') }}" class="waves-effect waves-light btn left light-blue darken-4 col s12 l2" id="bottom-form-action"><i class="material-icons right">person_add</i>Cadastrar</a>
+          <h3 class="center" id="titleColor">Lista de Alunos</h3>
+          <a href="{{ route('admin.user.create') }}" class="waves-effect waves-light btn right light-blue darken-4 col s12 l2" id="bottom-form-action"><i class="material-icons right">person_add</i>Cadastrar</a>
+          <a href="{{ route('admin.home') }}" class="waves-effect waves-light btn left light-blue darken-4 col s12 l2" id="bottom-form-action"><i class="material-icons left">arrow_back</i>Voltar</a>
         </div>
         
         <div id="total-records" class="total-records"></div>
@@ -78,39 +78,40 @@
 
     // Função para filtrar os registros da tabela
     function filterTable() {
-        let input = document.getElementById('search');
-        let filter = input.value.toLowerCase();
-        let rows = document.getElementById('table-body').getElementsByTagName('tr');
-        let noResultsMessage = document.getElementById('no-results');
-        let totalRecords = document.getElementById('total-records');
-        let resultsFound = false;
-        let count = 0;
+        
+      let input = document.getElementById('search');
+      let filter = input.value.toLowerCase();
+      let rows = document.getElementById('table-body').getElementsByTagName('tr');
+      let noResultsMessage = document.getElementById('no-results');
+      let totalRecords = document.getElementById('total-records');
+      let resultsFound = false;
+      let count = 0;
 
-        for (let i = 0; i < rows.length; i++) {
-          let nome = rows[i].getElementsByTagName('td')[0].innerText.toLowerCase();
-          let acao = rows[i].getElementsByTagName('td')[1].innerText.toLowerCase();
+      for (let i = 0; i < rows.length; i++) {
+        let nome = rows[i].getElementsByTagName('td')[0].innerText.toLowerCase();
+        let acao = rows[i].getElementsByTagName('td')[1].innerText.toLowerCase();
 
-          if (nome.indexOf(filter) > -1 || acao.indexOf(filter) > -1) {
-            rows[i].style.display = '';
-            resultsFound = true;
-            count++;
-          } else {
-            rows[i].style.display = 'none';
-          }
-        }
-
-        if (resultsFound) {
-          noResultsMessage.style.display = 'none';
+        if (nome.indexOf(filter) > -1 || acao.indexOf(filter) > -1) {
+          rows[i].style.display = '';
+          resultsFound = true;
+          count++;
         } else {
-          noResultsMessage.style.display = 'block';
+          rows[i].style.display = 'none';
         }
-
-        totalRecords.innerText = "Total de registros encontrados: " + count;
       }
 
-      // Evento de input para acionar a filtragem ao digitar na caixa de pesquisa
-      document.getElementById('search').addEventListener('input', filterTable); 
-    
+      if (resultsFound) {
+        noResultsMessage.style.display = 'none';
+      } else {
+        noResultsMessage.style.display = 'block';
+      }
+
+      totalRecords.innerText = "Total de registros encontrados: " + count;
+    }
+
+    // Evento de input para acionar a filtragem ao digitar na caixa de pesquisa
+    document.getElementById('search').addEventListener('input', filterTable); 
+  
     // Inicio da função do alerta modal ao excluír dados
     document.addEventListener('DOMContentLoaded', function() {
       let modal = document.getElementById('modal-alerta');
@@ -137,9 +138,5 @@
       });
     });
     
-    {{-- 
-      o modal é estilizado usando as classes CSS fornecidas pelo Materialize CSS. Usamos a função M.Modal.init() para inicializar o modal e a função instance.open() para abrir o modal quando o formulário for submetido.
-      o evento submit é usado para interceptar o envio do formulário, e o modal é aberto nesse momento. Quando o botão "Enviar" dentro do modal é clicado, o formulário é enviado utilizando form.submit(). 
-      --}}
   </script>
 @endsection

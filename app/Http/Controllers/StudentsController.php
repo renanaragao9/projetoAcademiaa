@@ -64,6 +64,7 @@ class StudentsController extends Controller
                 ->join('exercises', 'fichas.id_exercise_fk', '=', 'exercises.id_exercise')
                 ->join('training_division', 'fichas.id_training_fk', '=', 'training_division.id_training')
                 ->join('users', 'fichas.id_user_creator_fk', '=', 'users.id')
+                ->orderBy('order', 'ASC')
                 ->get();
             
 
@@ -161,6 +162,41 @@ class StudentsController extends Controller
             'userProfile' => $userProfile,
             'statistics' => $statistics,
             'assessments' => $assessments
+        ]);
+    }
+
+    public function fichaPDF($id) {
+
+        $userId = auth()->user()->id;
+
+        $studentFichas = Ficha::select(
+            'fichas.*',
+            'exercises.name_exercise',
+            'exercises.image_exercise',
+            'exercises.gif_exercise',
+            'training_division.name_training',
+            'users.id',
+            'users.name',
+            'users.date'
+        )
+            ->where('fichas.id_training_fk', $id)
+            ->where('fichas.id_user_fk', $userId)
+            ->join('exercises', 'fichas.id_exercise_fk', '=', 'exercises.id_exercise')
+            ->join('training_division', 'fichas.id_training_fk', '=', 'training_division.id_training')
+            ->join('users', 'fichas.id_user_fk', '=', 'users.id')
+            ->orderBy('order', 'ASC')
+            ->get();
+
+            
+
+        $assessment = assessment::where('id_user_fk', $userId)->orderBy('id_assessment', 'desc')->first(); 
+
+        $fichaNome = $studentFichas->first();
+
+        return view('users.pdf.fichaAluno', [
+            'studentFichas' => $studentFichas,
+            'assessment' => $assessment,
+            'fichaNome' => $fichaNome
         ]);
     }
 }

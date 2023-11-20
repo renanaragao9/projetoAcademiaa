@@ -2,7 +2,7 @@
 
 @section('title', 'Cadastro de Exercício')
 
-@section('content')   
+@section('content')
     
   <!-- Inicio de conteudo -->
   <div class="row">
@@ -93,14 +93,13 @@
 @section('script')
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+      
       let modal = document.getElementById('modal-alerta');
       let instance = M.Modal.init(modal);
-
       let form = document.querySelector('#form_exercise');
 
       form.addEventListener('submit', function(event) {
         event.preventDefault();
-
         instance.open();
       });
 
@@ -116,11 +115,6 @@
         form.submit();
       });
     });
-    
-    {{-- 
-      o modal é estilizado usando as classes CSS fornecidas pelo Materialize CSS. Usamos a função M.Modal.init() para inicializar o modal e a função instance.open() para abrir o modal quando o formulário for submetido.
-      o evento submit é usado para interceptar o envio do formulário, e o modal é aberto nesse momento. Quando o botão "Enviar" dentro do modal é clicado, o formulário é enviado utilizando form.submit(). 
-      --}}
   </script>
 
 @endsection

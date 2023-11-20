@@ -138,16 +138,21 @@ nav .brand-logo i.material-icons {
   }
 }
 
+/* Janelas Modais */
 #modal-alerta {
   text-align: center;
   color: #0c3350;
+}
+
+.warning-modal {
+  color: red;
 }
 
 #modal-icon-alert {
   font-size: 50px;
 }
 
-/* Index (Pagina Inicial) */
+/* Index  */
 #blueColor {
   color: #0c3350;
 }
@@ -161,25 +166,23 @@ nav .brand-logo i.material-icons {
   top: 0px;
 }
 
-#selectColor {
-  color: #01579b;
+#title-bv {
+  color: #031523d4;
+  font-size: 30px;
 }
 
 #titleColor {
   color: #0c3350;
 }
 
-#title-bv {
-  color: #031523d4;
-  font-size: 30px;
-}
-
-
 #title-card {
   color: #054160df;
   font-size: 32px;
 }
 
+#selectColor {
+  color: #01579b;
+}
 
 #mobile-side {
   font-size: 15px;
@@ -189,6 +192,21 @@ nav .brand-logo i.material-icons {
   font-size: 12px;
 }
 
+#strong {
+  font-weight: bold;
+}
+
+#div-donwload-pdf {
+ margin: 0;
+ margin-top: -10px;
+ margin-bottom: 30px;
+}
+
+#donwload-pdf {
+  text-align: center;
+  
+ 
+}
 
 /* label focus color */
 .input-field input:focus + label {
@@ -210,7 +228,7 @@ nav .brand-logo i.material-icons {
   padding: 14px 2px;
 }
 
-/* Tabela */
+/* Tabelas */
 
 #td-text {
   font-size: 22px;
@@ -236,10 +254,6 @@ nav .brand-logo i.material-icons {
   padding: 0;
 }
 
-#strong {
-  font-weight: bold;
-}
-
 #mobile-fixed-action {
   transition: transform 0.2s cubic-bezier(0.55, 0.085, 0.68, 0.53) 0s;
   background-color: 0s linear 0.2s; 
@@ -249,6 +263,31 @@ nav .brand-logo i.material-icons {
   left: 0px; 
   overflow: hidden; 
   background-color: #0c3350
+}
+
+/* Cards */
+#card-title {
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  color: #0c3350;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#card-text {
+  font-size: 18px;
+  padding: 5px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#card-btn {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+#card-form-edit-image {
+  height: 150px;
+  width: 150px;
 }
 
 #card-mobile {
@@ -275,36 +314,8 @@ nav .brand-logo i.material-icons {
   color: rgb(234, 236, 243);
 }
 
-#card-title {
-  font-size: 30px;
-  font-weight: bold;
-  text-align: center;
-  color: #0c3350;
-  font-family:Verdana, Geneva, Tahoma, sans-serif;
 
-}
-
-#card-text {
-  font-size: 18px;
-  padding: 5px;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-
-#card-btn {
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-#card-form-edit-image {
-  height: 150px;
-  width: 150px;
-}
-
-.warning-modal {
-  color: red;
-}
-
-/* Pagina de avaliações */
+/* Paginas de avaliações */
 #assessment-mobile {
   display: flex;
   align-items: center;
@@ -331,7 +342,6 @@ nav .brand-logo i.material-icons {
   margin-left: 70px;
   height: 125px;
   width: 125px;
-  
 }
 
 #perfil-mobile-text {
@@ -339,7 +349,7 @@ nav .brand-logo i.material-icons {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-
+/* Perfil */
 #profile-title-mobile {
   font-size: 22px;
   font-weight: bolder;
@@ -370,7 +380,8 @@ nav .brand-logo i.material-icons {
   text-align: center;
   font-weight: bolder ;
 }
- 
+
+/* Footer */
 .footer {
   background-color: transparent;
   padding: 10px;
@@ -428,7 +439,6 @@ footer#fixar-rodape {
       font-size: 20px;
     }
     
-
     #td-text {
       font-size: 18px;
       font-weight: bolder;

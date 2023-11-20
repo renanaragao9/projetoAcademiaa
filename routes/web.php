@@ -9,6 +9,7 @@ use App\Http\Controllers\TrainingDivisionController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AssessmentController;
 use App\Http\Controllers\CalledController;
+use App\Http\Controllers\PDFController;
 use App\Http\Controllers\StudentsController;
 use App\Http\Controllers\StatisticsController;
 use Illuminate\Support\Facades\Route;
@@ -34,8 +35,22 @@ Route::middleware(['auth'])->group(function() {
     Route::prefix('admin')->group(function() {
         Route::get('/home', [AdminController::class, 'home'])->name('admin.home');
         Route::get('/users-por-mes', [AdminController::class, 'usersPorMes']);
-        Route::get('/fichas-por-mes', [AdminController::class, 'fichasPorMes']);
-        Route::get('/assessment-por-mes', [AdminController::class, 'assessmentPorMes']);
+    });
+
+    Route::prefix('estatisticas/')->group(function() {
+        route::get('/inicio', [StatisticsController::class, 'statistic'])->name('admin.statistic');
+        Route::get('/users-por-mes', [StatisticsController::class, 'usersPorMes']);
+        Route::get('/fichas-por-mes', [StatisticsController::class, 'fichasPorMes']);
+        Route::get('/assessment-por-mes', [StatisticsController::class, 'assessmentPorMes']);
+        Route::get('/called-por-mes', [StatisticsController::class, 'calledPorMes']);
+        
+    });
+
+    Route::prefix('admin/chamados')->group(function() {
+        Route::get('lista-chamados', [CalledController::class, 'called'])->name('admin.called');
+        Route::post('criar-chamado', [CalledController::class, 'store'])->name('admin.called.store');
+        Route::delete('deletar/{id}', [CalledController::class, 'destroy'])->name('admin.called.destroy');
+        
     });
 
     Route::prefix('admin/divisao-do-treino/')->group(function() {
@@ -98,13 +113,6 @@ Route::middleware(['auth'])->group(function() {
         Route::put('/atualizar/{id}', [AssessmentController::class, 'update'])->name('admin.assessment.update');
         Route::delete('deletar/{id}', [AssessmentController::class, 'destroy'])->name('admin.assessment.destroy');
     });
-
-    Route::prefix('admin/chamados')->group(function() {
-        Route::get('lista-chamados', [CalledController::class, 'called'])->name('admin.called');
-        Route::post('criar-chamado', [CalledController::class, 'store'])->name('admin.called.store');
-        Route::delete('deletar/{id}', [CalledController::class, 'destroy'])->name('admin.called.destroy');
-        
-    });
     
     // Rotas para os Alunos
     Route::prefix('alunos/')->group(function() {
@@ -114,10 +122,8 @@ Route::middleware(['auth'])->group(function() {
        route::get('called/{id}', [StudentsController::class,'called'])->name('students.called');
        route::post('criando-estatistica', [StatisticsController::class, 'store'])->name('create_statistics');
        route::get('perfil/{id}', [StudentsController::class, 'profile'])->name('students.profile');
-    });
-
-    Route::prefix('estatisticas/')->group(function() {
-        route::get('/inicio', [StatisticsController::class, 'statistic'])->name('admin.statistic');
+       route::get('ficha-view/{id}', [StudentsController::class, 'fichaPDF'])->name('students.pdf');
+       Route::get('/ficha-pdf', [PDFController::class, 'generatePDF']);
     });
 
 });

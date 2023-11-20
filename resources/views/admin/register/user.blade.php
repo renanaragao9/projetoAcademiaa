@@ -10,7 +10,7 @@
       <div class="card white">
         <div class="card-content">           
           <div class="row">
-            <form method="POST" action="{{ route('admin.user.store') }}" class="col s12" id="form_exercise" >
+            <form method="POST" action="{{ route('admin.user.store') }}" class="col s12" id="form_user" >
               @csrf
               <div class="input-field col s12 l12">
                 <h3 id="titleColor" class="center">Cadastro: Aluno(a)</h3>
@@ -104,15 +104,15 @@
 
 @section('script')
   <script>
+  
     document.addEventListener('DOMContentLoaded', function() {
+      
       let modal = document.getElementById('modal-alerta');
       let instance = M.Modal.init(modal);
-
-      let form = document.querySelector('#form_exercise');
+      let form = document.querySelector('#form_user');
 
       form.addEventListener('submit', function(event) {
         event.preventDefault();
-
         instance.open();
       });
 
@@ -128,11 +128,5 @@
         form.submit();
       });
     });
-    
-    {{-- 
-      o modal é estilizado usando as classes CSS fornecidas pelo Materialize CSS. Usamos a função M.Modal.init() para inicializar o modal e a função instance.open() para abrir o modal quando o formulário for submetido.
-      o evento submit é usado para interceptar o envio do formulário, e o modal é aberto nesse momento. Quando o botão "Enviar" dentro do modal é clicado, o formulário é enviado utilizando form.submit(). 
-      --}}
   </script>
-
 @endsection
