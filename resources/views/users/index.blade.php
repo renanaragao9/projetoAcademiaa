@@ -88,7 +88,9 @@
           </div>
         </a>
       </div>
-
+      <div class="center" id="div-donwload-pdf">
+        <a href="{{route('students.assessment-pdf', $ficha->id_training_fk)}}" class="btn-small waves-effect waves-light orange darken-4">Baixar Avaliação <i class="material-icons right">download</i> </a>
+      </div>
       <!-- Card de chamados -->
       <div class="row">
         <a href="{{ route('students.called', Auth::user()->id) }}">

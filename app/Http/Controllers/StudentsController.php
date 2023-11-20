@@ -199,4 +199,28 @@ class StudentsController extends Controller
             'fichaNome' => $fichaNome
         ]);
     }
+
+    public function assessmentPDF($id) {
+        
+        // Pega o id do usúario logado
+        $userId = auth()->user()->id;
+
+        $fullName = auth()->user()->name;
+
+        $studentAssessment = assessment::where('id_user_fk', $userId)->orderby('id_assessment', 'DESC')->first();
+
+        $heightInMeters = $studentAssessment->height / 100;
+        $weightInKg = $studentAssessment->weight;
+
+        // Calculando o IMC
+        $imc = $weightInKg / ($heightInMeters * $heightInMeters);
+        $imc = round($imc, 2);
+        
+
+        return view('users.pdf.assessmentAluno', [
+            'fullName' => $fullName,
+            'studentAssessment' => $studentAssessment,
+            'imc' => $imc
+        ]);           
+    }
 }
