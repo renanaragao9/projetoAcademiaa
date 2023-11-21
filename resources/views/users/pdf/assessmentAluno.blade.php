@@ -77,7 +77,7 @@
   <table style="width: 100%; text-align: center;">
     <tr style=" ">
       <td colspan="2">
-        <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/israelj.png'))) }}" style="max-width: 100%;" />
+        <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/israelj.png'))) }}" style="max-width: 100%"  />
       </td>
     </tr>
    
@@ -90,14 +90,13 @@
     <tr style="margin: 2px 0;">
       <td style="width: 50%; vertical-align: top; text-align: left;">
         <ul style="list-style: none; padding-left: 0; margin: 0;">
-          <li><strong>Nome:</strong> {{ $fullName }}</li>       
+          <li><strong>Nome:</strong> {{ $student->name }}</li>       
         </ul>
       </td>
       
       <td style="width: 50%; vertical-align: top; text-align: left;">
         <ul style="list-style: none; padding-left: 0; margin: 0;">
-          <li><strong>Peso:</strong> {{ $studentAssessment->weight }}kg;</li>
-          <li><strong>Altura:</strong> {{ $studentAssessment->height }}cm</li>
+          <li><strong>Data:</strong> {{ \Carbon\Carbon::parse($student->date)->format('d/m/Y') }}</li>
         </ul>
       </td>
     </tr>
@@ -108,14 +107,54 @@
   <table style="border-collapse: collapse; width: 100%;">
     <tr>
         <td colspan="2">
-            <h2 style="margin: 0px 0; font-size: 28px;">Avaliação: 24/12/1999</h2>
+            <h2 style="margin: 0px 0; font-size: 28px;">Avaliação: {{ \Carbon\Carbon::parse($studentAssessment->created_at)->format('d/m/Y') }}</h2>
         </td>
     </tr>
 
-    <tr>
-        <td colspan="2">
-            <p style="margin: 0px 0; font-size: 20px;">Objetivo: <strong>{{ $studentAssessment->goal }}</strong></p>
-        </td>
+    <tr style="margin: 2px 0;">
+      <td style="width: 50%; vertical-align: top; text-align: left; padding-right: 20px;">
+          <ul style="list-style: none; padding-left: 0; margin: 0;">
+              <li style="display: flex; align-items: center; margin-bottom: 10px; color: black;">
+                  <div>
+                    <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/img_pdf/goal.png'))) }}" style="width: 50px; height: 50px;"  />
+                  </div>
+                  <p style="margin: 0; margin-left: 30px;"><strong>Objetivo:</strong> {{ $studentAssessment->goal }}</p>
+              </li>
+          </ul>
+      </td>
+      <td style="width: 50%; vertical-align: top; text-align: left;">
+        <ul style="list-style: none; padding-left: 0; margin: 0;">
+          <li style="display: flex; align-items: center; margin-bottom: 10px; color: black;">
+              <div>
+                <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/img_pdf/stopwatch.png'))) }}" style="width: 50px; height: 50px;"  />
+              </div>
+              <p style="margin: 0; margin-left: 30px;"><strong>Prazo:</strong> {{ $studentAssessment->term }}</p>
+          </li>
+      </ul>
+      </td>
+  </tr>
+
+    <tr style="margin: 2px 0;">
+      <td style="width: 50%; vertical-align: top; text-align: left; padding-right: 20px;">
+          <ul style="list-style: none; padding-left: 0; margin: 0;">
+              <li style="display: flex; align-items: center; margin-bottom: 10px; color: black;">
+                  <div>
+                    <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/img_pdf/fita-metrica.png'))) }}" style="width: 50px; height: 50px;"  />
+                  </div>
+                  <p style="margin: 0; margin-left: 30px;"><strong>Altura:</strong> {{ $studentAssessment->height }} cm</p>
+              </li>
+          </ul>
+      </td>
+      <td style="width: 50%; vertical-align: top; text-align: left;">
+        <ul style="list-style: none; padding-left: 0; margin: 0;">
+          <li style="display: flex; align-items: center; margin-bottom: 10px; color: black;">
+              <div>
+                <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/img_pdf/balanca-corporal.png'))) }}" style="width: 50px; height: 50px;"  />
+              </div>
+              <p style="margin: 0; margin-left: 30px;"><strong>Peso:</strong> {{ $studentAssessment->weight }} Kg</p>
+          </li>
+      </ul>
+      </td>
     </tr>
     
     <tr style="margin: 2px 0;">
@@ -123,68 +162,150 @@
             <ul style="list-style: none; padding-left: 0; margin: 0;">
                 <li style="display: flex; align-items: center; margin-bottom: 10px; color: black;">
                     <div>
-                      
+                      @if($student->sexo === 'Feminino')
+                        <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/img_pdf/braco-fem.png'))) }}" style="width: 50px; height: 50px;" />
+                      @else
+                        <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/img_pdf/braco-masc.png'))) }}" style="width: 50px; height: 50px;"  />
+                      @endif
                     </div>
                     <p style="margin: 0; margin-left: 30px;"><strong>Braço:</strong> {{ $studentAssessment->arm }} cm</p>
                 </li>
             </ul>
         </td>
         <td style="width: 50%; vertical-align: top; text-align: left;">
-            <ul style="list-style: none; padding-left: 0; margin: 0;">
-                <li><strong>Antebraço:</strong> {{ $studentAssessment->forearm }}cm</li>
-            </ul>
+          <ul style="list-style: none; padding-left: 0; margin: 0;">
+            <li style="display: flex; align-items: center; margin-bottom: 10px; color: black;">
+                <div>
+                  @if($student->sexo === 'Feminino')
+                    <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/img_pdf/antebraco-fem.png'))) }}" style="width: 50px; height: 50px;" />
+                  @else
+                    <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/img_pdf/antebraco-masc.png'))) }}" style="width: 50px; height: 50px;"  />
+                  @endif
+                </div>
+                <p style="margin: 0; margin-left: 30px;"><strong>Antebraço:</strong> {{ $studentAssessment->forearm }} cm</p>
+            </li>
+          </ul>
         </td>
     </tr>
 
     <tr style="margin: 2px 0;">
         <td style="width: 50%; vertical-align: top; text-align: left; padding-right: 20px;">
-            <ul style="list-style: none; padding-left: 0; margin: 0;">
-                <li><strong>Peitoral:</strong> {{ $studentAssessment->breastplate }}cm</li>
-            </ul>
+          <ul style="list-style: none; padding-left: 0; margin: 0;">
+            <li style="display: flex; align-items: center; margin-bottom: 10px; color: black;">
+                <div>
+                  @if($student->sexo === 'Feminino')
+                    <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/img_pdf/peito-fem.png'))) }}" style="width: 50px; height: 50px;" />
+                  @else
+                    <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/img_pdf/peito-masc.png'))) }}" style="width: 50px; height: 50px;"  />
+                  @endif
+                </div>
+                <p style="margin: 0; margin-left: 30px;"><strong>Peitoral:</strong> {{ $studentAssessment->breastplate }} cm</p>
+            </li>
+          </ul>
         </td>
         <td style="width: 50%; vertical-align: top; text-align: left;">
-            <ul style="list-style: none; padding-left: 0; margin: 0;">
-                <li><strong>Costas:</strong> {{ $studentAssessment->back }}cm</li>
-            </ul>
+          <ul style="list-style: none; padding-left: 0; margin: 0;">
+            <li style="display: flex; align-items: center; margin-bottom: 10px; color: black;">
+                <div>
+                  @if($student->sexo === 'Feminino')
+                    <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/img_pdf/costas-fem.png'))) }}" style="width: 50px; height: 50px;" />
+                  @else
+                    <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/img_pdf/costas-masc.png'))) }}" style="width: 50px; height: 50px;"  />
+                  @endif
+                </div>
+                <p style="margin: 0; margin-left: 30px;"><strong>Costas:</strong> {{ $studentAssessment->back }} cm</p>
+            </li>
+          </ul>
+        </td>
+    </tr>
+
+    <tr style="margin: 2px 0;">
+      <td style="width: 50%; vertical-align: top; text-align: left;">
+        <ul style="list-style: none; padding-left: 0; margin: 0;">
+          <li style="display: flex; align-items: center; margin-bottom: 10px; color: black;">
+              <div>
+                @if($student->sexo === 'Feminino')
+                  <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/img_pdf/coxa-fem.png'))) }}" style="width: 50px; height: 50px;" />
+                @else
+                  <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/img_pdf/coxa-masc.png'))) }}" style="width: 50px; height: 50px;"  />
+                @endif
+              </div>
+              <p style="margin: 0; margin-left: 30px;"><strong>Coxa:</strong> {{ $studentAssessment->thigh }} cm</p>
+          </li>
+        </ul>
+      </td>
+
+      <td style="width: 50%; vertical-align: top; text-align: left; padding-right: 20px;">
+        <ul style="list-style: none; padding-left: 0; margin: 0;">
+          <li style="display: flex; align-items: center; margin-bottom: 10px; color: black;">
+              <div>
+                @if($student->sexo === 'Feminino')
+                  <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/img_pdf/cintura-fem.png'))) }}" style="width: 50px; height: 50px;" />
+                @else
+                  <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/img_pdf/cintura-masc.png'))) }}" style="width: 50px; height: 50px;"  />
+                @endif
+              </div>
+              <p style="margin: 0; margin-left: 30px;"><strong>Cintura:</strong> {{ $studentAssessment->waist }} cm</p>
+          </li>
+        </ul>
+      </td>
+    </tr>
+
+    <tr style="margin: 2px 0;">
+        <td style="width: 50%; vertical-align: top; text-align: left; padding-right: 20px;">
+          <ul style="list-style: none; padding-left: 0; margin: 0;">
+            <li style="display: flex; align-items: center; margin-bottom: 10px; color: black;">
+                <div>
+                  @if($student->sexo === 'Feminino')
+                    <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/img_pdf/quadril-fem.png'))) }}" style="width: 50px; height: 50px;" />
+                  @else
+                    <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/img_pdf/quadril-masc.png'))) }}" style="width: 50px; height: 50px;"  />
+                  @endif
+                </div>
+                <p style="margin: 0; margin-left: 30px;"><strong>Quadril:</strong> {{ $studentAssessment->hip }} cm</p>
+            </li>
+          </ul>
+        </td>
+        <td style="width: 50%; vertical-align: top; text-align: left;">
+          <ul style="list-style: none; padding-left: 0; margin: 0;">
+            <li style="display: flex; align-items: center; margin-bottom: 10px; color: black;">
+                <div>
+                  @if($student->sexo === 'Feminino')
+                    <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/img_pdf/gluteo-fem.png'))) }}" style="width: 50px; height: 50px;" />
+                  @else
+                    <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/img_pdf/gluteo-masc.png'))) }}" style="width: 50px; height: 50px;"  />
+                  @endif
+                </div>
+                <p style="margin: 0; margin-left: 30px;"><strong>Glúteo:</strong> {{ $studentAssessment->glute }} cm</p>
+            </li>
+          </ul>
         </td>
     </tr>
 
     <tr style="margin: 2px 0;">
         <td style="width: 50%; vertical-align: top; text-align: left; padding-right: 20px;">
-            <ul style="list-style: none; padding-left: 0; margin: 0;">
-                <li><strong>Cintura:</strong> {{ $studentAssessment->waist }}cm</li>
-            </ul>
+          <ul style="list-style: none; padding-left: 0; margin: 0;">
+            <li style="display: flex; align-items: center; margin-bottom: 10px; color: black;">
+                <div>
+                  @if($student->sexo === 'Feminino')
+                    <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/img_pdf/panturrilha-fem.png'))) }}" style="width: 50px; height: 50px;" />
+                  @else
+                    <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/img_pdf/panturrilha-masc.png'))) }}" style="width: 50px; height: 50px;"  />
+                  @endif
+                </div>
+                <p style="margin: 0; margin-left: 30px;"><strong>Panturrilha:</strong> {{ $studentAssessment->calf }} cm</p>
+            </li>
+          </ul>
         </td>
         <td style="width: 50%; vertical-align: top; text-align: left;">
-            <ul style="list-style: none; padding-left: 0; margin: 0;">
-                <li><strong>Glúteo:</strong> {{ $studentAssessment->glute }}cm</li>
-            </ul>
-        </td>
-    </tr>
-
-    <tr style="margin: 2px 0;">
-        <td style="width: 50%; vertical-align: top; text-align: left; padding-right: 20px;">
-            <ul style="list-style: none; padding-left: 0; margin: 0;">
-                <li><strong>Quadril:</strong> {{ $studentAssessment->hip }}cm</li>
-            </ul>
-        </td>
-        <td style="width: 50%; vertical-align: top; text-align: left;">
-            <ul style="list-style: none; padding-left: 0; margin: 0;">
-                <li><strong>Coxa:</strong> {{ $studentAssessment->thigh }}cm</li>
-            </ul>
-        </td>
-    </tr>
-
-    <tr style="margin: 2px 0;">
-        <td style="width: 50%; vertical-align: top; text-align: left; padding-right: 20px;">
-            <ul style="list-style: none; padding-left: 0; margin: 0;">
-                <li><strong>Panturrilha:</strong> {{ $studentAssessment->calf }}cm</li>
-            </ul>
-        </td>
-        <td style="width: 50%; vertical-align: top; text-align: left;">
-            <ul style="list-style: none; padding-left: 0; margin: 0;">
-                <li><strong>IMC:</strong> {{ $imc }}</li>
-            </ul>
+          <ul style="list-style: none; padding-left: 0; margin: 0;">
+            <li style="display: flex; align-items: center; margin-bottom: 10px; color: black;">
+                <div>
+                  <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/img_pdf/imc.png'))) }}" style="width: 50px; height: 50px;"/>
+                </div>
+                <p style="margin: 0; margin-left: 30px;"><strong>IMC:</strong> {{ $imc }}</p>
+            </li>
+          </ul>
         </td>
     </tr>
     

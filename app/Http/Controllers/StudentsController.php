@@ -205,7 +205,7 @@ class StudentsController extends Controller
         // Pega o id do usúario logado
         $userId = auth()->user()->id;
 
-        $fullName = auth()->user()->name;
+        $student = auth()->user();
 
         $studentAssessment = assessment::where('id_user_fk', $userId)->orderby('id_assessment', 'DESC')->first();
 
@@ -218,7 +218,7 @@ class StudentsController extends Controller
         
 
         return view('users.pdf.assessmentAluno', [
-            'fullName' => $fullName,
+            'student' => $student,
             'studentAssessment' => $studentAssessment,
             'imc' => $imc
         ]);           
