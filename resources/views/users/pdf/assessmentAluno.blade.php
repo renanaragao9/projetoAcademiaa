@@ -66,7 +66,6 @@
 
     tr:nth-child(even) {
       background-color: #f9f9f9;
-      mar
     }
     
   </style>
@@ -123,10 +122,10 @@
         <td style="width: 50%; vertical-align: top; text-align: left; padding-right: 20px;">
             <ul style="list-style: none; padding-left: 0; margin: 0;">
                 <li style="display: flex; align-items: center; margin-bottom: 10px; color: black;">
-                    <div style="">
-                        <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/renan.jpeg'))) }}" style="max-width: 100%; display: block; border-radius: 50%; width: 60px; height: 70px;">
+                    <div>
+                      
                     </div>
-                    <p style="margin: 0;">Texto ao lado da imagem</p>
+                    <p style="margin: 0; margin-left: 30px;"><strong>Braço:</strong> {{ $studentAssessment->arm }} cm</p>
                 </li>
             </ul>
         </td>
