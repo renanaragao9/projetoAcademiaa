@@ -381,6 +381,11 @@ nav .brand-logo i.material-icons {
   font-weight: bolder ;
 }
 
+/*  Modals  */
+#enviarDados {
+  margin-left: 120px;
+}
+
 /* Footer */
 .footer {
   background-color: transparent;
@@ -447,6 +452,11 @@ footer#fixar-rodape {
     .caret {
       display: none;
     }
+
+    /*  Modals  */
+  #enviarDados {
+    margin-left: 0px;
+  }
 }
 
 /* Preloader */

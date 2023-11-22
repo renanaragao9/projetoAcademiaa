@@ -90,7 +90,7 @@
     <div class="modal-content">
       <i class="material-icons" id="modal-icon-alert">info</i>
       <h4>Confirmação de Cadastro</h4>
-      <p>Deseja realmente cadastrar o usuário ?</p>
+      <p>Deseja Cadastrar o Aluno ?</p>
     </div>
 
     <div class="modal-footer">

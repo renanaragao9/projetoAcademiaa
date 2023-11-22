@@ -11,10 +11,12 @@ use App\Models\called;
 use App\Models\statistics;
 use App\Models\user;
 
+// Controllers e Views Bagunçadas para se adpatar ao formato do PDF PRESTAR BEM ATENÇÃO
 class PDFController extends Controller
 {
     public function generatePDF($id)
     {
+
         $options = new Options();
         $options->set('isHtml5ParserEnabled', true);
         
@@ -56,7 +58,7 @@ class PDFController extends Controller
         $dompdf->setPaper('A4', 'portrait');
         $dompdf->render();
        
-        return $dompdf->stream('nome-do-arquivo-pdf.pdf');
+        return $dompdf->stream('Ficha_'.$fichaNome->name.'.pdf');
     }
 
     public function generateAssessmentPDF($id)
@@ -66,10 +68,8 @@ class PDFController extends Controller
         
         $dompdf = new Dompdf($options);
 
-        // Pega o id do usúario logado
-        $userId = auth()->user()->id;
-
         $student = auth()->user();
+        $userId = auth()->user()->id;
 
         $studentAssessment = assessment::where('id_user_fk', $userId)->orderby('id_assessment', 'DESC')->first();
 
@@ -90,6 +90,6 @@ class PDFController extends Controller
         $dompdf->setPaper('A4', 'portrait');
         $dompdf->render();
        
-        return $dompdf->stream('nome-do-arquivo-pdf.pdf');
+        return $dompdf->stream('Avaliacao_'.$student->name.'.pdf');
     }
 }

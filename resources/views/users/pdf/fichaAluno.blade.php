@@ -78,7 +78,7 @@
   <table style="width: 100%; text-align: center;">
     <tr style=" ">
       <td colspan="2">
-        <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/israelj.png'))) }}" style="max-width: 100%;" />
+        <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/israelj.png'))) }}" style="width: 420px; height: 90px"/>
       </td>
     </tr>
    

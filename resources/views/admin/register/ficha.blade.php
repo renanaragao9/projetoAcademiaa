@@ -149,7 +149,7 @@
             <i class="material-icons" id="modal-icon-alert">info</i>
             <h4>Confirmação de Exclusão</h4>
             <p>Deseja realmente excluir todos os exercícios da ficha de {{ $user->name }} ?</p>
-            <p class="warning-modal">* Essa ação não e reversível * </p>
+            <p class="warning-modal">* Essa ação não é reversível * </p>
         </div>
 
         <div class="modal-footer">
