@@ -45,6 +45,8 @@
               </tr>
             @endforeach
 
+            {{ $users->links() }}
+
             <!-- Adicione mais registros aqui -->
           </tbody>
         </table>

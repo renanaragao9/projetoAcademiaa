@@ -21,7 +21,7 @@ class UserController extends Controller
     public function users() {
 
          // Chama os registro do banco de dados e envia para a tabela por ordem de nome crescente (A-Z)
-        $users = User::orderBy('name', 'asc')->get();
+        $users = User::paginate(10);
 
         return view('admin.users', ['users' => $users]);
     }

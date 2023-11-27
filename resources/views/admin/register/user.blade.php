@@ -60,9 +60,11 @@
               <div class="input-field col s12">
                 <i class="material-icons prefix">assignment_ind</i>
                 <select name="profile">
-                  <option selected value="0">Aluno</option>
-                  <option value="1">Professor</option>
-                  <option value="2">Administrador</option>
+                  <option selected value="0">Aluno(a)</option>
+                  <option value="1">Professor(a)</option>
+                  @if(Auth::user()->profile === 2)
+                   <option value="2">Administrador(a)</option>
+                  @endif
                 </select>
                 <label>Perfil</label>
               </div>    

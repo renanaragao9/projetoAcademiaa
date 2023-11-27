@@ -27,10 +27,10 @@
                         <div class="card-content z-depth-1">
                             <span class="card-title" id="card-title">{{ $studentFicha->name_exercise }}</span>
             
-                            <p id="card-text"> <strong id="strong"> Serie: </strong> {{ $studentFicha->serie }}X</p>
-                            <p id="card-text"> <strong id="strong"> Repetição: </strong> {{ $studentFicha->repetition }}X</p>
-                            <p id="card-text"> <strong id="strong"> Carga: </strong> {{ $studentFicha->weight }}Kg</p>
-                            <p id="card-text"> <strong id="strong"> Descanso: </strong> {{ $studentFicha->rest }}s</p>
+                            <p id="card-text"> <strong id="strong"> Serie: </strong> {{ $studentFicha->serie }}</p>
+                            <p id="card-text"> <strong id="strong"> Repetição: </strong> {{ $studentFicha->repetition }}</p>
+                            <p id="card-text"> <strong id="strong"> Carga: </strong> {{ $studentFicha->weight }}</p>
+                            <p id="card-text"> <strong id="strong"> Descanso: </strong> {{ $studentFicha->rest }}</p>
                             <p id="card-text"> <strong id="strong"> Observação: </strong> {{ $studentFicha->description }} </p>
                             <p id="card-text"> <strong id="strong"> Criado por: </strong> {{ $firstName }} </p>
                         </div>

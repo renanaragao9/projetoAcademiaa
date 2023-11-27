@@ -276,7 +276,7 @@
                     data: {
                         labels: meses,
                         datasets: [{
-                            label: 'Avaliações Criadas por Mês',
+                            label: 'Chamados Criados por Mês',
                             data: chamados,
                             backgroundColor: 'rgba(0, 0, 0, 0.5)', // Cor marrom
                             borderColor: 'rgba(139, 69, 19, 1)', // Cor marrom

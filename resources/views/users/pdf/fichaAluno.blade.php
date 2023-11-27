@@ -91,15 +91,16 @@
     <tr style="margin: 2px 0;">
       <td style="width: 50%; vertical-align: top; text-align: left;">
         <ul style="list-style: none; padding-left: 0; margin: 0;">
-          <li><strong>Nome:</strong> {{ $fichaNome->name }}</li>       
+          <li><strong>Nome:</strong> {{ $fichaNome->name }}</li>     
+          <br><li><strong>Data:</strong> {{  \Carbon\Carbon::parse($fichaNome->date)->format('d/m/Y') }};</li>  
         </ul>
       </td>
       
       <td style="width: 50%; vertical-align: top; text-align: left;">
         <ul style="list-style: none; padding-left: 0; margin: 0;">
-          <li><strong>Data:</strong> {{  \Carbon\Carbon::parse($fichaNome->date)->format('d/m/Y') }};</li>
           <li><strong>Peso:</strong> {{ isset($assessment->weight) ? $assessment->weight : '-' }}kg;</li>
           <li><strong>Altura:</strong> {{ isset($assessment->height) ? $assessment->height : '-' }}m;</li>
+          <br><li><strong>Objetivo:</strong> {{ isset($assessment->goal) ? $assessment->goal : '-' }}</li>
         </ul>
       </td>
     </tr>
@@ -126,9 +127,9 @@
               @foreach ($studentFichas as $studentFicha)
                 <tr>
                   <td><strong>{{ $studentFicha->name_exercise }}</strong></td>
-                  <td>{{ $studentFicha->repetition }}x</td>
                   <td>{{ $studentFicha->serie }}</td>
-                  <td>{{ isset($studentFicha->rest) ? $studentFicha->rest : 'x' }} segundos</td>
+                  <td>{{ $studentFicha->repetition }}</td>
+                  <td>{{ isset($studentFicha->rest) ? $studentFicha->rest : 'x' }}</td>
                   <td>{{ isset($studentFicha->description) ? $studentFicha->description : 'Nenhuma' }}</td>
                 </tr>
               @endforeach

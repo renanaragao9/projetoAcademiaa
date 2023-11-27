@@ -64,14 +64,15 @@
             <a href="#user"><img class="circle" id="img-perfil-mobile" src="/img/profile_photo_path/{{Auth::user()->profile_photo_path}}"></a>
             <a href="#name"><span class="white-text name" id="perfil-mobile-text">{{ auth()->user()->name }}</span></a>
             <a href="#email"><span class="white-text email">{{ auth()->user()->email }}</span></a>
-          </div>
-          
+          </div> 
         </div>
       </li>
   
       <li><a class="subheader collapsible">Conteúdo</a></li>
 
-      <li class="collapsible"><a href="{{ route('admin.home') }}" class="waves-effect" id="mobile-side"> Painel de controle <i class="material-icons">speed</i></a></li>
+      @if(Auth::user()->profile == 1 || Auth::user()->profile == 2)
+        <li class="collapsible"><a href="{{ route('admin.home') }}" class="waves-effect" id="mobile-side"> Painel de controle <i class="material-icons">speed</i></a></li>
+      @endif;
       <li class="collapsible"><a href="{{ route('students.start') }}" class="waves-effect" id="mobile-side"> Início <i class="material-icons">home</i></a></li>
       <li class="collapsible"><a href="{{ route('students.profile', Auth::user()->id) }}" class="waves-effect" id="mobile-side"> Perfil <i class="material-icons">person</i></a></li>
       <li class="collapsible"><a href="{{ route('students.assessment', Auth::user()->id) }}" class="waves-effect" id="mobile-side"> Avaliação <i class="material-icons">analytics</i></a></li>

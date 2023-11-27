@@ -30,7 +30,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware(['auth'])->group(function() {
+Route::middleware(['auth', 'checkProfile'])->group(function() {
     
     Route::prefix('admin')->group(function() {
         Route::get('/home', [AdminController::class, 'home'])->name('admin.home');
@@ -43,14 +43,12 @@ Route::middleware(['auth'])->group(function() {
         Route::get('/fichas-por-mes', [StatisticsController::class, 'fichasPorMes']);
         Route::get('/assessment-por-mes', [StatisticsController::class, 'assessmentPorMes']);
         Route::get('/called-por-mes', [StatisticsController::class, 'calledPorMes']);
-        
     });
 
     Route::prefix('admin/chamados')->group(function() {
         Route::get('lista-chamados', [CalledController::class, 'called'])->name('admin.called');
         Route::post('criar-chamado', [CalledController::class, 'store'])->name('admin.called.store');
-        Route::delete('deletar/{id}', [CalledController::class, 'destroy'])->name('admin.called.destroy');
-        
+        Route::delete('deletar/{id}', [CalledController::class, 'destroy'])->name('admin.called.destroy');  
     });
 
     Route::prefix('admin/divisao-do-treino/')->group(function() {
@@ -78,7 +76,6 @@ Route::middleware(['auth'])->group(function() {
         Route::get('/editar/{id}', [ExerciseController::class, 'edit'])->name('admin.edit.exercise');
         Route::put('/atualizar/{id}', [ExerciseController::class, 'update'])->name('admin.edit.exercise.update');
         Route::delete('/deletar/{id}', [ExerciseController::class, 'destroy'])->name('admin.exercise.destroy');
-        
     });
 
     Route::prefix('admin/alunos')->group(function() {
@@ -102,7 +99,6 @@ Route::middleware(['auth'])->group(function() {
         Route::put('/atualizar/{id}', [FichaController::class, 'update'])->name('admin.update.ficha');
         Route::delete('deletar/{id}', [FichaController::class, 'destroy'])->name('admin.ficha.destroy');
         Route::delete('/delete-all/{id}', [FichaController::class, 'destroy_all'])->name('admin.ficha.deletefichas');
-
     });
 
     Route::prefix('admin/avaliacao')->group(function() {
@@ -113,7 +109,9 @@ Route::middleware(['auth'])->group(function() {
         Route::put('/atualizar/{id}', [AssessmentController::class, 'update'])->name('admin.assessment.update');
         Route::delete('deletar/{id}', [AssessmentController::class, 'destroy'])->name('admin.assessment.destroy');
     });
-    
+});
+
+Route::middleware(['auth'])->group(function() {
     // Rotas para os Alunos
     Route::prefix('alunos/')->group(function() {
        route::get('inicio', [StudentsController::class, 'index'])->name('students.start');
@@ -127,6 +125,6 @@ Route::middleware(['auth'])->group(function() {
        Route::get('/assessment-view/{id}', [StudentsController::class, 'assessmentPDF'])->name('students.assessment-pdf');
        Route::get('/assessment-pdf/{id}', [PDFController::class, 'generateAssessmentPDF']);
     });
-
 });
+
 require __DIR__.'/auth.php';

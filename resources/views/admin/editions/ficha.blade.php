@@ -71,22 +71,22 @@
                     </div>
                     
                     <div class="input-field col s12 l6">
-                        <input name="serie" id="serie" type="number" class="validate" value="{{ $ficha->serie }}" required>
+                        <input name="serie" id="serie" type="text" class="validate" value="{{ $ficha->serie }}" required>
                         <label for="serie">Série:</label>
                     </div>
                     
                     <div class="input-field col s12 l6">                      
-                      <input name="repetition" id="repetition" type="number" class="validate" value="{{ $ficha->repetition }}" required>
+                      <input name="repetition" id="repetition" type="text" class="validate" value="{{ $ficha->repetition }}" required>
                       <label for="repetition">Repetição:</label>
                     </div>
                     
                     <div class="input-field col s12 l6">
-                        <input name="weight" id="weight" type="number" class="validate" value="{{ $ficha->weight }}">
+                        <input name="weight" id="weight" type="text" class="validate" value="{{ $ficha->weight }}">
                         <label for="weight">Peso:</label>
                     </div>
                     
                     <div class="input-field col s12 l6">
-                      <input name="rest" id="rest" type="number" class="validate" value="{{ $ficha->rest }}">
+                      <input name="rest" id="rest" type="text" class="validate" value="{{ $ficha->rest }}">
                       <label for="rest">Descanso:</label>
                     </div>
 

@@ -13,11 +13,19 @@
             <form method="POST" action="{{ route('admin.user.update', $user->id) }}" class="col s12" id="form_exercise">
               @method('PUT')
               @csrf
-              <div class="input-field col s12 l12">
-                <h3 class="center" id="titleColor">Edição: Aluno(a)</h3>
-                <h4 class="center" id="titleColor">~ {{ $user->name }} ~</h4>
+              <div class="col s12 l2">
+                <!-- Imagem do perfil -->
+                <img src="/img/profile_photo_path/{{$user->profile_photo_path}}" class="circle responsive-img materialboxed" id="profile-img-mobile" alt="Imagem de Perfil">
               </div>
-
+              
+              <div class="col s12 l8">
+                  <!-- Título e subtítulo -->
+                  <div class="input-field">
+                      <h3 class="center" id="titleColor">Edição: Aluno(a)</h3>
+                      <h4 class="center" id="titleColor">~ {{ $user->name }} ~</h4>
+                  </div>
+              </div>
+              
               <div class="input-field col s12 l6">
                 <i class="material-icons prefix">account_circle</i>
                 <input name="name" id="icon-nome" type="text" class="validate" value="{{ $user->name }}">
@@ -43,7 +51,7 @@
             
               <div class="input-field col s12 l6">
                 <i class="material-icons prefix">calendar_month</i>                       
-                <input name="date" type="date" class="datepicker" value="{{ $user->date }}">
+                <input name="input" type="text" class="datepicker" value="{{ $user->date }}" disabled>
               </div>
             
               <div class="input-field col s12 l12">
@@ -52,6 +60,18 @@
                 <label for="email">E-mail</label>
                 <span class="helper-text" data-error="Email Inválido" data-success="Email Valido"></span>
               </div>
+
+              <div class="input-field col s12">
+                <i class="material-icons prefix">assignment_ind</i>
+                <select name="profile">
+                  <option value="0" {{ $user->profile == 0 ? "selected='selected'" : "" }}>Aluno(a)</option>
+                  <option value="1" {{ $user->profile == 1 ? "selected='selected'" : "" }}>Professor(a)</option>
+                  @if(Auth::user()->profile === 2)
+                   <option value="2" {{ $user->profile == 2 ? "selected='selected'" : "" }}>Administrador(a)</option>
+                  @endif
+                </select>
+                <label>Perfil</label>
+              </div>  
 
               <input type="hidden" name="id" value="{{ $user->id }}">
               <input type="hidden" name="password" value="{{$user->password}}">

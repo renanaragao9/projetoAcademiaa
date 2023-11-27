@@ -58,7 +58,9 @@
             </a>
           </div>    
           <div class="center" id="div-donwload-pdf">
-            <a href="{{route('students.pdf', $ficha->id_training_fk)}}" class="btn-small waves-effect waves-light orange darken-4">Baixar Ficha <i class="material-icons right">download</i> </a>
+            @if($fichas->count() > 0)
+              <a href="{{route('students.pdf', $ficha->id_training_fk)}}" class="btn-small waves-effect waves-light orange darken-4">Baixar Ficha <i class="material-icons right">download</i> </a>
+            @endif
           </div>
         @endforeach
       @else
@@ -89,7 +91,9 @@
         </a>
       </div>
       <div class="center" id="div-donwload-pdf">
-        <a href="{{route('students.assessment-pdf', $ficha->id_training_fk)}}" class="btn-small waves-effect waves-light orange darken-4">Baixar Avaliação <i class="material-icons right">download</i> </a>
+        @if($fichas->count() > 0)
+          <a href="{{route('students.assessment-pdf', $ficha->id_training_fk)}}" class="btn-small waves-effect waves-light orange darken-4">Baixar Avaliação <i class="material-icons right">download</i> </a>
+        @endif
       </div>
       <!-- Card de chamados -->
       <div class="row">
@@ -107,24 +111,6 @@
           </div>
         </a>
       </div>
-
-      <!-- Card do conteudo-->
-      <div class="row">
-        <a href="#!">
-          <div class="card horizontal z-depth-3" id="card-mobile">
-            <div class="card-image">
-              <i class="material-icons" id="icon-card-mobile">difference</i>
-            </div>
-            
-            <div class="card-stacked">
-              <div class="card-content">
-                <p>Conteúdo extra</p>
-              </div>
-            </div>
-          </div>
-        </a>
-      </div>
-
     </div>
   </div>
 
