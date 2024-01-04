@@ -14,7 +14,7 @@
               @csrf
               <div class="row">                  
                 <div class="input-field col s12 l12">
-                  <h3 id="titleColor" class="center">Cadastro de Grupo Muscular</h3>
+                  <h3 id="homeTitle" class="center">cadastro <br> grupo muscular</h3>
                 </div>
 
                 <div class="input-field col s12 l12">

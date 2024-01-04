@@ -128,13 +128,13 @@ class StudentsController extends Controller
         ->distinct()
         ->get();
 
-        $called = called::where('id_user_fk', $userId);
+        $calleds = called::where('id_user_fk', $userId)->orderby('id_called', 'DESC')->get();
 
         $teachers = User::where('profile', 1)->orWhere('profile', 2)->get();
 
         return view('users.called', [
             'fichas' => $fichas,
-            'called' => $called,
+            'calleds' => $calleds,
             'teachers' => $teachers
         ]);
     }

@@ -86,6 +86,9 @@ nav .brand-logo i.material-icons {
   background-color: #f8d7da;
   color: #721c24;
   padding: 10px;
+  font-size: 14px;
+  text-transform: uppercase;
+  padding: 10px;
   animation: flash 1.5s ease-in-out;
   margin-top: 20px;
 }
@@ -96,6 +99,9 @@ nav .brand-logo i.material-icons {
   justify-content: space-between;
   background-color: #f8d7da;
   color: #721c24;
+  font-size: 14px;
+  text-transform: uppercase;
+  padding: 10px;
   padding: 10px;
   animation: flash 1.5s ease-in-out;
   margin-top: 20px;
@@ -107,6 +113,9 @@ nav .brand-logo i.material-icons {
   justify-content: space-between;
   background-color: #fff3cd;
   color: #856404;
+  font-size: 14px;
+  text-transform: uppercase;
+  padding: 10px;
   padding: 10px;
   animation: flash 1.5s ease-in-out;
   margin-top: 20px;
@@ -174,6 +183,11 @@ nav .brand-logo i.material-icons {
 #title-bv {
   color: #031523d4;
   font-size: 30px;
+}
+
+#homeTitle {
+  font-family: 'Permanent Marker', cursive;
+  color: #0c3350;
 }
 
 #titleColor {
@@ -319,6 +333,10 @@ nav .brand-logo i.material-icons {
   color: rgb(234, 236, 243);
 }
 
+#labelSpacing {
+  font-size: 18px;
+  margin-block: -8px;
+}
 
 /* Paginas de avaliações */
 #assessment-mobile {
@@ -461,6 +479,17 @@ footer#fixar-rodape {
     /*  Modals  */
   #enviarDados {
     margin-left: 0px;
+  }
+
+  #labelSpacing {
+    font-size: 17px;
+    margin-block: -8px;
+  }
+
+  #created_called {
+    font-weight: bolder;
+    font-size: 17px;
+    margin-block: -8px;
   }
 }
 

@@ -15,8 +15,8 @@
                   <div class="row">
 
                     <div class="input-field col s12 l12" id="input-exercicio">
-                      <h3 id="titleColor" class="center">Avaliação</h3>
-                      <h4 id="titleColor" class="center">Aluno: {{ $user->name }}</h4>
+                      <h3 id="homeTitle" class="center">Avaliação</h3>
+                      <h4 id="homeTitle" class="center">Aluno ({{ $user->name }})</h4>
                     </div>
                     
                     <div class="input-field col s12">

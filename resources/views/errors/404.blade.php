@@ -29,7 +29,7 @@
 <body>
   <div class="error-container">
     <img src="/img/404-error.png" alt="Imagem de erro">
-    <h1>Página Não Encontrada</h1>
+    <h1>Página não encontrada</h1>
     <p>Desculpe, a página que você procura não está disponível.</p>
     <a href="/alunos/inicio" class="btn waves-effect waves-light blue accent-4">Voltar para a Página Inicial</a>
   </div>

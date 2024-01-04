@@ -15,8 +15,8 @@
               @method('PUT')
               <div class="row">
                 <div class="input-field col s12 l12" id="input-exercicio">
-                  <h3 class="center" id="titleColor">Edição do Exercício:</h3>
-                  <h4 class="center" id="titleColor">( {{ $exercises->name_exercise }} )</h4>
+                  <h3 class="center" id="homeTitle">Editar <br> Exercício</h3>
+                  <h4 class="center" id="homeTitle">({{ $exercises->name_exercise }})</h4>
 
                   <input type="hidden" name="id_exercise" value="{{ $exercises->id_exercise }}">
                 </div>
@@ -75,7 +75,7 @@
     <div class="modal-content">
       <i class="material-icons" id="modal-icon-alert">info</i>
       <h4>Confirmação de Edição</h4>
-      <p>Deseja realmente editar o exercício: {{$exercises->name_exercise}} ?</p>
+      <p>Deseja realmente editar o exercício: ({{$exercises->name_exercise}}) ?</p>
       <p class="warning-modal">* A edição pode acarretar em mudanças nos exercícios das fichas já criadas</p>
     </div>
 

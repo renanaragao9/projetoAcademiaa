@@ -15,8 +15,8 @@
             @method('PUT')
               <div class="row">                  
                 <div class="input-field col s12 l12">
-                  <h3 id="titleColor" class="center">Edição do Grupo Muscular:</h3>
-                  <h4 id="titleColor" class="center">({{$muscleGroup->name_gmuscle}})</h4>
+                  <h3 id="homeTitle" class="center">Editar <br> Grupo Muscular</h3>
+                  <h4 id="homeTitle" class="center">({{$muscleGroup->name_gmuscle}})</h4>
                 </div>
 
                 <input type="hidden" name="id_gmuscle" value="{{$muscleGroup->id_gmuscle}}">
@@ -50,7 +50,7 @@
     <div class="modal-content">
       <i class="material-icons" id="modal-icon-alert">info</i>
       <h4>Confirmação de Edição</h4>
-      <p>Deseja realmente editar o grupo muscular ( {{$muscleGroup->name_gmuscle}} ) ?</p>
+      <p>Deseja realmente editar o grupo muscular ({{$muscleGroup->name_gmuscle}}) ?</p>
       <p class="warning-modal">* A edição pode acarretar em mudanças nos exercícios já criados</p>
     </div>
 

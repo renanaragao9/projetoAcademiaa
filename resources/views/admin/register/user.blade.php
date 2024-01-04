@@ -13,13 +13,13 @@
             <form method="POST" action="{{ route('admin.user.store') }}" class="col s12" id="form_user" >
               @csrf
               <div class="input-field col s12 l12">
-                <h3 id="titleColor" class="center">Cadastro: Aluno(a)</h3>
+                <h3 id="homeTitle" class="center">cadastrar aluno(a)</h3>
               </div>
 
               <div class="input-field col s12 l6">
                 <i class="material-icons prefix">account_circle</i>
                 <input name="name" id="icon-nome" type="text" class="validate" required>
-                <label for="icon-nome">Nome</label>
+                <label for="icon-nome" id="labelSpacing">Nome</label>
               </div>
             
               <div class="input-field col s12 l6">
@@ -30,13 +30,13 @@
                   <option value="Feminino">Feminino</option>
                   <option value="Outros">Outros</option>
                 </select>
-                <label>Sexo</label>
+                <label id="labelSpacing">Sexo</label>
               </div>                            
             
               <div class="input-field col s12 l6">
                 <i class="material-icons prefix">phone</i>
-                <input name="phone" id="icon_telephone" type="tel" class="validate">
-                <label for="icon_telephone">Telefone</label>
+                <input name="phone" id="icon_telephone" type="text" class="validate">
+                <label for="icon_telephone" id="labelSpacing">Telefone</label>
               </div>
             
               <div class="input-field col s12 l6">
@@ -105,8 +105,8 @@
 @endsection
 
 @section('script')
+
   <script>
-  
     document.addEventListener('DOMContentLoaded', function() {
       
       let modal = document.getElementById('modal-alerta');

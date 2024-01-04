@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Fontes -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Permanent+Marker">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap">
     
     <!-- Links dos Icones-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -12,7 +16,7 @@
     
     <!-- Link para chamar o chartJS-->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-     
+    
     <!-- Links de customização-->
     <link rel="stylesheet" href="/css/materialize.css">
     <link rel="stylesheet" href="/css/style_admin.css">
@@ -20,7 +24,7 @@
     <title>@yield('title', 'Israel Dantas')</title>
 </head>
 
-<body class="blue-grey lighten-5" onload="myFunction()">
+<body class="grey lighten-5" onload="myFunction()">
 
     <!-- Botão Flutuante-->
     <div class="fixed-action-btn">
@@ -145,13 +149,7 @@
                     <li>
                         <a class="collapsible-header waves-effect"> Tabelas <i class="material-icons">table_view</i><i class="material-icons right">arrow_drop_down</i> </a>
                         <div class="collapsible-body light-blue darken-4">
-                            <ul>
-                                <li>
-                                    <a href="#!"> Fichas <i class="material-icons ">table_chart</i></a>
-                                </li>
-                                
-                                <li class="collapsible"></li>
-                                
+                            <ul>                        
                                 <li>
                                     <a href="{{ route('admin.table.exercise') }}"> Exercicios <i class="material-icons">table_chart</i></a>
                                 </li>

@@ -16,8 +16,8 @@
                             <div class="row">
 
                                 <div class="input-field col s12 l12" id="input-exercicio">
-                                    <h3 id="titleColor" class="center">Cadastro de Ficha</h3>
-                                    <h4 id="titleColor" class="center">Aluno: {{ $user->name }}</h4>
+                                    <h3 id="homeTitle" class="center">Cadastro Ficha</h3>
+                                    <h4 id="homeTitle" class="center">Aluno ({{ $user->name }})</h4>
                                 </div>
 
                                 <div class="input-field col s12">
@@ -32,7 +32,7 @@
                                             <option value="{{ $training->id_training }}"> {{ $training->name_training }}</option>
                                         @endforeach
                                     </select>
-                                    <label><h11>*</h11>Treino</label>
+                                    <label id="labelSpacing" id="labelSpacing"><h11>*</h11>Treino</label>
                                 </div>
 
                                 <div class="input-field col s12 l6">
@@ -43,7 +43,7 @@
                                             <option value="{{ $number }}"> {{ $number }}° </option>
                                         @endforeach
                                     </select>
-                                    <label><h11>*</h11>Ordem do exercício</label>
+                                    <label id="labelSpacing"><h11>*</h11>Ordem do exercício</label>
                                 </div>
 
                                 <div class="input-field col s12 l6">
@@ -54,14 +54,14 @@
                                             <option value="{{ $muscleGroup->id_gmuscle }}"> {{ $muscleGroup->name_gmuscle }}</option>
                                         @endforeach
                                     </select>
-                                    <label><h11>*</h11>Grupo Muscular</label>
+                                    <label id="labelSpacing"><h11>*</h11>Grupo Muscular</label>
                                 </div>
 
                                 <div class="input-field col s12 l6">
                                     <select name="id_exercise_fk" id="id_exercise_fk" required>
 
                                     </select>
-                                    <label><h11>*</h11>Exercício</label>
+                                    <label id="labelSpacing"><h11>*</h11>Exercício</label>
                                 </div>
 
                                 <div class="input-field col s12">
@@ -70,22 +70,22 @@
 
                                 <div class="input-field col s12 l6">
                                     <input name="serie" id="serie" type="text" class="validate" required>
-                                    <label for="serie"><h11>*</h11>Série:</label>
+                                    <label id="labelSpacing" for="serie"><h11>*</h11>Série:</label>
                                 </div>
 
                                 <div class="input-field col s12 l6">
                                     <input name="repetition" id="repetition" type="text" class="validate" required>
-                                    <label for="repetition"><h11>*</h11>Repetição:</label>
+                                    <label id="labelSpacing" for="repetition"><h11>*</h11>Repetição:</label>
                                 </div>
 
                                 <div class="input-field col s12 l6">
                                     <input name="weight" id="weight" type="text" class="validate" value="Livre">
-                                    <label for="weight">Peso:</label>
+                                    <label id="labelSpacing" for="weight">Peso:</label>
                                 </div>
 
                                 <div class="input-field col s12 l6">
                                     <input name="rest" id="rest" type="text" class="validate" value="00:30">
-                                    <label for="rest">Descanso:</label>
+                                    <label id="labelSpacing" for="rest">Descanso:</label>
                                 </div>
 
                                 <div class="input-field col s12 l6">
@@ -96,7 +96,7 @@
 
                                 <div class="input-field col s12">
                                     <textarea name="description" id="description" class="materialize-textarea" data-length="250"></textarea>
-                                    <label for="description">Observação:</label>
+                                    <label id="labelSpacing" for="description">Observação:</label>
                                 </div>
 
                                 <div class="input-field col s12 l6 left">

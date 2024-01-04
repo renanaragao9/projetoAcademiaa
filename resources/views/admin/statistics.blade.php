@@ -7,7 +7,7 @@
   <!--Divs para titulo e Reporte -->
   <div class="row">
     <div class="col s12 l10">
-      <h3 id="titleColor">Painel de Estatísticas </h3>
+      <h3 id="homeTitle">Painel de Estatísticas </h3>
       <a class="waves-effect waves-light btn modal-trigger blue accent-2" href="{{ route('admin.home') }}"><i class="material-icons left" >arrow_back</i>Voltar</a>
     </div>
   </div>

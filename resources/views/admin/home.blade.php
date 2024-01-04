@@ -7,8 +7,7 @@
   <!--Divs para titulo e Reporte -->
   <div class="row">
     <div class="col s12 l12">
-      <h3 id="titleColor">Painel Administrativo</h3>
-      <a class="waves-effect waves-light btn modal-trigger blue accent-2" href="#report-modal"><i class="material-icons left" >bug_report</i>Reportar</a>
+      <h3 id="homeTitle">Painel Administrativo</h3>
     </div>
   </div>
   
@@ -35,7 +34,7 @@
   <!-- Titulo -->
   <div class="row">
     <div class="col s12">
-        <h5 id="titleColor" class="center">Atalhos e Informações</h5>
+        <h3 id="homeTitle" class="center">Atalhos e Informações</h3>
     </div>
   </div>
   
@@ -93,24 +92,26 @@
       </a>
     </div>
   </div>
-      
-  <!--Div para chamados -->
-  <div class="row">
-    <div class="col s12">      
-      <ul class="collection">   
-        <li class="collection-item avatar">
-          <h4 id="titleColor">Chamados</h4>
-          <p>Veja abaixo alguns de seus chamados</p>
-        </li>
 
-        @foreach ($calleds as $called)
+  <!--Div para chamados -->
+  <div class="card">
+    <div class="row">
+      <div class="col s12">      
+        <ul class="collection">   
           <li class="collection-item avatar">
-            <img src="/img/profile_photo_path/{{$called->user_photo }}" alt="" class="circle">
-            <span class="title">{{ $called->user_name }}</span>
-            <p>{{ $called->title }}</p>
+            <h4 id="titleColor">Chamados</h4>
+            <p>Veja abaixo alguns de seus chamados</p>
           </li>
-        @endforeach
-      </ul>
+  
+          @foreach ($calleds as $called)
+            <li class="collection-item avatar">
+              <img src="/img/profile_photo_path/{{$called->user_photo }}" alt="" class="circle">
+              <span class="title">{{ $called->user_name }}</span>
+              <p>{{ $called->title }}</p>
+            </li>
+          @endforeach
+        </ul>
+      </div>
     </div>
   </div>
 

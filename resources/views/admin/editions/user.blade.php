@@ -21,8 +21,8 @@
               <div class="col s12 l8">
                   <!-- Título e subtítulo -->
                   <div class="input-field">
-                      <h3 class="center" id="titleColor">Edição: Aluno(a)</h3>
-                      <h4 class="center" id="titleColor">~ {{ $user->name }} ~</h4>
+                      <h3 class="center" id="homeTitle">Editar Aluno(a)</h3>
+                      <h4 class="center" id="homeTitle"> ({{ $user->name }}) </h4>
                   </div>
               </div>
               
@@ -99,7 +99,7 @@
     <div class="modal-content">
         <i class="material-icons" id="modal-icon-alert">info</i>
         <h4>Confirmação de Edição</h4>
-        <p>Deseja realmente editar o usuário: {{$user->name}} ?</p>
+        <p>Deseja realmente editar o usuário {{$user->name}} ?</p>
     </div>
 
     <div class="modal-footer">
