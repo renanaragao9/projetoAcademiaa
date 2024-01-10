@@ -10,14 +10,14 @@
       <!--Divs para titulo e Reporte -->
       <div class="row">
         <div class="col s12 l10">
-          <h3 id="title-bv">Bom dia, {{$firstName}}. <p>tenha um bom treino</p> </h3>
+          <h3 id="homeUserTitle">Bom dia, {{$firstName}}. <p id="textUserWelcome">tenha um bom treino</p> </h3>
         </div>
       </div>  
       <!--Div para o bloco de notas -->
       <div class="row">
-        <div class="col s12">
+        <div class="col s12" id="cardNotepad">
           <div class="card-panel">
-            <h4 id="title-bv"> Bloco de anotações</h4>
+            <h4 id="homeUserTitle"> Bloco de anotações</h4>
             <p class="small" >Faça aqui as suas anotações de treino</p>
       
             <form id="todo-form">
@@ -34,8 +34,10 @@
 
       <!--Titulo-->
       <div class="row">
-        <div class="col s12">
-          <h5 id="title-card" class="center">Relação de treino</h5>
+        <div class="col s12" id="cardTextTitle">
+          <p id="underlineTitle">-=-=-=-=-=-=-=-=-=-=-=-</p>
+          <h5 id="homeUserTitle" class="center">Relação de treino</h5>
+          <p id="underlineAfterTitle">-=-=-=-=-=-=-=-=-=-=-=-</p>
         </div>
       </div>
       
@@ -69,8 +71,10 @@
 
       <!-- Titulo -->
       <div class="row">
-        <div class="col s12">
-          <h5 id="title-card" class="center">avaliação física, chamados e conteúdo extra</h5>
+        <div class="col s12" id="cardTextTitle">
+          <p id="underlineTitle">-=-=-=-=-=-=-=-=-=-=-=-</p>
+          <h5 id="homeUserTitle" class="center">avaliação física, chamados e conteúdo extra</h5>
+          <p id="underlineAfterTitle">-=-=-=-=-=-=-=-=-=-=-=-</p>
         </div>
       </div>
       

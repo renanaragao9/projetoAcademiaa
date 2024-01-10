@@ -10,9 +10,10 @@
             <!--Divs para titulo -->
             <div class="row">
                 <div class="row">
-                    <div class="col s12">
-                        <h5 id="title-card" class="center">Ficha de avaliação:</h5>
-                        <h6 id="title-card" class="center">{{ Auth::user()->name }}</h6>
+                    <div class="col s12" id="cardAssessmentTitle">
+                        <h5 id="homeUserTitle" class="center">Ficha de Avaliação</h5>
+                        <h6 id="homeUserTitle" class="center">{{ Auth::user()->name }}</h6>
+                        <p id="underlineAfterTitle">-=-=-=-=-=-=-=-=-=-=-=-</p>
                     </div>
                 </div>
             </div>

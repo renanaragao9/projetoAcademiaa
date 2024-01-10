@@ -7,9 +7,10 @@
     <div class="container">
         <div class="row">
             <div class="row">
-                <div class="col s12">
-                    <h5 id="title-card" class="center">Ficha de treino:</h5>
-                    <h6 id="title-card" class="center">{{ $fichaNome->name_training }}</h6>
+                <div class="col s12" id="cardFichaTtitle">z
+                    <h5 id="homeUserTitle" class="center">Ficha de treino</h5>
+                    <h6 id="homeUserTitle" class="center">{{ $fichaNome->name_training }}</h6>
+                    <p id="underlineAfterTitle">-=-=-=-=-=-=-=-=-=-=-=-</p>
                 </div>
             </div>
         </div>

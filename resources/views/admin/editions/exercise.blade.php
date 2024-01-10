@@ -47,8 +47,23 @@
                   </div>
                 </div>
 
-                <div class="input-field col s12 l12" id="input-exercicio">
+                <div class="file-field col s12 l12">
+                  <div class="btn light-blue darken-4">
+                      <span>GIF</span>
+                      <input name="gif_exercise" type="file" class="validate" multiple>
+                  </div>
+                  
+                  <div class="file-path-wrapper">
+                      <input class="file-path validate" type="text" value="{{$exercises->gif_exercise}}" placeholder="Faça o download da imagem">
+                  </div>
+                </div>
+
+                <div class="input-field col s12 l6" id="input-exercicio">
                   <img src="/img/exercise/{{$exercises->image_exercise}}" alt="" class="materialboxed" id="card-form-edit-image">
+                </div>
+
+                <div class="input-field col s12 l6" id="input-exercicio">
+                  <img src="/img/exercise/gif/{{$exercises->gif_exercise}}" alt="" class="materialboxed" id="card-form-edit-image">
                 </div>
 
                 <div class="input-field col s12 l12">      

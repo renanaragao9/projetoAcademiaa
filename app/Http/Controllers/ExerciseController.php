@@ -44,7 +44,8 @@ class ExerciseController extends Controller
         $exerciseCreate = new exercise;
 
         $exerciseCreate->name_exercise = $request->name_exercise;
-        $exerciseCreate->id_gmuscle_fk = $request->id_gmuscle_fk;      
+        $exerciseCreate->id_gmuscle_fk = $request->id_gmuscle_fk;
+        $exerciseName = $request->name_exercise;
 
         // Image Upload
         if($request->hasFile('image_exercise') && $request->file('image_exercise')->isValid()) {
@@ -53,7 +54,7 @@ class ExerciseController extends Controller
 
             $extension = $requestImage->extension();
 
-            $imageName = md5($requestImage->getClientOriginalName() . strtotime("now")) . "." . $extension;
+            $imageName = md5($requestImage->getClientOriginalName() . strtotime("now")) . $exerciseName . "." . $extension;
 
             $requestImage->move(public_path('img/exercise'), $imageName);
 
@@ -63,6 +64,7 @@ class ExerciseController extends Controller
 
         // GIF Upload
         if ($request->hasFile('gif_exercise') && $request->file('gif_exercise')->isValid()) {
+            
             $requestGif = $request->gif_exercise;
 
             $extension = $requestGif->extension();
@@ -72,9 +74,9 @@ class ExerciseController extends Controller
                 return redirect()->back()->with('msg-error', 'Por favor, envie um arquivo GIF válido.');
             }
 
-            $gifName = md5($requestGif->getClientOriginalName() . strtotime("now")) . "." . $extension;
+            $gifName = md5($requestGif->getClientOriginalName() . strtotime("now")) . $exerciseName . "." . $extension;
 
-            $requestGif->move(public_path('img/exercise'), $gifName);
+            $requestGif->move(public_path('img/exercise/gif'), $gifName);
 
             $exerciseCreate->gif_exercise = $gifName;
         }

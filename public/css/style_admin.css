@@ -180,11 +180,6 @@ nav .brand-logo i.material-icons {
   top: 0px;
 }
 
-#title-bv {
-  color: #031523d4;
-  font-size: 30px;
-}
-
 #homeTitle {
   font-family: 'Permanent Marker', cursive;
   color: #0c3350;
@@ -223,8 +218,57 @@ nav .brand-logo i.material-icons {
 
 #donwload-pdf {
   text-align: center;
-  
- 
+}
+
+/* CARD MOBILE */
+#title-bv {
+  color: #031523d4;
+  font-size: 30px;
+}
+
+#homeUserTitle {
+  font-family: 'Permanent Marker', cursive;
+  color: #0c3350;
+  font-size: 32px;
+  font-weight: bolder;
+}
+
+#textUserWelcome {
+  margin-top: 3px;
+}
+
+#underlineTitle {
+  font-family: 'Permanent Marker', cursive;
+  color: #0c3350;
+  font-size: 32px;
+  text-align: center;
+  margin-bottom: -10px;
+}
+
+#underlineAfterTitle {
+  font-family: 'Permanent Marker', cursive;
+  color: #0c3350;
+  font-size: 32px;
+  text-align: center;
+  margin-top: -10px;
+}
+
+#cardNotepad {
+  margin-top: -40px;
+  margin-bottom: -20px;
+}
+
+#cardTextTitle {
+  margin-bottom: -15px;
+  margin-top: -15px;
+}
+
+#cardAssessmentTitle {
+  margin-bottom: -25px;
+}
+
+#cardFichaTtitle {
+  margin-bottom: -30px;
 }
 
 /* label focus color */

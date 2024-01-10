@@ -14,7 +14,8 @@
               @csrf
               <div class="row">
                 <div class="input-field col s12 l12" id="input-exercicio">
-                  <h3 id="titleColor" class="center">Cadastrar um novo Chamado</h3>
+                  <h3 id="homeUserTitle" class="center">Cadastrar um novo Chamado</h3>
+                  <p id="underlineAfterTitle">-=-=-=-=-=-=-=-=-=-=-=-</p>
                 </div>
                     
                 <div class="input-field col s12 l12" id="input-exercicio">
