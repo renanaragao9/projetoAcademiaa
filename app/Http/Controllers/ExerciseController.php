@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\exercise;
 use App\Models\ficha;
 use App\Models\muscleGroup;
+use Illuminate\Support\Str;
 
 class ExerciseController extends Controller
 {
@@ -45,7 +46,7 @@ class ExerciseController extends Controller
 
         $exerciseCreate->name_exercise = $request->name_exercise;
         $exerciseCreate->id_gmuscle_fk = $request->id_gmuscle_fk;
-        $exerciseName = $request->name_exercise;
+        $exerciseName = Str::slug($request->name_exercise, '-');
 
         // Image Upload
         if($request->hasFile('image_exercise') && $request->file('image_exercise')->isValid()) {

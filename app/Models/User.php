@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\ficha;
 
 class User extends Authenticatable
 {
@@ -64,7 +65,7 @@ class User extends Authenticatable
     ];
 
     public function fichas() {
-        return $this->hasMany(Ficha::class, 'id_user_fk');
+        return $this->hasMany(ficha::class, 'id_user_fk');
     }
 
     public function assessments() {
