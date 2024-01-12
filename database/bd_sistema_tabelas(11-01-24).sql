@@ -87,9 +87,9 @@ CREATE TABLE IF NOT EXISTS `exercises` (
   PRIMARY KEY (`id_exercise`),
   KEY `exercises_id_gmuscle_fk_foreign` (`id_gmuscle_fk`),
   CONSTRAINT `exercises_id_gmuscle_fk_foreign` FOREIGN KEY (`id_gmuscle_fk`) REFERENCES `muscleGroup` (`id_gmuscle`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=91 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Copiando dados para a tabela academia.exercises: ~20 rows (aproximadamente)
+-- Copiando dados para a tabela academia.exercises: ~66 rows (aproximadamente)
 INSERT INTO `exercises` (`id_exercise`, `name_exercise`, `image_exercise`, `gif_exercise`, `id_gmuscle_fk`, `created_at`, `updated_at`) VALUES
 	(21, 'Agachamento Livre', 'c8065810271324cdb7ef199ac8a11137agachamento-livre.jpg', '1475f8a7f48ae76f1af5f57a4b056adeagachamento-livre.gif', 1, '2024-01-11 14:08:24', '2024-01-11 14:08:24'),
 	(22, 'Agachamento Terra', '670edebf9518453c40f1fd3b475af23eagachamento-terra.jpg', '4e9465c6841f86685b9cc94b0b967b1bagachamento-terra.gif', 1, '2024-01-11 14:11:35', '2024-01-11 14:11:35'),
@@ -120,7 +120,43 @@ INSERT INTO `exercises` (`id_exercise`, `name_exercise`, `image_exercise`, `gif_
 	(49, 'Crossover Medio', '47e1e3b222f35b871ef72ec6e5735d2dcrossover-medio.jpg', 'efdef078aee761467013b3d307ae6c5bcrossover-medio.gif', 3, '2024-01-11 16:41:13', '2024-01-11 16:41:13'),
 	(50, 'Crucifixo', 'd30ca368d68e417e543c06c5496d94d1crucifixo.jpg', 'de4400509363340c5585d8d8dab7181fcrucifixo.gif', 3, '2024-01-11 16:42:50', '2024-01-11 16:42:50'),
 	(52, 'Crucifixo Máquina', '1a5eedf5f6cc4ae4949222f77ce71263crucifixo-maquina.jpg', 'default_gif.gif', 3, '2024-01-11 18:35:22', '2024-01-11 18:35:22'),
-	(53, 'Crucifixo Reto', '2237064b1ec8133019d2044de08a21d6crucifixo-reto.jpg', 'b0ad7009f99262c3108d0eae11821448crucifixo-reto.gif', 3, '2024-01-11 18:37:33', '2024-01-11 18:37:33');
+	(53, 'Crucifixo Reto', '2237064b1ec8133019d2044de08a21d6crucifixo-reto.jpg', 'b0ad7009f99262c3108d0eae11821448crucifixo-reto.gif', 3, '2024-01-11 18:37:33', '2024-01-11 18:37:33'),
+	(54, 'Peck Deck', '00f8e4095bfbebc50094aa1963198959peck-deck.jpg', 'bcc370006e69f4877a85c8455e8dcb94peck-deck.gif', 3, '2024-01-12 13:25:05', '2024-01-12 13:25:05'),
+	(55, 'Supino 45º', 'fb0a9d012730500aa610e146f6f50aeesupino-45o.jpg', '2a6c390f5bb6f1ed9b50716e7cfeead5supino-45o.gif', 3, '2024-01-12 13:26:11', '2024-01-12 13:26:11'),
+	(56, 'Supino 45º Maquina', 'bd9f8f2b85f28db1c84b66803d7876eesupino-45o-maquina.jpg', '0667937005a7e807cc213a0610974eb0supino-45o-maquina.gif', 3, '2024-01-12 13:27:05', '2024-01-12 13:27:05'),
+	(57, 'Supino 45º C/ Halteres', '762fb0df56f0d45eda6ec460db68fde0supino-45o-c-halteres.jpg', '2942c0601f298e9c011158fe6c307925supino-45o-c-halteres.gif', 3, '2024-01-12 13:29:02', '2024-01-12 13:29:02'),
+	(58, 'Supino C/ Halteres', 'f017ff1eb72fa821a22900aa6e208a0asupino-c-halteres.jpg', 'f15f393a240940678cd39ba8eb868ebesupino-c-halteres.gif', 3, '2024-01-12 13:30:33', '2024-01-12 13:30:33'),
+	(59, 'Supino Declinado', '7a34dad7354f83f2b4b0d696f552337dsupino-declinado.jpg', 'default_gif.gif', 3, '2024-01-12 13:33:15', '2024-01-12 13:33:15'),
+	(60, 'Supino 45° Guiado', 'ef76def4631baa792ab44c7e0ccda3f5supino-45-guiado.jpg', '83bc418c7d75713935df60aa55742ebcsupino-45-guiado.gif', 3, '2024-01-12 13:34:17', '2024-01-12 13:34:17'),
+	(61, 'Supino Maquina', 'dc2306c98f6963bf2889f97f24547653supino-maquina.jpg', '7822d5facd87937f4fd132893e9db183supino-maquina.gif', 3, '2024-01-12 13:35:56', '2024-01-12 13:35:56'),
+	(63, 'Supino', '5b50798513627f8cc7f73ad88a01a093supino.jpg', '0d1c95c1bb589bb59cb2ec533400cb68supino.gif', 3, '2024-01-12 13:47:30', '2024-01-12 13:47:30'),
+	(64, 'Supino Fechado', '5a357e6906dfb8f4b4e62a71ac24f440supino-fechado.jpg', 'default_gif.gif', 3, '2024-01-12 13:48:09', '2024-01-12 13:48:09'),
+	(65, 'Supino Guiado', 'baf3af2e973db1ee2f81f7b1aa3bd17fsupino-guiado.jpg', 'ea6539f7f4d5b70a120fa2e388529770supino-guiado.gif', 3, '2024-01-12 13:49:02', '2024-01-12 13:49:02'),
+	(66, 'Barra Fixa', '50775f5dc13983bce0c88e208a53e560barra-fixa.jpg', '576b9185c24574fdbe985c4198f29253barra-fixa.gif', 7, '2024-01-12 13:52:14', '2024-01-12 13:52:14'),
+	(67, 'Barra Paralela', 'c2f48e869b871068ce276141b89f0459barra-paralela.jpg', '56b04edfdb7307a29f645ba65dbf0661barra-paralela.gif', 3, '2024-01-12 13:55:22', '2024-01-12 13:55:22'),
+	(68, 'Encolhimento', 'e3218d5953b311336785e934e671a71eencolhimento.jpg', '610fc7de7a122e15635e2cfcad067bceencolhimento.gif', 6, '2024-01-12 13:57:54', '2024-01-12 13:57:54'),
+	(69, 'Encolhimento C/ Halteres', '1a81042aa94c793c0ca5e6d42c99281bencolhimento-c-halteres.jpg', '809a63ead50c8db6ebd7a75eea731a08encolhimento-c-halteres.gif', 6, '2024-01-12 13:59:34', '2024-01-12 13:59:34'),
+	(70, 'Face Pull', '68dd229c4fa52ef4cea3f7ded1b37a84face-pull.jpg', '994c0d3e28689ffaa0a8c978fa251e82face-pull.gif', 7, '2024-01-12 14:01:43', '2024-01-12 14:01:43'),
+	(71, 'Crucifixo Invertido', '28bf8107af3057a9170649ede1eb5af9crucifixo-invertido.jpg', 'b1c58bfef35c0fe4cfc07ddb7b9d2885crucifixo-invertido.gif', 7, '2024-01-12 14:05:20', '2024-01-12 14:05:20'),
+	(72, 'Peck Deck Invertido', '773134aba019bdde84a7305249566497pack-deck-invertido.jpg', '9ef6168e30c6b7696ff734e9aa018a62pack-deck-invertido.gif', 7, '2024-01-12 14:07:29', '2024-01-12 14:07:54'),
+	(73, 'Pull Down Maquina', '0928463ca020cbcf5e2e634de3228784pull-down-maquina.jpg', 'b7628147d5876cea2f65f94b55449716pull-down-maquina.gif', 7, '2024-01-12 14:09:40', '2024-01-12 14:09:40'),
+	(74, 'Pull Down Inverso Maquina', '2f0a72faea884d25f8ad8d8a0869e93fpull-down-inverso-maquina.png', '05440d306986174c13f60bb0ac6a7d88pull-down-inverso-maquina.gif', 7, '2024-01-12 14:11:08', '2024-01-12 14:11:08'),
+	(75, 'Pull Down', '7dbfe9dcbcf110b4c9d289f2199a6a06pull-down.jpg', 'd01ab182592d5ee74957a605d0ec87b6pull-down.gif', 7, '2024-01-12 14:11:41', '2024-01-12 14:11:41'),
+	(76, 'Puxada Frontal', 'cba404231a2df95f0ec48c38beeceac6puxada-frontal.jpg', '0f138d7a0a1b6be773bfc3121bd161d5puxada-frontal.gif', 7, '2024-01-12 14:12:37', '2024-01-12 14:12:37'),
+	(77, 'Remada Alta Polia', '66317198da4efb608c65eb8d0c3de9b7remada-alta-polia.jpg', 'a97618ae0b4120ffaae56b468f72760dremada-alta-polia.gif', 7, '2024-01-12 14:21:28', '2024-01-12 14:21:28'),
+	(78, 'Remada Alta', 'a2b72320cdb5d6d68d5da6a43d1b6bedremada-alta.png', '3b9b73141bddd8127008920f29cf38cfremada-alta.gif', 7, '2024-01-12 14:23:35', '2024-01-12 14:23:35'),
+	(79, 'Remada Cavalinho', 'ab90268a44ede653e77914c0792f44deremada-cavalinho.jpg', '3da75b65081d4b348c46fbb6810b7e50remada-cavalinho.gif', 7, '2024-01-12 14:32:33', '2024-01-12 14:32:33'),
+	(80, 'Remada Curvada', 'b0c5455ee4fdf4a3114315f2d6388a7bremada-curvada.jpg', 'f7ebeda01cca4895c6a98f8f88f86485remada-curvada.gif', 7, '2024-01-12 14:33:46', '2024-01-12 14:33:46'),
+	(81, 'Remada Curvada C/ Halteres', 'c2f7b69a555f304780f8460d4facae9fremada-curvada-c-halteres.jpg', '090aadeccec8a727c472ecb2e2938fbcremada-curvada-c-halteres.gif', 7, '2024-01-12 14:34:59', '2024-01-12 14:34:59'),
+	(82, 'Remada Maquina', '94753e9a3286fcabb32421959c4d57a5remada-maquina.jpg', 'f7a52f25f3900c4dd3fa971bed6b4db3remada-maquina.gif', 7, '2024-01-12 14:36:24', '2024-01-12 14:36:24'),
+	(83, 'Remada Sentada', '413a2f4b72f83bed97f27fcf36e75ba6remada-sentada.jpg', '1c7b6e91895eb868f87a678eb652a9f3remada-sentada.gif', 7, '2024-01-12 14:40:52', '2024-01-12 14:40:52'),
+	(84, 'Remada no Banco Inclinado', '61ad432eb67e82333926ce7299a2086dremada-no-banco-inclinado.jpg', '2c565e9b9782b96b716ab243060fa42aremada-no-banco-inclinado.gif', 7, '2024-01-12 14:45:44', '2024-01-12 14:45:44'),
+	(85, 'Puxada Baixa', 'bb703c595cccf82fda3e8295311446a1puxada-baixa.jpg', '880e94885aa6f9c4860072964cb5b51fpuxada-baixa.gif', 7, '2024-01-12 14:50:04', '2024-01-12 14:50:04'),
+	(86, 'Remada Unilateral Polia Baixa', 'e1baee256b80d4e2eccfb4061367098cremada-unilateral-polia-baixa.jpg', 'cc57aea828466482a6a1506fa0a19f2eremada-unilateral-polia-baixa.gif', 7, '2024-01-12 15:04:40', '2024-01-12 15:04:40'),
+	(87, 'Remada Unilateral Sentado', '9eb0194affb3cd55927fd2a096c4cbberemada-unilateral-sentado.jpg', 'b380548ae0bc01d7987d105f596f00acremada-unilateral-sentado.gif', 7, '2024-01-12 15:09:18', '2024-01-12 15:09:18'),
+	(88, 'Remada Unilateral', 'f7607862fd5e3be78c59d28a9173a2adremada-unilateral.jpg', '92d8ddd505020b410242223ebfe1422fremada-unilateral.gif', 7, '2024-01-12 15:11:14', '2024-01-12 15:11:14'),
+	(89, 'Puxada Triangulo', 'a27e4ee9d313c6ded746f157f29efa1bpuxada-triangulo.jpg', '501788cadfd783d88b05309858de8e6apuxada-triangulo.gif', 7, '2024-01-12 15:34:51', '2024-01-12 15:34:51'),
+	(90, 'Puxada Baixa C/ Triangulo', 'cd04e01c15ffe8eb80499ecff29e62ec.jpg', '9568c825b2ddda180e6f7dc5284d8bcepuxada-baixa-c-triangulo.gif', 7, '2024-01-12 16:04:50', '2024-01-12 16:06:23');
 
 -- Copiando estrutura para tabela academia.failed_jobs
 CREATE TABLE IF NOT EXISTS `failed_jobs` (
@@ -166,7 +202,7 @@ CREATE TABLE IF NOT EXISTS `fichas` (
   CONSTRAINT `fichas_id_user_fk_foreign` FOREIGN KEY (`id_user_fk`) REFERENCES `users` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Copiando dados para a tabela academia.fichas: ~29 rows (aproximadamente)
+-- Copiando dados para a tabela academia.fichas: ~1 rows (aproximadamente)
 
 -- Copiando estrutura para tabela academia.migrations
 CREATE TABLE IF NOT EXISTS `migrations` (
@@ -221,7 +257,7 @@ CREATE TABLE IF NOT EXISTS `password_reset_tokens` (
   PRIMARY KEY (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Copiando dados para a tabela academia.password_reset_tokens: ~1 rows (aproximadamente)
+-- Copiando dados para a tabela academia.password_reset_tokens: ~0 rows (aproximadamente)
 INSERT INTO `password_reset_tokens` (`email`, `token`, `created_at`) VALUES
 	('renanaragao159@gmail.com', '$2y$10$x6pXpuqzHfUJkIXtKMmNDej.rKhg2AjLB3K1GdqwLy.kFa6SBpdEW', '2023-12-19 01:30:15');
 
@@ -257,9 +293,9 @@ CREATE TABLE IF NOT EXISTS `sessions` (
   KEY `sessions_last_activity_index` (`last_activity`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Copiando dados para a tabela academia.sessions: ~2 rows (aproximadamente)
+-- Copiando dados para a tabela academia.sessions: ~1 rows (aproximadamente)
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-	('94Iw6FiZz8w9t3ufKzPwEnN288Vs7n6NsCjkljZd', 1, '127.0.0.1', 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:120.0) Gecko/20100101 Firefox/120.0', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiQ2dHWGxVNE84d3lyY2dWeXVSdUQ0a29oNm5mWlVMOW9PRmduTHdMQyI7czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjQ0OiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYWRtaW4vZXhlcmNpY2lvcy9jcmlhciI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7fQ==', 1704998282);
+	('NSs6gfMIttsPvBnOG75bwOOKMeRBleXOZiZryvK8', 1, '127.0.0.1', 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:120.0) Gecko/20100101 Firefox/120.0', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoid2dob3NkT0ZmaTlid2hQVUtzNUpjWU9pQndhd01yRWRadWMwR09uYiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDQ6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9leGVyY2ljaW9zL2NyaWFyIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTt9', 1705075608);
 
 -- Copiando estrutura para tabela academia.statistics
 CREATE TABLE IF NOT EXISTS `statistics` (
@@ -275,7 +311,7 @@ CREATE TABLE IF NOT EXISTS `statistics` (
   CONSTRAINT `statistics_id_user_fk_foreign` FOREIGN KEY (`id_user_fk`) REFERENCES `users` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Copiando dados para a tabela academia.statistics: ~17 rows (aproximadamente)
+-- Copiando dados para a tabela academia.statistics: ~0 rows (aproximadamente)
 
 -- Copiando estrutura para tabela academia.training_division
 CREATE TABLE IF NOT EXISTS `training_division` (
