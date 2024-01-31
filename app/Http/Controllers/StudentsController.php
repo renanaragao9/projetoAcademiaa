@@ -64,9 +64,8 @@ class StudentsController extends Controller
                 ->join('exercises', 'fichas.id_exercise_fk', '=', 'exercises.id_exercise')
                 ->join('training_division', 'fichas.id_training_fk', '=', 'training_division.id_training')
                 ->join('users', 'fichas.id_user_creator_fk', '=', 'users.id')
-                ->orderBy('order', 'ASC')
-                ->get();
-            
+                ->orderByRaw('CAST(fichas.order AS SIGNED) ASC')
+                ->get();          
 
         $fichaNome = $studentFichas->first();
 

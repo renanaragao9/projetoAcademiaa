@@ -15,7 +15,6 @@
               <div class="row">
                 <div class="input-field col s12 l12" id="input-exercicio">
                   <h3 id="homeUserTitle" class="center">Cadastrar um novo Chamado</h3>
-                  <p id="underlineAfterTitle">-=-=-=-=-=-=-=-=-=-=-=-</p>
                 </div>
                     
                 <div class="input-field col s12 l12" id="input-exercicio">
@@ -74,38 +73,40 @@
   </div>
 
   <div class="row">
-    <div class="card z-depth-5">
-      <div class="card-content">
-        <div class="col s12 l12">
-          <h3 class="center" id="titleColor" >Meu chamados</h3>
-        </div>
-
-        <table class="highlight striped centered" id="form_table_group_muscle">
-          <thead>
-            <tr>
-              <th>Titulo</th>
-              <th>Descrição</th>
-              <th>Ação</th>
-            </tr>
-          </thead>
-          
-          <tbody id="table-body">
-            @foreach($calleds as $called)
+    <div class="col s12 m12">
+      <div class="card z-depth-5">
+        <div class="card-content">
+          <div class="col s12 l12">
+            <h3 class="center" id="homeUserTitle" >Meu chamados</h3>
+          </div>
+  
+          <table class="highlight striped centered" id="form_table_group_muscle">
+            <thead>
               <tr>
-                <td id="td-text">{{ $called->title }}</td>
-                <td id="td-text">{{ $called->subject }}</td>
-                <td>    
-                  <form action="{{ route('admin.called.destroy', $called->id_called) }}" method="POST" class="delete-form">
-                    @csrf
-                    @method('DELETE')
-                    <input type="hidden" name="id" value="{{ $called->id_called }}">
-                    <button class="btn-floating tooltipped green darken-4 btn-large waves-effect waves-light red delete-button" id="bottom-table-action" data-position="bottom" data-tooltip="Resolvido"><i class="material-icons">check_circle</i></button>
-                  </form>
-                </td>
+                <th>Titulo</th>
+                <th>Descrição</th>
+                <th>Ação</th>
               </tr>
-            @endforeach
-          </tbody>
-        </table>
+            </thead>
+            
+            <tbody id="table-body">
+              @foreach($calleds as $called)
+                <tr>
+                  <td id="td-text">{{ $called->title }}</td>
+                  <td id="td-text">{{ $called->subject }}</td>
+                  <td>    
+                    <form action="{{ route('admin.called.destroy', $called->id_called) }}" method="POST" class="delete-form">
+                      @csrf
+                      @method('DELETE')
+                      <input type="hidden" name="id" value="{{ $called->id_called }}">
+                      <button class="btn-floating tooltipped green darken-4 btn-large waves-effect waves-light red delete-button" id="bottom-table-action" data-position="bottom" data-tooltip="Resolvido"><i class="material-icons">check_circle</i></button>
+                    </form>
+                  </td>
+                </tr>
+              @endforeach
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>

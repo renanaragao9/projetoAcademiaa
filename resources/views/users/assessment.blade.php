@@ -12,8 +12,7 @@
                 <div class="row">
                     <div class="col s12" id="cardAssessmentTitle">
                         <h5 id="homeUserTitle" class="center">Ficha de Avaliação</h5>
-                        <h6 id="homeUserTitle" class="center">{{ Auth::user()->name }}</h6>
-                        <p id="underlineAfterTitle">-=-=-=-=-=-=-=-=-=-=-=-</p>
+                        <h6 id="homeUserTitle" class="center">{{ Auth::user()->name }}</h6>           
                     </div>
                 </div>
             </div>
@@ -262,7 +261,7 @@
                         <div class="row">
                             <div class="col s12">
                                 <h5 id="title-card" class="center">Gráfico:</h5>
-                                <p>Para uma melhor visualização vire o celular na horizontal</p>
+                                <p class="center">Para uma melhor visualização vire o celular na horizontal e atualize a página</p>
                             </div>
                         </div>
                     </div>

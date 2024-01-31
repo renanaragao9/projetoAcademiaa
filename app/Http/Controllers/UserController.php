@@ -127,7 +127,7 @@ class UserController extends Controller
             $user->save();
         }
     
-        return redirect()->back()->with('msg-success', 'Imagem do perfil atualizada com sucesso.');
+        return redirect()->back()->with('msg-success', 'Imagem de perfil atualizada com sucesso.');
     }
 
     public function destroy($id) {

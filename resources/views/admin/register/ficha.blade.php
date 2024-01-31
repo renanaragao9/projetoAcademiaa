@@ -6,137 +6,135 @@
 
     <!-- Inicio de conteudo -->
     <div class="row">
-        <div class="col s12 m12">
-            <div class="card white">
-                <div class="card-content">
-                    <div class="row">
-                        <form class="col s12" action="{{ route('admin.register.ficha.create') }}"
-                            method="POST" enctype="multipart/form-data">
-                            @csrf
-                            <div class="row">
+        <div class="card white">
+            <div class="card-content">
+                <div class="row">
+                    <form class="col s12" action="{{ route('admin.register.ficha.create') }}"
+                        method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="row">
 
-                                <div class="input-field col s12 l12" id="input-exercicio">
-                                    <h3 id="homeTitle" class="center">Cadastro Ficha</h3>
-                                    <h4 id="homeTitle" class="center">Aluno ({{ $user->name }})</h4>
-                                </div>
-
-                                <div class="input-field col s12">
-                                    <h4 class="center">Divisão do Treino</h4>
-                                </div>
-
-                                <div class="input-field col s12 l6">
-                                    <select name="id_training_fk" id="id_training_fk" required>
-                                        <option value="" disabled selected>Selecione</option>
-
-                                        @foreach ($trainings as $training)
-                                            <option value="{{ $training->id_training }}"> {{ $training->name_training }}</option>
-                                        @endforeach
-                                    </select>
-                                    <label id="labelSpacing" id="labelSpacing"><h11>*</h11>Treino</label>
-                                </div>
-
-                                <div class="input-field col s12 l6">
-                                    <select name="order" id="order" required>
-                                        <option value="" disabled selected>Selecione</option>
-
-                                        @foreach ($numbers as $number)
-                                            <option value="{{ $number }}"> {{ $number }}° </option>
-                                        @endforeach
-                                    </select>
-                                    <label id="labelSpacing"><h11>*</h11>Ordem do exercício</label>
-                                </div>
-
-                                <div class="input-field col s12 l6">
-                                    <select name="id_gmuscle_fk_to_ficha" id="id_gmuscle_fk_to_ficha" required>
-                                        <option value="" disabled selected>Selecione</option>
-
-                                        @foreach ($muscleGroups as $muscleGroup)
-                                            <option value="{{ $muscleGroup->id_gmuscle }}"> {{ $muscleGroup->name_gmuscle }}</option>
-                                        @endforeach
-                                    </select>
-                                    <label id="labelSpacing"><h11>*</h11>Grupo Muscular</label>
-                                </div>
-
-                                <div class="input-field col s12 l6">
-                                    <select name="id_exercise_fk" id="id_exercise_fk" required>
-
-                                    </select>
-                                    <label id="labelSpacing"><h11>*</h11>Exercício</label>
-                                </div>
-
-                                <div class="input-field col s12">
-                                    <h4 class="center">Especificação do Exercício</h4>
-                                </div>
-
-                                <div class="input-field col s12 l6">
-                                    <input name="serie" id="serie" type="text" class="validate" required>
-                                    <label id="labelSpacing" for="serie"><h11>*</h11>Série:</label>
-                                </div>
-
-                                <div class="input-field col s12 l6">
-                                    <input name="repetition" id="repetition" type="text" class="validate" required>
-                                    <label id="labelSpacing" for="repetition"><h11>*</h11>Repetição:</label>
-                                </div>
-
-                                <div class="input-field col s12 l6">
-                                    <input name="weight" id="weight" type="text" class="validate" value="Livre">
-                                    <label id="labelSpacing" for="weight">Peso:</label>
-                                </div>
-
-                                <div class="input-field col s12 l6">
-                                    <input name="rest" id="rest" type="text" class="validate" value="00:30">
-                                    <label id="labelSpacing" for="rest">Descanso:</label>
-                                </div>
-
-                                <div class="input-field col s12 l6">
-                                    <input type="hidden" name="id_user_fk" id="id_user_fk" value="{{ $user->id }}">
-                                    <input type="hidden" name="name" id="name" value="{{ $user->name }}">
-                                    <input type="hidden" name="id_user_creator_fk" id="id_user_creator_fk" value="{{ Auth::user()->id }}">
-                                </div>
-
-                                <div class="input-field col s12">
-                                    <textarea name="description" id="description" class="materialize-textarea" data-length="250"></textarea>
-                                    <label id="labelSpacing" for="description">Observação:</label>
-                                </div>
-
-                                <div class="input-field col s12 l6 left">
-                                    <button type="button" id="adicionarDado" class="btn waves-effect waves-light orange darken-4"><i class="material-icons left">add</i>Adicionar Exercicio</button>
-                                </div>
+                            <div class="input-field col s12 l12" id="input-exercicio">
+                                <h3 id="homeTitle" class="center">Cadastrar Nova Ficha</h3>
+                                <h4 id="homeTitle" class="center">Aluno ({{ $user->name }})</h4>
                             </div>
-                        </form>
-                        
-                        <!-- Tabela para mostrar os dados adicionados -->
-                        <table id="tabelaDados" class="striped table-responsive">
-                            <thead>
-                                <tr>
-                                    <th>Treino</th>
-                                    <th>Ordem</th>
-                                    <th>Exercicio</th>
-                                    <th>Ação</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <!-- Os dados serão exibidos aqui -->
-                            </tbody>
-                        </table>
 
-                        <br><br>
-                        <hr>
+                            <div class="input-field col s12">
+                                <h4 class="center">Divisão do Treino</h4>
+                            </div>
 
-                        <div class="input-field col s12 l12">
-                            
-                            <a href="#modal-alerta_2" class="modal-trigger waves-effect waves-light btn left light-blue darken-4 col s12 l5"><i class="material-icons right">save</i>Cadastrar</a>
+                            <div class="input-field col s12 l6">
+                                <select name="id_training_fk" id="id_training_fk" required>
+                                    <option value="" disabled selected>Selecione</option>
 
-                            <a href="{{ route('admin.ficha.table-user', $user->id) }}" class="waves-effect waves-light btn right light-blue darken-4 col s12 l5" id=""><i class="material-icons right">table_rows</i>Ficha</a>
-                                
-                            <a href="{{ route('admin.users') }}" class="waves-effect waves-light btn left light-blue darken-4 col s12 l5" id="bottom-form-action"><i class="material-icons right">arrow_back</i>Voltar</a>
-                            
-                            <form id="form_ficha_delete" method="post" action="{{ route('admin.ficha.deletefichas', $user->id) }}">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="right btn waves-effect waves-light  red accent-4 col s12 l5" id="save-button" name="action" onclick="confirmSubmit()"><i class="material-icons left">warning</i> Excluir Todas as Fichas <i class="material-icons right">delete_forever</i></button>
-                            </form>                 
+                                    @foreach ($trainings as $training)
+                                        <option value="{{ $training->id_training }}"> {{ $training->name_training }}</option>
+                                    @endforeach
+                                </select>
+                                <label id="labelSpacing" id="labelSpacing"><h11>*</h11>Treino</label>
+                            </div>
+
+                            <div class="input-field col s12 l6">
+                                <select name="order" id="order" required>
+                                    <option value="" disabled selected>Selecione</option>
+
+                                    @foreach ($numbers as $number)
+                                        <option value="{{ $number }}"> {{ $number }}° </option>
+                                    @endforeach
+                                </select>
+                                <label id="labelSpacing"><h11>*</h11>Ordem do exercício</label>
+                            </div>
+
+                            <div class="input-field col s12 l6">
+                                <select name="id_gmuscle_fk_to_ficha" id="id_gmuscle_fk_to_ficha" required>
+                                    <option value="" disabled selected>Selecione</option>
+
+                                    @foreach ($muscleGroups as $muscleGroup)
+                                        <option value="{{ $muscleGroup->id_gmuscle }}"> {{ $muscleGroup->name_gmuscle }}</option>
+                                    @endforeach
+                                </select>
+                                <label id="labelSpacing"><h11>*</h11>Grupo Muscular</label>
+                            </div>
+
+                            <div class="input-field col s12 l6">
+                                <select name="id_exercise_fk" id="id_exercise_fk" required>
+
+                                </select>
+                                <label id="labelSpacing"><h11>*</h11>Exercício</label>
+                            </div>
+
+                            <div class="input-field col s12">
+                                <h4 class="center">Especificação do Exercício</h4>
+                            </div>
+
+                            <div class="input-field col s12 l6">
+                                <input name="serie" id="serie" type="text" class="validate" required>
+                                <label id="labelSpacing" for="serie"><h11>*</h11>Série:</label>
+                            </div>
+
+                            <div class="input-field col s12 l6">
+                                <input name="repetition" id="repetition" type="text" class="validate" required>
+                                <label id="labelSpacing" for="repetition"><h11>*</h11>Repetição:</label>
+                            </div>
+
+                            <div class="input-field col s12 l6">
+                                <input name="weight" id="weight" type="text" class="validate" value="Livre">
+                                <label id="labelSpacing" for="weight">Peso:</label>
+                            </div>
+
+                            <div class="input-field col s12 l6">
+                                <input name="rest" id="rest" type="text" class="validate" value="00:30">
+                                <label id="labelSpacing" for="rest">Descanso:</label>
+                            </div>
+
+                            <div class="input-field col s12 l6">
+                                <input type="hidden" name="id_user_fk" id="id_user_fk" value="{{ $user->id }}">
+                                <input type="hidden" name="name" id="name" value="{{ $user->name }}">
+                                <input type="hidden" name="id_user_creator_fk" id="id_user_creator_fk" value="{{ Auth::user()->id }}">
+                            </div>
+
+                            <div class="input-field col s12">
+                                <textarea name="description" id="description" class="materialize-textarea" data-length="250"></textarea>
+                                <label id="labelSpacing" for="description">Observação:</label>
+                            </div>
+
+                            <div class="input-field col s12 l6 left">
+                                <button type="button" id="adicionarDado" class="btn waves-effect waves-light orange darken-4"><i class="material-icons left">add</i>Adicionar Exercicio</button>
+                            </div>
                         </div>
+                    </form>
+                    
+                    <!-- Tabela para mostrar os dados adicionados -->
+                    <table id="tabelaDados" class="striped table-responsive">
+                        <thead>
+                            <tr>
+                                <th>Treino</th>
+                                <th>Ordem</th>
+                                <th>Exercicio</th>
+                                <th>Ação</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Os dados serão exibidos aqui -->
+                        </tbody>
+                    </table>
+
+                    <br><br>
+                    <hr>
+
+                    <div class="input-field col s12 l12">
+                        
+                        <a href="#modal-alerta_2" class="modal-trigger waves-effect waves-light btn left light-blue darken-4 col s12 l5"><i class="material-icons right">save</i>Cadastrar</a>
+
+                        <a href="{{ route('admin.ficha.table-user', $user->id) }}" class="waves-effect waves-light btn right light-blue darken-4 col s12 l5" id=""><i class="material-icons right">table_rows</i>Ficha</a>
+                            
+                        <a href="{{ route('admin.users') }}" class="waves-effect waves-light btn left light-blue darken-4 col s12 l5" id="bottom-form-action"><i class="material-icons right">arrow_back</i>Voltar</a>
+                        
+                        <form id="form_ficha_delete" method="post" action="{{ route('admin.ficha.deletefichas', $user->id) }}">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="right btn waves-effect waves-light  red accent-4 col s12 l5" id="save-button" name="action" onclick="confirmSubmit()"><i class="material-icons left">warning</i> Excluir Todas as Fichas <i class="material-icons right">delete_forever</i></button>
+                        </form>                 
                     </div>
                 </div>
             </div>

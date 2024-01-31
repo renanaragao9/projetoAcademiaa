@@ -14,7 +14,7 @@
               @csrf
               <div class="row">                  
                 <div class="input-field col s12 l12">
-                  <h3 id="homeTitle" class="center">cadastro <br> divisão de treino</h3>
+                  <h3 id="homeTitle" class="center">Cadastrar <br> Divisão de Treino</h3>
                 </div>
 
                 <div class="input-field col s12 l12">

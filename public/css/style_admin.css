@@ -181,7 +181,7 @@ nav .brand-logo i.material-icons {
 }
 
 #homeTitle {
-  font-family: 'Permanent Marker', cursive;
+  font-family: 'Poppins', sans-serif;
   color: #0c3350;
 }
 
@@ -199,15 +199,46 @@ nav .brand-logo i.material-icons {
 }
 
 #mobile-side {
-  font-size: 15px;
+  font-size: 17.5px;
+  padding: 15px;
+  white-space: normal;
 }
 
 #mobile-side1 {
   font-size: 12px;
 }
 
-#strong {
+#text-ficha {
   font-weight: bold;
+  font-size: 22px;
+}
+
+#text-dados-ficha {
+  font-size: 24px;
+  font-weight: bolder;
+  white-space: pre-wrap;
+}
+
+#text-profile {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+#text-dados-profile {
+  font-size: 16px;
+  font-weight: bolder;
+  white-space: pre-wrap;
+  color: #0c3350;
+}
+
+#text-profile-span {
+  margin-left: 10px;
+  color: #0c3350;
+}
+
+#button-update-photo {
+  margin-bottom: 30px;
+  margin-top: 20px;
 }
 
 #div-donwload-pdf {
@@ -227,7 +258,7 @@ nav .brand-logo i.material-icons {
 }
 
 #homeUserTitle {
-  font-family: 'Permanent Marker', cursive;
+  font-family: 'Poppins', sans-serif;
   color: #0c3350;
   font-size: 32px;
   font-weight: bolder;
@@ -238,7 +269,7 @@ nav .brand-logo i.material-icons {
 }
 
 #underlineTitle {
-  font-family: 'Permanent Marker', cursive;
+  font-family: 'Poppins', sans-serif;
   color: #0c3350;
   font-size: 32px;
   text-align: center;
@@ -246,7 +277,7 @@ nav .brand-logo i.material-icons {
 }
 
 #underlineAfterTitle {
-  font-family: 'Permanent Marker', cursive;
+  font-family: 'Poppins', sans-serif;
   color: #0c3350;
   font-size: 32px;
   text-align: center;
@@ -259,8 +290,7 @@ nav .brand-logo i.material-icons {
 }
 
 #cardTextTitle {
-  margin-bottom: -15px;
-  margin-top: -15px;
+  margin-top: 30px;
 }
 
 #cardAssessmentTitle {

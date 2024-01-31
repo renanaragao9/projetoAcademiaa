@@ -7,10 +7,9 @@
     <div class="container">
         <div class="row">
             <div class="row">
-                <div class="col s12" id="cardFichaTtitle">z
-                    <h5 id="homeUserTitle" class="center">Ficha de treino</h5>
+                <div class="col s12" id="cardFichaTtitle">
+                    <h5 id="homeUserTitle" class="center">Ficha de Treino</h5>
                     <h6 id="homeUserTitle" class="center">{{ $fichaNome->name_training }}</h6>
-                    <p id="underlineAfterTitle">-=-=-=-=-=-=-=-=-=-=-=-</p>
                 </div>
             </div>
         </div>
@@ -21,19 +20,46 @@
                 <div class="col s12 m7">
                     <div class="card" id="card-{{ $index }}">
                         <div class="card-image">
-                            <img class="materialboxed" src="/img/exercise/{{ $studentFicha->image_exercise }}">
+                            <img class="materialboxed" id="image-ficha" src="/img/exercise/{{ $studentFicha->image_exercise }}">
                             <a class="modal-trigger btn-floating halfway-fab waves-effect waves-light red" href="#modal{{$index}}"><i class="material-icons">movie</i></a>
                         </div>
                         
                         <div class="card-content z-depth-1">
+                            
                             <span class="card-title" id="card-title">{{ $studentFicha->name_exercise }}</span>
-            
-                            <p id="card-text"> <strong id="strong"> Serie: </strong> {{ $studentFicha->serie }}</p>
-                            <p id="card-text"> <strong id="strong"> Repetição: </strong> {{ $studentFicha->repetition }}</p>
-                            <p id="card-text"> <strong id="strong"> Carga: </strong> {{ $studentFicha->weight }}</p>
-                            <p id="card-text"> <strong id="strong"> Descanso: </strong> {{ $studentFicha->rest }}</p>
-                            <p id="card-text"> <strong id="strong"> Observação: </strong> {{ $studentFicha->description }} </p>
-                            <p id="card-text"> <strong id="strong"> Criado por: </strong> {{ $firstName }} </p>
+                            <table class="highlight">
+                                <tbody>
+                                    <tr>
+                                        <td id="text-ficha">Serie:</td>
+                                        <td id="text-dados-ficha">{{ $studentFicha->serie }}x</td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td id="text-ficha">Repetição:</td>
+                                        <td id="text-dados-ficha">{{ $studentFicha->repetition }}</td>
+                                    </tr>
+                                
+                                    <tr>
+                                        <td id="text-ficha">Carga:</td>
+                                        <td id="text-dados-ficha">{{ isset($studentFicha->weight) ? $studentFicha->weight : 'Livre' }} </td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td id="text-ficha">Descanso:</td>
+                                        <td id="text-dados-ficha">{{ isset($studentFicha->rest) ? $studentFicha->rest : '00:30' }}</td>
+                                    </tr>
+                                
+                                    <tr>
+                                        <td id="text-ficha">Observação:</td>
+                                        <td id="text-dados-ficha">{{ isset($studentFicha->description) ? $studentFicha->description : 'Nenhuma' }}{{ $studentFicha->description }}</td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td id="text-ficha">Criado por:</td>
+                                        <td id="text-dados-ficha">{{ $firstName }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                         
                         <div class="card-action">
@@ -69,7 +95,7 @@
                 <h4 id="card-title">{{ $studentFicha->name_exercise }}</h4>
                 <div class="card">
                     <div class="card-image">
-                    <img src="/img/exercise/{{ $studentFicha->gif_exercise }}">
+                    <img src="/img/exercise/gif/{{ $studentFicha->gif_exercise }}">
                     </div>
                 </div>
             </div>
