@@ -25,18 +25,6 @@
 
                             <!-- SELECT TREINO DESKTOP -->
                             <div class="input-field col s12 l6" id="select-treino-desktop">
-                                <select name="id_training_fk" id="id_training_fk" required>
-                                    <option value="" disabled selected>Selecione</option>
-
-                                    @foreach ($trainings as $training)
-                                        <option value="{{ $training->id_training }}"> {{ $training->name_training }}</option>
-                                    @endforeach
-                                </select>
-                                <label id="labelSpacing" id="labelSpacing"><h11>*</h11>Treino</label>
-                            </div>
-
-                            <!-- SELECT TREINO MOBILE -->
-                            <div class="input-field col s12 l6" id="select-treino-mobile">
                                 <select name="id_training_fk" id="id_training_fk" class="browser-default" required>
                                     <option value="" disabled selected>Selecione</option>
 
@@ -49,18 +37,6 @@
 
                             <!-- SELECT ORDEM DESKTOP -->
                             <div class="input-field col s12 l6" id="select-ordem-desktop">
-                                <select name="order" id="order" required>
-                                    <option value="" disabled selected>Selecione</option>
-
-                                    @foreach ($numbers as $number)
-                                        <option value="{{ $number }}"> {{ $number }}° </option>
-                                    @endforeach
-                                </select>
-                                <label id="labelSpacing"><h11>*</h11>Ordem do exercício</label>
-                            </div>
-
-                            <!-- SELECT ORDEM MOBILE -->
-                            <div class="input-field col s12 l6" id="select-ordem-mobile">
                                 <select name="order" id="order" class="browser-default" required>
                                     <option value="" disabled selected>Selecione</option>
 
@@ -70,10 +46,10 @@
                                 </select>
                                 <label id="labelSpacing"><h11>*</h11>Ordem do exercício</label>
                             </div>
-
+                            
                             <!-- GPM DESKTOP -->
                             <div class="input-field col s12 l6" id="select-gpm-desktop">
-                                <select name="id_gmuscle_fk_to_ficha" id="id_gmuscle_fk_to_ficha" required>
+                                <select name="id_gmuscle_fk_to_ficha" id="id_gmuscle_fk_to_ficha" class="browser-default" required>
                                     <option value="" disabled selected>Selecione</option>
 
                                     @foreach ($muscleGroups as $muscleGroup)
@@ -83,20 +59,8 @@
                                 <label id="labelSpacing"><h11>*</h11>Grupo Muscular</label>
                             </div>
 
-                            <!-- GPM MOBILE -->
-                            <div class="input-field col s12 l6" id="select-gpm-desktop">
-                                <select name="id_gmuscle_fk_to_ficha"  class="browser-default" required>
-                                    <option value="" disabled selected>Selecione</option>
-
-                                    @foreach ($muscleGroups as $muscleGroup)
-                                        <option value="{{ $muscleGroup->id_gmuscle }}"> {{ $muscleGroup->name_gmuscle }}</option>
-                                    @endforeach
-                                </select>
-                                <label id="labelSpacing"><h11>*</h11>Grupo Muscular</label>
-                            </div>  
-
                             <div class="input-field col s12 l6">
-                                <select name="id_exercise_fk" id="id_exercise_fk" required>
+                                <select name="id_exercise_fk" id="id_exercise_fk" class="browser-default" required>
 
                                 </select>
                                 <label id="labelSpacing"><h11>*</h11>Exercício</label>
@@ -380,30 +344,11 @@
     
         // Define a classe com base na largura da tela
         if (larguraTela > 700) {
-            document.getElementById("select-treino-desktop").style.display = "block";
-            document.getElementById("select-treino-mobile").style.display = "none";
-            document.getElementById("select-ordem-desktop").style.display = "block";
-            document.getElementById("select-ordem-mobile").style.display = "none";
-            document.getElementById("select-gpm-desktop").style.display = "block";
-            document.getElementById("select-gpm-mobile").style.display = "none";
-        } 
-        else 
-        { 
-            document.getElementById("select-treino-desktop").style.display = "none";
-            document.getElementById("select-treino-mobile").style.display = "block";
-            document.getElementById("select-ordem-desktop").style.display = "none";
-            document.getElementById("select-ordem-mobile").style.display = "block";
-            document.getElementById("select-gpm-desktop").style.display = "none";
-            document.getElementById("select-gpm-mobile").style.display = "block";
+            $("#id_training_fk").removeClass("browser-default");
+            $("#order").removeClass("browser-default");
+            $("#id_gmuscle_fk_to_ficha").removeClass("browser-default");
+            $("#id_exercise_fk").removeClass("browser-default");
         }
-
-        $(document).ready(function () {
-        // Verifica se a div com a classe "input-field" está visível
-        if ($('#select-gpm-desktop').is(':visible')) {
-            // Se estiver visível, adiciona um novo ID ao select
-            $('select[name="id_gmuscle_fk_to_ficha"]').attr('id', 'id_gmuscle_fk_to_ficha');
-        }
-    });
         
     </script>
 @endsection
