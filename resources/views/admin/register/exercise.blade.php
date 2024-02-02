@@ -21,8 +21,18 @@
                 <label for="icon-nome">Nome:</label>
               </div>
 
-              <div class="input-field col s12">
+              <div class="input-field col s12" id="select-desktop">
                 <select name="id_gmuscle_fk" required>
+                  <option selected disabled>Selecione o Grupo Muscular:</option>
+                  
+                  @foreach ($muscleGroups as $muscleGroup)
+                      <option value="{{ $muscleGroup->id_gmuscle }}">{{ $muscleGroup->name_gmuscle }}</option>
+                  @endforeach          
+                </select> 
+              </div>
+
+              <div class="input-field col s12" id="select-mobile">
+                <select name="id_gmuscle_fk" class="browser-default" required>
                   <option selected disabled>Selecione o Grupo Muscular:</option>
                   
                   @foreach ($muscleGroups as $muscleGroup)
@@ -113,6 +123,19 @@
         form.submit();
       });
     });
+
+    let larguraTela = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    
+    // Define a classe com base na largura da tela
+    if (larguraTela > 700) {
+      document.getElementById("select-desktop").style.display = "block";
+      document.getElementById("select-mobile").style.display = "none";
+    } 
+    else 
+      {
+        document.getElementById("select-desktop").style.display = "none";
+        document.getElementById("select-mobile").style.display = "block";
+      }
   </script>
 
 @endsection

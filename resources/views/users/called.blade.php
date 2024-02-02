@@ -23,7 +23,7 @@
                 </div>
 
                 <div class="input-field col s12">
-                  <select name="id_instructor_fk" required>
+                  <select name="id_instructor_fk" class="browser-default"  required>
                     <option selected disabled>Selecione um Professor:</option>
                     
                     @foreach ($teachers as $teacher)
@@ -34,7 +34,7 @@
                 </div>
 
                 <div class="input-field col s12 l12">
-                  <select name="urgency">
+                  <select name="urgency" class="browser-default">
                     <option selected disabled>Selecione uma Urgência:</option>
                     <option value="Urgente">Urgente</option>
                     <option value="Medio">Médio</option>

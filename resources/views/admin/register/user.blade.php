@@ -16,12 +16,13 @@
             </div>
 
             <div class="input-field col s12 l6">
-              <i class="material-icons prefix">account_circle</i>
+              <i class="material-icons prefix" id="iconeMobileName">account_circle</i>
               <input name="name" id="icon-nome" type="text" class="validate" required>
               <label for="icon-nome" id="labelSpacing">Nome</label>
             </div>
-          
-            <div class="input-field col s12 l6">
+            
+            <!-- SELECT DESKTOP -->
+            <div class="input-field col s12 l6" id="select-desktop">
               <i class="material-icons prefix">wc</i>
               <select name="sexo">
                 <option value="" disabled selected>Opção</option>
@@ -29,34 +30,35 @@
                 <option value="Feminino">Feminino</option>
                 <option value="Outros">Outros</option>
               </select>
-              <label id="labelSpacing">Sexo</label>
-            </div>                            
+              <label id="label-select-desktop">Sexo</label>
+            </div>
           
             <div class="input-field col s12 l6">
-              <i class="material-icons prefix">phone</i>
+              <i class="material-icons prefix" id="iconeMobile">phone</i>
               <input name="phone" id="icon_telephone" type="text" class="validate">
               <label for="icon_telephone" id="labelSpacing">Telefone</label>
             </div>
           
             <div class="input-field col s12 l6">
-              <i class="material-icons prefix">calendar_month</i>                       
+              <i class="material-icons prefix" id="iconeMobile">calendar_month</i>                       
               <input name="date" type="date" class="datepicker">
             </div>
           
             <div class="input-field col s12 l6">
-              <i class="material-icons prefix">mail</i>
+              <i class="material-icons prefix" id="iconeMobile">mail</i>
               <input name="email" id="email" type="email" class="validate" required>
               <label for="email">E-mail</label>
               <span class="helper-text" data-error="Email Inválido" data-success="Email Valido"></span>
             </div>
           
             <div class="input-field col s12 l6">
-              <i class="material-icons prefix">lock</i>
+              <i class="material-icons prefix" id="iconeMobile">lock</i>
               <input name="password" id="password" type="password" class="validate" required>
               <label for="password">Senha</label>
             </div>
 
-            <div class="input-field col s12">
+             <!-- SELECT DESKTOP -->
+            <div class="input-field col s12" id="select-mobile-desktop">
               <i class="material-icons prefix">assignment_ind</i>
               <select name="profile">
                 <option selected value="0">Aluno(a)</option>
@@ -66,7 +68,30 @@
                 @endif
               </select>
               <label>Perfil</label>
-            </div>    
+            </div>
+
+            <!-- SELECT MOBILE -->
+            <div class="input-field col s12 l6" id="select-mobile">
+              <select name="sexo" class="browser-default">
+                <option value="" disabled selected>Opção</option>
+                <option value="Masculino">Masculino</option>
+                <option value="Feminino">Feminino</option>
+                <option value="Outros">Outros</option>
+              </select>
+              <label id="label-select-desktop">Sexo</label>
+            </div>
+
+            <!-- SELECT MOBILE -->
+            <div class="input-field col s12" id="select-mobile-profile">
+              <select name="profile" class="browser-default">
+                <option selected value="0">Aluno(a)</option>
+                <option value="1">Professor(a)</option>
+                @if(Auth::user()->profile === 2)
+                  <option value="2">Administrador(a)</option>
+                @endif
+              </select>
+              <label>Perfil</label>
+            </div>
 
             <div class="input-field col s12 l12">      
               <button class="btn waves-effect waves-light light-blue darken-4 col s12 l5" id="save-button" type="submit" name="action" onclick="confirmSubmit()">Cadastrar
@@ -127,6 +152,26 @@
       sendBtn.addEventListener('click', function() {
         form.submit();
       });
+    
     });
+
+   
+    let larguraTela = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    
+    // Define a classe com base na largura da tela
+    if (larguraTela > 700) {
+      document.getElementById("select-desktop").style.display = "block";
+      document.getElementById("select-mobile").style.display = "none";
+      document.getElementById("select-mobile-desktop").style.display = "block";
+      document.getElementById("select-mobile-profile").style.display = "none";
+    } 
+    else 
+      {
+        document.getElementById("select-desktop").style.display = "none";
+        document.getElementById("select-mobile").style.display = "block";
+        document.getElementById("select-mobile-desktop").style.display = "none";
+        document.getElementById("select-mobile-profile").style.display = "block";
+      }
+    
   </script>
 @endsection

@@ -412,6 +412,10 @@ nav .brand-logo i.material-icons {
   margin-block: -8px;
 }
 
+#label-select-desktop {
+  padding: 0 0 30px;
+}
+
 /* Paginas de avaliações */
 #assessment-mobile {
   display: flex;
