@@ -118,7 +118,7 @@
                 <div class="card-action">
                     <div class="row">
                         <span class="card-title center" id="profile-title-mobile">Avaliações</span>
-                        @if(count($fichas) > 0)
+                        @if(count($assessments) > 0)
                             @foreach ($assessments as $assessment)
                                 <table class="highlight">
                                     <tbody>

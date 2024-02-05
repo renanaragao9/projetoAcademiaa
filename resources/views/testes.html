@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <title>Carousel com Materialize</title>
+</head>
+<body>
+
+<div class="carousel">
+  <a class="carousel-item" href="#one!"><img src="https://via.placeholder.com/600"></a>
+  <a class="carousel-item" href="#two!"><img src="https://via.placeholder.com/600"></a>
+  <a class="carousel-item" href="#three!"><img src="https://via.placeholder.com/600"></a>
+  <a class="carousel-item" href="#four!"><img src="https://via.placeholder.com/600"></a>
+  <a class="carousel-item" href="#five!"><img src="https://via.placeholder.com/600"></a>
+</div>
+
+<!-- Controles para dispositivos móveis -->
+<div class="carousel-controls-mobile">
+  <a class="carousel-prev-mobile waves-effect waves-light btn">Anterior</a>
+  <a class="carousel-next-mobile waves-effect waves-light btn">Próximo</a>
+</div>
+
+<script>
+  $(document).ready(function(){
+    // Inicialize o carousel
+    $('.carousel').carousel();
+
+    // Controles para dispositivos móveis
+    $('.carousel-prev-mobile').click(function(){
+      $('.carousel').carousel('prev');
+    });
+
+    $('.carousel-next-mobile').click(function(){
+      $('.carousel').carousel('next');
+    });
+  });
+</script>
+
+</body>
+</html>

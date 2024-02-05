@@ -103,7 +103,7 @@ class UserController extends Controller
                 return redirect()->back()->with('msg-warning', 'Error: E-mail já cadastrado!');
             }
         }
-    
+        
         // Se chegou aqui, o email pode ser editado
         $user->update($request->all());
     

@@ -12,7 +12,8 @@
   <!-- Links dos Icones-->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   
   <!-- Link para chamar o chartJS-->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -77,7 +78,7 @@
 
       @if(Auth::user()->profile == 1 || Auth::user()->profile == 2)
         <li class="collapsible"><a href="{{ route('admin.home') }}" class="waves-effect" id="mobile-side"> Painel de controle <i class="material-icons">speed</i></a></li>
-      @endif;
+      @endif
       <li class="collapsible"><a href="{{ route('students.start') }}" class="waves-effect" id="mobile-side"> Início <i class="material-icons">home</i></a></li>
       <li class="collapsible"><a href="{{ route('students.profile', Auth::user()->id) }}" class="waves-effect" id="mobile-side"> Perfil <i class="material-icons">person</i></a></li>
       <li class="collapsible"><a href="{{ route('students.assessment', Auth::user()->id) }}" class="waves-effect" id="mobile-side"> Avaliação <i class="material-icons">analytics</i></a></li>
@@ -174,7 +175,6 @@
     @yield('script')
 
     <script>
-
       document.addEventListener('DOMContentLoaded', function() {
         let elems = document.querySelectorAll('.fixed-mobile');
         let instances = M.FloatingActionButton.init(elems, {

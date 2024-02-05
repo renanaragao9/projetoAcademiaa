@@ -12,6 +12,7 @@ use App\Http\Controllers\CalledController;
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\StudentsController;
 use App\Http\Controllers\StatisticsController;
+use App\Http\Controllers\MediaController;
 use Illuminate\Support\Facades\Route;
 use PHPUnit\Framework\Attributes\Group;
 
@@ -49,6 +50,13 @@ Route::middleware(['auth', 'checkProfile'])->group(function() {
         Route::get('lista-chamados', [CalledController::class, 'called'])->name('admin.called');
         Route::post('criar-chamado', [CalledController::class, 'store'])->name('admin.called.store');
         Route::delete('deletar/{id}', [CalledController::class, 'destroy'])->name('admin.called.destroy');  
+    });
+
+    Route::prefix('admin/midia')->group(function() {
+        Route::get('lista-midias', [MediaController::class, 'show_media_table'])->name('admin.media');
+        Route::get('/criar', [MediaController::class, 'create'])->name('admin.register.media');
+        Route::post('criar-midia', [MediaController::class, 'store'])->name('admin.media.store');
+        Route::delete('deletar/{id}', [MediaController::class, 'destroy'])->name('admin.media.destroy');  
     });
 
     Route::prefix('admin/divisao-do-treino/')->group(function() {

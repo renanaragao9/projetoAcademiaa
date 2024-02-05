@@ -73,8 +73,8 @@
                 <label>Perfil</label>
               </div>  
 
-              <input type="hidden" name="id" value="{{ $user->id }}">
-              <input type="hidden" name="password" value="{{$user->password}}">
+              <input type="" name="id" value="{{ $user->id }}">
+              <input type="" name="password" value="{{$user->password}}">
 
               <div class="input-field col s12 l12">
                 <button class="btn waves-effect waves-light light-blue darken-4 col s12 l5" id="save-button" type="submit" name="action" onclick="confirmSubmit()">Editar

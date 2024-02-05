@@ -25,9 +25,8 @@ class ExerciseController extends Controller
 
     public function create() {
 
-        $muscleGroups = muscleGroup::orderBy('name_gmuscle', 'asc')->get();
 
-        return view('admin.register.exercise', ['muscleGroups' => $muscleGroups]);
+        return view('admin.register.media');
     }
 
     public function store(Request $request) {

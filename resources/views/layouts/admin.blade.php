@@ -179,6 +179,10 @@
             <li class="collapsible">
                 <a href="{{ route('admin.called') }}" class="waves-effect"> Chamados <i class="material-icons">forum</i></a>
             </li>
+
+            <li class="collapsible">
+                <a href="{{ route('admin.register.media') }}" class="waves-effect"> Mídia <i class="material-icons">perm_media</i></a>
+            </li>
         </ul>
     </header>
 

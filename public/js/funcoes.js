@@ -1,7 +1,5 @@
 $(document).ready(function(){
 
-    // Chamadas para ativar os dropdowns
-
     // Chamada para o botao flutuante
     $('.fixed-action-btn').floatingActionButton({
       hoverEnabled: false
@@ -37,12 +35,12 @@ $(document).ready(function(){
     // Chamada para a descrição dos icones na tabela
     $('.tooltipped').tooltip();
 
-    CKEDITOR.replace('body');
+    //CKEDITOR.replace('body');
 
     // Chamada para o limite do textarea
     $('input#input_text, textarea#observation').characterCounter();
 
-    // Chamada para o input Data
+    /*
     $('.datepicker').pickadate({
       monthsFull: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
       monthsShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
@@ -58,7 +56,7 @@ $(document).ready(function(){
       selectMonths: true, 
       selectYears: 15 
       });
-
+  */
 });
 
  // enviar logout pela tag <a> com desktop

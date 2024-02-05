@@ -10,9 +10,24 @@
       <!--Divs para titulo e Reporte -->
       <div class="row">
         <div class="col s12 l10">
-          <h3 id="homeUserTitle">Bom dia, {{$firstName}}. <p id="textUserWelcome">tenha um bom treino</p> </h3>
+            <h3 id="homeUserTitle"> {{ $firstName }}. <br> <p id="textUserWelcome">tenha um bom treino</p></h3>
         </div>
-      </div>  
+      </div>
+
+      <!-- BANNERS -->
+      <div class="carousel-container">
+        <div class="carousel-slide">
+          <img src="/img/ocean.jpg" alt="Imagem 1" class="carousel-item">
+          <img src="/img/404-error.png" alt="Imagem 2" class="carousel-item">
+          <img src="/img/israel.jpeg" alt="Imagem 3" class="carousel-item">
+          <!-- Adicione mais imagens conforme necessário -->
+        </div>
+        
+        <div class="indicator-container"></div>
+
+        <button class="prev-button" onclick="changeSlide(-1)"><i class="material-icons">chevron_left</i></button>
+        <button class="next-button" onclick="changeSlide(1)"><i class="material-icons">chevron_right</i></button>
+      </div>
       
       <!--Div para o bloco de notas -->
       <div class="row">
@@ -115,4 +130,77 @@
     </div>
   </div>
 
+@endsection
+
+@section('script')
+  <script>
+    let currentIndex = 0;
+
+    function changeSlide(index) {
+      const slides = document.querySelector('.carousel-slide');
+      const totalSlides = document.querySelectorAll('.carousel-item').length;
+
+      currentIndex = (currentIndex + index + totalSlides) % totalSlides;
+
+      const translateValue = -currentIndex * 100 + '%';
+      slides.style.transform = 'translateX(' + translateValue + ')';
+      updateIndicators();
+    }
+
+    function updateIndicators() {
+      const indicators = document.querySelectorAll('.indicator');
+      indicators.forEach((indicator, index) => {
+        indicator.classList.remove('active');
+        if (index === currentIndex) {
+          indicator.classList.add('active');
+        }
+      });
+    }
+
+    function autoChangeSlide() {
+      changeSlide(1);
+    }
+
+    setInterval(autoChangeSlide, 2000);
+
+    const totalSlides = document.querySelectorAll('.carousel-item').length;
+    const indicatorContainer = document.querySelector('.indicator-container');
+
+    for (let i = 0; i < totalSlides; i++) {
+      const indicator = document.createElement('div');
+      indicator.classList.add('indicator');
+      indicatorContainer.appendChild(indicator);
+
+      indicator.addEventListener('click', () => {
+        changeSlide(i);
+      });
+    }
+
+    updateIndicators();
+
+    document.addEventListener('DOMContentLoaded', function() {
+      // Função para obter a saudação com base na hora do dia
+      function getSaudacao() {
+          const agora = new Date();
+          const hora = agora.getHours();
+
+          let saudacao;
+
+          if (hora >= 5 && hora < 12) {
+              saudacao = 'Bom dia';
+          } else if (hora >= 12 && hora < 18) {
+              saudacao = 'Boa tarde';
+          } else {
+              saudacao = 'Boa noite';
+          }
+
+          return saudacao;
+      }
+
+      // Exibe a saudação na página
+      const saudacaoElemento = document.getElementById('homeUserTitle');
+      const saudacaoTexto = getSaudacao();
+      saudacaoElemento.textContent = `${saudacaoTexto}, {{ $firstName }}. Tenha um bom treino.`;
+    });
+  </script>
 @endsection

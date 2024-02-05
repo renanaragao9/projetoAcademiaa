@@ -16,7 +16,7 @@
 
                             <div class="input-field col s12 l12" id="input-exercicio">
                                 <h3 id="homeTitle" class="center">Cadastrar Nova Ficha</h3>
-                                <h4 id="homeTitle" class="center">Aluno ({{ $user->name }})</h4>
+                                <h4 id="homeTitle" class="center">Aluno(a) {{ $user->name }}</h4>
                             </div>
 
                             <div class="input-field col s12">
@@ -81,12 +81,12 @@
                             </div>
 
                             <div class="input-field col s12 l6">
-                                <input name="weight" id="weight" type="text" class="validate" value="Livre">
+                                <input name="weight" id="weight" type="text" class="validate" placeholder="Padrao: Livre">
                                 <label id="labelSpacing" for="weight">Peso:</label>
                             </div>
 
                             <div class="input-field col s12 l6">
-                                <input name="rest" id="rest" type="text" class="validate" value="00:30">
+                                <input name="rest" id="rest" type="text" class="validate" placeholder="Padrao: 00:30">
                                 <label id="labelSpacing" for="rest">Descanso:</label>
                             </div>
 
@@ -240,6 +240,20 @@
                     repetition === ""
                 ) {
                     alert("Por favor, preencha todos os campos obrigatórios.");
+                    return;
+                }
+
+                // Verifica se a ordem de treino já existe no array
+                let orderExists = false;
+                for (let i = 0; i < dadosArray.length; i++) {
+                    if (dadosArray[i].order === order) {
+                        orderExists = true;
+                        break;
+                    }
+                }
+
+                if (orderExists) {
+                    alert("Já existe esta ordem de treino. Por favor, modifique.");
                     return;
                 }
 
