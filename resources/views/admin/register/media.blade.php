@@ -9,11 +9,11 @@
     <div class="card white">
       <div class="card-content">           
         <div class="row">
-          <form class="col s12" id="form_media" action="{{ route('admin.register.media.create') }}" method="POST" enctype="multipart/form-data">
+          <form class="col s12" id="form_media" action="{{ route('admin.media.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row">
               <div class="input-field col s12 l12" id="input-exercicio">
-                <h3 id="homeTitle" class="center">Cadastrar <br> Midia</h3>
+                <h3 id="homeTitle" class="center">Cadastrar <br> Mídia</h3>
               </div>
 
               <div class="input-field col s12" id="select-desktop">
@@ -24,13 +24,13 @@
                 </select> 
               </div>
 
-              <div class="input-field col s12" id="select-desktop">
-                <select name="select-media" id="select-meida" required>
+              {{-- <div class="input-field col s12" id="select-desktop">
+                <select name="select-media" id="select-media" required>
                   <option selected disabled>Selecione o tipo de midia:</option>
                   <option value="1"> Imagem </option>
-                  <option value="2"> Video </option>     
+                  <option value="2"> Video </option>
                 </select> 
-              </div>
+              </div> --}}
 
               <div class="file-field col s12 l12">
                 <div class="btn light-blue darken-4">
@@ -38,18 +38,22 @@
                   <input name="img_media" type="file" class="validate" multiple>
               </div>
 
-              <div class="input-field col s12 l12" id="input-exercicio">
-                <input name="title_media " id="icon-titulo" type="text" class="validate" required>
-                <label for="icon-titulo">Link do Vídeo:</label>
+              <div class="file-path-wrapper">
+                <input class="file-path validate" type="text" placeholder="Faça o download da imagem">
               </div>
 
               <div class="input-field col s12 l12" id="input-exercicio">
-                <input name="title_media " id="icon-titulo" type="text" class="validate" required>
+                <input name="link_media" id="icon-media" type="text" class="validate" required>
+                <label for="icon-media">Link do Vídeo:</label>
+              </div>
+
+              <div class="input-field col s12 l12" id="input-exercicio">
+                <input name="title_media" id="icon-titulo" type="text" class="validate" required>
                 <label for="icon-titulo">Titulo:</label>
               </div>
               
               <div class="input-field col s12 l12" id="input-exercicio">
-                <input name="description_media  " id="icon-descricao" type="text" class="validate" required>
+                <input name="description_media" id="icon-descricao" type="text" class="validate" required>
                 <label for="icon-descricao">Descrição:</label>
               </div>
 
