@@ -70,5 +70,9 @@ class User extends Authenticatable
 
     public function assessments() {
         return $this->hasMany(assessment::class, 'id_user_fk');
+    }
+
+    public function medias() {
+        return $this->hasMany(media::class, 'id_user_fk');
     }  
 }

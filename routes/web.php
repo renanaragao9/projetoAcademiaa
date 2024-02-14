@@ -53,7 +53,7 @@ Route::middleware(['auth', 'checkProfile'])->group(function() {
     });
 
     Route::prefix('admin/midia')->group(function() {
-        Route::get('lista-midias', [MediaController::class, 'show_media_table'])->name('admin.media');
+        Route::get('lista-midias', [MediaController::class, 'show_media_table'])->name('admin.table.media');
         Route::get('/criar', [MediaController::class, 'create'])->name('admin.register.media');
         Route::post('criar-midia', [MediaController::class, 'store'])->name('admin.media.store');
         Route::delete('deletar/{id}', [MediaController::class, 'destroy'])->name('admin.media.destroy');  

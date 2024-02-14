@@ -17,65 +17,56 @@
               </div>
 
               <div class="input-field col s12" id="select-desktop">
-                <select name="tipo_media" required>
+                <select name="tipo_media" class="browser-default" id="select-type" required>
                   <option selected disabled>Selecione o tipo de publicação:</option>
                   <option value="1"> Banner </option>
                   <option value="2"> Post </option>     
                 </select> 
               </div>
 
-              {{-- <div class="input-field col s12" id="select-desktop">
-                <select name="select-media" id="select-media" required>
-                  <option selected disabled>Selecione o tipo de midia:</option>
-                  <option value="1"> Imagem </option>
-                  <option value="2"> Video </option>
-                </select> 
-              </div> --}}
-
-              <div class="file-field col s12 l12">
-                <div class="btn light-blue darken-4">
+              <div class="file-field col s12 l12" >
+                <div class="btn light-blue darken-4" id="select-image">
                   <span>Imagem</span>
                   <input name="img_media" type="file" class="validate" multiple>
+                </div>
+
+                <div class="file-path-wrapper" id="select-image-input">
+                  <input class="file-path" type="text" placeholder="Faça o download da imagem">
+                </div>
               </div>
 
-              <div class="file-path-wrapper">
-                <input class="file-path validate" type="text" placeholder="Faça o download da imagem">
-              </div>
-
-              <div class="input-field col s12 l12" id="input-exercicio">
+              <div class="input-field col s12 l12" id="input-link">
                 <input name="link_media" id="icon-media" type="text" class="validate" required>
                 <label for="icon-media">Link do Vídeo:</label>
               </div>
 
-              <div class="input-field col s12 l12" id="input-exercicio">
+              <div class="input-field col s12 l12" id="input-title">
                 <input name="title_media" id="icon-titulo" type="text" class="validate" required>
                 <label for="icon-titulo">Titulo:</label>
               </div>
               
-              <div class="input-field col s12 l12" id="input-exercicio">
+              <div class="input-field col s12 l12" id="input-description">
                 <input name="description_media" id="icon-descricao" type="text" class="validate" required>
                 <label for="icon-descricao">Descrição:</label>
               </div>
 
-              <div class="input-field col s12 l12" id="input-exercicio">
+              <div class="input-field col s12 l12" id="input-tag">
                 <input name="tags_media" id="icon-tags" type="text" class="validate" required>
                 <label for="icon-tags">Tags:</label>
               </div>
                 
               <input type="hidden" name="user_id" id="user_id" value="{{ Auth::user()->id }}">
-
-
+              
               <div class="input-field col s12 l12">      
                 <button class="btn waves-effect waves-light light-blue darken-4 col s12 l5" id="save-button" type="submit" name="action" onclick="confirmSubmit()">Cadastrar
                   <i class="material-icons right">save</i>
                 </button>
                   
-                <a href="{{ route('admin.table.exercise') }}" class="waves-effect waves-light btn right light-blue darken-4 col s12 l5" id=""><i class="material-icons right">table_rows</i>Tabela</a>
+                <a href="{{ route('admin.table.media') }}" class="waves-effect waves-light btn right light-blue darken-4 col s12 l5" id=""><i class="material-icons right">table_rows</i>Tabela</a>
       
                 <div class="input-field col s12 l12">
                   <a href="{{ route('admin.home') }}" class="waves-effect waves-light btn left light-blue darken-4 col s12 l5" id="bottom-form-action"><i class="material-icons right">arrow_back</i>Voltar</a>
                 </div>
-              </div>
             </div>
           </form>
         </div>    
@@ -126,18 +117,28 @@
       });
     });
 
-    let larguraTela = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    selected = document.getElementById("select-type")
     
-    // Define a classe com base na largura da tela
-    if (larguraTela > 700) {
-      document.getElementById("select-desktop").style.display = "block";
-      document.getElementById("select-mobile").style.display = "none";
-    } 
-    else 
-      {
-        document.getElementById("select-desktop").style.display = "none";
-        document.getElementById("select-mobile").style.display = "block";
+    selected.addEventListener('change', function() {
+    
+      if(selected.value == 1) {
+        document.getElementById("input-link").style.display = 'none'
+        document.getElementById("input-description").style.display = 'none'
+        document.getElementById("input-tag").style.display = 'none'
+      
+      } else {
+        document.getElementById("input-link").style.display = 'block'
+        document.getElementById("input-description").style.display = 'block'
+        document.getElementById("input-tag").style.display = 'block'
       }
+    });
+
+    let larguraTela = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+
+    if (larguraTela > 700) {
+      $("#select-type").removeClass("browser-default");
+    }
+
   </script>
 
 @endsection

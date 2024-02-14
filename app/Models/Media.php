@@ -9,9 +9,13 @@ class Media extends Model
 {
     use HasFactory;
 
-    protected $table = 'media';
+    protected $table = 'medias';
 
     protected $primaryKey = 'id_media';
 
-    protected $fillable = ['tipo_media', 'img_media', 'link_media', 'title_media', 'description_media', 'tags_media', 'user_id'];
+    protected $fillable = ['tipo_media', 'img_media', 'link_media', 'title_media', 'description_media', 'tags_media', 'id_user_fk'];
+
+    public function users() {
+        return $this->belongsTo(user::class, 'id_user_fk');
+    }
 }
