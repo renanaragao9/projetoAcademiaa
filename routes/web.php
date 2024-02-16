@@ -56,6 +56,8 @@ Route::middleware(['auth', 'checkProfile'])->group(function() {
         Route::get('lista-midias', [MediaController::class, 'show_media_table'])->name('admin.table.media');
         Route::get('/criar', [MediaController::class, 'create'])->name('admin.register.media');
         Route::post('criar-midia', [MediaController::class, 'store'])->name('admin.media.store');
+        Route::get('/editar/{id}', [MediaController::class, 'edit'])->name('admin.media.edit');
+        Route::put('/atualizar/{id}', [MediaController::class, 'update'])->name('admin.media.update');
         Route::delete('deletar/{id}', [MediaController::class, 'destroy'])->name('admin.media.destroy');  
     });
 

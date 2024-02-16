@@ -87,7 +87,9 @@
 
 
 .carousel-item {
-  min-width: 600px; /* Defina o tamanho desejado para o slide */
+  width: 100%; 
+  max-width: 320px; 
+  height: 400px;
   box-sizing: border-box;
   object-fit: cover;
   border-right: 2px solid #ddd;

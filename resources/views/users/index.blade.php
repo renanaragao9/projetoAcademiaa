@@ -17,9 +17,9 @@
       <!-- BANNERS -->
       <div class="carousel-container">
         <div class="carousel-slide">
-          <img src="/img/ocean.jpg" alt="Imagem 1" class="carousel-item">
-          <img src="/img/404-error.png" alt="Imagem 2" class="carousel-item">
-          <img src="/img/israel.jpeg" alt="Imagem 3" class="carousel-item">
+          @foreach ($mediaBanners as $media)
+            <img src="/img/media/{{$media->img_media}}" alt="{{$media->title_media}}" class="carousel-item">
+          @endforeach
           <!-- Adicione mais imagens conforme necessário -->
         </div>
         

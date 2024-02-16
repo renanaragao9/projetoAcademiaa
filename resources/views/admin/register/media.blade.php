@@ -17,7 +17,7 @@
               </div>
 
               <div class="input-field col s12" id="select-desktop">
-                <select name="tipo_media" class="browser-default" id="select-type" required>
+                <select name="type_media" class="browser-default" id="select-type" required>
                   <option selected disabled>Selecione o tipo de publicação:</option>
                   <option value="1"> Banner </option>
                   <option value="2"> Post </option>     
@@ -36,7 +36,7 @@
               </div>
 
               <div class="input-field col s12 l12" id="input-link">
-                <input name="link_media" id="icon-media" type="text" class="validate" required>
+                <input name="link_media" id="icon-media" type="text" class="validate">
                 <label for="icon-media">Link do Vídeo:</label>
               </div>
 
@@ -46,16 +46,16 @@
               </div>
               
               <div class="input-field col s12 l12" id="input-description">
-                <input name="description_media" id="icon-descricao" type="text" class="validate" required>
+                <input name="description_media" id="icon-descricao" type="text" class="validate">
                 <label for="icon-descricao">Descrição:</label>
               </div>
 
               <div class="input-field col s12 l12" id="input-tag">
-                <input name="tags_media" id="icon-tags" type="text" class="validate" required>
+                <input name="tags_media" id="icon-tags" type="text" class="validate">
                 <label for="icon-tags">Tags:</label>
               </div>
                 
-              <input type="hidden" name="user_id" id="user_id" value="{{ Auth::user()->id }}">
+              <input type="hidden" name="id_user_fk" id="id_user_fk" value="{{ Auth::user()->id }}">
               
               <div class="input-field col s12 l12">      
                 <button class="btn waves-effect waves-light light-blue darken-4 col s12 l5" id="save-button" type="submit" name="action" onclick="confirmSubmit()">Cadastrar

@@ -9,6 +9,7 @@ use App\Models\assessment;
 use App\Models\called;
 use App\Models\statistics;
 use App\Models\user;
+use App\Models\media;
 
 
 class StudentsController extends Controller
@@ -27,13 +28,18 @@ class StudentsController extends Controller
             ->distinct()
             ->get();
 
+            $mediaBanners = Media::where('type_media', 1)->get();
+            $mediaPost = Media::where('type_media', 2)->orderBy('id_media', 'DESC')->first();
+
             $fullName = auth()->user()->name;
             $nameParts = explode(' ', $fullName);
             $firstName = $nameParts[0];
 
             return view('users.index', [
                 'fichas' => $fichas,
-                'firstName' => $firstName
+                'firstName' => $firstName,
+                'mediaBanners' => $mediaBanners,
+                'mediaPost' => $mediaPost
             ]);           
         }
     }
