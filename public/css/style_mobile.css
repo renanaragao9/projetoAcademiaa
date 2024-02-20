@@ -87,15 +87,13 @@
 
 
 .carousel-item {
-  width: 100%; 
-  max-width: 320px; 
+  max-width: 600px; 
   height: 400px;
   box-sizing: border-box;
   object-fit: cover;
   border-right: 2px solid #ddd;
 }
 
-/* Adapte a borda direita do último item ao tamanho do slide */
 .carousel-item:last-child {
   border-right: none;
   border-top-right-radius: 12px;
@@ -160,48 +158,83 @@
 }
 
 .post-container {
-  background-color: #fff;
+  background-color: #ebedf3;
   border-radius: 10px;
   padding: 20px;
   margin-bottom: 20px;
 }
+
+.animated-title {
+  display: flex;
+  align-items: center;
+  animation: bounce 0.5s infinite alternate;
+  font-size: 48px;
+  color: #0c3350;
+}
+
 .post-header {
   display: flex;
   align-items: center;
   margin-bottom: 15px;
 }
+
 .post-header .avatar {
   width: 40px;
   height: 40px;
   border-radius: 50%;
   margin-right: 10px;
 }
+
 .post-header .username {
   font-weight: bold;
   margin-right: 10px;
 }
+
+.post-header .username {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
 .post-content {
   margin-bottom: 15px;
 }
+
 .post-image {
-  width: 100%;
+  max-width: 100%;
+  height: auto;
   border-radius: 10px;
   margin-bottom: 15px;
 }
+
 .post-footer {
   display: flex;
   align-items: center;
 }
+
 .post-footer .icon {
   margin-right: 10px;
   color: #333;
 }
+
 .post-footer .liked {
   color: red !important;
+  animation: pulse 0.5s infinite alternate;
 }
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.2);
+  }
+}
+
 .post-tags {
   margin-bottom: 15px;
+  margin-right: 5px;
 }
+
 .post-tags .tag {
   background-color: #f0f0f0;
   border-radius: 10px;

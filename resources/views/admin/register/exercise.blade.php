@@ -49,6 +49,7 @@
                 
                 <div class="file-path-wrapper">
                   <input class="file-path validate" type="text" placeholder="Faça o download da imagem">
+                  <span id="alert-img">*Para manter uma qualidade boa utilize uma imagem de tamanho 1080 x 1080</span>
                 </div>
               </div>
 

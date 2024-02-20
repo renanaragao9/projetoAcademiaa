@@ -139,6 +139,9 @@ nav .brand-logo i.material-icons {
   color: inherit;
 }
 
+#alert-img {
+  color: red;
+}
 
 @keyframes flash {
   0% {

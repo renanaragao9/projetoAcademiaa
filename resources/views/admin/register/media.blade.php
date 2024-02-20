@@ -31,7 +31,8 @@
                 </div>
 
                 <div class="file-path-wrapper" id="select-image-input">
-                  <input class="file-path" type="text" placeholder="Faça o download da imagem">
+                  <input class="file-path" type="text" placeholder="1080 x 1080">
+                  <span id="alert-img">*Para manter uma qualidade boa utilize uma imagem de tamanho 1080 x 1080</span>
                 </div>
               </div>
 

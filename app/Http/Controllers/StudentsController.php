@@ -9,7 +9,7 @@ use App\Models\assessment;
 use App\Models\called;
 use App\Models\statistics;
 use App\Models\user;
-use App\Models\media;
+use App\Models\Media;
 
 
 class StudentsController extends Controller
