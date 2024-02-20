@@ -131,9 +131,10 @@ Route::middleware(['auth'])->group(function() {
        route::post('criando-estatistica', [StatisticsController::class, 'store'])->name('create_statistics');
        route::get('perfil/{id}', [StudentsController::class, 'profile'])->name('students.profile');
        route::get('ficha-view/{id}', [StudentsController::class, 'fichaPDF'])->name('students.pdf');
-       Route::get('/ficha-pdf/{id}', [PDFController::class, 'generatePDF']);
-       Route::get('/assessment-view/{id}', [StudentsController::class, 'assessmentPDF'])->name('students.assessment-pdf');
-       Route::get('/assessment-pdf/{id}', [PDFController::class, 'generateAssessmentPDF']);
+       Route::get('ficha-pdf/{id}', [PDFController::class, 'generatePDF']);
+       Route::get('assessment-view/{id}', [StudentsController::class, 'assessmentPDF'])->name('students.assessment-pdf');
+       Route::get('assessment-pdf/{id}', [PDFController::class, 'generateAssessmentPDF']);
+       route::get('post', [StudentsController::class, 'posts'])->name('students.posts');
     });
 });
 

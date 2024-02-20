@@ -228,4 +228,22 @@ class StudentsController extends Controller
             'imc' => $imc
         ]);           
     }
+
+    public function posts() {
+
+        $userId = auth()->user()->id;
+
+        // envia a relação de fichas do aluno. OBS: Esse codigo terá que ir em todos as views para o leyout funcionar bem
+        $fichas = Ficha::where('id_user_fk', $userId)
+        ->select('fichas.id_training_fk', 'training_division.name_training')
+        ->join('training_division', 'fichas.id_training_fk', '=', 'training_division.id_training')
+        ->distinct()
+        ->get();
+
+        $posts = Media::with('users')->where('type_media', 2)->get();
+
+        
+
+        return view('users.post', ['posts' => $posts, 'fichas' => $fichas]);
+    }
 }

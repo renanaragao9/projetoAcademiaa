@@ -28,6 +28,29 @@
         <button class="prev-button" onclick="changeSlide(-1)"><i class="material-icons">chevron_left</i></button>
         <button class="next-button" onclick="changeSlide(1)"><i class="material-icons">chevron_right</i></button>
       </div>
+
+      <!-- Post -->
+      <div class="post-container">
+        <div class="post-header">
+          <img src="/img/ocean.jpg" alt="Avatar" class="avatar">
+          <div class="username">John Doe</div>
+          <div class="post-time">2 hours ago</div>
+        </div>
+        <div class="post-content">
+          This is a sample post content. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        </div>
+        <img src="/img/ocean.jpg" alt="Post Image" class="post-image">
+        <div class="post-tags">
+          <span class="tag">Tag1</span>
+          <span class="tag">Tag2</span>
+          <span class="tag">Tag3</span>
+        </div>
+        <div class="post-footer">
+          <a class="icon like"><i class="material-icons">thumb_up</i> Like</a>
+          <a href="#" class="icon"><i class="material-icons">comment</i> Comment</a>
+          <a href="#" class="icon"><i class="material-icons">share</i> Share</a>
+        </div>
+      </div>
       
       <!--Div para o bloco de notas -->
       <div class="row">
@@ -111,6 +134,7 @@
           <a href="{{route('students.assessment-pdf', $ficha->id_training_fk)}}" class="btn-small waves-effect waves-light orange darken-4">Baixar Avaliação <i class="material-icons right">download</i> </a>
         @endif
       </div>
+     
       <!-- Card de chamados -->
       <div class="row">
         <a href="{{ route('students.called', Auth::user()->id) }}">
@@ -122,6 +146,23 @@
             <div class="card-stacked">
               <div class="card-content">
                 <p>Chamados</p>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- Card de Post -->
+      <div class="row">
+        <a href="{{ route('students.posts')}}">
+          <div class="card horizontal z-depth-3" id="card-mobile">
+            <div class="card-image">
+              <i class="material-icons" id="icon-card-mobile">share</i>
+            </div>
+            
+            <div class="card-stacked">
+              <div class="card-content">
+                <p>Postagens</p>
               </div>
             </div>
           </div>
@@ -201,6 +242,12 @@
       const saudacaoElemento = document.getElementById('homeUserTitle');
       const saudacaoTexto = getSaudacao();
       saudacaoElemento.textContent = `${saudacaoTexto}, {{ $firstName }}. Tenha um bom treino.`;
+
+      const likeButton = document.querySelector('.like');
+      likeButton.addEventListener('click', function() {
+        const icon = this.querySelector('.material-icons');
+        icon.classList.toggle('liked');
+      });
     });
   </script>
 @endsection
