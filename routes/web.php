@@ -4,7 +4,6 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ExerciseController;
 use App\Http\Controllers\FichaController;
 use App\Http\Controllers\GroupMuscleController;
-use App\Http\Controllers\TableController;
 use App\Http\Controllers\TrainingDivisionController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AssessmentController;
@@ -13,6 +12,8 @@ use App\Http\Controllers\PDFController;
 use App\Http\Controllers\StudentsController;
 use App\Http\Controllers\StatisticsController;
 use App\Http\Controllers\MediaController;
+use App\Http\Controllers\monthlyTypeController;
+use App\Http\Controllers\paymentsController;
 use Illuminate\Support\Facades\Route;
 use PHPUnit\Framework\Attributes\Group;
 
@@ -36,56 +37,6 @@ Route::middleware(['auth', 'checkProfile'])->group(function() {
     Route::prefix('admin')->group(function() {
         Route::get('/home', [AdminController::class, 'home'])->name('admin.home');
         Route::get('/users-por-mes', [AdminController::class, 'usersPorMes']);
-    });
-
-    Route::prefix('estatisticas/')->group(function() {
-        route::get('/inicio', [StatisticsController::class, 'statistic'])->name('admin.statistic');
-        Route::get('/users-por-mes', [StatisticsController::class, 'usersPorMes']);
-        Route::get('/fichas-por-mes', [StatisticsController::class, 'fichasPorMes']);
-        Route::get('/assessment-por-mes', [StatisticsController::class, 'assessmentPorMes']);
-        Route::get('/called-por-mes', [StatisticsController::class, 'calledPorMes']);
-    });
-
-    Route::prefix('admin/chamados')->group(function() {
-        Route::get('lista-chamados', [CalledController::class, 'called'])->name('admin.called');
-        Route::post('criar-chamado', [CalledController::class, 'store'])->name('admin.called.store');
-        Route::delete('deletar/{id}', [CalledController::class, 'destroy'])->name('admin.called.destroy');  
-    });
-
-    Route::prefix('admin/midia')->group(function() {
-        Route::get('lista-midias', [MediaController::class, 'show_media_table'])->name('admin.table.media');
-        Route::get('/criar', [MediaController::class, 'create'])->name('admin.register.media');
-        Route::post('criar-midia', [MediaController::class, 'store'])->name('admin.media.store');
-        Route::get('/editar/{id}', [MediaController::class, 'edit'])->name('admin.media.edit');
-        Route::put('/atualizar/{id}', [MediaController::class, 'update'])->name('admin.media.update');
-        Route::delete('deletar/{id}', [MediaController::class, 'destroy'])->name('admin.media.destroy');  
-    });
-
-    Route::prefix('admin/divisao-do-treino/')->group(function() {
-        Route::get('/tabela', [TrainingDivisionController::class, 'show_table_training'])->name('admin.table.training');
-        Route::get('/criar', [TrainingDivisionController::class, 'create'])->name('admin.register.training');
-        Route::post('/cadastrar', [TrainingDivisionController::class, 'store'])->name('admin.register.training.create');
-        Route::get('/editar/{id}', [TrainingDivisionController::class, 'edit'])->name('admin.edit.training');
-        Route::put('/atualizar/{id}', [TrainingDivisionController::class, 'update'])->name('admin.edit.training.update');
-        Route::delete('/deletar/{id}', [TrainingDivisionController::class, 'destroy'])->name('admin.training.destroy');
-    });
-    
-    Route::prefix('admin/grupo-muscular/')->group(function() {
-        Route::get('/tabela', [GroupMuscleController::class, 'show_table_groupMuscles'])->name('admin.table.groupmuscle');
-        Route::get('/criar', [GroupMuscleController::class, 'create'])->name('admin.register.groupmuscle');
-        Route::post('/cadastrar', [GroupMuscleController::class, 'store'])->name('admin.register.groupmuscle.create');
-        Route::get('/editar/{id}', [GroupMuscleController::class, 'edit'])->name('admin.edit.groupmuscle');
-        Route::put('/atualizar/{id}', [GroupMuscleController::class, 'update'])->name('admin.edit.groupmuscle.update');
-        Route::delete('/deletar/{id}', [GroupMuscleController::class, 'destroy'])->name('admin.groupmuscle.destroy');
-    });
-    
-    Route::prefix('admin/exercicios/')->group(function() {
-        route::get('/tabela', [ExerciseController::class, 'show_table_exercises'])->name('admin.table.exercise');
-        route::get('/criar', [ExerciseController::class, 'create'])->name('admin.register.exercise');
-        Route::post('/cadastrar', [ExerciseController:: class, 'store'])->name('admin.register.exercise.create');
-        Route::get('/editar/{id}', [ExerciseController::class, 'edit'])->name('admin.edit.exercise');
-        Route::put('/atualizar/{id}', [ExerciseController::class, 'update'])->name('admin.edit.exercise.update');
-        Route::delete('/deletar/{id}', [ExerciseController::class, 'destroy'])->name('admin.exercise.destroy');
     });
 
     Route::prefix('admin/alunos')->group(function() {
@@ -119,10 +70,77 @@ Route::middleware(['auth', 'checkProfile'])->group(function() {
         Route::put('/atualizar/{id}', [AssessmentController::class, 'update'])->name('admin.assessment.update');
         Route::delete('deletar/{id}', [AssessmentController::class, 'destroy'])->name('admin.assessment.destroy');
     });
+
+    Route::prefix('estatisticas/')->group(function() {
+        route::get('/inicio', [StatisticsController::class, 'statistic'])->name('admin.statistic');
+        Route::get('/users-por-mes', [StatisticsController::class, 'usersPorMes']);
+        Route::get('/fichas-por-mes', [StatisticsController::class, 'fichasPorMes']);
+        Route::get('/assessment-por-mes', [StatisticsController::class, 'assessmentPorMes']);
+        Route::get('/called-por-mes', [StatisticsController::class, 'calledPorMes']);
+    });
+
+    Route::prefix('admin/chamados')->group(function() {
+        Route::get('lista-chamados', [CalledController::class, 'called'])->name('admin.called');
+        Route::post('criar-chamado', [CalledController::class, 'store'])->name('admin.called.store');
+        Route::delete('deletar/{id}', [CalledController::class, 'destroy'])->name('admin.called.destroy');  
+    });
+
+    Route::prefix('admin/midia')->group(function() {
+        Route::get('lista-midias', [MediaController::class, 'show_media_table'])->name('admin.table.media');
+        Route::get('/criar', [MediaController::class, 'create'])->name('admin.register.media');
+        Route::post('criar-midia', [MediaController::class, 'store'])->name('admin.media.store');
+        Route::get('/editar/{id}', [MediaController::class, 'edit'])->name('admin.media.edit');
+        Route::put('/atualizar/{id}', [MediaController::class, 'update'])->name('admin.media.update');
+        Route::delete('deletar/{id}', [MediaController::class, 'destroy'])->name('admin.media.destroy');  
+    });
+
+    Route::prefix('admin/tipo_mensalidade')->group(function() {
+        Route::get('lista-tipos', [paymentsController::class, 'show_payments_table'])->name('admin.table.payments');
+        Route::get('/criar', [paymentsController::class, 'create'])->name('admin.register.payments');
+        Route::post('criar-midia', [paymentsController::class, 'store'])->name('admin.payments.store');
+        Route::get('/editar/{id}', [paymentsController::class, 'edit'])->name('admin.payments.edit');
+        Route::put('/atualizar/{id}', [paymentsController::class, 'update'])->name('admin.payments.update');
+        Route::delete('deletar/{id}', [paymentsController::class, 'destroy'])->name('admin.payments.destroy');  
+    });
+
+    Route::prefix('admin/tipo_mensalidade')->group(function() {
+        Route::get('lista-tipos', [monthlyTypeController::class, 'show_monthlyType_table'])->name('admin.table.monthlyType');
+        Route::get('/criar', [monthlyTypeController::class, 'create'])->name('admin.register.monthlyType');
+        Route::post('criar-midia', [monthlyTypeController::class, 'store'])->name('admin.monthlyType.store');
+        Route::get('/editar/{id}', [monthlyTypeController::class, 'edit'])->name('admin.monthlyType.edit');
+        Route::put('/atualizar/{id}', [monthlyTypeController::class, 'update'])->name('admin.monthlyType.update');
+        Route::delete('deletar/{id}', [monthlyTypeController::class, 'destroy'])->name('admin.monthlyType.destroy');  
+    });
+
+    Route::prefix('admin/divisao-do-treino/')->group(function() {
+        Route::get('/tabela', [TrainingDivisionController::class, 'show_table_training'])->name('admin.table.training');
+        Route::get('/criar', [TrainingDivisionController::class, 'create'])->name('admin.register.training');
+        Route::post('/cadastrar', [TrainingDivisionController::class, 'store'])->name('admin.register.training.create');
+        Route::get('/editar/{id}', [TrainingDivisionController::class, 'edit'])->name('admin.edit.training');
+        Route::put('/atualizar/{id}', [TrainingDivisionController::class, 'update'])->name('admin.edit.training.update');
+        Route::delete('/deletar/{id}', [TrainingDivisionController::class, 'destroy'])->name('admin.training.destroy');
+    });
+    
+    Route::prefix('admin/grupo-muscular/')->group(function() {
+        Route::get('/tabela', [GroupMuscleController::class, 'show_table_groupMuscles'])->name('admin.table.groupmuscle');
+        Route::get('/criar', [GroupMuscleController::class, 'create'])->name('admin.register.groupmuscle');
+        Route::post('/cadastrar', [GroupMuscleController::class, 'store'])->name('admin.register.groupmuscle.create');
+        Route::get('/editar/{id}', [GroupMuscleController::class, 'edit'])->name('admin.edit.groupmuscle');
+        Route::put('/atualizar/{id}', [GroupMuscleController::class, 'update'])->name('admin.edit.groupmuscle.update');
+        Route::delete('/deletar/{id}', [GroupMuscleController::class, 'destroy'])->name('admin.groupmuscle.destroy');
+    });
+    
+    Route::prefix('admin/exercicios/')->group(function() {
+        route::get('/tabela', [ExerciseController::class, 'show_table_exercises'])->name('admin.table.exercise');
+        route::get('/criar', [ExerciseController::class, 'create'])->name('admin.register.exercise');
+        Route::post('/cadastrar', [ExerciseController:: class, 'store'])->name('admin.register.exercise.create');
+        Route::get('/editar/{id}', [ExerciseController::class, 'edit'])->name('admin.edit.exercise');
+        Route::put('/atualizar/{id}', [ExerciseController::class, 'update'])->name('admin.edit.exercise.update');
+        Route::delete('/deletar/{id}', [ExerciseController::class, 'destroy'])->name('admin.exercise.destroy');
+    });
 });
 
 Route::middleware(['auth'])->group(function() {
-    // Rotas para os Alunos
     Route::prefix('alunos/')->group(function() {
        route::get('inicio', [StudentsController::class, 'index'])->name('students.start');
        route::get('ficha/{id}', [StudentsController::class, 'ficha'])->name('students.ficha');

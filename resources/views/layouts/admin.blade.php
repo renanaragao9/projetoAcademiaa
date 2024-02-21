@@ -120,25 +120,25 @@
                     <div class="collapsible-body light-blue darken-4">
                         <ul>
                             <li>
-                                <a href="{{ route('admin.user.create') }}"> Aluno <i class="material-icons">person</i></a>
+                                <a href="{{ route('admin.user.create') }}"> Aluno <i class="material-icons">radio_button_unchecked</i> </a>
                             </li>
 
                             <li class="collapsible"></li>
 
                             <li>
-                                <a href="{{ route('admin.register.exercise') }}"> Exercicio <i class="material-icons">fitness_center</i></a>
+                                <a href="{{ route('admin.register.exercise') }}"> Exercicio <i class="material-icons">radio_button_unchecked</i> </a>
                             </li>
 
                             <li class="collapsible"></li>
 
                             <li>
-                                <a href="{{ route('admin.register.groupmuscle') }}"> Grupo Muscular <i class="material-icons">fitness_center</i></a>
+                                <a href="{{ route('admin.register.groupmuscle') }}"> Grupo Muscular <i class="material-icons">radio_button_unchecked</i> </a>
                             </li>
 
                             <li class="collapsible"></li>
 
                             <li>
-                                <a href="{{ route('admin.register.training') }}"> Divisão de Treino <i class="material-icons">fitness_center</i></a>
+                                <a href="{{ route('admin.register.training') }}"> Divisão de Treino <i class="material-icons">radio_button_unchecked</i> </a>
                             </li>
                         </ul>
                     </div>
@@ -152,19 +152,46 @@
                         <div class="collapsible-body light-blue darken-4">
                             <ul>                        
                                 <li>
-                                    <a href="{{ route('admin.table.exercise') }}"> Exercicios <i class="material-icons">table_chart</i></a>
+                                    <a href="{{ route('admin.table.exercise') }}"> Exercicios <i class="material-icons">radio_button_unchecked</i> </a>
                                 </li>
 
                                 <li class="collapsible"></li>
 
                                 <li>
-                                    <a href="{{ route('admin.table.groupmuscle') }}"> Grupos musculares <i class="material-icons">table_chart</i></a>
+                                    <a href="{{ route('admin.table.groupmuscle') }}"> Grupos musculares <i class="material-icons">radio_button_unchecked</i> </a>
                                 </li>
                                 
                                 <li class="collapsible"></li>
                                 
                                 <li>
-                                    <a href="{{ route('admin.table.training') }}"> Divisões do Treino <i class="material-icons">table_chart</i></a>
+                                    <a href="{{ route('admin.table.training') }}"> Divisões do Treino <i class="material-icons">radio_button_unchecked</i> </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="no-padding">
+                <ul class="collapsible collapsible-accordion">
+                    <li>
+                        <a class="collapsible-header waves-effect"> Mensalidades <i class="material-icons">payments</i><i class="material-icons right">arrow_drop_down</i> </a>
+                        <div class="collapsible-body light-blue darken-4">
+                            <ul>                        
+                                <li>
+                                    <a href="{{ route('admin.table.exercise') }}"> Listar <i class="material-icons">radio_button_unchecked</i> </a>
+                                </li>
+
+                                <li class="collapsible"></li>
+
+                                <li>
+                                    <a href="{{ route('admin.table.groupmuscle') }}"> Cadastrar <i class="material-icons">radio_button_unchecked</i></a>
+                                </li>
+                                
+                                <li class="collapsible"></li>
+                                
+                                <li>
+                                    <a href="{{ route('admin.table.monthlyType') }}"> Tipo Mensalidade <i class="material-icons">radio_button_unchecked</i></a>
                                 </li>
                             </ul>
                         </div>
