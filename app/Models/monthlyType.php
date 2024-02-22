@@ -13,5 +13,5 @@ class monthlyType extends Model
 
     protected $primaryKey = 'id_monthly_type';
 
-    protected $fillable = ['name_monthly', 'value', 'observation', 'created_at', 'updated_at'];
+    protected $fillable = ['name_monthly', 'value', 'months', 'observation', 'created_at', 'updated_at'];
 }

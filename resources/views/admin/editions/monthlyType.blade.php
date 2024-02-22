@@ -22,9 +22,28 @@
                 <label for="icon-nome">Nome:</label>
               </div>
 
-              <div class="input-field col s12 l12">
+              <div class="input-field col s12 l6">
                 <input name="value" type="text" class="validate" id="icon_value" value="{{ $monthlyType->value }}" required>
                 <label for="icon_value">Valor:</label>
+              </div>
+
+              <div class="input-field col s12 l6" id="select-month">
+                <select name="months" id="id_months" class="browser-default" required>
+                  <option value="" disabled selected>Selecione</option>
+                  <option value="1" >Um Mês</option>
+                  <option value="2" >Dois Meses</option>
+                  <option value="3" >Tres Meses</option>
+                  <option value="4" >Quatro Meses</option>
+                  <option value="5" >Cinco Meses</option>
+                  <option value="6" >Seis Meses</option>
+                  <option value="7" >Sete Meses</option>
+                  <option value="8" >Oito Meses</option>
+                  <option value="9" >Nove Meses</option>
+                  <option value="10" >Dez Meses</option>
+                  <option value="11" >Onze Meses</option>
+                  <option value="12" >Doze Meses</option>
+                </select>
+                <label id="labelSpacing" id="labelSpacing">Quantidade de Meses</label>
               </div>
 
               <div class="input-field col s12 l12">
@@ -106,5 +125,12 @@
         
         this.value = inputValue;
     });
+
+    let larguraTela = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    
+    // Define a classe com base na largura da tela
+    if (larguraTela > 700) {
+      $("#id_months").removeClass("browser-default");
+    }
   </script>
 @endsection

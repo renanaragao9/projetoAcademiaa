@@ -20,6 +20,8 @@
             <tr>
               <th>Nome</th>
               <th>Email</th>
+              <th>Ativo</th>
+              <th>Situação</th>
               <th>Ações</th>
             </tr>
           </thead>
@@ -28,19 +30,32 @@
               <tr>
                 <td id="td-text">{{ $user->name }}</td>
                 <td id="td-text">{{ $user->email }}</td>
-                <td>                              
-                  <!-- Botão de ação Desktop-->
-                  <a href="{{ route('admin.register.ficha', $user->id) }}" class="btn-floating tooltipped light-blue darken-4 btn-large waves-effect waves-light red" id="action-table-desktop" data-position="bottom" data-tooltip="Ficha"><i class="material-icons">backup_table</i></a>
-                  <a href="{{ route('admin.assessment.create', $user->id) }}" class="btn-floating tooltipped grey darken-4 btn-large waves-effect waves-light red" id="action-table-desktop" data-position="bottom" data-tooltip="Avaliação"><i class="material-icons">assignment</i></a>
-                  <a class="btn-floating tooltipped teal darken-4 btn-large waves-effect waves-light red" id="action-table-desktop" data-position="bottom" data-tooltip="Resetar senha"><i class="material-icons">lock_reset</i></a>
-                  <a href="{{ route('admin.user.edit', $user->id) }}" class="btn-floating tooltipped orange darken-4 btn-large waves-effect waves-light red" id="action-table-desktop" data-position="bottom" data-tooltip="Editar"><i class="material-icons">edit</i></a>
-                  
-                  <form action="{{ route('admin.user.destroy', $user->id) }}" method="POST" class="delete-form">
-                    @csrf
-                    @method('DELETE')
-                    <input type="hidden" name="id" value="{{ $user->id }}">
-                    <button class="btn-floating tooltipped red darken-4 btn-large waves-effect waves-light red delete-button" id="bottom-table-action" data-position="bottom" data-tooltip="Excluir"><i class="material-icons">delete_forever</i></button>
-                  </form>
+                <td id="td-text">
+                  <div class="switch">
+                    <label>
+                      Não
+                      <input type="checkbox" id="myCheckbox">
+                      <span class="lever"></span>
+                      Sim
+                    </label>
+                  </div>
+                </td>
+                <td id="td-text">Sim</td>
+                <td>
+                  <div class="action-buttons">
+                    <!-- Botão de ação Desktop-->
+                    <a href="{{ route('admin.register.payments', $user->id) }}" class="btn-floating tooltipped teal darken-4 btn-large waves-effect waves-light red" data-position="bottom" data-tooltip="Mensalidade"><i class="material-icons">payments</i></a>
+                    <a href="{{ route('admin.register.ficha', $user->id) }}" class="btn-floating tooltipped light-blue darken-4 btn-large waves-effect waves-light red" data-position="bottom" data-tooltip="Ficha"><i class="material-icons">backup_table</i></a>
+                    <a href="{{ route('admin.assessment.create', $user->id) }}" class="btn-floating tooltipped cyan accent-4 btn-large waves-effect waves-light red" data-position="bottom" data-tooltip="Avaliação"><i class="material-icons">assignment</i></a>
+                    <a class="btn-floating tooltipped green lighten-2 btn-large waves-effect waves-light red" data-position="bottom" data-tooltip="Resetar senha"><i class="material-icons">lock_reset</i></a>
+                    <a href="{{ route('admin.user.edit', $user->id) }}" class="btn-floating tooltipped orange darken-4 btn-large waves-effect waves-light red" data-position="bottom" data-tooltip="Editar"><i class="material-icons">edit</i></a>
+                    <form action="{{ route('admin.user.destroy', $user->id) }}" method="POST" class="delete-form">
+                      @csrf
+                      @method('DELETE')
+                      <input type="hidden" name="id" value="{{ $user->id }}">
+                      <button class="btn-floating tooltipped red darken-4 btn-large waves-effect waves-light red delete-button" data-position="bottom" data-tooltip="Excluir"><i class="material-icons">delete_forever</i></button>
+                    </form>
+                  </div>
                 </td>
               </tr>
             @endforeach
@@ -69,6 +84,18 @@
     <div class="modal-footer">
       <a href="#" class="modal-close waves-effect waves-green btn-flat right" id="cancelBtn">Cancelar</a>
       <a href="#" class="modal-close waves-effect waves-green btn light-blue darken-4 left" id="confirmDeleteBtn">Excluir</a>
+    </div>
+  </div>
+
+   <!-- Modal de alerta Check-->
+  <div id="modalConfirmation" class="modal">
+    <div class="modal-content">
+      <h4>Confirmação</h4>
+      <p>Você quer mudar o status do checkbox?</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" id="confirmBtn" class="modal-close waves-effect waves-green btn">Sim</a>
+      <a href="#!" id="cancelBtn" class="modal-close waves-effect waves-red btn-flat">Cancelar</a>
     </div>
   </div>
     
@@ -137,6 +164,26 @@
             instance.close(); // Fechar o modal após a exclusão ser confirmada e o formulário ser enviado.
           });
         });
+      });
+    });
+
+    $(document).ready(function(){
+      $('.modal').modal();
+
+      $('#myCheckbox').on('click', function(){
+        // Exibe o modal
+        $('#modalConfirmation').modal('open');
+      });
+
+      // Quando o botão "Sim" é clicado
+      $('#confirmBtn').on('click', function(){
+        // Faça a lógica necessária para mudar o status do checkbox aqui
+      });
+
+      // Quando o botão "Cancelar" é clicado
+      $('#cancelBtn').on('click', function(){
+        // Desmarca o checkbox
+        $('#myCheckbox').prop('checked', false);
       });
     });
     

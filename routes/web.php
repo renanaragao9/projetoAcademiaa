@@ -94,10 +94,11 @@ Route::middleware(['auth', 'checkProfile'])->group(function() {
         Route::delete('deletar/{id}', [MediaController::class, 'destroy'])->name('admin.media.destroy');  
     });
 
-    Route::prefix('admin/tipo_mensalidade')->group(function() {
-        Route::get('lista-tipos', [paymentsController::class, 'show_payments_table'])->name('admin.table.payments');
-        Route::get('/criar', [paymentsController::class, 'create'])->name('admin.register.payments');
-        Route::post('criar-midia', [paymentsController::class, 'store'])->name('admin.payments.store');
+    Route::prefix('admin/mensalidade')->group(function() {
+        Route::get('/lista-mensalidades', [paymentsController::class, 'index'])->name('admin.payments.index');
+        Route::get('/lista-mensalidades-aluno/{id}', [paymentsController::class, 'indexUser'])->name('admin.payments.indexUser');
+        Route::get('/criar/{id}', [paymentsController::class, 'create'])->name('admin.register.payments');
+        Route::post('/criar-midia', [paymentsController::class, 'store'])->name('admin.payments.store');
         Route::get('/editar/{id}', [paymentsController::class, 'edit'])->name('admin.payments.edit');
         Route::put('/atualizar/{id}', [paymentsController::class, 'update'])->name('admin.payments.update');
         Route::delete('deletar/{id}', [paymentsController::class, 'destroy'])->name('admin.payments.destroy');  

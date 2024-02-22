@@ -9,7 +9,7 @@ use App\Models\assessment;
 use App\Models\called;
 use App\Models\statistics;
 use App\Models\user;
-use App\Models\Media;
+use App\Models\media;
 
 
 class StudentsController extends Controller
@@ -241,8 +241,6 @@ class StudentsController extends Controller
         ->get();
 
         $posts = Media::with('users')->where('type_media', 2)->get();
-
-        
 
         return view('users.post', ['posts' => $posts, 'fichas' => $fichas]);
     }

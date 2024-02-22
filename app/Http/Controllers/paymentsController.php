@@ -3,39 +3,61 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\payments;
+use App\Models\payment;
+use App\Models\user;
+use App\Models\monthlyType;
 
 class paymentsController extends Controller
 {
-    public function show_payments_table() {
+    public function index() {
         
-        $payments = payments::all();
+        $payments = payment::all();
         
         return view('admin.payments', ['payments' => $payments]);
     }
 
-    public function create() {
+    public function indexUser($id) {
+
+        $payments = payment::where('user_id_fk', $id)->get();
+
+        dd($payments);
         
-        return view('admin.register.payments');
+        return view('admin.payments', ['payments' => $payments]);
+    }
+
+    public function create($id) {
+        
+        $user = user::findOrFail($id);
+
+        $type_payments = monthlyType::orderBy('name_monthly', 'asc')->get();
+
+        $form_payments = ['Dinheiro', 'Pix', 'Débito', 'Crédito', 'Boleto', 'Vale'];
+
+        return view('admin.register.payments', [
+            'user' => $user,
+            'type_payments' => $type_payments,
+            'form_payments' => $form_payments
+        ]);
     }
 
     public function store(Request $request) {
+        
         $request->validate([
-            'name_monthly' => 'required',
-            'value' => 'required'
+            'form_payment' => 'required',
+            'monthly_type_id' => 'required',
         ] , [
-            'name_monthly.required' => 'O campo nome não pode está vazio',
-            'value.required' => 'O campo valor não pode está vazio ou quebrado'
+            'form_payment.required' => 'Defina uma forma de pagamento',
+            'monthly_type_id.required' => 'Defina um Tipo de Mensalidade válido'
         ]);
         
-        payments::create($request->all());
+        payment::create($request->all());
 
         return redirect()->back()->with('msg-success', 'Tipo Mensalidade cadastrado com sucesso!');
     }
 
     public function edit($id) {
         
-        $payments = payments::findOrFail($id);
+        $payments = payment::findOrFail($id);
 
         return view('admin.editions.payments', ['payments' => $payments]);
     }
@@ -52,7 +74,7 @@ class paymentsController extends Controller
 
         $paymentsData =  $request->all();
 
-        payments::findOrFail($request->id_monthly_type)->update($paymentsData);
+        payment::findOrFail($request->id_monthly_type)->update($paymentsData);
 
 
         return redirect()->back()->with('msg-success', 'Tipo Mensalidade editado com sucesso!');
@@ -60,7 +82,7 @@ class paymentsController extends Controller
 
     public function destroy($id) {
         
-        $paymentsData = payments::find($id);
+        $paymentsData = payment::find($id);
 
         $paymentsData->delete();
 

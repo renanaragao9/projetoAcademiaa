@@ -329,6 +329,7 @@ nav .brand-logo i.material-icons {
 #td-text {
   font-size: 22px;
   font-weight: bolder;
+  flex-wrap: wrap;
 }
 
 #bottom-table-action {
@@ -359,6 +360,18 @@ nav .brand-logo i.material-icons {
   left: 0px; 
   overflow: hidden; 
   background-color: #0c3350
+}
+
+.action-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 100px;
+}
+
+.action-buttons a,
+.action-buttons button {
+  margin-right: 10px; /* Espaço entre os botões */
+  margin-bottom: 10px; /* Espaço entre as linhas de botões */
 }
 
 /* Cards */
