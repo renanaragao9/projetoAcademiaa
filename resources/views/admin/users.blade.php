@@ -44,7 +44,7 @@
                 <td>
                   <div class="action-buttons">
                     <!-- Botão de ação Desktop-->
-                    <a href="{{ route('admin.register.payments', $user->id) }}" class="btn-floating tooltipped teal darken-4 btn-large waves-effect waves-light red" data-position="bottom" data-tooltip="Mensalidade"><i class="material-icons">payments</i></a>
+                    <a href="{{ route('admin.payments.register', $user->id) }}" class="btn-floating tooltipped teal darken-4 btn-large waves-effect waves-light red" data-position="bottom" data-tooltip="Mensalidade"><i class="material-icons">payments</i></a>
                     <a href="{{ route('admin.register.ficha', $user->id) }}" class="btn-floating tooltipped light-blue darken-4 btn-large waves-effect waves-light red" data-position="bottom" data-tooltip="Ficha"><i class="material-icons">backup_table</i></a>
                     <a href="{{ route('admin.assessment.create', $user->id) }}" class="btn-floating tooltipped cyan accent-4 btn-large waves-effect waves-light red" data-position="bottom" data-tooltip="Avaliação"><i class="material-icons">assignment</i></a>
                     <a class="btn-floating tooltipped green lighten-2 btn-large waves-effect waves-light red" data-position="bottom" data-tooltip="Resetar senha"><i class="material-icons">lock_reset</i></a>

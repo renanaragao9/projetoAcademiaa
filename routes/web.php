@@ -97,7 +97,7 @@ Route::middleware(['auth', 'checkProfile'])->group(function() {
     Route::prefix('admin/mensalidade')->group(function() {
         Route::get('/lista-mensalidades', [paymentsController::class, 'index'])->name('admin.payments.index');
         Route::get('/lista-mensalidades-aluno/{id}', [paymentsController::class, 'indexUser'])->name('admin.payments.indexUser');
-        Route::get('/criar/{id}', [paymentsController::class, 'create'])->name('admin.register.payments');
+        Route::get('/criar/{id}', [paymentsController::class, 'create'])->name('admin.payments.register');
         Route::post('/criar-midia', [paymentsController::class, 'store'])->name('admin.payments.store');
         Route::get('/editar/{id}', [paymentsController::class, 'edit'])->name('admin.payments.edit');
         Route::put('/atualizar/{id}', [paymentsController::class, 'update'])->name('admin.payments.update');

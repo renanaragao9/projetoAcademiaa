@@ -14,4 +14,8 @@ class monthlyType extends Model
     protected $primaryKey = 'id_monthly_type';
 
     protected $fillable = ['name_monthly', 'value', 'months', 'observation', 'created_at', 'updated_at'];
+
+    public function payment() {
+        return $this->hasMany(payment::class, 'monthly_type_id');
+    }  
 }

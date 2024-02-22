@@ -28,8 +28,8 @@ class StudentsController extends Controller
             ->distinct()
             ->get();
 
-            $mediaBanners = Media::where('type_media', 1)->get();
-            $mediaPost = Media::where('type_media', 2)->orderBy('id_media', 'DESC')->first();
+            $mediaBanners = media::where('type_media', 1)->get();
+            $mediaPost = media::where('type_media', 2)->orderBy('id_media', 'DESC')->first();
 
             $fullName = auth()->user()->name;
             $nameParts = explode(' ', $fullName);

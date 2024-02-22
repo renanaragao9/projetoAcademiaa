@@ -74,5 +74,13 @@ class User extends Authenticatable
 
     public function medias() {
         return $this->hasMany(media::class, 'id_user_fk');
+    }
+    
+    public function payment() {
+        return $this->hasMany(media::class, 'user_id');
+    }  
+
+    public function paymentCreator() {
+        return $this->hasMany(media::class, 'user_id_creator');
     }  
 }

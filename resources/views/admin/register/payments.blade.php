@@ -51,8 +51,8 @@
                 </div>
               </div>
 
-              <input type="hidden" name="user_id_fk" value="{{ $user->id }}">
-              <input type="hidden" name="user_creator_fk" value={{ Auth::user()->id }}>
+              <input type="hidden" name="user_id" value="{{ $user->id }}">
+              <input type="hidden" name="user_id_creator" value={{ Auth::user()->id }}>
 
               <div class="input-field col s12 l12">      
                 <button class="btn waves-effect waves-light light-blue darken-4 col s12 l5" id="save-button" type="submit" name="action" onclick="confirmSubmit()">Cadastrar

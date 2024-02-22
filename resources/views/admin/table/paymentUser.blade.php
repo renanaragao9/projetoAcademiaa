@@ -9,8 +9,8 @@
     <div class="card-content">
       <div class="col s12 l12">
         <h3 class="center" id="homeTitle" >Lista de Pagamentos</h3>
-        <h5 class="center" id="homeTitle"> ({{$userName->user->name}})</h5>
-        <a href="{{ route('admin.register.ficha', $userName->id_user_fk) }}" class="waves-effect waves-light btn left light-blue darken-4 col s12 l2" id="bottom-form-action"><i class="material-icons right">arrow_back</i>Voltar</a>
+        <h5 class="center" id="homeTitle"> ({{$payments[0]->user->name}})</h5>
+        <a href="{{ route('admin.payments.register', $payments[0]->user->id) }}" class="waves-effect waves-light btn left light-blue darken-4 col s12 l2" id="bottom-form-action"><i class="material-icons right">arrow_back</i>Voltar</a>
       </div>
     </div>
 
@@ -20,24 +20,30 @@
       <table class="highlight striped centered">
         <thead>
           <tr>
-            <th>Div. Treino</th>
-            <th>Exercício</th>
-            <th>Ordem</th>
-            <th>Ação</th>
+            <th>ID</th>
+            <th>Mensalidade</th>
+            <th>Data Pgto</th>
+            <th>Forma Pgto</th>
+            <th>Valor</th>
+            <th>Data Vencimento</th>
+            <th>Ações</th>
           </tr>
         </thead>
         
         <tbody id="table-body">
-          @foreach( $fichaUsers as $fichaUser)
+          @foreach( $payments as $payment)
             <tr>
-              <td id="td-text">{{ $fichaUser->training->name_training }}</td>
-              <td id="td-text"> {{ $fichaUser->exercise->name_exercise }} </td>
-              <td id="td-text">{{ $fichaUser->order }}º</td>
+              <td id="td-text">{{ $payment->id_payment }}</td>
+              <td id="td-text">{{ $payment->monthly->name_monthly }}</td>
+              <td id="td-text"> {{date( 'd/m/Y' , strtotime($payment->date_payment))}}</td>
+              <td id="td-text">{{ $payment->form_payment }}</td>
+              <td id="td-text">R$ {{ $payment->value_payment }}</td>
+              <td id="td-text">{{date( 'd/m/Y' , strtotime($payment->date_due_payment))}}</td>
               <td>
                 <!-- Botão de ações Desktop-->
-                <a href="{{ route('admin.edit.ficha', $fichaUser->id_ficha) }}" class="btn-floating tooltipped orange darken-4 btn-large waves-effect waves-light red" id="action-table-desktop" data-position="bottom" data-tooltip="Editar"><i class="material-icons">edit</i></a>
+                <a href="{{ route('admin.payments.edit', $payment->id_payment) }}" class="btn-floating tooltipped orange darken-4 btn-large waves-effect waves-light red" id="action-table-desktop" data-position="bottom" data-tooltip="Editar"><i class="material-icons">edit</i></a>
                 
-                <form action="{{ route('admin.ficha.destroy' , $fichaUser->id_ficha) }}" method="POST" class="delete-form">
+                <form action="{{ route('admin.payments.destroy' , $payment->id_payment) }}" method="POST" class="delete-form">
                   @csrf
                   @method('DELETE')
                   <input type="hidden" name="id" value="$fichaUser->id_ficha">
