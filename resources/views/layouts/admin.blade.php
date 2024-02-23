@@ -179,7 +179,7 @@
                         <div class="collapsible-body light-blue darken-4">
                             <ul>                        
                                 <li>
-                                    <a href="{{ route('admin.table.exercise') }}"> Listar <i class="material-icons">radio_button_unchecked</i> </a>
+                                    <a href="{{ route('admin.payments.index') }}"> Listar <i class="material-icons">radio_button_unchecked</i> </a>
                                 </li>
 
                                 <li class="collapsible"></li>

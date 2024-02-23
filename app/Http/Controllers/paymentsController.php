@@ -12,7 +12,7 @@ class paymentsController extends Controller
 {
     public function index() {
         
-        $payments = payment::all();
+        $payments = payment::orderBy('id_payment', 'DESC')->get();
         
         return view('admin.payments', ['payments' => $payments]);
     }
@@ -60,7 +60,7 @@ class paymentsController extends Controller
 
         payment::create($request->all());
 
-        return redirect()->back()->with('msg-success', 'Tipo Mensalidade cadastrado com sucesso!');
+        return redirect()->back()->with('msg-success', 'Mensalidade cadastrada com sucesso!');
     }
 
     public function edit($id) {
@@ -79,21 +79,21 @@ class paymentsController extends Controller
     }
 
     public function update(Request $request) {
-        
-        $request->validate([
-            'name_monthly' => 'required',
-            'value' => 'required'
-        ] , [
-            'name_name_monthly.required' => 'O campo nome não pode está vazio',
-            'value.required' => 'O campo valor não pode está vazio ou quebrado'
-        ]);
+
+        $date = Carbon::parse($request->date_payment);
+
+        $meses = monthlyType::where('id_monthly_type', $request->monthly_type_id)->first();
+
+        $due_date = $date->copy()->addMonths($meses->months);
+
+        $request->merge(['date_due_payment' => $due_date->toDateString()]); 
 
         $paymentsData =  $request->all();
 
-        payment::findOrFail($request->id_monthly_type)->update($paymentsData);
+        payment::findOrFail($request->id_payment)->update($paymentsData);
 
 
-        return redirect()->back()->with('msg-success', 'Tipo Mensalidade editado com sucesso!');
+        return redirect()->back()->with('msg-success', 'Mensalidade editada com sucesso!');
     }
 
     public function destroy($id) {
@@ -102,6 +102,6 @@ class paymentsController extends Controller
 
         $paymentsData->delete();
 
-        return redirect()->back()->with('msg-success', 'Tipo Mensalidade excluído com sucesso!');
+        return redirect()->back()->with('msg-success', 'Mensalidade excluída com sucesso!');
     }
 }

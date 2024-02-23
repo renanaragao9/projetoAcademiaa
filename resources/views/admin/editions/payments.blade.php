@@ -9,7 +9,7 @@
     <div class="card white">
       <div class="card-content">           
         <div class="row">
-          <form class="col s12" id="form_payment" action="{{ route('admin.payments.update', $payment->id_payment) }}" method="POST" enctype="multipart/form-data">
+          <form class="col s12" id="payment" action="{{ route('admin.payments.update', $payment->id_payment) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="row">                  
@@ -35,7 +35,7 @@
                 </div>
   
                 <div class="input-field col s12 l6" id="select-mensalidade">
-                  <select name="form_payment" id="form_payment" class="browser-default" required>
+                  <select name="form_payment" id="form_payments" class="browser-default" required>
                     <option value="" disabled selected>Selecione</option>
   
                     @foreach ($form_payments as $form_payment)
@@ -49,22 +49,20 @@
                   <div class="input-field col s12 l6">
                     <input name="date_payment" type="date" class="validate" id="icon_date" required>
                     <label for="icon_date">Data do Pagamento:</label>
+                    <span id="alert-img">*Cuidado, ao editar a mensalidade do aluno fique atento a data</span>
                   </div>
                 </div>
   
                 <input type="hidden" name="user_id" value="{{ $payment->user->id }}">
                 <input type="hidden" name="user_id_creator" value={{ Auth::user()->id }}>
+                <input type="hidden" name="id_payment" value="{{ $payment->id_payment }}">
   
                 <div class="input-field col s12 l12">      
-                  <button class="btn waves-effect waves-light light-blue darken-4 col s12 l5" id="save-button" type="submit" name="action" onclick="confirmSubmit()">Cadastrar
+                  <button class="btn waves-effect waves-light light-blue darken-4 col s12 l5" id="save-button" type="submit" name="action" onclick="confirmSubmit()">Editar
                     <i class="material-icons right">save</i>
                   </button>
                     
-                  <a href="{{ route('admin.payments.indexUser', $payment->user->id) }}" class="waves-effect waves-light btn right light-blue darken-4 col s12 l5" id=""><i class="material-icons right">table_rows</i>Pagamentos</a>
-        
-                  <div class="input-field col s12 l12">
-                    <a href="{{ route('admin.users') }}" class="waves-effect waves-light btn left light-blue darken-4 col s12 l5" id="bottom-form-action"><i class="material-icons right">arrow_back</i>Voltar</a>
-                  </div>
+                  <a href="{{ route('admin.payments.indexUser', $payment->user->id) }}" class="waves-effect waves-light btn right light-blue darken-4 col s12 l5" id=""><i class="material-icons right">arrow_back</i>Voltar</a>
                 </div>
               </div>
           </form>
@@ -78,7 +76,7 @@
     <div class="modal-content">
       <i class="material-icons" id="modal-icon-alert">info</i>
       <h4>Confirmação de Edição</h4>
-      <p>Deseja realmente editar o Tipo da Mensalidade ?</p>
+      <p>Deseja realmente editar a Mensalidade de {{$payment->user->name}} ?</p>
     </div>
 
     <div class="modal-footer">
@@ -96,7 +94,7 @@
       
       let modal = document.getElementById('modal-alerta');
       let instance = M.Modal.init(modal);
-      let form = document.querySelector('#payments');
+      let form = document.querySelector('#payment');
 
       form.addEventListener('submit', function(event) {
         event.preventDefault();
@@ -133,7 +131,7 @@
         // Define a classe com base na largura da tela
         if (larguraTela > 700) {
             $("#id_form_payment").removeClass("browser-default");
-            $("#form_payment").removeClass("browser-default");
+            $("#form_payments").removeClass("browser-default");
         }
 
         $(document).ready(function(){

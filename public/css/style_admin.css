@@ -254,6 +254,12 @@ nav .brand-logo i.material-icons {
   text-align: center;
 }
 
+/* VIEW */
+#view-img {
+ width: 150px;
+ max-height: 180px;
+}
+
 /* CARD MOBILE */
 #title-bv {
   color: #031523d4;

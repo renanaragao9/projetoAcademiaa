@@ -40,6 +40,7 @@ Route::middleware(['auth', 'checkProfile'])->group(function() {
     });
 
     Route::prefix('admin/alunos')->group(function() {
+        Route::get('/ver/{id}', [UserController::class, 'view'])->name('admin.users.view');
         Route::get('/tabela', [UserController::class, 'users'])->name('admin.users');
         Route::get('/criar', [UserController::class, 'create'])->name('admin.user.create');
         route::post('/cadastrar', [UserController::class,'store'])->name('admin.user.store');

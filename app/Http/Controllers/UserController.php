@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Models\Ficha;
+use App\Models\ficha;
+use App\Models\payment;
+use App\Models\statistics;
+use App\Models\assessment;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -17,6 +20,38 @@ use Carbon\Carbon;
 
 class UserController extends Controller
 {
+
+    public function view($id) {
+
+        $user = $user = User::findOrFail($id);
+
+        $payments = payment::where('user_id', $id)->orderBy('id_payment', 'DESC')->take(4)->get();
+
+        $fichas = Ficha::where('id_user_fk', $id)
+            ->select('fichas.id_training_fk', 'training_division.name_training')
+            ->join('training_division', 'fichas.id_training_fk', '=', 'training_division.id_training')
+            ->distinct()
+            ->get();
+        
+        $statistics = statistics::join('users', 'statistics.id_user_fk', '=', 'users.id')
+            ->join('fichas', 'statistics.id_ficha_fk', '=', 'fichas.id_ficha')
+            ->join('training_division', 'fichas.id_training_fk', '=', 'training_division.id_training')
+            ->select('statistics.*', 'users.name', 'training_division.name_training')
+            ->orderBy('id_statistic', 'DESC')
+            ->where('statistics.id_user_fk', $id)
+            ->take(5)
+            ->get();
+
+        $assessments = assessment::where('id_user_fk', $id)->get();
+
+        return view('admin.view.user', [
+            'user' => $user,
+            'payments' => $payments,
+            'fichas' => $fichas,
+            'statistics' => $statistics,
+            'assessments' => $assessments
+        ]);
+    }
 
     public function users() {
 
