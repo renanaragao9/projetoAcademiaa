@@ -25,7 +25,7 @@ class UserController extends Controller
 
         $user = $user = User::findOrFail($id);
 
-        $payments = payment::where('user_id', $id)->orderBy('id_payment', 'DESC')->take(4)->get();
+        $payments = payment::where('user_id', $id)->orderBy('id_payment', 'DESC')->get();
 
         $fichas = Ficha::where('id_user_fk', $id)
             ->select('fichas.id_training_fk', 'training_division.name_training')
@@ -39,7 +39,6 @@ class UserController extends Controller
             ->select('statistics.*', 'users.name', 'training_division.name_training')
             ->orderBy('id_statistic', 'DESC')
             ->where('statistics.id_user_fk', $id)
-            ->take(5)
             ->get();
 
         $assessments = assessment::where('id_user_fk', $id)->get();

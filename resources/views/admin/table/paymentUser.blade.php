@@ -37,7 +37,7 @@
               <td id="td-text">{{ $payment->monthly->name_monthly }}</td>
               <td id="td-text"> {{date( 'd/m/Y' , strtotime($payment->date_payment))}}</td>
               <td id="td-text">{{ $payment->form_payment }}</td>
-              <td id="td-text">R$ {{ $payment->value_payment }}</td>
+              <td id="td-text">R$ {{ number_format($payment->value_payment, 2, ',', '.') }} </td>
               <td id="td-text">{{date( 'd/m/Y' , strtotime($payment->date_due_payment))}}</td>
               <td>
                 <!-- Botão de ações Desktop-->

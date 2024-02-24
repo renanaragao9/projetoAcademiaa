@@ -14,7 +14,7 @@
                     <div class="card-image">
                         <!-- Imagem de perfil -->
                         <div class="image-container">
-                            <div class="image-preview">
+                            <div class="image-preview" id="card-image center">
                                 <img src="/img/profile_photo_path/{{Auth::user()->profile_photo_path}}" class="circle responsive-img materialboxed" id="profile-img-mobile" alt="Imagem de Perfil">
                             </div>
                             
@@ -35,27 +35,27 @@
                         <table class="highlight">
                             <tbody>
 
-                                <tr>
+                                <tr id="view-tr">
                                     <td id="text-profile">Nome:</td>
                                     <td id="text-dados-profile">{{ $userProfile->name }}</td>
                                 </tr>
 
-                                <tr>
+                                <tr id="view-tr">
                                     <td id="text-profile">Email:</td>
                                     <td id="text-dados-profile">{{ $userProfile->email }}</td>
                                 </tr>
                                 
-                                <tr>
+                                <tr id="view-tr">
                                     <td id="text-profile">Data de Nascimento:</td>
                                     <td id="text-dados-profile">{{ \Carbon\Carbon::parse($userProfile->date)->format('d/m/Y') }}</td>
                                 </tr>
                             
-                                <tr>
+                                <tr id="view-tr">
                                     <td id="text-profile">Sexo:</td>
                                     <td id="text-dados-profile">{{ $userProfile->sexo }}</td>
                                 </tr>
                                 
-                                <tr>
+                                <tr id="view-tr">
                                     <td id="text-profile">Telefone:</td>
                                     <td id="text-dados-profile">{{ $userProfile->phone }}</td>
                                 </tr>

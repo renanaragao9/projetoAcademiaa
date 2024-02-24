@@ -31,13 +31,13 @@
                 <td>
                   <div class="action-buttons">
                     <!-- Botão de ação Desktop-->
-                    <a href="{{ route('admin.payments.register', $user->id) }}" class="btn-floating tooltipped teal darken-4 btn-large waves-effect waves-light red" data-position="bottom" data-tooltip="Mensalidade"><i class="material-icons">payments</i></a>
-                    <a href="{{ route('admin.register.ficha', $user->id) }}" class="btn-floating tooltipped light-blue darken-4 btn-large waves-effect waves-light red" data-position="bottom" data-tooltip="Ficha"><i class="material-icons">backup_table</i></a>
-                    <a href="{{ route('admin.assessment.create', $user->id) }}" class="btn-floating tooltipped cyan accent-4 btn-large waves-effect waves-light red" data-position="bottom" data-tooltip="Avaliação"><i class="material-icons">assignment</i></a>
-                    <a class="btn-floating tooltipped green lighten-2 btn-large waves-effect waves-light red" data-position="bottom" data-tooltip="Resetar senha"><i class="material-icons">lock_reset</i></a>
-                    <a href="{{ route('admin.user.edit', $user->id) }}" class="btn-floating tooltipped orange darken-4 btn-large waves-effect waves-light red" data-position="bottom" data-tooltip="Editar"><i class="material-icons">edit</i></a>
                     <a href="{{ route('admin.users.view', $user->id) }}" class="btn-floating tooltipped cyan darken-4 btn-large waves-effect waves-light red" data-position="bottom" data-tooltip="Perfil"><i class="material-icons">person</i></a>
-                    <form action="{{ route('admin.user.destroy', $user->id) }}" method="POST" class="delete-form">
+                    <a href="{{ route('admin.payments.register', $user->id) }}" class="btn-floating tooltipped teal darken-4 btn-large waves-effect waves-light red" id="action-buttons-desktop" data-position="bottom" data-tooltip="Mensalidade"><i class="material-icons">payments</i></a>
+                    <a href="{{ route('admin.register.ficha', $user->id) }}" class="btn-floating tooltipped light-blue darken-4 btn-large waves-effect waves-light red" id="action-buttons-desktop" data-position="bottom" data-tooltip="Ficha"><i class="material-icons">backup_table</i></a>
+                    <a href="{{ route('admin.assessment.create', $user->id) }}" class="btn-floating tooltipped cyan accent-4 btn-large waves-effect waves-light red" id="action-buttons-desktop" data-position="bottom" data-tooltip="Avaliação"><i class="material-icons">assignment</i></a>
+                    <a class="btn-floating tooltipped green lighten-2 btn-large waves-effect waves-light red"  id="action-buttons-desktop" data-position="bottom" data-tooltip="Resetar senha" ><i class="material-icons">lock_reset</i></a>
+                    <a href="{{ route('admin.user.edit', $user->id) }}" class="btn-floating tooltipped orange darken-4 btn-large waves-effect waves-light red" id="action-buttons-desktop" data-position="bottom" data-tooltip="Editar"><i class="material-icons">edit</i></a>
+                    <form action="{{ route('admin.user.destroy', $user->id) }}" method="POST" class="delete-form"  id="action-buttons-desktop">
                       @csrf
                       @method('DELETE')
                       <input type="hidden" name="id" value="{{ $user->id }}">

@@ -1,3 +1,18 @@
+/* PROFILE */
+#profile-img-mobile {
+  width: 220px;
+  max-height: 250px;
+  border: 4px solid #0c3350; /* Cor e largura da borda */
+  object-fit: cover; /* Manter a proporção da imagem e preencher a área designada */
+}
+
+.image-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+}
+
 /* Estilizando o select */
 .input-field select.browser-default {
     border: none;
