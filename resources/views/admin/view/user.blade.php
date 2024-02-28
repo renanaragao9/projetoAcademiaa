@@ -191,9 +191,22 @@
                             <tr>
                                 <td id="text-profile">Mensalidade:</td>
                                 <td id="text-dados-profile"> R$ {{ number_format(DB::table('payments')->where('user_id', $user->id)->sum(DB::raw('CAST(value_payment AS DECIMAL(10,2))')), 2, ',', '.') }} </td>
-                                <td id="text-profile">Prazo:</td>
-                                <td id="text-dados-profile"> \as </td>
-                            </tr>         
+                            </tr>
+                           
+                            <tr>
+                                <td id="text-profile">Fichas:</td>
+                                <td id="text-dados-profile"> {{ count($fichas) }} </td>
+                            </tr>
+                            
+                            <tr>
+                                <td id="text-profile">Treino Finalizado:</td>
+                                <td id="text-dados-profile"> {{ count($statistics) }} </td>
+                            </tr>  
+                            
+                            <tr>
+                                <td id="text-profile">Avaliações:</td>
+                                <td id="text-dados-profile"> {{ count($assessments) }} </td>
+                            </tr>  
                         </tbody>                 
                     </table>
                 </div>

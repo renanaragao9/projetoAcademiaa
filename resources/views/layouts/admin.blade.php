@@ -185,7 +185,7 @@
                                 <li class="collapsible"></li>
 
                                 <li>
-                                    <a href="{{ route('admin.table.groupmuscle') }}"> Cadastrar <i class="material-icons">radio_button_unchecked</i></a>
+                                    <a href="{{ route('admin.payments.report') }}"> Relatorio <i class="material-icons">radio_button_unchecked</i></a>
                                 </li>
                                 
                                 <li class="collapsible"></li>

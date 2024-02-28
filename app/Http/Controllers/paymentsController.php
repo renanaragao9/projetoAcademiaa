@@ -104,4 +104,11 @@ class paymentsController extends Controller
 
         return redirect()->back()->with('msg-success', 'Mensalidade excluída com sucesso!');
     }
+
+    public function report() {
+        
+        $periods = ['Mês', 'Intervalo'];
+
+        return view('admin.report.payment', ['periods' => $periods]);
+    }
 }

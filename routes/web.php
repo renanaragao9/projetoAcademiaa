@@ -102,7 +102,10 @@ Route::middleware(['auth', 'checkProfile'])->group(function() {
         Route::post('/criar-midia', [paymentsController::class, 'store'])->name('admin.payments.store');
         Route::get('/editar/{id}', [paymentsController::class, 'edit'])->name('admin.payments.edit');
         Route::put('/atualizar/{id}', [paymentsController::class, 'update'])->name('admin.payments.update');
-        Route::delete('deletar/{id}', [paymentsController::class, 'destroy'])->name('admin.payments.destroy');  
+        Route::delete('deletar/{id}', [paymentsController::class, 'destroy'])->name('admin.payments.destroy');
+        Route::get('/relatorio', [paymentsController::class, 'report'])->name('admin.payments.report');
+        Route::post('mensalidade-pdf', [PDFController::class, 'generateReportPayment'])->name('admin.payments.report-pdf');
+
     });
 
     Route::prefix('admin/tipo_mensalidade')->group(function() {

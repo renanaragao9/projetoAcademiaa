@@ -10,6 +10,10 @@ use App\Models\assessment;
 use App\Models\called;
 use App\Models\statistics;
 use App\Models\user;
+use App\Models\payment;
+use Carbon\Carbon;
+
+use function Psy\debug;
 
 // Controllers e Views Bagunçadas para se adpatar ao formato do PDF PRESTAR BEM ATENÇÃO
 class PDFController extends Controller
@@ -91,5 +95,54 @@ class PDFController extends Controller
         $dompdf->render();
        
         return $dompdf->stream('Avaliacao_'.$student->name.'.pdf');
+    }
+
+    public function generateReportPayment(Request $request)
+    {
+
+        $options = new Options();
+        $options->set('isHtml5ParserEnabled', true);
+        
+        $dompdf = new Dompdf($options);
+
+        $dataReport = $request->all();
+        
+        if ($dataReport['period'] === 'Mês' ) {
+            
+            $dateMonthly = $dataReport['date_monthly'];
+
+            list($year, $month) = explode('-', $dateMonthly);
+
+            $startDate = Carbon::createFromDate($year, $month, 1);
+            $endDate = $startDate->copy()->endOfMonth();
+
+            $dataPayments = Payment::whereBetween('date_payment', [$startDate, $endDate])->get();
+            
+        } else {
+            
+            $dateInterval1 = $dataReport['date_interval1'];
+            $dateInterval2 = $dataReport['date_interval2'];
+
+            $startDate = Carbon::parse($dateInterval1);
+            $endDate = Carbon::parse($dateInterval2);
+
+            if ($startDate > $endDate) {
+            $temp = $startDate;
+            $startDate = $endDate;
+            $endDate = $temp;
+            }
+
+            $dataPayments = Payment::whereBetween('date_payment', [$startDate, $endDate])->get();
+        }
+        
+        $html = View('users.pdf.fichaAluno')
+        ->with('dataPayments', $dataPayments)
+        ->render();
+        
+        $dompdf->loadHtml($html,);
+        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->render();
+       
+        return $dompdf->stream('Relatorio_Mensalidade.pdf');
     }
 }

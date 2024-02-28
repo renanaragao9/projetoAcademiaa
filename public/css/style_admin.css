@@ -328,6 +328,8 @@ nav .brand-logo i.material-icons {
   margin-bottom: -30px;
 }
 
+/* TRANSIÇÃO RELATORIO */
+
 /* label focus color */
 .input-field input:focus + label {
   color: #0c3350 !important;
