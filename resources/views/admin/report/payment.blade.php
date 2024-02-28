@@ -23,6 +23,7 @@
                     <option value="{{ $period }}">{{ $period }}</option>
                   @endforeach
                 </select>
+                <label id="labelSpacing"><h11>*</h11>Período</label>
               </div>
               
               <!-- Se Mes -->
@@ -37,10 +38,22 @@
                 <i class="material-icons prefix" id="iconeMobile">calendar_month</i>
                 <input name="date_interval1" type="date" class="datepicker">
               </div>
+              
               <div class="input-field col s12 l6" id="interval2" style="display:none;">
                 <i class="material-icons prefix" id="iconeMobile">calendar_month</i>
                 <input name="date_interval2" type="date" class="datepicker">
               </div>
+
+              <div class="input-field col s12" id="select-report">
+                <select name="form_payment" id="for_payment" required>
+                  <option value="all" selected>Todos</option>
+                  @foreach ($form_payments as $form_payment)
+                    <option value="{{ $form_payment }}">{{ $form_payment }}</option>
+                  @endforeach
+                </select>
+                <label id="labelSpacing"><h11>*</h11>Forma de Pagamento</label>
+              </div>
+              
 
               <div class="input-field col s12 l12">      
                 <button class="btn waves-effect waves-light light-blue darken-4 col s12 l5" id="save-button" type="submit" name="action" onclick="confirmSubmit()">Criar

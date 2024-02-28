@@ -134,7 +134,19 @@ class PDFController extends Controller
 
             $dataPayments = Payment::whereBetween('date_payment', [$startDate, $endDate])->get();
         }
+
+        if($dataReport['form_payment'] === 'all') {
+            $payments = $dataPayments;
+        } else {
+            $method = 'dinheiro'; // Método de pagamento desejado
+
+            $filteredPayments = array_filter($dataPayments, function($payment) use ($method) {
+                return $payment['form_payment'] == $method;
+            });
+        }
         
+        dd($payments);
+
         $html = View('users.pdf.fichaAluno')
         ->with('dataPayments', $dataPayments)
         ->render();

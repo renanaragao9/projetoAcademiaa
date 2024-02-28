@@ -109,6 +109,11 @@ class paymentsController extends Controller
         
         $periods = ['Mês', 'Intervalo'];
 
-        return view('admin.report.payment', ['periods' => $periods]);
+        $form_payments = ['Dinheiro', 'Pix', 'Débito', 'Crédito', 'Boleto', 'Vale'];
+
+        return view('admin.report.payment', [
+            'periods' => $periods,
+            'form_payments' => $form_payments
+        ]);
     }
 }
