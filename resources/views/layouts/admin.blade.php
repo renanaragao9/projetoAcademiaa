@@ -108,10 +108,58 @@
                 <a href="{{ route('students.start') }}" class="waves-effect"> Minha Ficha <i class="material-icons" id="nav-title-icon">library_books</i> </a>
             </li> 
 
-            <li class="collapsible">
-                <a href="{{ route('admin.users') }}" class="waves-effect"> Alunos <i class="material-icons left">group</i></a>
+            <ul class="collapsible collapsible-accordion">
+                <li>
+                    <a class="collapsible-header waves-effect">Alunos <i class="material-icons">group</i><i class="material-icons right">arrow_drop_down</i> </a>
+                    <div class="collapsible-body light-blue darken-4">
+                        <ul>
+                            <li>
+                                <a href="{{ route('admin.user.create') }}"> Cadastro <i class="material-icons">radio_button_unchecked</i> </a>
+                            </li>
+
+                            <li class="collapsible"></li>
+
+                            <li>
+                                <a href="{{ route('admin.users') }}"> Listar <i class="material-icons">radio_button_unchecked</i> </a>
+                            </li>
+
+                            <li class="collapsible"></li>
+
+                            <li>
+                                <a href="{{ route('admin.user.report') }}"> Relatório <i class="material-icons">radio_button_unchecked</i> </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+
+            <li class="no-padding">
+                <ul class="collapsible collapsible-accordion">
+                    <li>
+                        <a class="collapsible-header waves-effect"> Mensalidades <i class="material-icons">payments</i><i class="material-icons right">arrow_drop_down</i> </a>
+                        <div class="collapsible-body light-blue darken-4">
+                            <ul>                        
+                                <li>
+                                    <a href="{{ route('admin.payments.index') }}"> Listar <i class="material-icons">radio_button_unchecked</i> </a>
+                                </li>
+
+                                <li class="collapsible"></li>
+
+                                <li>
+                                    <a href="{{ route('admin.payments.report') }}"> Relatório <i class="material-icons">radio_button_unchecked</i></a>
+                                </li>
+                                
+                                <li class="collapsible"></li>
+                                
+                                <li>
+                                    <a href="{{ route('admin.table.monthlyType') }}"> Tipo Mensalidade <i class="material-icons">radio_button_unchecked</i></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
             </li>
-            
+                     
             <li class="no-padding"></li>
 
             <ul class="collapsible collapsible-accordion">
@@ -165,33 +213,6 @@
                                 
                                 <li>
                                     <a href="{{ route('admin.table.training') }}"> Divisões do Treino <i class="material-icons">radio_button_unchecked</i> </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                </ul>
-            </li>
-
-            <li class="no-padding">
-                <ul class="collapsible collapsible-accordion">
-                    <li>
-                        <a class="collapsible-header waves-effect"> Mensalidades <i class="material-icons">payments</i><i class="material-icons right">arrow_drop_down</i> </a>
-                        <div class="collapsible-body light-blue darken-4">
-                            <ul>                        
-                                <li>
-                                    <a href="{{ route('admin.payments.index') }}"> Listar <i class="material-icons">radio_button_unchecked</i> </a>
-                                </li>
-
-                                <li class="collapsible"></li>
-
-                                <li>
-                                    <a href="{{ route('admin.payments.report') }}"> Relatorio <i class="material-icons">radio_button_unchecked</i></a>
-                                </li>
-                                
-                                <li class="collapsible"></li>
-                                
-                                <li>
-                                    <a href="{{ route('admin.table.monthlyType') }}"> Tipo Mensalidade <i class="material-icons">radio_button_unchecked</i></a>
                                 </li>
                             </ul>
                         </div>

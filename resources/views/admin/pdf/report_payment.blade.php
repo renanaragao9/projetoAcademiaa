@@ -84,7 +84,7 @@
    
     <tr>
       <td colspan="2">
-        <h2 style="margin: 0px 0; font-size: 28px;">Dados Pessoais</h2>
+        <h2 style="margin: 0px 0; font-size: 28px;">Relatório Mensalidades</h2>
       </td>
     </tr>
     
@@ -141,3 +141,5 @@
   </table>
 </body>
 </html>
+
+<?= dd('teste') ?>

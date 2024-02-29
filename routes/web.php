@@ -48,6 +48,8 @@ Route::middleware(['auth', 'checkProfile'])->group(function() {
         Route::put('/atualizar/{id}', [UserController::class, 'update'])->name('admin.user.update');
         Route::put('/perfil/atualizar-imagem', [UserController::class, 'updateProfileImage'])->name('profile.updateImage');
         Route::delete('deletar/{id}', [UserController::class, 'destroy'])->name('admin.user.destroy');
+        Route::get('/relatorio', [UserController::class, 'report'])->name('admin.user.report');
+        Route::post('relatorio-alunos-pdf', [PDFController::class, 'generateReportUser'])->name('admin.user.reportUser-pdf');
     });
     
     Route::prefix('admin/fichas/')->group(function() {

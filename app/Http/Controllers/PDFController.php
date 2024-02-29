@@ -116,7 +116,14 @@ class PDFController extends Controller
             $startDate = Carbon::createFromDate($year, $month, 1);
             $endDate = $startDate->copy()->endOfMonth();
 
-            $dataPayments = Payment::whereBetween('date_payment', [$startDate, $endDate])->get();
+            if($dataReport['form_payment'] == 'all' ) {
+                
+                $dataPayments = Payment::whereBetween('date_payment', [$startDate, $endDate])->get();
+            } 
+            else {
+                
+                $dataPayments = Payment::whereBetween('date_payment', [$startDate, $endDate])->where('form_payment', $dataReport['form_payment'])->get();
+            }
             
         } else {
             
@@ -132,20 +139,84 @@ class PDFController extends Controller
             $endDate = $temp;
             }
 
-            $dataPayments = Payment::whereBetween('date_payment', [$startDate, $endDate])->get();
-        }
-
-        if($dataReport['form_payment'] === 'all') {
-            $payments = $dataPayments;
-        } else {
-            $method = 'dinheiro'; // Método de pagamento desejado
-
-            $filteredPayments = array_filter($dataPayments, function($payment) use ($method) {
-                return $payment['form_payment'] == $method;
-            });
+            if($dataReport['form_payment'] == 'all' ) {
+                
+                $dataPayments = Payment::whereBetween('date_payment', [$startDate, $endDate])->get();
+            } 
+            else {
+                
+                $dataPayments = Payment::whereBetween('date_payment', [$startDate, $endDate])->where('form_payment', $dataReport['form_payment'])->get();
+            }
+            
         }
         
-        dd($payments);
+        dd($dataPayments);
+
+        $html = View('users.pdf.fichaAluno')
+        ->with('dataPayments', $dataPayments)
+        ->render();
+        
+        $dompdf->loadHtml($html,);
+        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->render();
+       
+        return $dompdf->stream('Relatorio_Mensalidade.pdf');
+    }
+
+    public function generateReportUser(Request $request)
+    {
+
+        $options = new Options();
+        $options->set('isHtml5ParserEnabled', true);
+        
+        $dompdf = new Dompdf($options);
+
+        $dataReport = $request->all();
+        
+        if ($dataReport['period'] === 'Mês' ) {
+            
+            $dateMonthly = $dataReport['date_monthly'];
+
+            list($year, $month) = explode('-', $dateMonthly);
+
+            $startDate = Carbon::createFromDate($year, $month, 1);
+            $endDate = $startDate->copy()->endOfMonth();
+
+            if($dataReport['form_payment'] == 'all' ) {
+                
+                $dataPayments = Payment::whereBetween('date_payment', [$startDate, $endDate])->get();
+            } 
+            else {
+                
+                $dataPayments = Payment::whereBetween('date_payment', [$startDate, $endDate])->where('form_payment', $dataReport['form_payment'])->get();
+            }
+            
+        } else {
+            
+            $dateInterval1 = $dataReport['date_interval1'];
+            $dateInterval2 = $dataReport['date_interval2'];
+
+            $startDate = Carbon::parse($dateInterval1);
+            $endDate = Carbon::parse($dateInterval2);
+
+            if ($startDate > $endDate) {
+            $temp = $startDate;
+            $startDate = $endDate;
+            $endDate = $temp;
+            }
+
+            if($dataReport['form_payment'] == 'all' ) {
+                
+                $dataPayments = Payment::whereBetween('date_payment', [$startDate, $endDate])->get();
+            } 
+            else {
+                
+                $dataPayments = Payment::whereBetween('date_payment', [$startDate, $endDate])->where('form_payment', $dataReport['form_payment'])->get();
+            }
+            
+        }
+        
+        dd($dataPayments);
 
         $html = View('users.pdf.fichaAluno')
         ->with('dataPayments', $dataPayments)
