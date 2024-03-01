@@ -27,21 +27,21 @@
                 <h4>Informações do Gráfico Alunos</h4>                   
                 <tbody>                         
                     <tr>
-                        <td id="text-profile" class="s12 l1">Total de Alunos: {{$array_dados[0]['total_alunos']}}</td>
-                        <td id="text-profile" class="s12 l1">Total de alunos do sexo Masculino: {{$array_dados[1]['total']}}</td>
-                        <td id="text-profile" class="s12 l1">Total de alunos do sexo Feminino: {{$array_dados[2]['total']}}</td>
-                        <td id="text-profile" class="s12 l1">Total de alunos do sexo Outros: {{$array_dados[3]['total']}}</td>
+                        <td id="text-profile" class="s12 l1">Total de Alunos: {{$user_dados[0]['total_alunos']}}</td>
+                        <td id="text-profile" class="s12 l1">Total de alunos do sexo Masculino: {{$user_dados[1]['total']}}</td>
+                        <td id="text-profile" class="s12 l1">Total de alunos do sexo Feminino: {{$user_dados[2]['total']}}</td>
+                        <td id="text-profile" class="s12 l1">Total de alunos do sexo Outros: {{$user_dados[3]['total']}}</td>
                     </tr>
                    
                     <tr>
-                      <td id="text-profile" class="s12 l2">Alunos entre 10-17 anos: {{$array_dados[4]['total']}}</td>
-                      <td id="text-profile" class="s12 l2">Alunos entre 18-28 anos: {{$array_dados[5]['total']}}</td>
-                      <td id="text-profile" class="s12 l2">Alunos entre 29-40 anos: {{$array_dados[6]['total']}}</td>
-                      <td id="text-profile" class="s12 l2">Alunos com 41+ anos: {{$array_dados[7]['total']}}</td>
+                      <td id="text-profile" class="s12 l2">Alunos entre 10-17 anos: {{$user_dados[4]['total']}}</td>
+                      <td id="text-profile" class="s12 l2">Alunos entre 18-28 anos: {{$user_dados[5]['total']}}</td>
+                      <td id="text-profile" class="s12 l2">Alunos entre 29-40 anos: {{$user_dados[6]['total']}}</td>
+                      <td id="text-profile" class="s12 l2">Alunos com 41+ anos: {{$user_dados[7]['total']}}</td>
                     </tr>
                 </tbody>                 
             </table>
-        </div>
+          </div>
         </div>
       </div>
     </div>
@@ -53,6 +53,31 @@
     <div class="col s12">
       <div class="card ">
         <canvas id="graficoMensalidadePorMes" width="400" height="200"></canvas>
+      </div>
+
+      <div class="card">
+        <div class="row">
+          <div class="col s12 l12">
+            <table class="highlight">
+                <h4>Informações do Gráfico Mensalidades</h4>                   
+                <tbody>                         
+                    <tr>
+                        <td id="text-profile" class="s12 l1">Total de Receita: <br> R$ {{ number_format(DB::table('payments')->sum(DB::raw('CAST(value_payment AS DECIMAL(10,2))')), 2, ',', '.') }}</td>
+                        <td id="text-profile" class="s12 l1">Pgto em Dinheiro: R$ {{ number_format(DB::table('payments')->where('form_payment', 'Dinheiro')->sum(DB::raw('CAST(value_payment AS DECIMAL(10,2))')), 2, ',', '.') }} <br> Total: {{ DB::table('payments')->where('form_payment', 'Dinheiro')->count(DB::raw('CAST(value_payment AS DECIMAL(10,2))')) }} </td>
+                        <td id="text-profile" class="s12 l1">Pgto em Pix: R$ {{ number_format(DB::table('payments')->where('form_payment', 'Pix')->sum(DB::raw('CAST(value_payment AS DECIMAL(10,2))')), 2, ',', '.') }} <br> Total: {{ DB::table('payments')->where('form_payment', 'Pix')->count(DB::raw('CAST(value_payment AS DECIMAL(10,2))')) }} </td>
+                        <td id="text-profile" class="s12 l1">Pgto no Débido: R$ {{ number_format(DB::table('payments')->where('form_payment', 'Débito')->sum(DB::raw('CAST(value_payment AS DECIMAL(10,2))')), 2, ',', '.') }} <br> Total: {{ DB::table('payments')->where('form_payment', 'Débito')->count(DB::raw('CAST(value_payment AS DECIMAL(10,2))')) }} </td>
+                    </tr>
+                   
+                    <tr>
+                      <td id="text-profile" class="s12 l1">Pgto no Crédito: R$ {{ number_format(DB::table('payments')->where('form_payment', 'Crédito')->sum(DB::raw('CAST(value_payment AS DECIMAL(10,2))')), 2, ',', '.') }} <br> Total: {{ DB::table('payments')->where('form_payment', 'Crédito')->count(DB::raw('CAST(value_payment AS DECIMAL(10,2))')) }} </td>
+                      <td id="text-profile" class="s12 l1">Pgto no Boleto: R$ {{ number_format(DB::table('payments')->where('form_payment', 'Boleto')->sum(DB::raw('CAST(value_payment AS DECIMAL(10,2))')), 2, ',', '.') }} <br> Total: {{ DB::table('payments')->where('form_payment', 'Boleto')->count(DB::raw('CAST(value_payment AS DECIMAL(10,2))')) }} </td>
+                      <td id="text-profile" class="s12 l1">Pgto em Vale: R$ {{ number_format(DB::table('payments')->where('form_payment', 'Vale')->sum(DB::raw('CAST(value_payment AS DECIMAL(10,2))')), 2, ',', '.') }} <br> Total: {{ DB::table('payments')->where('form_payment', 'Vale')->count(DB::raw('CAST(value_payment AS DECIMAL(10,2))')) }} </td>
+                      <td id="text-profile" class="s12 l1">Total: {{ DB::table('payments')->count(DB::raw('CAST(value_payment AS DECIMAL(10,2))'))}}</td>
+                    </tr>
+                </tbody>                 
+            </table>
+          </div>
+        </div>
       </div>
     </div>
   </div>

@@ -10,6 +10,9 @@ use App\Models\ficha;
 use App\Models\user;
 use App\Models\called;
 use App\Models\payment;
+use App\Models\monthlyType;
+
+use function Psy\debug;
 
 class StatisticsController extends Controller
 {
@@ -104,7 +107,6 @@ class StatisticsController extends Controller
                 case 'Outros':
                     $total_outros++;
                     break;
-                // Adicione mais casos se houver outros valores possíveis para sexo
             }
         }
 
@@ -123,8 +125,8 @@ class StatisticsController extends Controller
                 $idade_41_mais++;
             }
         }
-
-        $array_dados = [
+        
+        $user_dados = [
             ['total_alunos' => $total_alunos],
             ['sexo' => 'Masculino', 'total' => $total_masculino],
             ['sexo' => 'Feminino', 'total' => $total_feminino],
@@ -133,12 +135,13 @@ class StatisticsController extends Controller
             ['faixa_etaria' => '18-28', 'total' => $idade_18_28],
             ['faixa_etaria' => '29-40', 'total' => $idade_29_40],
             ['faixa_etaria' => '41+', 'total' => $idade_41_mais],
-        ];
-
+        ];  
+        
         return view('admin.statistics', [
             'statistics' => $statistics,
             'topStudentsTotals' => $topStudentsTotals,
-            'array_dados' => $array_dados
+            'user_dados' => $user_dados,
+
         ]);
     }
 
