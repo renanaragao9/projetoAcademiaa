@@ -85,7 +85,7 @@
    
     <tr>
       <td colspan="2">
-        <h2 style="margin: 0px 0; font-size: 28px;">Relatório Mensalidades</h2> <br>
+        <h2 style="margin: 0px 0; font-size: 28px;">Relatório Alunos</h2> <br>
         @if($dataReport['period'] == 'Mês')
             <li> <strong style="font-size: 22px;">Mês: {{ \Carbon\Carbon::parse($dataReport['date_monthly'])->locale('pt_BR')->isoFormat('MMMM [de] YYYY') }}</strong> </li>  
           @else
@@ -95,21 +95,9 @@
     </tr>
     
     <tr style="margin: 2px 0;">
-      <td style="width: 50%; vertical-align: top; text-align: center;">
+      <td style="width: 100%; vertical-align: top; text-align: center;">
         <ul style="list-style: none; padding-left: 0; margin: 0;">
-          <li> <strong style="font-size: 22px;">Registros: {{ count($dataPayments) }}</strong> </li>  
-        </ul>
-      </td>
-
-      <td style="width: 50%; vertical-align: top; text-align: center;">
-        <ul style="list-style: none; padding-left: 0; margin: 0;">
-          <?php 
-            $total = 0;
-            foreach ($dataPayments as $payment) {
-              $total += $payment->value_payment;
-            }
-          ?>
-            <li> <strong style="font-size: 22px;">Total: R$ {{ number_format($total, 2, ',', '.') }}</strong> </li>  
+          <li> <strong style="font-size: 22px;">Registros: {{ count($dataUsers) }}</strong> </li>  
         </ul>
       </td>
     </tr>
@@ -124,20 +112,20 @@
           <table>
             <thead>
               <tr>
+                <th>Nome</th>
                 <th>Data</th>
-                <th>Valor</th>
-                <th>Forma de Pagamento</th>
-                <th>Vencimento</th>
+                <th>Sexo</th>
+                <th>Email</th>
               </tr>
             </thead>
             
             <tbody>
-              @foreach ($dataPayments as $payment)
+              @foreach ($dataUsers as $user)
                 <tr>
-                  <td> {{date( 'd/m/Y' , strtotime($payment->date_payment))}}</td>
-                  <td> R$ {{ number_format($payment->value_payment, 2, ',', '.') }}</td>
-                  <td> {{ $payment->form_payment }}</td>
-                  <td> {{date( 'd/m/Y' , strtotime($payment->date_due_payment))}}</td>
+                  <td> {{ $user->name }}</td>
+                  <td> {{date( 'd/m/Y' , strtotime($user->date))}}</td>
+                  <td> {{ $user->sexo }}</td>
+                  <td> {{ $user->email }}</td>
                 </tr>
               @endforeach
             </tbody>

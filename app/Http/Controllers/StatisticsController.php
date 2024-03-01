@@ -7,8 +7,9 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\assessment;
 use App\Models\ficha;
-use App\Models\User;
+use App\Models\user;
 use App\Models\called;
+use App\Models\payment;
 
 class StatisticsController extends Controller
 {
@@ -53,6 +54,7 @@ class StatisticsController extends Controller
         ->get();
         
         $monthlyStats = [];
+        
         foreach ($statistics as $statistic) {
             $date = $statistic->created_at; 
             $month = date('Y-m', strtotime($date));
@@ -68,24 +70,81 @@ class StatisticsController extends Controller
         }
 
         $studentsTotals = [];
+       
         foreach ($monthlyStats as $month => $users) {
             foreach ($users as $userId => $userData) {
                 $studentsTotals[$userData['user_name']] = $userData['total_fichas'];
             }
         }
+       
         arsort($studentsTotals);
 
         $topStudentsTotals = array_slice($studentsTotals, 0, 15, true);
 
+
+        // Grafico Alunos
+        $users = user::all();
+        $total_alunos = count($users);
+        $total_masculino = 0;
+        $total_feminino = 0;
+        $total_outros = 0;
+        $idade_10_17 = 0;
+        $idade_18_28 = 0;
+        $idade_29_40 = 0;
+        $idade_41_mais = 0;
+
+        foreach ($users as $user) {
+            switch ($user->sexo) {
+                case 'Masculino':
+                    $total_masculino++;
+                    break;
+                case 'Feminino':
+                    $total_feminino++;
+                    break;
+                case 'Outros':
+                    $total_outros++;
+                    break;
+                // Adicione mais casos se houver outros valores possíveis para sexo
+            }
+        }
+
+        foreach ($users as $user) {
+            $data_nascimento = $user->date;
+            $idade = date_diff(date_create($data_nascimento), date_create('now'))->y;
+
+            // Atualiza o total de idade para a faixa etária correspondente
+            if ($idade >= 10 && $idade <= 17) {
+                $idade_10_17++;
+            } elseif ($idade >= 18 && $idade <= 28) {
+                $idade_18_28++;
+            } elseif ($idade >= 29 && $idade <= 40) {
+                $idade_29_40++;
+            } else {
+                $idade_41_mais++;
+            }
+        }
+
+        $array_dados = [
+            ['total_alunos' => $total_alunos],
+            ['sexo' => 'Masculino', 'total' => $total_masculino],
+            ['sexo' => 'Feminino', 'total' => $total_feminino],
+            ['sexo' => 'Outros', 'total' => $total_outros],
+            ['faixa_etaria' => '10-17', 'total' => $idade_10_17],
+            ['faixa_etaria' => '18-28', 'total' => $idade_18_28],
+            ['faixa_etaria' => '29-40', 'total' => $idade_29_40],
+            ['faixa_etaria' => '41+', 'total' => $idade_41_mais],
+        ];
+
         return view('admin.statistics', [
             'statistics' => $statistics,
-            'topStudentsTotals' => $topStudentsTotals
+            'topStudentsTotals' => $topStudentsTotals,
+            'array_dados' => $array_dados
         ]);
     }
 
     public function usersPorMes() {
         
-        $usersPorMes = User::selectRaw('COUNT(*) as total_users, MONTH(created_at) as month')
+        $usersPorMes = user::selectRaw('COUNT(*) as total_users, MONTH(created_at) as month')
             ->groupByRaw('YEAR(created_at), MONTH(created_at)')
             ->orderByRaw('YEAR(created_at), MONTH(created_at)')
             ->get();
@@ -118,5 +177,14 @@ class StatisticsController extends Controller
             ->get();
 
         return response()->json($calledPorMes);
+    }
+
+    public function paymentPorMes() {
+        $paymentPorMes = payment::selectRaw('COUNT(*) as total_payment, MONTH(created_at) as month')
+            ->groupByRaw('YEAR(created_at), MONTH(created_at)')
+            ->orderByRaw('YEAR(created_at), MONTH(created_at)')
+            ->get();
+
+        return response()->json($paymentPorMes);
     }
 }

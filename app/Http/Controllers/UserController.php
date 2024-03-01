@@ -182,4 +182,13 @@ class UserController extends Controller
 
         return redirect()->back()->with('msg-success', 'Aluno excluído com sucesso!');
     }
+
+    public function report() {
+        
+        $periods = ['Mês', 'Intervalo'];
+
+        return view('admin.report.user', [
+            'periods' => $periods
+        ]);
+    }
 }

@@ -174,7 +174,7 @@
                             <li class="collapsible"></li>
 
                             <li>
-                                <a href="{{ route('admin.register.exercise') }}"> Exercicio <i class="material-icons">radio_button_unchecked</i> </a>
+                                <a href="{{ route('admin.register.exercise') }}"> Exercício <i class="material-icons">radio_button_unchecked</i> </a>
                             </li>
 
                             <li class="collapsible"></li>
@@ -200,7 +200,7 @@
                         <div class="collapsible-body light-blue darken-4">
                             <ul>                        
                                 <li>
-                                    <a href="{{ route('admin.table.exercise') }}"> Exercicios <i class="material-icons">radio_button_unchecked</i> </a>
+                                    <a href="{{ route('admin.table.exercise') }}"> Exercícios <i class="material-icons">radio_button_unchecked</i> </a>
                                 </li>
 
                                 <li class="collapsible"></li>

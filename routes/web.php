@@ -77,6 +77,7 @@ Route::middleware(['auth', 'checkProfile'])->group(function() {
     Route::prefix('estatisticas/')->group(function() {
         route::get('/inicio', [StatisticsController::class, 'statistic'])->name('admin.statistic');
         Route::get('/users-por-mes', [StatisticsController::class, 'usersPorMes']);
+        Route::get('/payment-por-mes', [StatisticsController::class, 'paymentPorMes']);
         Route::get('/fichas-por-mes', [StatisticsController::class, 'fichasPorMes']);
         Route::get('/assessment-por-mes', [StatisticsController::class, 'assessmentPorMes']);
         Route::get('/called-por-mes', [StatisticsController::class, 'calledPorMes']);

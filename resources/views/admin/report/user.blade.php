@@ -9,11 +9,11 @@
     <div class="card white">
       <div class="card-content">           
         <div class="row">
-          <form class="col s12" id="form_report_payment" action="{{ route('admin.payments.report-pdf') }}" method="POST" enctype="multipart/form-data">
+          <form class="col s12" id="form_report_user" action="{{ route('admin.user.reportUser-pdf') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row">                  
               <div class="input-field col s12 l12">
-                <h3 id="homeTitle" class="center">Relatorio <br> <br> de <br> Alunos </h3>
+                <h3 id="homeTitle" class="center">Relatório <br> Alunos </h3>
               </div>
 
               <div class="input-field col s12" id="select-report">
@@ -43,17 +43,6 @@
                 <i class="material-icons prefix" id="iconeMobile">calendar_month</i>
                 <input name="date_interval2" type="date" class="datepicker">
               </div>
-
-              <div class="input-field col s12" id="select-report">
-                <select name="form_payment" id="for_payment" required>
-                  <option value="all" selected>Todos</option>
-                  @foreach ($form_payments as $form_payment)
-                    <option value="{{ $form_payment }}">{{ $form_payment }}</option>
-                  @endforeach
-                </select>
-                <label id="labelSpacing"><h11>*</h11>Forma de Pagamento</label>
-              </div>
-              
 
               <div class="input-field col s12 l12">      
                 <button class="btn waves-effect waves-light light-blue darken-4 col s12 l5" id="save-button" type="submit" name="action" onclick="confirmSubmit()">Criar

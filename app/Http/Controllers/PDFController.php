@@ -95,12 +95,13 @@ class PDFController extends Controller
         $dompdf->render();
        
         return $dompdf->stream('Avaliacao_'.$student->name.'.pdf');
-    }
+    } 
 
     public function generateReportPayment(Request $request)
     {
 
         $options = new Options();
+        
         $options->set('isHtml5ParserEnabled', true);
         
         $dompdf = new Dompdf($options);
@@ -116,10 +117,10 @@ class PDFController extends Controller
             $startDate = Carbon::createFromDate($year, $month, 1);
             $endDate = $startDate->copy()->endOfMonth();
 
-            if($dataReport['form_payment'] == 'all' ) {
-                
+            if($dataReport['form_payment'] == 'all') {
+               
                 $dataPayments = Payment::whereBetween('date_payment', [$startDate, $endDate])->get();
-            } 
+            }
             else {
                 
                 $dataPayments = Payment::whereBetween('date_payment', [$startDate, $endDate])->where('form_payment', $dataReport['form_payment'])->get();
@@ -139,26 +140,27 @@ class PDFController extends Controller
             $endDate = $temp;
             }
 
-            if($dataReport['form_payment'] == 'all' ) {
-                
+            if($dataReport['form_payment'] == 'all') {
+               
                 $dataPayments = Payment::whereBetween('date_payment', [$startDate, $endDate])->get();
-            } 
+            }
             else {
                 
                 $dataPayments = Payment::whereBetween('date_payment', [$startDate, $endDate])->where('form_payment', $dataReport['form_payment'])->get();
             }
-            
         }
-        
-        dd($dataPayments);
 
-        $html = View('users.pdf.fichaAluno')
+        $html = View('admin.pdf.report_payment')
         ->with('dataPayments', $dataPayments)
+        ->with('dataReport', $dataReport)
         ->render();
         
         $dompdf->loadHtml($html,);
         $dompdf->setPaper('A4', 'portrait');
         $dompdf->render();
+        header('Content-Type: application/pdf');
+        header('Content-Disposition: inline; filename="arquivo.pdf"');
+        echo $dompdf->output();
        
         return $dompdf->stream('Relatorio_Mensalidade.pdf');
     }
@@ -167,6 +169,7 @@ class PDFController extends Controller
     {
 
         $options = new Options();
+        
         $options->set('isHtml5ParserEnabled', true);
         
         $dompdf = new Dompdf($options);
@@ -181,15 +184,8 @@ class PDFController extends Controller
 
             $startDate = Carbon::createFromDate($year, $month, 1);
             $endDate = $startDate->copy()->endOfMonth();
-
-            if($dataReport['form_payment'] == 'all' ) {
-                
-                $dataPayments = Payment::whereBetween('date_payment', [$startDate, $endDate])->get();
-            } 
-            else {
-                
-                $dataPayments = Payment::whereBetween('date_payment', [$startDate, $endDate])->where('form_payment', $dataReport['form_payment'])->get();
-            }
+               
+            $dataUsers = user::whereBetween('created_at', [$startDate, $endDate])->get();
             
         } else {
             
@@ -204,27 +200,21 @@ class PDFController extends Controller
             $startDate = $endDate;
             $endDate = $temp;
             }
-
-            if($dataReport['form_payment'] == 'all' ) {
-                
-                $dataPayments = Payment::whereBetween('date_payment', [$startDate, $endDate])->get();
-            } 
-            else {
-                
-                $dataPayments = Payment::whereBetween('date_payment', [$startDate, $endDate])->where('form_payment', $dataReport['form_payment'])->get();
-            }
-            
+  
+            $dataUsers = user::whereBetween('created_at', [$startDate, $endDate])->get();
         }
-        
-        dd($dataPayments);
 
-        $html = View('users.pdf.fichaAluno')
-        ->with('dataPayments', $dataPayments)
+        $html = View('admin.pdf.report_user ')
+        ->with('dataUsers', $dataUsers)
+        ->with('dataReport', $dataReport)
         ->render();
         
         $dompdf->loadHtml($html,);
         $dompdf->setPaper('A4', 'portrait');
         $dompdf->render();
+        header('Content-Type: application/pdf');
+        header('Content-Disposition: inline; filename="arquivo.pdf"');
+        echo $dompdf->output();
        
         return $dompdf->stream('Relatorio_Mensalidade.pdf');
     }

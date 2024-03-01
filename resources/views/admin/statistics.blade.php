@@ -13,18 +13,46 @@
   </div>
 
   <!-- Inicio de conteudo -->
-  <div class="row">
-    <div class="col s12">
-      <div class="card ">
-        <canvas id="chart"></canvas>
-      </div>
-    </div>
-  </div>
-
+  
   <div class="row">
     <div class="col s12">
       <div class="card ">
         <canvas id="graficoUsuariosPorMes" width="400" height="200"></canvas>
+      </div>
+
+      <div class="card">
+        <div class="row">
+          <div class="col s12 l12">
+            <table class="highlight">
+                <h4>Informações do Gráfico Alunos</h4>                   
+                <tbody>                         
+                    <tr>
+                        <td id="text-profile" class="s12 l1">Total de Alunos: {{$array_dados[0]['total_alunos']}}</td>
+                        <td id="text-profile" class="s12 l1">Total de alunos do sexo Masculino: {{$array_dados[1]['total']}}</td>
+                        <td id="text-profile" class="s12 l1">Total de alunos do sexo Feminino: {{$array_dados[2]['total']}}</td>
+                        <td id="text-profile" class="s12 l1">Total de alunos do sexo Outros: {{$array_dados[3]['total']}}</td>
+                    </tr>
+                   
+                    <tr>
+                      <td id="text-profile" class="s12 l2">Alunos entre 10-17 anos: {{$array_dados[4]['total']}}</td>
+                      <td id="text-profile" class="s12 l2">Alunos entre 18-28 anos: {{$array_dados[5]['total']}}</td>
+                      <td id="text-profile" class="s12 l2">Alunos entre 29-40 anos: {{$array_dados[6]['total']}}</td>
+                      <td id="text-profile" class="s12 l2">Alunos com 41+ anos: {{$array_dados[7]['total']}}</td>
+                    </tr>
+                </tbody>                 
+            </table>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+
+  <div class="row">
+    <div class="col s12">
+      <div class="card ">
+        <canvas id="graficoMensalidadePorMes" width="400" height="200"></canvas>
       </div>
     </div>
   </div>
@@ -176,6 +204,40 @@
                 datasets: [{
                     label: 'Usuários Criados por Mês',
                     data: usuariosCriados,
+                    backgroundColor: 'rgba(75, 192, 192, 0.5)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    });
+
+    fetch('/estatisticas/payment-por-mes')
+        .then(response => response.json())
+        .then(data => {
+        const meses = [];
+        const Mensalidades_Pagas = [];
+
+        data.forEach(item => {
+            meses.push(`Mês ${item.month}`);
+            Mensalidades_Pagas.push(item.total_payment);
+        });
+
+        var ctx = document.getElementById('graficoMensalidadePorMes').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: meses,
+                datasets: [{
+                    label: 'Mensalidades Criados por Mês',
+                    data: Mensalidades_Pagas,
                     backgroundColor: 'rgba(75, 192, 192, 0.5)',
                     borderColor: 'rgba(75, 192, 192, 1)',
                     borderWidth: 1

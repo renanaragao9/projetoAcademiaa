@@ -13,7 +13,7 @@
             @csrf
             <div class="row">                  
               <div class="input-field col s12 l12">
-                <h3 id="homeTitle" class="center">Relatorio <br> Mensalidade</h3>
+                <h3 id="homeTitle" class="center">Relatório <br> Mensalidade</h3>
               </div>
 
               <div class="input-field col s12" id="select-report">
