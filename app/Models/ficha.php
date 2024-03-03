@@ -27,11 +27,12 @@ class ficha extends Model
         return $this->belongsTo(User::class, 'id_user_fk');
     }
 
-    public function creator() {
+    public function fichasCreator() {
         return $this->belongsTo(User::class, 'id_user_creator_fk');
     }
 
-    public function training() {
+    public function trainingDivision()
+    {
         return $this->belongsTo(training_division::class, 'id_training_fk');
     }
 }

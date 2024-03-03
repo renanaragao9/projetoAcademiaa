@@ -68,6 +68,10 @@ class User extends Authenticatable
         return $this->hasMany(ficha::class, 'id_user_fk');
     }
 
+    public function fichasCreator() {
+        return $this->hasMany(ficha::class, 'id_user_creator_fk');
+    }
+
     public function assessments() {
         return $this->hasMany(assessment::class, 'id_user_fk');
     }
@@ -82,5 +86,10 @@ class User extends Authenticatable
 
     public function paymentCreator() {
         return $this->hasMany(media::class, 'user_id_creator');
-    }  
+    }
+    
+    public function expense() {
+        return $this->hasMany(media::class, 'user_id');
+    }
+
 }

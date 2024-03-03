@@ -135,7 +135,33 @@ class StatisticsController extends Controller
             ['faixa_etaria' => '18-28', 'total' => $idade_18_28],
             ['faixa_etaria' => '29-40', 'total' => $idade_29_40],
             ['faixa_etaria' => '41+', 'total' => $idade_41_mais],
-        ];  
+        ];
+
+        // Mensalidades
+        $contagemPayments = payment::select('monthly_type_id', \DB::raw('count(*) as total'))
+        ->with('monthly')
+        ->groupBy('monthly_type_id')
+        ->get();
+
+        dd($contagemPayments);
+
+        // Fichas criadas
+        $contagemUsuarios = ficha::select('id_user_creator_fk', \DB::raw('count(*) as total'))
+        ->with('fichasCreator')
+        ->groupBy('id_user_creator_fk')
+        ->get();
+
+        $contagemTreinamentos = Ficha::select('id_training_fk', \DB::raw('count(*) as total'))
+        ->with('trainingDivision')
+        ->groupBy('id_training_fk')
+        ->get();
+
+        // Avaliações criadas
+        $contagemAvaliacoes = assessment::select('goal', \DB::raw('count(*) as total'))
+        ->groupBy('goal')
+        ->get();
+
+        dd($contagemAvaliacoes);
         
         return view('admin.statistics', [
             'statistics' => $statistics,
