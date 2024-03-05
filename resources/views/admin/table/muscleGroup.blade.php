@@ -8,8 +8,9 @@
   <div class="card z-depth-5">
     <div class="card-content">
       <div class="col s12 l12">
-        <h3 class="center" id="homeTitle">tabela <br> grupo muscular</h3>
-        <a href="{{ route('admin.register.groupmuscle') }}" class="waves-effect waves-light btn left light-blue darken-4 col s12 l2" id="bottom-form-action"><i class="material-icons right">arrow_back</i>Voltar</a>
+        <h3 class="center" id="pageTitle">Lista dos Grupos Musculares</h3>
+        <a href="{{ route('admin.home') }}" class="waves-effect waves-light btn left light-blue darken-4 col s12 l2" id="bottom-form-action"><i class="material-icons right">arrow_back</i>Voltar</a>
+        <a href="{{ route('admin.groupmuscle.create') }}" class="waves-effect waves-light btn right light-blue darken-4 col s12 l2" id="bottom-form-action"><i class="material-icons right">add</i>Cadastrar</a>
       </div>
       
       <input type="text" id="search" placeholder="Pesquisar...">
@@ -18,6 +19,7 @@
         <thead>
           <tr>
             <th>Nome</th>
+            <th>Observação</th>
             <th>Ação</th>
           </tr>
         </thead>
@@ -25,10 +27,11 @@
         <tbody id="table-body">
           @foreach($muscleGroups as $musclegroup)
             <tr>
-              <td id="td-text">{{ $musclegroup->name_gmuscle }}</td>
+              <td id="td-text">{{ $musclegroup->name }}</td>
+              <td id="td-text">{{ $musclegroup->observation }}</td>
               <td>    
                 <!-- Botão de ações-->
-                <a href="{{ route('admin.edit.groupmuscle', $musclegroup->id_gmuscle)}}" class="btn-floating tooltipped orange darken-4 btn-large waves-effect waves-light red" id="bottom-table-action" data-position="bottom" data-tooltip="Editar"><i class="material-icons">edit</i></a>
+                <a href="{{ route('admin.groupmuscle.edit', $musclegroup->id_gmuscle)}}" class="btn-floating tooltipped orange darken-4 btn-large waves-effect waves-light red" id="bottom-table-action" data-position="bottom" data-tooltip="Editar"><i class="material-icons">edit</i></a>
                 
                 <form action="{{ route('admin.groupmuscle.destroy', $musclegroup->id_gmuscle) }}" method="POST" class="delete-form">
                   @csrf

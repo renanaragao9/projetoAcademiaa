@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Cadastro da Divisão de Treino')
+@section('title', 'Cadastrar Divisão de Treino')
 
 @section('content')
 
@@ -10,16 +10,21 @@
       <div class="card white">
         <div class="card-content">           
           <div class="row">
-            <form class="col s12" id="form_group_muscle" action="{{ route('admin.register.training.create') }}" method="POST" enctype="multipart/form-data">
+            <form class="col s12" id="form_create" action="{{ route('admin.training.store') }}" method="POST" enctype="multipart/form-data">
               @csrf
               <div class="row">                  
                 <div class="input-field col s12 l12">
-                  <h3 id="homeTitle" class="center">Cadastrar <br> Divisão de Treino</h3>
+                  <h3 id="pageTitle" class="center">Cadastrar <br> Divisão de Treino</h3>
                 </div>
 
                 <div class="input-field col s12 l12">
-                  <input name="name_training" type="text" class="validate" id="icon-nome" required>
-                  <label for="icon-nome">Nome:</label>
+                  <input name="name" type="text" class="validate" id="name" required>
+                  <label for="name">Nome:</label>
+                </div>
+
+                <div class="input-field col s12 l12">
+                  <input name="observation" type="text" class="validate" id="observation">
+                  <label for="observation">Observação:</label>
                 </div>
 
                 <div class="input-field col s12 l12">      
@@ -27,7 +32,7 @@
                     <i class="material-icons right">save</i>
                   </button>
                     
-                  <a href="{{ route('admin.table.training') }}" class="waves-effect waves-light btn right light-blue darken-4 col s12 l5" id=""><i class="material-icons right">table_rows</i>Tabela</a>
+                  <a href="{{ route('admin.training.index') }}" class="waves-effect waves-light btn right light-blue darken-4 col s12 l5" id=""><i class="material-icons right">table_rows</i>Lista</a>
         
                   <div class="input-field col s12 l12">
                     <a href="{{ route('admin.home') }}" class="waves-effect waves-light btn left light-blue darken-4 col s12 l5" id="bottom-form-action"><i class="material-icons right">arrow_back</i>Voltar</a>
@@ -64,7 +69,7 @@
       
       let modal = document.getElementById('modal-alerta');
       let instance = M.Modal.init(modal);
-      let form = document.querySelector('#form_group_muscle');
+      let form = document.querySelector('#form_create');
 
       form.addEventListener('submit', function(event) {
         event.preventDefault();

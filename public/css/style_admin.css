@@ -189,6 +189,16 @@ nav .brand-logo i.material-icons {
   color: #0c3350;
 }
 
+#pageTitle {
+  font-family: 'Poppins', sans-serif;
+  color: #0c3350;
+}
+
+#pageSub_Title {
+  font-family: 'Poppins', sans-serif;
+  color: #0c3350;
+}
+
 #titleColor {
   color: #0c3350;
 }

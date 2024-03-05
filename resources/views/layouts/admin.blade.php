@@ -180,13 +180,13 @@
                             <li class="collapsible"></li>
 
                             <li>
-                                <a href="{{ route('admin.register.groupmuscle') }}"> Grupo Muscular <i class="material-icons">radio_button_unchecked</i> </a>
+                                <a href="{{ route('admin.groupmuscle.create') }}"> Grupo Muscular <i class="material-icons">radio_button_unchecked</i> </a>
                             </li>
 
                             <li class="collapsible"></li>
 
                             <li>
-                                <a href="{{ route('admin.register.training') }}"> Divisão de Treino <i class="material-icons">radio_button_unchecked</i> </a>
+                                <a href="{{ route('admin.training.create') }}"> Divisão de Treino <i class="material-icons">radio_button_unchecked</i> </a>
                             </li>
                         </ul>
                     </div>
@@ -206,13 +206,13 @@
                                 <li class="collapsible"></li>
 
                                 <li>
-                                    <a href="{{ route('admin.table.groupmuscle') }}"> Grupos musculares <i class="material-icons">radio_button_unchecked</i> </a>
+                                    <a href="{{ route('admin.groupmuscle.index') }}"> Grupos musculares <i class="material-icons">radio_button_unchecked</i> </a>
                                 </li>
                                 
                                 <li class="collapsible"></li>
                                 
                                 <li>
-                                    <a href="{{ route('admin.table.training') }}"> Divisões do Treino <i class="material-icons">radio_button_unchecked</i> </a>
+                                    <a href="{{ route('admin.training.index') }}"> Divisões do Treino <i class="material-icons">radio_button_unchecked</i> </a>
                                 </li>
                             </ul>
                         </div>

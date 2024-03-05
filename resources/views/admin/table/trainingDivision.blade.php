@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Tabela das Divisões de treino')
+@section('title', 'Lista das Divisões de Treino')
 
 @section('content')
 
@@ -8,8 +8,9 @@
   <div class="card z-depth-5">
     <div class="card-content">
       <div class="col s12 l12">
-        <h3 class="center" id="homeTitle">tabela <br> divisão de treino</h3>
-        <a href="{{ route('admin.register.training') }}" class="waves-effect waves-light btn left light-blue darken-4 col s12 l2" id="bottom-form-action"><i class="material-icons right">arrow_back</i>Voltar</a>
+        <h3 class="center" id="pageTitle">Lista das Divisões de Treino</h3>
+        <a href="{{ route('admin.home') }}" class="waves-effect waves-light btn left light-blue darken-4 col s12 l2" id="bottom-form-action"><i class="material-icons right">arrow_back</i>Voltar</a>
+        <a href="{{ route('admin.training.create') }}" class="waves-effect waves-light btn right light-blue darken-4 col s12 l2" id="bottom-form-action"><i class="material-icons right">add</i>Cadastrar</a>
       </div>
       
       <input type="text" id="search" placeholder="Pesquisar...">
@@ -18,6 +19,7 @@
         <thead>
           <tr>
             <th>Nome</th>
+            <th>Observação</th>
             <th>Ação</th>
           </tr>
         </thead>
@@ -25,10 +27,13 @@
         <tbody id="table-body">
           @foreach($trainings as $training)
             <tr>
-              <td id="td-text">{{ $training->name_training }}</td>
+              
+              <td id="td-text">{{ $training->name}}</td>
+
+              <td id="td-text">{{ $training->observation}}</td>
+              
               <td>    
-                <!-- Botão de ações-->
-                <a href="{{ route('admin.edit.training', $training->id_training)}}" class="btn-floating tooltipped orange darken-4 btn-large waves-effect waves-light red" id="bottom-table-action" data-position="bottom" data-tooltip="Editar"><i class="material-icons">edit</i></a>
+                <a href="{{ route('admin.training.edit', $training->id_training)}}" class="btn-floating tooltipped orange darken-4 btn-large waves-effect waves-light red" id="bottom-table-action" data-position="bottom" data-tooltip="Editar"><i class="material-icons">edit</i></a>
                 
                 <form action="{{ route('admin.training.destroy', $training->id_training) }}" method="POST" class="delete-form">
                   @csrf
@@ -61,8 +66,6 @@
           <a href="#" class="modal-close waves-effect waves-green btn light-blue darken-4 left" id="confirmDeleteBtn">Excluir</a>
         </div>
     </div>    
-
-
 <!-- Fim de conteudo -->
 @endsection
 
@@ -129,10 +132,5 @@
         });
       });
     });
-    
-    {{-- 
-      o modal é estilizado usando as classes CSS fornecidas pelo Materialize CSS. Usamos a função M.Modal.init() para inicializar o modal e a função instance.open() para abrir o modal quando o formulário for submetido.
-      o evento submit é usado para interceptar o envio do formulário, e o modal é aberto nesse momento. Quando o botão "Enviar" dentro do modal é clicado, o formulário é enviado utilizando form.submit(). 
-      --}}
   </script>
 @endsection

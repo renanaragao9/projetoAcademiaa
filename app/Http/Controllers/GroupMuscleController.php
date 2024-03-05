@@ -3,20 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\muscleGroup;
+use App\Models\MuscleGroup;
 use App\Models\exercise;
 
 class GroupMuscleController extends Controller
 {
 
-    public function show_table_groupMuscles() {
+    public function index() {
 
         // Chama os registro do banco de dados e envia para a tabela por ordem de nome crescente (A-Z)
-        $muscleGroups = muscleGroup::orderBy('name_gmuscle', 'asc')->get();
+        $muscleGroups = MuscleGroup::orderBy('name', 'asc')->get();
 
         // Verificar se há resultados na consulta
         if ($muscleGroups->isEmpty()) {
-            return redirect()->back()->with('msg-warning', 'Não há grupo muscular cadastrado.');
+            return redirect()->back()->with('msg-warning', 'Atenção, Não há grupo muscular cadastrado.');
         }
 
         return view('admin.table.muscleGroup', ['muscleGroups' => $muscleGroups]);
@@ -31,12 +31,12 @@ class GroupMuscleController extends Controller
 
         // Verifica se os dados não está vazio
         $request->validate([
-            'name_gmuscle' => 'required'
+            'name' => 'required'
         ] , [
-            'name_gmuscle.required' => 'O campo nome não pode está vazio'
+            'name' => 'Atenção. O campo nome não pode está vazio'
         ]);
         
-        muscleGroup::create($request->all());
+        MuscleGroup::create($request->all());
 
         return redirect()->back()->with('msg-success', 'Grupo muscular cadastrado com sucesso!');
     }
@@ -44,7 +44,7 @@ class GroupMuscleController extends Controller
     public function edit($id) {
 
         // Recebe o ID passado pela rota e utiliza o comando Select e Where do SQL
-        $muscleGroup = muscleGroup::findOrFail($id);
+        $muscleGroup = MuscleGroup::findOrFail($id);
 
         return view('admin.editions.muscleGroup', ['muscleGroup' => $muscleGroup]);
     }
@@ -53,28 +53,28 @@ class GroupMuscleController extends Controller
 
         // Verifica se os dados não está vazio
         $request->validate([
-            'name_gmuscle' => 'required'
+            'name' => 'required'
         ] , [
-            'name_gmuscle.required' => 'O campo nome não pode está vazio'
+            'name.required' => 'Atenção. O campo nome não pode está vazio'
         ]);
         
-        $data = $request->all();
+        $dataGMuslce = $request->all();
 
         // Recebe o request acima e envia um comando SELECT, Where e UPDATE para atualizar o registro da tabela
-        muscleGroup::findOrFail($request->id_gmuscle)->update($data);
+        MuscleGroup::findOrFail($request->id_gmuscle)->update($dataGMuslce);
 
         return redirect()->back()->with('msg-success', 'Grupo muscular editado com sucesso!');
     }
 
     public function destroy($id) {
 
-        $muscle_group = muscleGroup::find($id);
+        $muscle_group = MuscleGroup::find($id);
 
         // Verificar se o grupo muscular está sendo usado em exercises
         $isUsedInExercises = exercise::where('id_gmuscle_fk', $id)->exists();
         
         if ($isUsedInExercises) {
-            return redirect()->back()->with('msg-warning', 'Este grupo muscular está associado a exercícios e não pode ser excluído. Entre em contato com o administrador do sistema!');
+            return redirect()->back()->with('msg-warning', 'Atenção. Este grupo muscular está associado a exercícios e não pode ser excluído. Entre em contato com o administrador do sistema!');
         }
 
         // Excluir exercício do banco de dados
