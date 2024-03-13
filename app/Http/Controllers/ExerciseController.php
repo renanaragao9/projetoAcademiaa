@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\exercise;
-use App\Models\ficha;
-use App\Models\muscleGroup;
+use App\Models\Exercise;
+use App\Models\Ficha;
+use App\Models\MuscleGroup;
 use Illuminate\Support\Str;
 
 class ExerciseController extends Controller
@@ -13,7 +13,7 @@ class ExerciseController extends Controller
     public function show_table_exercises() {
 
         // Chama os registro do banco de dados e envia para a tabela por ordem de nome crescente (A-Z)
-        $exercises = exercise::with('groupMuscle')->orderBy('name_exercise', 'ASC')->orderBy('id_gmuscle_fk', 'asc')->get();
+        $exercises = Exercise::with('groupMuscle')->orderBy('name_exercise', 'ASC')->orderBy('id_gmuscle_fk', 'asc')->get();
 
         // Verificar se há resultados na consulta
         if ($exercises->isEmpty()) {
@@ -25,7 +25,7 @@ class ExerciseController extends Controller
 
     public function create() {
 
-        $muscleGroups = muscleGroup::orderBy('name_gmuscle', 'ASC')->get();
+        $muscleGroups = MuscleGroup::orderBy('name', 'ASC')->get();
 
         return view('admin.register.exercise', ['muscleGroups' => $muscleGroups]);
     }
@@ -89,9 +89,9 @@ class ExerciseController extends Controller
 
     public function edit($id) {
         
-        $exercises = exercise::findOrFail($id);
+        $exercises = Exercise::findOrFail($id);
 
-        $muscleGroups = muscleGroup::all();
+        $muscleGroups = MuscleGroup::all();
 
         return view('admin.editions.exercise', ['exercises' => $exercises, 'muscleGroups' => $muscleGroups]);
     }

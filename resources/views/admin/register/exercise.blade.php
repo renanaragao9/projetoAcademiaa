@@ -26,7 +26,7 @@
                   <option selected disabled>Selecione o Grupo Muscular:</option>
                   
                   @foreach ($muscleGroups as $muscleGroup)
-                      <option value="{{ $muscleGroup->id_gmuscle }}">{{ $muscleGroup->name_gmuscle }}</option>
+                      <option value="{{ $muscleGroup->id_gmuscle }}">{{ $muscleGroup->name }}</option>
                   @endforeach          
                 </select> 
               </div>

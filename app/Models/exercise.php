@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class exercise extends Model
+class Exercise extends Model
 {
     use HasFactory;
 
@@ -13,10 +13,14 @@ class exercise extends Model
 
     protected $primaryKey = 'id_exercise';
 
-    protected $fillable = ['name_exercise', 'image_exercise', 'id_gmuscle_fk'];
+    protected $fillable = ['name_exercise', 'image_exercise', 'gmuscle_id'];
 
     public function groupMuscle() {
-        return $this->belongsTo(muscleGroup::class, 'id_gmuscle_fk');
+        return $this->belongsTo(MuscleGroup::class, 'gmuscle_id');
+    }
+
+    public function fichas() {
+        return $this->hasMany(Ficha::class, 'exercise_id');
     }
 
 }

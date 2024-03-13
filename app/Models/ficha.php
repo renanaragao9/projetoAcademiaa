@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ficha extends Model
+class Ficha extends Model
 {
     use HasFactory;
 
@@ -16,23 +16,22 @@ class ficha extends Model
     protected $fillable = ['order','serie', 'repetition', 'weight', 'rest', 'description', 'id_exercise_fk', 'id_gmuscle_fk_to_ficha', 'id_user_fk', 'id_user_creator_fk', 'id_training_fk'];
 
     public function exercise() {
-        return $this->belongsTo(exercise::class, 'id_exercise_fk');
+        return $this->belongsTo(Exercise::class, 'exercise_id');
     }
 
     public function muscleGroup() {
-        return $this->belongsTo(muscleGroup::class, 'id_gmuscle_fk_to_ficha');
+        return $this->belongsTo(MuscleGroup::class, 'gmuscle_id');
     }
 
     public function user() {
-        return $this->belongsTo(User::class, 'id_user_fk');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function fichasCreator() {
-        return $this->belongsTo(User::class, 'id_user_creator_fk');
+        return $this->belongsTo(User::class, 'user_creator_id');
     }
 
-    public function trainingDivision()
-    {
-        return $this->belongsTo(training_division::class, 'id_training_fk');
+    public function trainingDivision(){
+        return $this->belongsTo(TrainingDivision::class, 'training_id');
     }
 }

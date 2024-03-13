@@ -65,31 +65,31 @@ class User extends Authenticatable
     ];
 
     public function fichas() {
-        return $this->hasMany(ficha::class, 'id_user_fk');
+        return $this->hasMany(Ficha::class, 'user_id');
     }
 
     public function fichasCreator() {
-        return $this->hasMany(ficha::class, 'id_user_creator_fk');
+        return $this->hasMany(Ficha::class, 'user_creator_id');
     }
 
     public function assessments() {
-        return $this->hasMany(assessment::class, 'id_user_fk');
+        return $this->hasMany(Assessment::class, 'user_id');
     }
 
     public function medias() {
-        return $this->hasMany(media::class, 'id_user_fk');
+        return $this->hasMany(Media::class, 'user_id');
     }
     
     public function payment() {
-        return $this->hasMany(media::class, 'user_id');
+        return $this->hasMany(Media::class, 'user_id');
     }  
 
     public function paymentCreator() {
-        return $this->hasMany(media::class, 'user_id_creator');
+        return $this->hasMany(Media::class, 'user_id_creator');
     }
     
     public function expense() {
-        return $this->hasMany(media::class, 'user_id');
+        return $this->hasMany(Media::class, 'user_id');
     }
 
 }

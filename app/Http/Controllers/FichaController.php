@@ -3,24 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\ficha;
+use App\Models\Ficha;
 use App\Models\User;
-use App\Models\training_division;
-use App\Models\muscleGroup;
-use App\Models\exercise;
+use App\Models\TrainingDivision;
+use App\Models\MuscleGroup;
+use App\Models\Exercise;
 
 
 class FichaController extends Controller
 {
 
-    public function show_table_exercise_user($id) {
-    
-        $fichaUsers = ficha::join('training_division', 'fichas.id_training_fk', '=', 'training_division.id_training')
-            ->with(['muscleGroup', 'user', 'creator'])
-            ->select('fichas.*', 'training_division.name_training as name_training')
-            ->where('fichas.id_user_fk', $id)
-            ->orderBy('name_training', 'asc')
-            ->orderBy('order', 'asc')
+    public function index($id) {
+
+        $fichaUsers = Ficha::with(['exercise', 'muscleGroup', 'user', 'fichasCreator', 'trainingDivision'])
+        ->where('id_user_fk', $id)
+        ->orderBy('trainingDivision.name_training', 'asc')
+        ->orderBy('order', 'asc')
         ->get();
 
          // Verificar se há resultados na consulta
@@ -41,9 +39,9 @@ class FichaController extends Controller
 
     public function create($id) {
 
-        $user = user::findOrFail($id);
+        $user = User::findOrFail($id);
 
-        $trainings = training_division::orderBy('name_training', 'asc')->get();
+        $trainings = TrainingDivision::orderBy('name_training', 'asc')->get();
 
         $numbers = ['1', '2', '3', '4' , '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15'];
 
@@ -110,7 +108,7 @@ class FichaController extends Controller
 
         $numbers = ['1', '2', '3', '4' , '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15'];
 
-        $trainings = training_division::all();
+        $trainings = TrainingDivision::all();
 
         $muscleGroups = muscleGroup::all();
 

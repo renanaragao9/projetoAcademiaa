@@ -16,6 +16,6 @@ class TrainingDivision extends Model
     protected $fillable = ['name', 'observation'];
 
     public function trainingDivision() {
-        return $this->hasMany(User::class, 'id_training_fk');
+        return $this->hasMany(User::class, 'training_id');
     }
 }
