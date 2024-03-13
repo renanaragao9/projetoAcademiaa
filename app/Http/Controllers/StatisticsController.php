@@ -143,7 +143,7 @@ class StatisticsController extends Controller
         ->groupBy('monthly_type_id')
         ->get();
 
-        dd($contagemPayments);
+        //dd($contagemPayments);
 
         // Fichas criadas
         $contagemUsuarios = ficha::select('id_user_creator_fk', \DB::raw('count(*) as total'))
@@ -161,7 +161,7 @@ class StatisticsController extends Controller
         ->groupBy('goal')
         ->get();
 
-        dd($contagemAvaliacoes);
+        //dd($contagemAvaliacoes);
         
         return view('admin.statistics', [
             'statistics' => $statistics,
