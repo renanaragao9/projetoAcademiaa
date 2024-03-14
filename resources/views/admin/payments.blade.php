@@ -10,6 +10,7 @@
       <div class="col s12 l12">
         <h3 class="center" id="homeTitle" >Lista de Pagamentos</h3>
         <a href="{{ route('admin.home') }}" class="waves-effect waves-light btn left light-blue darken-4 col s12 l2" id="bottom-form-action"><i class="material-icons right">arrow_back</i>Voltar</a>
+        <a href="{{ route('admin.table.monthlyType') }}" class="waves-effect waves-light btn right light-blue darken-4 col s12 l2" id="bottom-form-action">Tipo Mensalidade</a>
       </div>
     </div>
 

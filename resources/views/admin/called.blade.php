@@ -18,7 +18,7 @@
         @foreach ($calleds as $called)
           <ul class="collection">
             <li class="collection-item avatar">
-              <img src="/img/profile_photo_path/{{$called->user_photo }}" class="circle responsive-img"alt="Imagem de Perfil" class="circle">
+              <img src="/img/profile_photo_path/{{$called->user_photo }}" class="circle responsive-img" alt="Imagem de Perfil" class="circle" id="called_photo">
               <span class="title"> <strong id="strong">Nome:</strong> {{ $called->user_name }} </span>
               <p><strong id="strong">Urgencia:</strong> {{  $called->urgency }}</p>
               <p><strong id="strong">Titulo:</strong> {{ $called->title }}</p>

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Media;
+use App\Models\media;
 use App\Models\user;
 
 class MediaController extends Controller
@@ -25,13 +25,13 @@ class MediaController extends Controller
     public function store(Request $request) {
         
         // Verificar se já existem 5 mídias do tipo 1
-        $countType1Media = Media::where('type_media', 1)->count();
+        $countType1Media = media::where('type_media', 1)->count();
 
         if ($countType1Media >= 5) {
             return redirect()->back()->with('msg-warning', 'Já foram alcançadas as 5 mídias do tipo banner.');
         }
     
-        $mediaCreate = new Media;
+        $mediaCreate = new media;
         $mediaCreate->type_media = $request->type_media;
         $mediaCreate->link_media = $request->link_media;
         $mediaCreate->title_media = $request->title_media;

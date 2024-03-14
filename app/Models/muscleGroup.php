@@ -9,7 +9,7 @@ class muscleGroup extends Model
 {
     use HasFactory;
     
-    protected $table = 'muscleGroup';
+    protected $table = 'musclegroup';
 
     protected $primaryKey = 'id_gmuscle';
 

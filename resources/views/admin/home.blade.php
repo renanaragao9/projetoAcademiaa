@@ -17,7 +17,7 @@
   <div class="row">
     <div class="col s12">
       <div class="card-panel">
-        <h4 id="titleColor"> Bloco de Anotações</h4>
+        <h4 id="homeTitle"> Bloco de Anotações</h4>
   
         <form id="todo-form">
           <div class="input-field">
@@ -34,7 +34,7 @@
   <!-- Titulo -->
   <div class="row">
     <div class="col s12">
-        <h3 id="homeTitle" class="center">Atalhos e Informações</h3>
+        <h3 id="homeTitle">Atalhos e Informações</h3>
     </div>
   </div>
   
@@ -46,6 +46,19 @@
           <i class="material-icons medium" id="blueColor">supervisor_account</i>
           <h5>Alunos</h5>
           <h3 class="count">{{count($users)}}</h3>
+          <div class="progress grey lighten-1">
+            <div class="determinate blue accent-2" style="width: 35%;"></div>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="col s12 m6 l3 ">
+      <a href="{{ route('admin.payments.index') }}" class="black-text">
+        <div class="card-panel center">
+          <i class="material-icons medium" id="blueColor">payments</i>
+          <h5>Mensalidades</h5>
+          <h3 class="count">{{count($payments)}}</h3>
           <div class="progress grey lighten-1">
             <div class="determinate blue accent-2" style="width: 35%;"></div>
           </div>
@@ -67,24 +80,11 @@
     </div>
 
     <div class="col s12 m6 l3">
-      <a href="#" class="black-text">
-        <div class="card-panel center">
-          <i class="material-icons medium" id="blueColor">format_list_bulleted</i>
-          <h5>Fichas</h5>
-          <h3 class="count">{{ count($fichas) }}</h3>
-          <div class="progress grey lighten-1">
-            <div class="determinate blue accent-2" style="width: 78%;"></div>
-          </div>
-        </div>
-      </a>
-    </div>
-      
-    <div class="col s12 m6 l3">
-      <a href="#" class="black-text">
+      <a href="{{ route('admin.table.media') }}" class="black-text">
         <div class="card-panel center ">
-            <i class="material-icons medium" id="blueColor">analytics</i>
-            <h5>Avaliações</h5>
-            <h3 class="count">{{ count($assessment) }}</h3>
+            <i class="material-icons medium" id="blueColor">perm_media</i>
+            <h5>Mídia</h5>
+            <h3 class="count">{{ count($media) }}</h3>
             <div class="progress grey lighten-1">
               <div class="determinate blue accent-2" style="width: 61%;"></div>
             </div>
@@ -94,24 +94,23 @@
   </div>
 
   <!--Div para chamados -->
-  <div class="card">
-    <div class="row">
-      <div class="col s12">      
-        <ul class="collection">   
-          <li class="collection-item avatar">
-            <h4 id="titleColor">Chamados</h4>
-            <p>Veja abaixo alguns de seus chamados</p>
-          </li>
   
-          @foreach ($calleds as $called)
-            <li class="collection-item avatar">
-              <img src="/img/profile_photo_path/{{$called->user_photo }}" alt="" class="circle">
-              <span class="title">{{ $called->user_name }}</span>
-              <p>{{ $called->title }}</p>
-            </li>
-          @endforeach
-        </ul>
-      </div>
+  <div class="row">
+    <div class="col s12">      
+      <ul class="collection">   
+        <li class="collection-item avatar">
+          <h4 id="homeTitle">Chamados</h4>
+          <p>Veja abaixo alguns de seus chamados</p>
+        </li>
+
+        @foreach ($calleds as $called)
+          <li class="collection-item avatar">
+            <img src="/img/profile_photo_path/{{$called->user_photo }}" alt="Imagem de Perfil" class="circle" id="called_photo">
+            <span class="title">{{ $called->user_name }}</span>
+            <p>{{ $called->title }}</p>
+          </li>
+        @endforeach
+      </ul>
     </div>
   </div>
 
@@ -120,7 +119,7 @@
     <div class="card">
       <div class="card-content">
         <div class="col s12 l12">
-          <h3 class="center" id="titleColor" >Alguns exercícios finalizados</h3>
+          <h4 id="homeTitle" >Alguns exercícios finalizados</h4>
         </div>
   
         <table class="highlight striped centered" id="form_table_group_muscle">

@@ -258,6 +258,10 @@ nav .brand-logo i.material-icons {
   text-align: center;
 }
 
+#called_photo {
+  object-fit: cover;
+}
+
 /* VIEW USER*/
 #view-img {
   width: 200px;

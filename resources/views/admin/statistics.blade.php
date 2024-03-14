@@ -74,6 +74,12 @@
                       <td id="text-profile" class="s12 l1">Pgto em Vale: R$ {{ number_format(DB::table('payments')->where('form_payment', 'Vale')->sum(DB::raw('CAST(value_payment AS DECIMAL(10,2))')), 2, ',', '.') }} <br> Total: {{ DB::table('payments')->where('form_payment', 'Vale')->count(DB::raw('CAST(value_payment AS DECIMAL(10,2))')) }} </td>
                       <td id="text-profile" class="s12 l1">Total: {{ DB::table('payments')->count(DB::raw('CAST(value_payment AS DECIMAL(10,2))'))}}</td>
                     </tr>
+
+                    <tr>
+                      @foreach ($contagemPayments as $contagemPayment)
+                      <td id="text-profile" class="s12 l1">Tipo mensalidade: {{$contagemPayment->monthly->name_monthly}} <br> Total: {{$contagemPayment->total}}</td>
+                      @endforeach
+                    </tr>
                 </tbody>                 
             </table>
           </div>
@@ -87,6 +93,29 @@
       <div class="card ">
         <canvas id="graficoFichasPorMes" width="400" height="200"></canvas>
       </div>
+
+      <div class="card">
+        <div class="row">
+          <div class="col s12 l12">
+            <table class="highlight">
+                <h4>Informações do Gráfico Fichas</h4>               
+                <tbody>                         
+                    <tr>
+                      @foreach ($contagemUsuarios as $contagemUsuario)
+                      <td id="text-profile" class="s12 l1">Professor: {{$contagemUsuario->fichasCreator->name}} <br> Total: {{$contagemUsuario->total}}</td>
+                      @endforeach
+                    </tr>
+
+                    <tr>
+                      @foreach ($contagemTreinamentos as $contagemTreinamento)
+                      <td id="text-profile" class="s12 l1">Tipo treino: {{$contagemTreinamento->trainingDivision->name_training}} <br> Total: {{$contagemTreinamento->total}}</td>
+                      @endforeach
+                    </tr>
+                </tbody>                 
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -94,6 +123,23 @@
     <div class="col s12">
       <div class="card ">
         <canvas id="graficoAssessmentPorMes" width="400" height="200"></canvas>
+      </div>
+
+      <div class="card">
+        <div class="row">
+          <div class="col s12 l12">
+            <table class="highlight">
+                <h4>Informações do Gráfico Avaliações</h4>               
+                <tbody>                         
+                    <tr>
+                      @foreach ($contagemAvaliacoes as $contagemAvaliacao)
+                      <td id="text-profile" class="s12 l1">Tipo: {{$contagemAvaliacao->goal}} <br> Total: {{$contagemAvaliacao->total}}</td>
+                      @endforeach
+                    </tr>
+                </tbody>                 
+            </table>
+          </div>
+        </div>
       </div>
     </div>
   </div>

@@ -7,6 +7,8 @@ use App\Models\ficha;
 use App\Models\User;
 use App\Models\called;
 use App\Models\statistics;
+use App\Models\media;
+use App\Models\payment;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -17,6 +19,8 @@ class AdminController extends Controller
         $fichas = ficha::all();
         $assessment = assessment::all();
         $called = called::all();
+        $media = media::all();
+        $payments = payment::all();
 
         $calleds = called::join('users as users_user', 'calleds.id_user_fk', '=', 'users_user.id')
         ->join('users as users_instrutor', 'calleds.id_instructor_fk', '=', 'users_instrutor.id')
@@ -39,7 +43,9 @@ class AdminController extends Controller
             'assessment' => $assessment,
             'called' => $called,
             'calleds' => $calleds,
-            'statistics' => $statistics
+            'statistics' => $statistics,
+            'media' => $media,
+            'payments' => $payments
         ]);
     }
 
