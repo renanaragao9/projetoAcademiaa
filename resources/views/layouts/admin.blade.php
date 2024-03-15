@@ -127,6 +127,10 @@
                                 <li>
                                     <a href="{{ route('admin.table.monthlyType') }}"> Tipo Mensalidade <i class="material-icons">radio_button_unchecked</i></a>
                                 </li>
+
+                                <li>
+                                    <a href="{{ route('admin.payments.report') }}"> Relatório <i class="material-icons">radio_button_unchecked</i> </a>
+                                </li>
                             </ul>
                         </div>
                     </li>
@@ -142,6 +146,12 @@
                         <ul>
                             <li>
                                 <a href="{{ route('admin.user.create') }}"> Aluno <i class="material-icons">radio_button_unchecked</i> </a>
+                            </li>
+
+                            <li class="collapsible"></li>
+
+                            <li>
+                                <a href="{{ route('admin.register.media') }}"> Mídia <i class="material-icons">radio_button_unchecked</i> </a>
                             </li>
 
                             <li class="collapsible"></li>
@@ -169,9 +179,21 @@
             <li class="no-padding">
                 <ul class="collapsible collapsible-accordion">
                     <li>
-                        <a class="collapsible-header waves-effect"> Tabelas <i class="material-icons">table_view</i><i class="material-icons right">arrow_drop_down</i> </a>
+                        <a class="collapsible-header waves-effect"> Listas <i class="material-icons">table_view</i><i class="material-icons right">arrow_drop_down</i> </a>
                         <div class="collapsible-body light-blue darken-4">
-                            <ul>                        
+                            <ul>
+                                <li>
+                                    <a href="{{ route('admin.table.monthlyType') }}"> Tipos de Mensalidade <i class="material-icons">radio_button_unchecked</i> </a>
+                                </li>
+
+                                <li class="collapsible"></li>
+
+                                <li>
+                                    <a href="{{ route('admin.table.media') }}"> Mídias <i class="material-icons">radio_button_unchecked</i> </a>
+                                </li>
+
+                                <li class="collapsible"></li>
+
                                 <li>
                                     <a href="{{ route('admin.table.exercise') }}"> Exercícios <i class="material-icons">radio_button_unchecked</i> </a>
                                 </li>
@@ -195,7 +217,7 @@
 
             <ul class="collapsible collapsible-accordion">
                 <li>
-                    <a class="collapsible-header waves-effect">Relatorios <i class="material-icons">summarize</i><i class="material-icons right">arrow_drop_down</i> </a>
+                    <a class="collapsible-header waves-effect">Relatórios <i class="material-icons">summarize</i><i class="material-icons right">arrow_drop_down</i> </a>
                     <div class="collapsible-body light-blue darken-4">
                         <ul>
                             <li>

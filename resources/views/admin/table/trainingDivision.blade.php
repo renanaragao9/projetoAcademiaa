@@ -8,7 +8,7 @@
   <div class="card z-depth-5">
     <div class="card-content">
       <div class="col s12 l12">
-        <h3 class="center" id="homeTitle">tabela <br> divisão de treino</h3>
+        <h3 class="center" id="homeTitle">Listagem das <br> Divisões de Treino</h3>
         <a href="{{ route('admin.register.training') }}" class="waves-effect waves-light btn left light-blue darken-4 col s12 l2" id="bottom-form-action"><i class="material-icons right">arrow_back</i>Voltar</a>
       </div>
       

@@ -8,7 +8,7 @@
     <div class="card z-depth-5">
       <div class="card-content">
         <div class="col s12 l12">
-          <h3 class="center" id="homeTitle">Lista de Alunos</h3>
+          <h3 class="center" id="homeTitle">Listagem de Alunos</h3>
           <a href="{{ route('admin.user.create') }}" class="waves-effect waves-light btn right light-blue darken-4 col s12 l2" id="bottom-form-action"><i class="material-icons right">person_add</i>Cadastrar</a>
           <a href="{{ route('admin.home') }}" class="waves-effect waves-light btn left light-blue darken-4 col s12 l2" id="bottom-form-action"><i class="material-icons left">arrow_back</i>Voltar</a>
         </div>

@@ -8,7 +8,7 @@
   <div class="card z-depth-5">
     <div class="card-content">
       <div class="col s12 l12">
-        <h3 class="center" id="homeTitle" >Tabela <br> De <br> Mídias</h3>
+        <h3 class="center" id="homeTitle" >Listagem das  <br> Mídias Postada</h3>
         <a href="{{ route('admin.register.media') }}" class="waves-effect waves-light btn left light-blue darken-4 col s12 l2" id="bottom-form-action"><i class="material-icons right">arrow_back</i>Voltar</a>
         <a href="{{ route('admin.register.media') }}" class="waves-effect waves-light btn right light-blue darken-4 col s12 l2" id="bottom-form-action"><i class="material-icons left">add</i>Adicionar</a>
       </div>
