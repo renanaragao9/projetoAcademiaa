@@ -23,10 +23,10 @@
             <th>ID</th>
             <th>Nome</th>
             <th>Mensalidade</th>
-            <th>Data Pgto</th>
-            <th>Forma Pgto</th>
-            <th>Valor</th>
-            <th>Data Vencimento</th>
+            <th class="hide-on-small-only">Data Pgto</th>
+            <th class="hide-on-small-only">Forma Pgto</th>
+            <th class="hide-on-small-only">Valor</th>
+            <th class="hide-on-small-only">Data Vencimento</th>
             <th>Ações</th>
           </tr>
         </thead>
@@ -37,10 +37,10 @@
               <td id="td-text">{{ $payment->id_payment }}</td>
               <td id="td-text">{{ $payment->user->name }}</td>
               <td id="td-text">{{ $payment->monthly->name_monthly }}</td>
-              <td id="td-text"> {{date( 'd/m/Y' , strtotime($payment->date_payment))}}</td>
-              <td id="td-text">{{ $payment->form_payment }}</td>
-              <td id="td-text">R$ {{ $payment->value_payment }}</td>
-              <td id="td-text">{{date( 'd/m/Y' , strtotime($payment->date_due_payment))}}</td>
+              <td class="hide-on-small-only" id="td-text"> {{date( 'd/m/Y' , strtotime($payment->date_payment))}}</td>
+              <td class="hide-on-small-only" id="td-text">{{ $payment->form_payment }}</td>
+              <td class="hide-on-small-only" id="td-text">R$ {{ $payment->value_payment }}</td>
+              <td class="hide-on-small-only" id="td-text">{{date( 'd/m/Y' , strtotime($payment->date_due_payment))}}</td>
               <td>
                 <!-- Botão de ações Desktop-->
                 <a href="{{ route('admin.payments.edit', $payment->id_payment) }}" class="btn-floating tooltipped orange darken-4 btn-large waves-effect waves-light red" id="action-table-desktop" data-position="bottom" data-tooltip="Editar"><i class="material-icons">edit</i></a>

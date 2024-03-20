@@ -17,39 +17,45 @@
     <div class="card-content">
       <div id="total-records" class="total-records"></div>
       <input type="text" id="search" placeholder="Pesquisar...">
-      <table class="highlight striped centered responsive-table">
-        <thead>
-          <tr>
-            <th>Nome: </th>
-            <th>Data</th>
-            <th>Meta</th>
-            <th>Prazo</th>
-            <th>Ação</th>
-          </tr>
-        </thead>
-        
-        <tbody id="table-body">
-          @foreach( $userAssessments as $userAssessment)
+      <div class="table-scroll">
+        <table class="highlight striped centered">
+          <thead>
             <tr>
-              <td id="td-text">{{ $userAssessment->user->name }}</td>
-              <td id="td-text">{{ $userAssessment->created_at->format('d/m/Y') }}</td>
-              <td id="td-text">{{ $userAssessment->goal }}</td>
-              <td id="td-text">{{ $userAssessment->term }}</td>
-              <td>
-                <!-- Botão de ações Desktop-->
-                <a href="{{ route('admin.edit.assessment', $userAssessment->id_assessment) }}" class="btn-floating tooltipped orange darken-4 btn-large waves-effect waves-light red" id="action-table-desktop" data-position="bottom" data-tooltip="Editar"><i class="material-icons">edit</i></a>
-                
-                <form action="{{ route('admin.assessment.destroy', $userAssessment->id_assessment) }}" method="POST" class="delete-form">
-                  @csrf
-                  @method('DELETE')
-                  <input type="hidden" name="id" value="$userAssessment->id_assessment">
-                  <button class="btn-floating tooltipped red darken-4 btn-large waves-effect waves-light red delete-button" id="bottom-table-action" data-position="bottom" data-tooltip="Excluir"><i class="material-icons">delete_forever</i></button>
-                </form>
-              </td>
+              <th>Nome: </th>
+              <th>Data</th>
+              <th>Meta</th>
+              <th>Prazo</th>
+              <th class="hide-on-small-only">Criado</th>
+              <th class="hide-on-small-only">Modificado</th>
+              <th>Ação</th>
             </tr>
-          @endforeach
-        </tbody>
-      </table>
+          </thead>
+          
+          <tbody id="table-body">
+            @foreach( $userAssessments as $userAssessment)
+              <tr>
+                <td id="td-text">{{ $userAssessment->user->name }}</td>
+                <td id="td-text">{{ $userAssessment->created_at->format('d/m/Y') }}</td>
+                <td id="td-text">{{ $userAssessment->goal }}</td>
+                <td id="td-text">{{ $userAssessment->term }}</td>
+                <td class="hide-on-small-only" id="td-text">{{ \Carbon\Carbon::parse($userAssessment->created_at)->format('d/m/Y - H:i:s') }}</td>
+                <td class="hide-on-small-only" id="td-text">{{ \Carbon\Carbon::parse($userAssessment->updated_at)->format('d/m/Y - H:i:s') }}</td>
+                <td>
+                  <!-- Botão de ações Desktop-->
+                  <a href="{{ route('admin.edit.assessment', $userAssessment->id_assessment) }}" class="btn-floating tooltipped orange darken-4 btn-large waves-effect waves-light red" id="action-table-desktop" data-position="bottom" data-tooltip="Editar"><i class="material-icons">edit</i></a>
+                  
+                  <form action="{{ route('admin.assessment.destroy', $userAssessment->id_assessment) }}" method="POST" class="delete-form">
+                    @csrf
+                    @method('DELETE')
+                    <input type="hidden" name="id" value="$userAssessment->id_assessment">
+                    <button class="btn-floating tooltipped red darken-4 btn-large waves-effect waves-light red delete-button" id="bottom-table-action" data-position="bottom" data-tooltip="Excluir"><i class="material-icons">delete_forever</i></button>
+                  </form>
+                </td>
+              </tr>
+            @endforeach
+          </tbody>
+        </table>
+      </div>
       <div id="no-results" class="no-results-message" style="display: none;">Nenhum registro encontrado</div>
       <div id="total-records" class="total-records"></div>
     </div>

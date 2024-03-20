@@ -36,11 +36,6 @@
                 </div>
               </div>
 
-              <div class="input-field col s12 l12" id="input-link">
-                <input name="link_media" id="icon-media" type="text" class="validate">
-                <label for="icon-media">Link do Vídeo:</label>
-              </div>
-
               <div class="input-field col s12 l12" id="input-title">
                 <input name="title_media" id="icon-titulo" type="text" class="validate" required>
                 <label for="icon-titulo">Titulo:</label>

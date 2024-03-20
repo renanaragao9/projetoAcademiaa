@@ -75,7 +75,7 @@
           </div>    
           <div class="center" id="div-donwload-pdf">
             @if($fichas->count() > 0)
-              <a href="{{route('students.pdf', $ficha->id_training_fk)}}" class="btn-small waves-effect waves-light orange darken-4">Baixar Ficha <i class="material-icons right">download</i> </a>
+              <a href="{{route('fichaDownload', $ficha->id_training_fk)}}" class="btn-small waves-effect waves-light orange darken-4">Baixar Ficha <i class="material-icons right">download</i> </a>
             @endif
           </div>
         @endforeach
@@ -108,7 +108,7 @@
       </div>
       <div class="center" id="div-donwload-pdf">
         @if($fichas->count() > 0)
-          <a href="{{route('students.assessment-pdf', $ficha->id_training_fk)}}" class="btn-small waves-effect waves-light orange darken-4">Baixar Avaliação <i class="material-icons right">download</i> </a>
+          <a href="{{route('assessmentDownload', $ficha->id_training_fk)}}" class="btn-small waves-effect waves-light orange darken-4">Baixar Avaliação <i class="material-icons right">download</i> </a>
         @endif
       </div>
      

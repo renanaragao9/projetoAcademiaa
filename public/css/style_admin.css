@@ -217,6 +217,10 @@ nav .brand-logo i.material-icons {
   font-size: 22px;
 }
 
+#image-ficha {
+  object-fit: cover;
+}
+
 #text-dados-ficha {
   font-size: 24px;
   font-weight: bolder;
@@ -226,6 +230,8 @@ nav .brand-logo i.material-icons {
 #text-profile {
   font-weight: bold;
   font-size: 16px;
+  word-wrap: break-word; 
+  max-width: 100%; 
 }
 
 #text-dados-profile {
@@ -242,6 +248,7 @@ nav .brand-logo i.material-icons {
   margin-left: 10px;
   color: #0c3350;
 }
+
 
 #button-update-photo {
   margin-bottom: 30px;
@@ -355,6 +362,10 @@ nav .brand-logo i.material-icons {
 }
 
 /* Tabelas */
+
+.table-scroll {
+  overflow-x: auto;
+}
 
 #td-text {
   font-size: 22px;

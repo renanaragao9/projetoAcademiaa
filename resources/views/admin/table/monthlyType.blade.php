@@ -20,7 +20,8 @@
           <tr>
             <th>Nome</th>
             <th>Valor</th>
-            <th>Atualizado Em</th>
+            <th class="hide-on-small-only">Criado</th>
+            <th class="hide-on-small-only">Atualizado</th>
             <th>Ação</th>
           </tr>
         </thead>
@@ -30,7 +31,8 @@
             <tr>
               <td id="td-text">{{ $monthlyType->name_monthly }}</td>
               <td id="td-text">R$ {{ $monthlyType->value }}</td>
-              <td id="td-text">{{ $monthlyType->updated_at->format('d/m/Y H:i:s') }}</td>
+              <td class="hide-on-small-only" id="td-text">{{ $monthlyType->created_at->format('d/m/Y - H:i:s') }}</td>
+              <td class="hide-on-small-only" id="td-text">{{ $monthlyType->updated_at->format('d/m/Y - H:i:s') }}</td>
               <td>    
                 <!-- Botão de ações-->
                 <a href="{{ route('admin.monthlyType.edit', $monthlyType->id_monthly_type)}}" class="btn-floating tooltipped orange darken-4 btn-large waves-effect waves-light red" id="bottom-table-action" data-position="bottom" data-tooltip="Editar"><i class="material-icons">edit</i></a>

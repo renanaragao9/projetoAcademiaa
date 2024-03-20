@@ -23,6 +23,8 @@
             <th>Div. Treino</th>
             <th>Exercício</th>
             <th>Ordem</th>
+            <th class="hide-on-small-only">Criado</th>
+            <th class="hide-on-small-only">Modificado</th>
             <th>Ação</th>
           </tr>
         </thead>
@@ -33,6 +35,8 @@
               <td id="td-text">{{ $fichaUser->trainingDivision->name_training }}</td>
               <td id="td-text"> {{ $fichaUser->exercise->name_exercise }} </td>
               <td id="td-text">{{ $fichaUser->order }}º</td>
+              <td class="hide-on-small-only" id="td-text">{{ \Carbon\Carbon::parse($fichaUser->created_at)->format('d/m/Y - H:i:s') }}</td>
+              <td class="hide-on-small-only" id="td-text">{{ \Carbon\Carbon::parse($fichaUser->updated_at)->format('d/m/Y - H:i:s') }}</td>
               <td>
                 <!-- Botão de ações Desktop-->
                 <a href="{{ route('admin.edit.ficha', $fichaUser->id_ficha) }}" class="btn-floating tooltipped orange darken-4 btn-large waves-effect waves-light red" id="action-table-desktop" data-position="bottom" data-tooltip="Editar"><i class="material-icons">edit</i></a>

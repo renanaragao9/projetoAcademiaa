@@ -10,7 +10,7 @@
       <div class="col s12 l12">
         <h3 class="center" id="homeTitle" >Listagem das  <br> Mídias Postada</h3>
         <a href="{{ route('admin.register.media') }}" class="waves-effect waves-light btn left light-blue darken-4 col s12 l2" id="bottom-form-action"><i class="material-icons right">arrow_back</i>Voltar</a>
-        <a href="{{ route('admin.register.media') }}" class="waves-effect waves-light btn right light-blue darken-4 col s12 l2" id="bottom-form-action"><i class="material-icons left">add</i>Adicionar</a>
+        <a href="{{ route('admin.register.media') }}" class="waves-effect waves-light btn right light-blue darken-4 col s12 l2" id="bottom-form-action"><i class="material-icons right">add</i>Adicionar</a>
       </div>
     </div>
 
@@ -20,10 +20,12 @@
       <table class="highlight striped centered">
         <thead>
           <tr>
+            <th class="hide-on-small-only">ID</th>
             <th class="hide-on-small-only">Imagem</th>
             <th class="hide-on-small-only">Criador</th>
             <th>Titulo</th>
-            <th class="hide-on-small-only">Criado em</th>
+            <th class="hide-on-small-only">Criado</th>
+            <th class="hide-on-small-only">Modificado</th>
             <th>Ação</th>
           </tr>
         </thead>
@@ -31,10 +33,12 @@
         <tbody id="table-body">
           @foreach( $medias_banners as $media)
             <tr>
+              <td class="hide-on-small-only" id="td-text">{{ $media->id_media }}</td>
               <td class="hide-on-small-only" id="td-text"> <img src="/img/media/{{$media->img_media}}" alt="" class="circle materialboxed" id="table-image"></td>
               <td class="hide-on-small-only" id="td-text">{{ $media->users->name }}</td>
               <td class="grupo-muscular" id="td-text">{{ $media->title_media }}</td>
-              <td class="hide-on-small-only" id="td-text">{{ \Carbon\Carbon::parse($media->created_at)->format('d/m/Y') }}</td>
+              <td class="hide-on-small-only" id="td-text">{{ \Carbon\Carbon::parse($media->created_at)->format('d/m/Y - H:i:s') }}</td>
+              <td class="hide-on-small-only" id="td-text">{{ \Carbon\Carbon::parse($media->updated_at)->format('d/m/Y - H:i:s') }}</td>
               <td>
                 <!-- Botão de ações Desktop-->
                 <a href="{{ route('admin.media.edit', $media->id_media)}}" class="btn-floating tooltipped orange darken-4 btn-large waves-effect waves-light red" id="action-table-desktop" data-position="bottom" data-tooltip="Editar"><i class="material-icons">edit</i></a>
@@ -64,10 +68,12 @@
       <table class="highlight striped centered">
         <thead>
           <tr>
+            <th class="hide-on-small-only">ID</th>
             <th class="hide-on-small-only">Imagem</th>
             <th class="hide-on-small-only">Criador</th>
             <th>Titulo</th>
-            <th class="hide-on-small-only">Criado em</th>
+            <th class="hide-on-small-only">Criado</th>
+            <th class="hide-on-small-only">Modificado</th>
             <th>Ação</th>
           </tr>
         </thead>
@@ -75,10 +81,12 @@
         <tbody id="table-body">
           @foreach( $medias_post as $media)
             <tr>
-              <td id="td-text" class="hide-on-small-only"> <img src="/img/media/{{$media->img_media}}" alt="" class="circle materialboxed" id="table-image"></td>
+              <td class="hide-on-small-only" id="td-text">{{ $media->id_media }}</td>
+              <td class="hide-on-small-only" id="td-text" > <img src="/img/media/{{$media->img_media}}" alt="" class="circle materialboxed" id="table-image"></td>
               <td class="hide-on-small-only" id="td-text">{{ $media->users->name }}</td>
               <td class="grupo-muscular" id="td-text">{{ $media->title_media }}</td>
-              <td class="hide-on-small-only" id="td-text">{{ \Carbon\Carbon::parse($media->created_at)->format('d/m/Y') }}</td>
+              <td class="hide-on-small-only" id="td-text">{{ \Carbon\Carbon::parse($media->created_at)->format('d/m/Y - H:i:s') }}</td>
+              <td class="hide-on-small-only" id="td-text">{{ \Carbon\Carbon::parse($media->updated_at)->format('d/m/Y - H:i:s') }}</td>
               <td>
                 <!-- Botão de ações Desktop-->
                 <a href="{{ route('admin.edit.exercise', $media->id_media)}}" class="btn-floating tooltipped orange darken-4 btn-large waves-effect waves-light red" id="action-table-desktop" data-position="bottom" data-tooltip="Editar"><i class="material-icons">edit</i></a>

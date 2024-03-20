@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Tabela de Grupo Muscular')
+@section('title', 'Tabela dos Grupos Musculares')
 
 @section('content')
 
@@ -17,7 +17,10 @@
       <table class="highlight striped centered" id="form_table_group_muscle">
         <thead>
           <tr>
+            <th>ID</th>
             <th>Nome</th>
+            <th class="hide-on-small-only">Criado</th>
+            <th class="hide-on-small-only">Modificado</th>
             <th>Ação</th>
           </tr>
         </thead>
@@ -25,7 +28,10 @@
         <tbody id="table-body">
           @foreach($muscleGroups as $musclegroup)
             <tr>
+              <td id="td-text">{{ $musclegroup->id_gmuscle }}</td>
               <td id="td-text">{{ $musclegroup->name_gmuscle }}</td>
+              <td class="hide-on-small-only" id="td-text">{{ \Carbon\Carbon::parse($musclegroup->created_at)->format('d/m/Y - H:i:s') }}</td>
+              <td class="hide-on-small-only" id="td-text">{{ \Carbon\Carbon::parse($musclegroup->updated_at)->format('d/m/Y - H:i:s') }}</td>
               <td>    
                 <!-- Botão de ações-->
                 <a href="{{ route('admin.edit.groupmuscle', $musclegroup->id_gmuscle)}}" class="btn-floating tooltipped orange darken-4 btn-large waves-effect waves-light red" id="bottom-table-action" data-position="bottom" data-tooltip="Editar"><i class="material-icons">edit</i></a>

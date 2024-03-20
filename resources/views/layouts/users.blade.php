@@ -70,6 +70,7 @@
             <a href="#user"><img class="circle" id="img-perfil-mobile" src="/img/profile_photo_path/{{Auth::user()->profile_photo_path}}"></a>
             <a href="#name"><span class="white-text name" id="perfil-mobile-text">{{ auth()->user()->name }}</span></a>
             <a href="#email"><span class="white-text email">{{ auth()->user()->email }}</span></a>
+            <a href="#email"><span class="white-text email">ID: {{ auth()->user()->id }}</span></a>
           </div> 
         </div>
       </li>

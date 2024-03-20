@@ -7,8 +7,8 @@
   <!--Divs para titulo e Reporte -->
   <div class="row">
     <div class="col s12 l10">
-      <h3 id="homeTitle">Painel de Estatísticas </h3>
-      <a class="waves-effect waves-light btn modal-trigger blue accent-2" href="{{ route('admin.home') }}"><i class="material-icons left" >arrow_back</i>Voltar</a>
+      <h3 id="homeTitle">Estatísticas </h3>
+      <a href="{{ route('admin.home') }}" class="waves-effect waves-light btn left light-blue darken-4 col s12 l3" id="bottom-form-action"><i class="material-icons right">arrow_back</i>Voltar</a>
     </div>
   </div>
 
@@ -23,7 +23,8 @@
       <div class="card">
         <div class="row">
           <div class="col s12 l12">
-            <table class="highlight">
+            <div class="table-scroll">
+              <table class="highlight">
                 <h4>Informações do Gráfico Alunos</h4>                   
                 <tbody>                         
                     <tr>
@@ -40,7 +41,8 @@
                       <td id="text-profile" class="s12 l2">Alunos com 41+ anos: {{$user_dados[7]['total']}}</td>
                     </tr>
                 </tbody>                 
-            </table>
+              </table>
+            </div>
           </div>
         </div>
       </div>
@@ -58,16 +60,17 @@
       <div class="card">
         <div class="row">
           <div class="col s12 l12">
-            <table class="highlight">
+            <div class="table-scroll">
+              <table class="highlight">
                 <h4>Informações do Gráfico Mensalidades</h4>                   
-                <tbody>                         
+                  <tbody>                         
                     <tr>
                         <td id="text-profile" class="s12 l1">Total de Receita: <br> R$ {{ number_format(DB::table('payments')->sum(DB::raw('CAST(value_payment AS DECIMAL(10,2))')), 2, ',', '.') }}</td>
                         <td id="text-profile" class="s12 l1">Pgto em Dinheiro: R$ {{ number_format(DB::table('payments')->where('form_payment', 'Dinheiro')->sum(DB::raw('CAST(value_payment AS DECIMAL(10,2))')), 2, ',', '.') }} <br> Total: {{ DB::table('payments')->where('form_payment', 'Dinheiro')->count(DB::raw('CAST(value_payment AS DECIMAL(10,2))')) }} </td>
                         <td id="text-profile" class="s12 l1">Pgto em Pix: R$ {{ number_format(DB::table('payments')->where('form_payment', 'Pix')->sum(DB::raw('CAST(value_payment AS DECIMAL(10,2))')), 2, ',', '.') }} <br> Total: {{ DB::table('payments')->where('form_payment', 'Pix')->count(DB::raw('CAST(value_payment AS DECIMAL(10,2))')) }} </td>
                         <td id="text-profile" class="s12 l1">Pgto no Débido: R$ {{ number_format(DB::table('payments')->where('form_payment', 'Débito')->sum(DB::raw('CAST(value_payment AS DECIMAL(10,2))')), 2, ',', '.') }} <br> Total: {{ DB::table('payments')->where('form_payment', 'Débito')->count(DB::raw('CAST(value_payment AS DECIMAL(10,2))')) }} </td>
                     </tr>
-                   
+                    
                     <tr>
                       <td id="text-profile" class="s12 l1">Pgto no Crédito: R$ {{ number_format(DB::table('payments')->where('form_payment', 'Crédito')->sum(DB::raw('CAST(value_payment AS DECIMAL(10,2))')), 2, ',', '.') }} <br> Total: {{ DB::table('payments')->where('form_payment', 'Crédito')->count(DB::raw('CAST(value_payment AS DECIMAL(10,2))')) }} </td>
                       <td id="text-profile" class="s12 l1">Pgto no Boleto: R$ {{ number_format(DB::table('payments')->where('form_payment', 'Boleto')->sum(DB::raw('CAST(value_payment AS DECIMAL(10,2))')), 2, ',', '.') }} <br> Total: {{ DB::table('payments')->where('form_payment', 'Boleto')->count(DB::raw('CAST(value_payment AS DECIMAL(10,2))')) }} </td>
@@ -80,8 +83,9 @@
                       <td id="text-profile" class="s12 l1">Tipo mensalidade: {{$contagemPayment->monthly->name_monthly}} <br> Total: {{$contagemPayment->total}}</td>
                       @endforeach
                     </tr>
-                </tbody>                 
-            </table>
+                  </tbody>                 
+              </table>
+            </div>
           </div>
         </div>
       </div>
@@ -97,7 +101,8 @@
       <div class="card">
         <div class="row">
           <div class="col s12 l12">
-            <table class="highlight">
+            <div class="table-scroll">
+              <table class="highlight">
                 <h4>Informações do Gráfico Fichas</h4>               
                 <tbody>                         
                     <tr>
@@ -112,7 +117,8 @@
                       @endforeach
                     </tr>
                 </tbody>                 
-            </table>
+              </table>
+            </div>
           </div>
         </div>
       </div>

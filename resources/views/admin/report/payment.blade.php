@@ -17,7 +17,7 @@
               </div>
 
               <div class="input-field col s12" id="select-report">
-                <select name="period" id="period" required>
+                <select name="period" class="browser-default" id="period" required>
                   <option disabled>Selecione:</option>
                   @foreach ($periods as $period)
                     <option value="{{ $period }}">{{ $period }}</option>
@@ -45,7 +45,7 @@
               </div>
 
               <div class="input-field col s12" id="select-report">
-                <select name="form_payment" id="for_payment" required>
+                <select name="form_payment" class="browser-default" id="for_payment" required>
                   <option value="all" selected>Todos</option>
                   @foreach ($form_payments as $form_payment)
                     <option value="{{ $form_payment }}">{{ $form_payment }}</option>
@@ -106,6 +106,14 @@
         interval2.style.display = 'block';
       }
     });
+
+    let larguraTela = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    
+    // Define a classe com base na largura da tela
+    if (larguraTela > 700) {
+      $("#period").removeClass("browser-default");
+      $("#for_payment").removeClass("browser-default");
+    }
    
   </script>
 @endsection

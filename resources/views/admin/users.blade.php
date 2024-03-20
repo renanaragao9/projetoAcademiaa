@@ -15,19 +15,21 @@
         
         <div id="total-records" class="total-records"></div>
         <input type="text" id="search" placeholder="Pesquisar...">
-        <table class="highlight striped centered responsive-table">
+        <table class="highlight striped centered">
           <thead>
             <tr>
+              <th>ID</th>
               <th>Nome</th>
-              <th>Email</th>
+              <th class="hide-on-small-only">Email</th>
               <th>Ações</th>
             </tr>
           </thead>
           <tbody id="table-body">
             @foreach ($users as $user)
               <tr>
+                <td id="td-text">{{ $user->id }}</td>
                 <td id="td-text">{{ $user->name }}</td>
-                <td id="td-text">{{ $user->email }}</td>
+                <td class="hide-on-small-only" id="td-text">{{ $user->email }}</td>
                 <td>
                   <div class="action-buttons">
                     <!-- Botão de ação Desktop-->

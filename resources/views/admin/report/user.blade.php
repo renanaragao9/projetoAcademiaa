@@ -17,7 +17,7 @@
               </div>
 
               <div class="input-field col s12" id="select-report">
-                <select name="period" id="period" required>
+                <select name="period" class="browser-default" id="period" required>
                   <option disabled>Selecione:</option>
                   @foreach ($periods as $period)
                     <option value="{{ $period }}">{{ $period }}</option>
@@ -95,6 +95,13 @@
         interval2.style.display = 'block';
       }
     });
+
+    let larguraTela = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    
+    // Define a classe com base na largura da tela
+    if (larguraTela > 700) {
+      $("#period").removeClass("browser-default");
+    }
    
   </script>
 @endsection

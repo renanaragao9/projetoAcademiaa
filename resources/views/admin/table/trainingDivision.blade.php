@@ -17,7 +17,10 @@
       <table class="highlight striped centered" id="form_table_group_muscle">
         <thead>
           <tr>
+            <th>ID</th>
             <th>Nome</th>
+            <th class="hide-on-small-only">Criado</th>
+            <th class="hide-on-small-only">Modificado</th>
             <th>Ação</th>
           </tr>
         </thead>
@@ -25,7 +28,10 @@
         <tbody id="table-body">
           @foreach($trainings as $training)
             <tr>
+              <td id="td-text">{{ $training->id_training }}</td>
               <td id="td-text">{{ $training->name_training }}</td>
+              <td class="hide-on-small-only" id="td-text">{{ \Carbon\Carbon::parse($training->created_at)->format('d/m/Y - H:i:s') }}</td>
+              <td class="hide-on-small-only" id="td-text">{{ \Carbon\Carbon::parse($training->updated_at)->format('d/m/Y - H:i:s') }}</td>
               <td>    
                 <!-- Botão de ações-->
                 <a href="{{ route('admin.edit.training', $training->id_training)}}" class="btn-floating tooltipped orange darken-4 btn-large waves-effect waves-light red" id="bottom-table-action" data-position="bottom" data-tooltip="Editar"><i class="material-icons">edit</i></a>

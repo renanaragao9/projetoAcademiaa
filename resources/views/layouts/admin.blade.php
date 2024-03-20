@@ -128,6 +128,8 @@
                                     <a href="{{ route('admin.table.monthlyType') }}"> Tipo Mensalidade <i class="material-icons">radio_button_unchecked</i></a>
                                 </li>
 
+                                <li class="collapsible"></li>
+
                                 <li>
                                     <a href="{{ route('admin.payments.report') }}"> Relatório <i class="material-icons">radio_button_unchecked</i> </a>
                                 </li>

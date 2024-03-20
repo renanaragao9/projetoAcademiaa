@@ -51,6 +51,7 @@ class PDFController extends Controller
         $assessment = assessment::where('id_user_fk', $userId)->orderBy('id_assessment', 'desc')->first();
 
         $fichaNome = $studentFichas->first();
+        //dd($fichaNome);
         
         $html = View('users.pdf.fichaAluno')
         ->with('studentFichas', $studentFichas)
@@ -62,7 +63,7 @@ class PDFController extends Controller
         $dompdf->setPaper('A4', 'portrait');
         $dompdf->render();
        
-        return $dompdf->stream('Ficha_'.$fichaNome->name.'.pdf');
+        return $dompdf->stream('Ficha_'.$fichaNome->name. '_' . $fichaNome->name_training.'.pdf');
     }
 
     public function generateAssessmentPDF($id)

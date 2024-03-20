@@ -19,9 +19,12 @@
       <table class="highlight striped centered">
         <thead>
           <tr>
+            <th class="hide-on-small-only">ID</th>
             <th class="hide-on-small-only">Imagem</th>
             <th>Nome</th>
             <th>Grupo Muscular</th>
+            <th class="hide-on-small-only">Criado</th>
+            <th class="hide-on-small-only">Modificado</th>
             <th>Ação</th>
           </tr>
         </thead>
@@ -29,9 +32,12 @@
         <tbody id="table-body">
           @foreach( $exercises as $exercise)
             <tr>
+              <td id="td-text" class="hide-on-small-only">{{ $exercise->id_exercise }}</td>
               <td id="td-text" class="hide-on-small-only"> <img src="/img/exercise/{{$exercise->image_exercise}}" alt="" class="circle materialboxed" id="table-image"></td>
               <td id="td-text">{{ $exercise->name_exercise }}</td>
               <td class="grupo-muscular" data-grupo="{{ $exercise->groupMuscle->name_gmuscle }}" id="td-text">{{ $exercise->groupMuscle->name_gmuscle }}</td>
+              <td class="hide-on-small-only" id="td-text">{{ \Carbon\Carbon::parse($exercise->created_at)->format('d/m/Y - H:i:s') }}</td>
+              <td class="hide-on-small-only" id="td-text">{{ \Carbon\Carbon::parse($exercise->updated_at)->format('d/m/Y - H:i:s') }}</td>
               <td>
                 <!-- Botão de ações Desktop-->
                 <a href="{{ route('admin.edit.exercise', $exercise->id_exercise)}}" class="btn-floating tooltipped orange darken-4 btn-large waves-effect waves-light red" id="action-table-desktop" data-position="bottom" data-tooltip="Editar"><i class="material-icons">edit</i></a>
@@ -83,7 +89,7 @@
       let count = 0;
 
       for (let i = 0; i < rows.length; i++) {
-        let nome = rows[i].getElementsByTagName('td')[1].innerText.toLowerCase();
+        let nome = rows[i].getElementsByTagName('td')[2].innerText.toLowerCase();
         let grupo = rows[i].querySelector('.grupo-muscular').getAttribute('data-grupo').toLowerCase();
 
         if (nome.indexOf(filter) > -1 || grupo.indexOf(filter) > -1) {
