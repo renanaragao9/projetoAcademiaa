@@ -16,7 +16,7 @@ class FichaController extends Controller
     public function show_table_exercise_user($id) {
     
         $fichaUsers = ficha::join('training_division', 'fichas.id_training_fk', '=', 'training_division.id_training')
-            ->with(['muscleGroup', 'user', 'creator'])
+            ->with(['muscleGroup', 'user', 'fichasCreator', 'trainingDivision'])
             ->select('fichas.*', 'training_division.name_training as name_training')
             ->where('fichas.id_user_fk', $id)
             ->orderBy('name_training', 'asc')

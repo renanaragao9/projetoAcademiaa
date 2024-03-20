@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Tabela do Aluno')
+@section('title', 'Tabela de Exercicios do aluno')
 
 @section('content')
   
@@ -8,8 +8,8 @@
   <div class="card z-depth-5">
     <div class="card-content">
       <div class="col s12 l12">
-        <h3 class="center" id="homeTitle" >Ficha dos Exercícios</h3>
-        <h4 class="center" id="homeTitle"> Aluno   {{$userName->user->name}}</h4>
+        <h3 class="center" id="homeTitle" >Listagem de Exercícios</h3>
+        <h4 class="center" id="homeTitle"> Aluno(a)   {{$userName->user->name}}</h4>
         <a href="{{ route('admin.register.ficha', $userName->id_user_fk) }}" class="waves-effect waves-light btn left light-blue darken-4 col s12 l2" id="bottom-form-action"><i class="material-icons right">arrow_back</i>Voltar</a>
       </div>
     </div>
@@ -30,7 +30,7 @@
         <tbody id="table-body">
           @foreach( $fichaUsers as $fichaUser)
             <tr>
-              <td id="td-text">{{ $fichaUser->training->name_training }}</td>
+              <td id="td-text">{{ $fichaUser->trainingDivision->name_training }}</td>
               <td id="td-text"> {{ $fichaUser->exercise->name_exercise }} </td>
               <td id="td-text">{{ $fichaUser->order }}º</td>
               <td>

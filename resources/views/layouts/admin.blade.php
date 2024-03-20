@@ -157,6 +157,12 @@
                             <li class="collapsible"></li>
 
                             <li>
+                                <a href="{{ route('admin.register.monthlyType') }}"> Tipo Mensalidade <i class="material-icons">radio_button_unchecked</i> </a>
+                            </li>
+
+                            <li class="collapsible"></li>
+
+                            <li>
                                 <a href="{{ route('admin.register.exercise') }}"> Exercício <i class="material-icons">radio_button_unchecked</i> </a>
                             </li>
 
@@ -179,7 +185,7 @@
             <li class="no-padding">
                 <ul class="collapsible collapsible-accordion">
                     <li>
-                        <a class="collapsible-header waves-effect"> Listas <i class="material-icons">table_view</i><i class="material-icons right">arrow_drop_down</i> </a>
+                        <a class="collapsible-header waves-effect"> Listas <i class="material-icons">view_list</i><i class="material-icons right">arrow_drop_down</i> </a>
                         <div class="collapsible-body light-blue darken-4">
                             <ul>
                                 <li>
@@ -201,7 +207,7 @@
                                 <li class="collapsible"></li>
 
                                 <li>
-                                    <a href="{{ route('admin.table.groupmuscle') }}"> Grupos musculares <i class="material-icons">radio_button_unchecked</i> </a>
+                                    <a href="{{ route('admin.table.groupmuscle') }}"> Grupos Musculares <i class="material-icons">radio_button_unchecked</i> </a>
                                 </li>
                                 
                                 <li class="collapsible"></li>
@@ -235,7 +241,7 @@
             </ul>
             
             <li class="collapsible">
-                <a href="{{ route('admin.statistic') }}" class="waves-effect"> Estatisticas <i class="material-icons">bar_chart_4_bars</i></a>
+                <a href="{{ route('admin.statistic') }}" class="waves-effect"> Estatísticas <i class="material-icons">bar_chart_4_bars</i></a>
             </li>
             
             <li class="collapsible">
@@ -243,7 +249,7 @@
             </li>
 
             <li class="collapsible">
-                <a href="{{ route('admin.register.media') }}" class="waves-effect"> Mídia <i class="material-icons">perm_media</i></a>
+                <a href="{{ route('admin.register.media') }}" class="waves-effect"> Mídias <i class="material-icons">perm_media</i></a>
             </li>
         </ul>
     </header>

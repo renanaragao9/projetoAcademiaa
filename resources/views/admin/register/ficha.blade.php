@@ -15,7 +15,7 @@
                         <div class="row">
 
                             <div class="input-field col s12 l12" id="input-exercicio">
-                                <h3 id="homeTitle" class="center">Cadastrar Nova Ficha</h3>
+                                <h3 id="homeTitle" class="center">Cadastrar nova Ficha</h3>
                                 <h4 id="homeTitle" class="center">Aluno(a) {{ $user->name }}</h4>
                             </div>
 
@@ -102,7 +102,7 @@
                             </div>
 
                             <div class="input-field col s12 l6 left">
-                                <button type="button" id="adicionarDado" class="btn waves-effect waves-light orange darken-4"><i class="material-icons left">add</i>Adicionar Exercicio</button>
+                                <button type="button" id="adicionarDado" class="btn waves-effect waves-light orange darken-4"><i class="material-icons left">add</i>Adicionar Exercício</button>
                             </div>
                         </div>
                     </form>
@@ -129,7 +129,7 @@
                         
                         <a href="#modal-alerta_2" class="modal-trigger waves-effect waves-light btn left light-blue darken-4 col s12 l5"><i class="material-icons right">save</i>Cadastrar</a>
 
-                        <a href="{{ route('admin.ficha.table-user', $user->id) }}" class="waves-effect waves-light btn right light-blue darken-4 col s12 l5" id=""><i class="material-icons right">table_rows</i>Ficha</a>
+                        <a href="{{ route('admin.ficha.table-user', $user->id) }}" class="waves-effect waves-light btn right light-blue darken-4 col s12 l5" id=""><i class="material-icons right">table_rows</i>Listar Fichas do Aluno</a>
                             
                         <a href="{{ route('admin.users') }}" class="waves-effect waves-light btn left light-blue darken-4 col s12 l5" id="bottom-form-action"><i class="material-icons right">arrow_back</i>Voltar</a>
                         

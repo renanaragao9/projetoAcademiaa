@@ -13,16 +13,12 @@
             <form method="POST" action="{{ route('admin.user.update', $user->id) }}" class="col s12" id="form_exercise">
               @method('PUT')
               @csrf
-              <div class="col s12 l2">
-                <!-- Imagem do perfil -->
-                <img src="/img/profile_photo_path/{{$user->profile_photo_path}}" class="circle responsive-img materialboxed" id="profile-img-mobile" alt="Imagem de Perfil">
-              </div>
               
-              <div class="col s12 l8">
+              <div class="col s12 l12">
                   <!-- Título e subtítulo -->
                   <div class="input-field">
-                      <h3 class="center" id="homeTitle">Editar Aluno(a)</h3>
-                      <h4 class="center" id="homeTitle"> ({{ $user->name }}) </h4>
+                      <h3 class="center" id="homeTitle">Editar Cadastro</h3>
+                      <h4 class="center" id="homeTitle"> Aluno(a) {{ $user->name }} </h4>
                   </div>
               </div>
               
@@ -73,15 +69,15 @@
                 <label>Perfil</label>
               </div>  
 
-              <input type="" name="id" value="{{ $user->id }}">
-              <input type="" name="password" value="{{$user->password}}">
+              <input type="hidden" name="id" value="{{ $user->id }}">
+              <input type="hidden" name="password" value="{{$user->password}}">
 
               <div class="input-field col s12 l12">
                 <button class="btn waves-effect waves-light light-blue darken-4 col s12 l5" id="save-button" type="submit" name="action" onclick="confirmSubmit()">Editar
                   <i class="material-icons right">save</i>
                 </button>
                   
-                <a href="{{ route('admin.users') }}" class="waves-effect waves-light btn right light-blue darken-4 col s12 l5"><i class="material-icons right">table_rows</i>Alunos</a>
+                <a href="{{ route('admin.users') }}" class="waves-effect waves-light btn right light-blue darken-4 col s12 l5"><i class="material-icons right">table_rows</i>Listar Alunos</a>
       
                 <div class="input-field col s12 l12">
                   <a href="{{ route('admin.users') }}" class="waves-effect waves-light btn left light-blue darken-4 col s12 l5" id="bottom-form-action"><i class="material-icons right">arrow_back</i>Voltar</a>

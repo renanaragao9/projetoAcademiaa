@@ -14,7 +14,7 @@
             <div class="row">                  
               <div class="input-field col s12 l12">
                 <h3 id="homeTitle" class="center">Cadastrar <br>Mensalidade</h3>
-                <h5 id="homeTitle" class="center">Aluno {{ $user->name }}</h5>
+                <h5 id="homeTitle" class="center">Aluno(a) {{ $user->name }}</h5>
               </div>
 
               <div class="input-field col s12 l6" id="select-mensalidade">
@@ -59,7 +59,7 @@
                   <i class="material-icons right">save</i>
                 </button>
                   
-                <a href="{{ route('admin.payments.indexUser', $user->id) }}" class="waves-effect waves-light btn right light-blue darken-4 col s12 l5" id=""><i class="material-icons right">table_rows</i>Pagamentos</a>
+                <a href="{{ route('admin.payments.indexUser', $user->id) }}" class="waves-effect waves-light btn right light-blue darken-4 col s12 l5" id=""><i class="material-icons right">table_rows</i>Pagamentos do Aluno</a>
       
                 <div class="input-field col s12 l12">
                   <a href="{{ route('admin.users') }}" class="waves-effect waves-light btn left light-blue darken-4 col s12 l5" id="bottom-form-action"><i class="material-icons right">arrow_back</i>Voltar</a>

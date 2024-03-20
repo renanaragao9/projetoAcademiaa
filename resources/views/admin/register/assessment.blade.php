@@ -15,12 +15,12 @@
                   <div class="row">
 
                     <div class="input-field col s12 l12" id="input-exercicio">
-                      <h3 id="homeTitle" class="center">Avaliação</h3>
-                      <h4 id="homeTitle" class="center">Aluno ({{ $user->name }})</h4>
+                      <h3 id="homeTitle" class="center">Cadastrar nova Avaliação</h3>
+                      <h4 id="homeTitle" class="center">Aluno(a) {{ $user->name }}</h4>
                     </div>
                     
                     <div class="input-field col s12">
-                      <h4 class="center">Especificações da Avaliação</h4>
+                      <h4 class="center">Dados da Avaliação</h4>
                     </div>
 
                     <div class="input-field col s12 l6">
@@ -112,7 +112,7 @@
                       <i class="material-icons right">save</i>
                     </button>
                       
-                    <a href="{{ route('admin.table.assessment', $user->id)}}" class="waves-effect waves-light btn right light-blue darken-4 col s12 l5" id=""><i class="material-icons right">table_rows</i>Avaliações</a>
+                    <a href="{{ route('admin.table.assessment', $user->id)}}" class="waves-effect waves-light btn right light-blue darken-4 col s12 l5" id=""><i class="material-icons right">table_rows</i>Avaliações do Aluno</a>
           
                     <div class="input-field col s12 l12">
                       <a href="{{ route('admin.users') }}" class="waves-effect waves-light btn left light-blue darken-4 col s12 l5" id="bottom-form-action"><i class="material-icons right">arrow_back</i>Voltar</a>
