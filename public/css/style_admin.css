@@ -350,6 +350,30 @@ nav .brand-logo i.material-icons {
   margin-bottom: -30px;
 }
 
+#card-tile-mobile {
+  border: 3px solid #0c3350; /* Cor da borda */
+  border-radius: 10px; /* Arredondamento das bordas */
+  padding: 15px; /* Espaçamento interno */
+  box-shadow: 4 8px 12px rgba(0, 0, 0, 0.1); /* Sombra */
+  margin-bottom: 30px;
+  max-height: 100px;
+  font-family: 'Poppins', sans-serif;
+}
+
+#card-tile-mobile h3 {
+  color: #0c3350; /* Cor do título */
+  margin: 0; /* Remover margens padrão */
+  font-size: 24px; /* Tamanho do título */
+  line-height: 1.5; /* Espaçamento entre as linhas */
+}
+
+#textUserWelcome {
+  margin-top: 5px; /* Espaçamento entre o título e o texto */
+  color: #fafafa; /* Cor do texto */
+}
+
+
+
 /* TRANSIÇÃO RELATORIO */
 
 /* label focus color */

@@ -68,7 +68,7 @@
                     </li>
                 </ul>
                 
-                <a href="{{ route('admin.home') }}" class="brand-logo center"><i class="material-icons left" >fitness_center</i>Israel Dantas</a>
+                <a href="{{ route('admin.home') }}" class="brand-logo center"><i class="material-icons left" >fitness_center</i>Academia Renan´s</a>
 
                 <ul class="right hide-on-med-and-down">               
                     <li>

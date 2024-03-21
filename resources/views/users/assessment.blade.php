@@ -8,14 +8,14 @@
         <div class="row">
         
             <!--Divs para titulo -->
-            <div class="row">
+            <div class="card" id="card-tile-mobile">
                 <div class="row">
-                    <div class="col s12" id="cardAssessmentTitle">
-                        <h5 id="homeUserTitle" class="center">Ficha de Avaliação</h5>
-                        <h6 id="homeUserTitle" class="center">{{ Auth::user()->name }}</h6>           
-                    </div>
+                  <div class="col s12 l12">
+                      <h3 id="homeUserTitle" class="center"> Ficha de Avaliação</h3>
+                      <h3 id="homeUserTitle" class="center"> Data: {{ \Carbon\Carbon::parse($studentAssessments[0]->created_at)->format('d/m/Y') }}</h3>  
+                  </div>
                 </div>
-            </div>
+              </div>
 
             @if($studentAssessments->count() > 0)
                 @foreach ($studentAssessments as $studentAssessment)

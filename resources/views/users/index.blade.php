@@ -18,13 +18,13 @@
 
   <div class="container">
     <div class="row">
-
-
       
       <!--Divs para titulo e Reporte -->
-      <div class="row">
-        <div class="col s12 l10">
-            <h3 id="homeUserTitle"> {{ $firstName }}. <br> <p id="textUserWelcome">tenha um bom treino</p></h3>
+      <div class="card" id="card-tile-mobile">
+        <div class="row">
+          <div class="col s12 l10">
+              <h3 id="homeUserTitle"> {{ $firstName }}.</h3>
+          </div>
         </div>
       </div>
 
@@ -232,7 +232,7 @@
       // Exibe a saudação na página
       const saudacaoElemento = document.getElementById('homeUserTitle');
       const saudacaoTexto = getSaudacao();
-      saudacaoElemento.textContent = `${saudacaoTexto}, {{ $firstName }}. Tenha um bom treino.`;
+      saudacaoElemento.innerHTML = `${saudacaoTexto}, {{ $firstName }}. <br> Tenha um bom treino.`;
 
       const likeButton = document.querySelector('.like');
       likeButton.addEventListener('click', function() {

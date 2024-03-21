@@ -14,6 +14,15 @@
             </div>
         </div>
 
+        <div class="card" id="card-tile-mobile">
+            <div class="row">
+              <div class="col s12 l12">
+                  <h3 id="homeUserTitle" class="center"> Ficha de Avaliação</h3>
+                  <h3 id="homeUserTitle" class="center"> Data: {{ \Carbon\Carbon::parse($studentAssessments[0]->created_at)->format('d/m/Y') }}</h3>  
+              </div>
+            </div>
+          </div>
+          
         @foreach ($studentFichas as $index => $studentFicha)
             <!-- INICIO DA CARD -->
             <div class="row">
