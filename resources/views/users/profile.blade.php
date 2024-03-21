@@ -134,6 +134,30 @@
                         @endif
                     </div>
                 </div>
+
+                <div class="card-action">
+                    <div class="row">
+                        <span class="card-title center" id="profile-title-mobile">Pagamentos</span>
+                        @if(count($payments) > 0)
+                            @foreach ($payments as $payment)
+                                <table class="highlight">
+                                    <tbody>
+                                        <tr>
+                                            <td id="text-profile">Plano: <span id="text-profile-span"> {{$payment->monthly->name_monthly}}</span> <br> 
+                                                Valor:<span id="text-profile-span"> R$ {{ number_format($payment->value_payment, 2, ',', '.') }} </span> <br> 
+                                                Inicio do Plano:<span id="text-profile-span"> {{date( 'd/m/Y' , strtotime($payment->date_payment))}} </span> <br>
+                                                Fim do plano:<span id="text-profile-span"> {{date( 'd/m/Y' , strtotime($payment->date_due_payment))}} </span>
+                                            
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            @endforeach
+                        @else
+                            <br><span id="profile-subtitle-mobile">Você ainda não possui pagamento:</span>
+                        @endif
+                    </div>
+                </div>
             </div>
         </div>
     </div>

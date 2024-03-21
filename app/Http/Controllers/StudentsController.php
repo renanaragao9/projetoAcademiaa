@@ -10,6 +10,8 @@ use App\Models\called;
 use App\Models\statistics;
 use App\Models\user;
 use App\Models\media;
+use App\Models\payment;
+use App\Models\monthlyType;
 
 
 class StudentsController extends Controller
@@ -35,12 +37,29 @@ class StudentsController extends Controller
             $nameParts = explode(' ', $fullName);
             $firstName = $nameParts[0];
 
+            $payment = payment::with('monthly', 'userCreator')->where('user_id', $userId)->orderBy('id_payment', 'DESC')->first();
+            $dataInicio = strtotime($payment->date_payment);
+            $dataVencimento = strtotime($payment->date_due_payment);
+            $diferenca = $dataVencimento - $dataInicio;
+            $diasRestantes = floor($diferenca / (60 * 60 * 24));
+            
+            if ($diasRestantes == 0) {
+                $msg_warning = 'Hoje é o último dia do plano!';
+            
+            }elseif($diasRestantes == 1) {
+                $msg_warning = 'Faltam 1 dia para o vencimento do plano!';
+            
+            } else {
+                $msg_warning = ''; 
+            }
+
             return view('users.index', [
                 'fichas' => $fichas,
                 'firstName' => $firstName,
                 'mediaBanners' => $mediaBanners,
-                'mediaPost' => $mediaPost
-            ]);           
+                'mediaPost' => $mediaPost,
+                'msg_warning' => $msg_warning
+            ]);   
         }
     }
 
@@ -162,12 +181,31 @@ class StudentsController extends Controller
 
         $userProfile = User::where('id', $userId)->first();
 
+        $payments = payment::with('monthly')->where('user_id', $userId)->orderBy('id_payment', 'DESC')->limit(3)->get();  
+
         return view('users.profile', [
             'fichas' => $fichas,
             'userProfile' => $userProfile,
             'statistics' => $statistics,
-            'assessments' => $assessments
+            'assessments' => $assessments,
+            'payments' => $payments
         ]);
+    }
+
+    public function payments() {
+        
+        $userId = auth()->user()->id;
+
+        // envia a relação de fichas do aluno. OBS: Esse codigo terá que ir em todos as views para o leyout funcionar bem
+        $fichas = Ficha::where('id_user_fk', $userId)
+        ->select('fichas.id_training_fk', 'training_division.name_training')
+        ->join('training_division', 'fichas.id_training_fk', '=', 'training_division.id_training')
+        ->distinct()
+        ->get();
+
+        $payments = payment::with('monthly', 'userCreator')->where('user_id', $userId)->orderBy('id_payment', 'DESC')->get();
+
+        return view('users.payment', ['payments' => $payments, 'fichas' => $fichas]);
     }
 
     public function fichaPDF($id) {

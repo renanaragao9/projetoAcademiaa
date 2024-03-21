@@ -234,6 +234,17 @@ nav .brand-logo i.material-icons {
   max-width: 100%; 
 }
 
+#text-profile-first {
+  font-size: 22px;
+  font-weight: bolder;
+  white-space: pre-wrap;
+  color: #0c3350;
+  flex-wrap: wrap;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  margin-top: -10px;
+}
+
 #text-dados-profile {
   font-size: 16px;
   font-weight: bolder;

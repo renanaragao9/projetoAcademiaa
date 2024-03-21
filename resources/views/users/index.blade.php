@@ -3,9 +3,23 @@
 @section('title', 'Painel do Aluno')
 
 @section('content')
+  @if($msg_warning)
+    <div class="flash-message-warning">
+      <div class="flash-message-content">
+        <p>{{ $msg_warning }}</p>
+        <i class="material-icons success-message-icon right">warning</i>
+      </div>
+
+      <button class="flash-message-close" onclick="this.parentElement.style.display='none'">
+        <i class="material-icons">close</i>
+      </button>
+    </div>  
+  @endif
 
   <div class="container">
     <div class="row">
+
+
       
       <!--Divs para titulo e Reporte -->
       <div class="row">

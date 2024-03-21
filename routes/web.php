@@ -161,6 +161,7 @@ Route::middleware(['auth'])->group(function() {
        Route::get('assessment-view/{id}', [StudentsController::class, 'assessmentPDF'])->name('students.assessment-pdf');
        Route::get('assessment-pdf/{id}', [PDFController::class, 'generateAssessmentPDF'])->name('assessmentDownload');
        route::get('post', [StudentsController::class, 'posts'])->name('students.posts');
+       route::get('pagamentos', [StudentsController::class, 'payments'])->name('students.payment');
     });
 });
 
