@@ -3,26 +3,28 @@
 @section('title', 'Painel do Aluno')
 
 @section('content')
-  @if($msg_warning)
-    <div class="flash-message-warning">
-      <div class="flash-message-content">
-        <p>{{ $msg_warning }}</p>
-        <i class="material-icons success-message-icon right">warning</i>
-      </div>
-
-      <button class="flash-message-close" onclick="this.parentElement.style.display='none'">
-        <i class="material-icons">close</i>
-      </button>
-    </div>  
-  @endif
-
+ 
   <div class="container">
     <div class="row">
+
+      @if($msg_warning)
+        <div class="flash-message-warning">
+          <div class="flash-message-content">
+            <p>{{ $msg_warning }}</p>
+            <i class="material-icons success-message-icon right">warning</i>
+          </div>
+    
+          <button class="flash-message-close" onclick="this.parentElement.style.display='none'">
+            <i class="material-icons">close</i>
+          </button>
+        </div>  
+      @endif
       
       <!--Divs para titulo e Reporte -->
       <div class="card" id="card-tile-mobile">
         <div class="row">
           <div class="col s12 l10">
+            <i class="material-icons" id="homeUserTitle-icon">home</i>
               <h3 id="homeUserTitle"> {{ $firstName }}.</h3>
           </div>
         </div>
@@ -100,8 +102,25 @@
       <!-- Titulo -->
       <div class="row">
         <div class="col s12" id="cardTextTitle">
-          <h5 id="homeUserTitle" class="center">avaliação física, chamados e conteúdo extra</h5>
+          <h5 id="homeUserTitle" class="center">Avaliação Física, Chamados e Conteúdo Extra</h5>
         </div>
+      </div>
+
+      <!-- Card de Mensalidades -->
+      <div class="row">
+        <a href="{{ route('students.profile', Auth::user()->id) }}">
+          <div class="card horizontal z-depth-3" id="card-mobile">
+            <div class="card-image">
+              <i class="material-icons" id="icon-card-mobile">person</i>
+            </div>
+            
+            <div class="card-stacked">
+              <div class="card-content">
+                <p>Perfil</p>
+              </div>
+            </div>
+          </div>
+        </a>
       </div>
       
       <!-- Card da avaliação -->
@@ -124,6 +143,23 @@
         @if($fichas->count() > 0)
           <a href="{{route('assessmentDownload', $ficha->id_training_fk)}}" class="btn-small waves-effect waves-light orange darken-4">Baixar Avaliação <i class="material-icons right">download</i> </a>
         @endif
+      </div>
+
+      <!-- Card de Mensalidades -->
+      <div class="row">
+        <a href="{{ route('students.payment', Auth::user()->id) }}">
+          <div class="card horizontal z-depth-3" id="card-mobile">
+            <div class="card-image">
+              <i class="material-icons" id="icon-card-mobile">payments</i>
+            </div>
+            
+            <div class="card-stacked">
+              <div class="card-content">
+                <p>Planos</p>
+              </div>
+            </div>
+          </div>
+        </a>
       </div>
      
       <!-- Card de chamados -->
@@ -148,12 +184,12 @@
         <a href="{{ route('students.posts')}}">
           <div class="card horizontal z-depth-3" id="card-mobile">
             <div class="card-image">
-              <i class="material-icons" id="icon-card-mobile">share</i>
+              <i class="material-icons" id="icon-card-mobile">tag</i>
             </div>
             
             <div class="card-stacked">
               <div class="card-content">
-                <p>Postagens</p>
+                <p>Posts</p>
               </div>
             </div>
           </div>
@@ -232,7 +268,7 @@
       // Exibe a saudação na página
       const saudacaoElemento = document.getElementById('homeUserTitle');
       const saudacaoTexto = getSaudacao();
-      saudacaoElemento.innerHTML = `${saudacaoTexto}, {{ $firstName }}. <br> Tenha um bom treino.`;
+      saudacaoElemento.innerHTML = `${saudacaoTexto}, {{ $firstName }}. <br> Tenha um bom treino!`;
 
       const likeButton = document.querySelector('.like');
       likeButton.addEventListener('click', function() {

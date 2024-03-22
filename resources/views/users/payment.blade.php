@@ -1,79 +1,95 @@
 <?php
-    $dataInicio = strtotime($payments[0]->date_payment);
+    $dataAtual = strtotime(date('Y-m-d'));
+
     $dataVencimento = strtotime($payments[0]->date_due_payment);
-    $diferenca = $dataVencimento - $dataInicio;
-    $diasRestantes = floor($diferenca / (60 * 60 * 24));
+
+    $diferencaSegundos = $dataVencimento - $dataAtual;
+
+    $diasRestantes = floor($diferencaSegundos / (60 * 60 * 24));
+
+    $mensagem = "";
+
+    if ($diferencaSegundos < 0) {
+        $mensagem = "A data de vencimento já passou.";
+    } elseif ($diferencaSegundos == 0) {
+        $mensagem = "A data de vencimento é hoje.";
+    } else {
+        $mensagem = "Faltam " . $diasRestantes . " dias para o vencimento.";
+    }
 ?>
+
 
 @extends('layouts.users')
 
 @section('title', 'Painel do Aluno')
 
 @section('content')
-<h2 id="homeUserTitle" class="center">Pagamentos</h2>
-    <div class="row">
-        <div class="col s12 m6">
-            <div class="card">
-                <div class="card-action">
-                    <div class="row">
-                        <table class="highlight">
-                            <tbody>
-                                <tr>
-                                    <td>
-                                       <p id="text-profile-first" ><i class="material-icons">payments</i> Plano: {{ $payments[0]->monthly->name_monthly }}</p>
-                                       <p id="text-profile-first" ><i class="material-icons">paid</i> Valor: {{ number_format($payments[0]->value_payment, 2, ',', '.') }}</p>
-                                       <p id="text-profile-first" ><i class="material-icons">local_atm</i> Pago no {{ $payments[0]->form_payment }}</p>
-                                       <p id="text-profile-first" ><i class="material-icons">calendar_month</i> Início  {{date( 'd/m/Y' , strtotime($payments[0]->date_payment))}}</p>
-                                       <p id="text-profile-first" ><i class="material-icons">calendar_month</i> Fim  {{date( 'd/m/Y' , strtotime($payments[0]->date_due_payment))}}</p>
-                                       <p id="text-profile-first" ><i class="material-icons">schedule</i> Faltam {{$diasRestantes}} dias para o vencimento</p> <br> <br>
-                                       <p id="text-profile-first" ><i class="material-icons">person</i> Registrado por {{$payments[0]->userCreator->name}}</p>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
 
-                <div class="card-action">
-                    <div class="row">
-                        @if(count($payments) > 0)
-                            @foreach ($payments as $payment)
+<div class="container">
+    <div class="row">
+        <div class="card" id="card-tile-mobile">
+            <div class="row">
+                <div class="col s12 l10">
+                    <i class="material-icons" id="homeUserTitle-icon">payments</i>
+                    <h3 id="homeUserTitle" class="center"> Planos</h3>
+                </div>
+            </div>
+        </div>
+        @if(count($payments) > 0)
+            <div class="row">
+                <div class="col s12 m6">
+                    <div class="card">
+                        <div class="card-action">
+                            <div class="row">
                                 <table class="highlight">
                                     <tbody>
                                         <tr>
-                                            <td id="text-profile">Plano: <span id="text-profile-span"> {{$payment->monthly->name_monthly}}</span> <br> 
-                                                Valor:<span id="text-profile-span"> R$ {{ number_format($payment->value_payment, 2, ',', '.') }} </span> <br> 
-                                                Inicio do Plano:<span id="text-profile-span"> {{date( 'd/m/Y' , strtotime($payment->date_payment))}} </span> <br>
-                                                Fim do plano:<span id="text-profile-span"> {{date( 'd/m/Y' , strtotime($payment->date_due_payment))}} </span> <br>
-                                                Forma de Pagamento:<span id="text-profile-span"> {{$payment->form_payment}} </span> <br>
-                                                Registrado por:<span id="text-profile-span"> {{$payment->userCreator->name}} </span>
+                                            <td>
+                                            <p id="text-profile-first" ><i class="material-icons">payments</i> Plano: {{ $payments[0]->monthly->name_monthly }}</p>
+                                            <p id="text-profile-first" ><i class="material-icons">paid</i> Valor: {{ number_format($payments[0]->value_payment, 2, ',', '.') }}</p>
+                                            <p id="text-profile-first" ><i class="material-icons">local_atm</i> Pago no {{ $payments[0]->form_payment }}</p>
+                                            <p id="text-profile-first" ><i class="material-icons">calendar_month</i> Início  {{date( 'd/m/Y' , strtotime($payments[0]->date_payment))}}</p>
+                                            <p id="text-profile-first" ><i class="material-icons">calendar_month</i> Fim  {{date( 'd/m/Y' , strtotime($payments[0]->date_due_payment))}}</p>
+                                            <p id="text-profile-first" ><i class="material-icons">schedule</i> {{ $mensagem }} </p> <br> <br>
+                                            <p id="text-profile-first" ><i class="material-icons">person</i> Registrado por {{$payments[0]->userCreator->name}}</p>
                                             </td>
                                         </tr>
                                     </tbody>
                                 </table>
-                            @endforeach
-                        @else
-                            <br><span id="profile-subtitle-mobile">Você ainda não possui pagamento:</span>
-                        @endif
+                            </div>
+                        </div>
+
+                        <div class="card-action">
+                            <div class="row">
+                                
+                                <p id="payments-historic">Historico de Pagamentos</p>
+                                
+                                @foreach ($payments as $payment)
+                                    <table class="highlight">
+                                        <tbody>
+                                            <tr>
+                                                <td id="text-profile">Plano: <br> <span id="text-profile-span">-> {{$payment->monthly->name_monthly}}</span> <br> 
+                                                    Valor: <br> <span id="text-profile-span"> -> R$ {{ number_format($payment->value_payment, 2, ',', '.') }} </span> <br> 
+                                                    Inicio do Plano: <br> <span id="text-profile-span"> -> {{date( 'd/m/Y' , strtotime($payment->date_payment))}} </span> <br>
+                                                    Fim do plano: <br> <span id="text-profile-span"> -> {{date( 'd/m/Y' , strtotime($payment->date_due_payment))}} </span> <br>
+                                                    Forma de Pagamento: <br> <span id="text-profile-span"> -> {{$payment->form_payment}} </span> <br>
+                                                    Registrado por: <br> <span id="text-profile-span"> -> {{$payment->userCreator->name}} </span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                @endforeach
+            
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        @else
+            <br><span id="profile-subtitle-mobile">Você ainda não possui pagamentos:</span>
+        @endif
     </div>
-
-    <!-- Modal de alerta -->
-    <div id="modal-alerta" class="modal">
-        <div class="modal-content">
-            <i class="material-icons" id="modal-icon-alert">info</i>
-            <h4>Confirmação</h4>
-            <p>Deseja realmente mudar a foto de perfil ?</p>
-        </div>
-
-        <div class="modal-footer">
-            <a href="#" class="modal-close waves-effect waves-green btn-flat right" id="cancelBtn">Cancelar</a>
-            <a href="#" class="modal-close waves-effect waves-green btn light-blue darken-4 left" id="sendBtn">Sim</a>
-        </div>
-    </div>
-    
+</div>
 @endsection
 
 @section('script')

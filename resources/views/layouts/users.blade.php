@@ -33,7 +33,7 @@
     <ul>
       <li class="waves-effect waves-light"> <a href="{{ route('students.assessment', Auth::user()->id) }}"> <i class="material-icons">analytics</i> </a> </li>
       <li class="waves-effect waves-light"> <a href="{{ route('students.start')}} "> <i class="material-icons">home</i> </a> </li>
-      <li class="waves-effect waves-light"> <a href="{{ route('students.called', Auth::user()->id) }}"> <i class="material-icons">forum</i> </a> </li>
+      <li class="waves-effect waves-light"> <a href="{{ route('students.profile', Auth::user()->id) }}"> <i class="material-icons">person</i> </a> </li>
     </ul>
   </div>
   
@@ -46,7 +46,7 @@
         <a href="#" data-target="slide-out" class="sidenav-trigger"> <i class="material-icons">menu</i> </a>
 
         <!-- Logo Central-->
-        <a href="{{ route('students.start') }}" class="brand-logo center"><i class="material-icons left" >fitness_center</i> Israel Dantas </a>
+        <a href="{{ route('students.start') }}" class="brand-logo center"><i class="material-icons left" >fitness_center</i> Renan's </a>
         
         <ul class="right">              
           <li>
@@ -83,7 +83,7 @@
       <li class="collapsible"><a href="{{ route('students.start') }}" class="waves-effect" id="mobile-side"> Início <i class="material-icons">home</i></a></li>
       <li class="collapsible"><a href="{{ route('students.profile', Auth::user()->id) }}" class="waves-effect" id="mobile-side"> Perfil <i class="material-icons">person</i></a></li>
       <li class="collapsible"><a href="{{ route('students.assessment', Auth::user()->id) }}" class="waves-effect" id="mobile-side"> Avaliação <i class="material-icons">analytics</i></a></li>
-      <li class="collapsible"><a href="{{ route('students.payment', Auth::user()->id) }}" class="waves-effect" id="mobile-side"> Plano <i class="material-icons">payments</i></a></li>
+      <li class="collapsible"><a href="{{ route('students.payment', Auth::user()->id) }}" class="waves-effect" id="mobile-side"> Planos <i class="material-icons">payments</i></a></li>
       <li class="collapsible"><a href="{{ route('students.called', Auth::user()->id) }}" class="waves-effect" id="mobile-side"> Chamados <i class="material-icons">forum</i></a></li>
 
       <li><a class="subheader collapsible">Ficha</a></li>

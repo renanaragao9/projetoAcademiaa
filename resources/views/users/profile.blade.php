@@ -137,7 +137,7 @@
 
                 <div class="card-action">
                     <div class="row">
-                        <span class="card-title center" id="profile-title-mobile">Pagamentos</span>
+                        <span class="card-title center" id="profile-title-mobile">Planos</span>
                         @if(count($payments) > 0)
                             @foreach ($payments as $payment)
                                 <table class="highlight">
@@ -154,7 +154,7 @@
                                 </table>
                             @endforeach
                         @else
-                            <br><span id="profile-subtitle-mobile">Você ainda não possui pagamento:</span>
+                            <br><span id="profile-subtitle-mobile">Você ainda não possui planos:</span>
                         @endif
                     </div>
                 </div>

@@ -6,12 +6,14 @@
 
     <div class="container">
         <div class="row">
-            <div class="row">
-                <h1 class="animated-title">
-                  <i class="material-icons">share</i> Posts
-                </h1>
-              </div>
-              
+            <div class="card" id="card-tile-mobile">
+                <div class="row">
+                    <div class="col s12 l12">
+                        <i class="material-icons" id="homeUserTitle-icon">tag</i>
+                        <h3 id="homeUserTitle" class="center"> Posts </h3>
+                    </div>
+                </div>
+            </div>
             @foreach ($posts as $post)
                 <!-- Post -->
                 <div class="post-container">

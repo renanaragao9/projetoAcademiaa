@@ -12,9 +12,13 @@
           <div class="row">
             <form class="col s12" id="form_called" action="{{ route('admin.called.store') }}" method="POST" enctype="multipart/form-data">
               @csrf
-              <div class="row">
-                <div class="input-field col s12 l12" id="input-exercicio">
-                  <h3 id="homeUserTitle" class="center">Cadastrar um novo Chamado</h3>
+                <div class="card" id="card-tile-mobile">
+                  <div class="row">
+                    <div class="col s12 l10">
+                      <i class="material-icons" id="homeUserTitle-icon">forum</i>
+                      <h3 id="homeUserTitle"> Cadastrar um novo Chamado</h3>
+                    </div>
+                  </div>
                 </div>
                     
                 <div class="input-field col s12 l12" id="input-exercicio">

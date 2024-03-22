@@ -12,6 +12,7 @@ use App\Models\user;
 use App\Models\media;
 use App\Models\payment;
 use App\Models\monthlyType;
+use Illuminate\Support\Facades\Redirect;
 
 
 class StudentsController extends Controller
@@ -38,18 +39,25 @@ class StudentsController extends Controller
             $firstName = $nameParts[0];
 
             $payment = payment::with('monthly', 'userCreator')->where('user_id', $userId)->orderBy('id_payment', 'DESC')->first();
-            $dataInicio = strtotime($payment->date_payment);
-            $dataVencimento = strtotime($payment->date_due_payment);
-            $diferenca = $dataVencimento - $dataInicio;
-            $diasRestantes = floor($diferenca / (60 * 60 * 24));
             
-            if ($diasRestantes == 0) {
-                $msg_warning = 'Hoje é o último dia do plano!';
-            
-            }elseif($diasRestantes == 1) {
-                $msg_warning = 'Faltam 1 dia para o vencimento do plano!';
-            
-            } else {
+            if( $payment != null)  {
+                $dataAtual = strtotime(date('Y-m-d'));
+                $dataVencimento = strtotime($payment->date_due_payment);
+                $diferencaSegundos = $dataVencimento - $dataAtual;
+                $diasRestantes = floor($diferencaSegundos / (60 * 60 * 24));
+
+                if ($diasRestantes == 0) {
+                    $msg_warning = 'Hoje é o último dia do plano!';
+                
+                }elseif($diasRestantes == 1) {
+                    $msg_warning = 'Falta 1 dia para o vencimento do plano!';
+                
+                } else {
+                    $msg_warning = ''; 
+                }
+            }
+
+            else {
                 $msg_warning = ''; 
             }
 
@@ -126,6 +134,10 @@ class StudentsController extends Controller
         $firstName = $nameParts[0];
 
         $studentAssessments = assessment::where('id_user_fk', $userId)->orderby('id_assessment', 'DESC')->get();
+
+        if (count($studentAssessments) == 0) {
+            return Redirect::route('students.start')->with('msg-error', 'Você ainda não possui avaliação');
+        }
 
         $avaliacao_1 = Assessment::where('id_user_fk', $userId)->orderBy('id_assessment', 'DESC')->first();
 
@@ -204,6 +216,10 @@ class StudentsController extends Controller
         ->get();
 
         $payments = payment::with('monthly', 'userCreator')->where('user_id', $userId)->orderBy('id_payment', 'DESC')->get();
+
+        if (count($payments) == 0) {
+            return Redirect::route('students.start')->with('msg-error', 'Pagamentos não registrado');
+        }
 
         return view('users.payment', ['payments' => $payments, 'fichas' => $fichas]);
     }

@@ -24,7 +24,7 @@
                     </div>
 
                     <div class="input-field col s12 l6">
-                        <select name="goal" id="input-assessment" class="validate" required>
+                        <select name="goal" id="input-goal" class="browser-default" required>
                         <option value="" disabled selected>Selecione</option>
                         <option value="Hipertrofia">Hipertrofia</option>
                         <option value="Emagrecimento">Emagrecimento</option>
@@ -34,7 +34,7 @@
                     </div>
                     
                     <div class="input-field col s12 l6">
-                        <select name="term" id="input-assessment" class="validate" required>
+                        <select name="term" id="input-term" class="browser-default" required>
                         <option value="" disabled selected>Selecione</option>
                         <option value="1 Mês">1 Mês</option>
                         <option value="2 Meses">2 Meses</option>
@@ -130,7 +130,7 @@
         <div class="modal-content">
           <i class="material-icons" id="modal-icon-alert">info</i>
           <h4>Confirmação da Avaliação</h4>
-          <p>Deseja cadastrar a avaliação do aluno: {{ $user->name }} ?</p>
+          <p>Deseja cadastrar a avaliação do(a) aluno(a): {{ $user->name }} ?</p>
         </div>
 
         <div class="modal-footer">
@@ -168,6 +168,14 @@
         form.submit();
       });
     });
+
+    let larguraTela = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    
+    // Define a classe com base na largura da tela
+    if (larguraTela > 700) {
+        $("#input-goal").removeClass("browser-default");
+        $("#input-term").removeClass("browser-default");
+    }
     
   </script>
 @endsection

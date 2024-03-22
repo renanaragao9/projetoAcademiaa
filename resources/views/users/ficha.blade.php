@@ -5,23 +5,14 @@
 @section('content')
 
     <div class="container">
-        <div class="row">
+        <div class="card" id="card-tile-mobile">
             <div class="row">
-                <div class="col s12" id="cardFichaTtitle">
-                    <h5 id="homeUserTitle" class="center">Ficha de Treino</h5>
-                    <h6 id="homeUserTitle" class="center">{{ $fichaNome->name_training }}</h6>
+                <div class="col s12 l12">
+                    <i class="material-icons" id="homeUserTitle-icon">fitness_center</i>
+                    <h3 id="homeUserTitle" class="center"> Ficha de Treino <br>{{ $fichaNome->name_training }} </h3>
                 </div>
             </div>
         </div>
-
-        <div class="card" id="card-tile-mobile">
-            <div class="row">
-              <div class="col s12 l12">
-                  <h3 id="homeUserTitle" class="center"> Ficha de Avaliação</h3>
-                  <h3 id="homeUserTitle" class="center"> Data: {{ \Carbon\Carbon::parse($studentAssessments[0]->created_at)->format('d/m/Y') }}</h3>  
-              </div>
-            </div>
-          </div>
           
         @foreach ($studentFichas as $index => $studentFicha)
             <!-- INICIO DA CARD -->
