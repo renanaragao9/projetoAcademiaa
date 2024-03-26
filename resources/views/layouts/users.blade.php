@@ -153,8 +153,13 @@
   </main>
 
   <!-- Footer -->
-  <footer class="section light-blue darken-4 white-text center">
-    
+  <footer class="footer">
+    <div class="container">
+        <p id="copy-mobile">&copy; 2023 - Renan Aragão 
+            <br> Todos os direitos reservados.
+            <br> Versão: 2.0.1
+        </p>
+    </div>
   </footer>
 
   <!-- Inicio das chamdas de Scripts -->

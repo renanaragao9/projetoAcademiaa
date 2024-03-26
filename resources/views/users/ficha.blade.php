@@ -80,7 +80,7 @@
         
                             <div class="row center">
                                 <div class="col s12 section scrollspy" id="id8">            
-                                <button class="btn btn-large waves-effect waves-light orange darken-4" id="card-btn" type="submit" name="action">Finalizar treino
+                                <button class="btn btn-large waves-effect waves-light deep-orange accent-3" id="card-btn" type="submit" name="action">Finalizar treino
                                     <i class="material-icons right">done</i>
                                 </button>
                             </div>

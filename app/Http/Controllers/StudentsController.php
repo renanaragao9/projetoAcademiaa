@@ -31,7 +31,7 @@ class StudentsController extends Controller
             ->distinct()
             ->get();
 
-            $mediaBanners = media::where('type_media', 1)->get();
+            $mediaBanners = media::where('type_media', 1)->orderBy('id_media', 'DESC')->get();
             $mediaPost = media::where('type_media', 2)->orderBy('id_media', 'DESC')->first();
 
             $fullName = auth()->user()->name;
@@ -294,7 +294,7 @@ class StudentsController extends Controller
         ->distinct()
         ->get();
 
-        $posts = Media::with('users')->where('type_media', 2)->get();
+        $posts = Media::with('users')->where('type_media', 2)->orderBy('id_media', 'DESC')->get();
 
         return view('users.post', ['posts' => $posts, 'fichas' => $fichas]);
     }

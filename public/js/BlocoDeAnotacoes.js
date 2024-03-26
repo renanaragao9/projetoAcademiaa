@@ -11,7 +11,7 @@ $(document).ready(function() {
 
       // Percorrer todas as tarefas e adicioná-las à lista
       todos.forEach(function(todo) {
-        $('#todo-list').append('<li class="collection-item">' + todo + '<a href="#" class="secondary-content delete-todo"><i class="material-icons"id="titleColor">delete</i></a></li>');
+        $('#todo-list').append('<li class="collection-item">' + todo + '<a href="#" onclick="return false;" class="secondary-content delete-todo"><i class="material-icons"id="titleColor">delete</i></a></li>');
       });
     }
 

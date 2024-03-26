@@ -322,7 +322,7 @@
                 <br> Versão: 2.0.1
             </p>
         </div>
-      </footer>
+    </footer>
 
    <!-- Janelas modais -->
 

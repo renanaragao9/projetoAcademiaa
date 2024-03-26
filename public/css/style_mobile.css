@@ -85,7 +85,7 @@
 
 .carousel-container {
   position: relative;
-  width: 600px; /* Defina o tamanho desejado para o contêiner */
+  width: 400px;
   margin: auto;
   overflow: hidden;
   border: 2px solid #ddd;
@@ -99,14 +99,18 @@
   transition: transform 0.5s ease-in-out;
 }
 
+.paused {
+  transition: none !important;
+}
 
 .carousel-item {
-  max-width: 600px; 
-  height: 400px;
-  box-sizing: border-box;
-  object-fit: cover;
+  width: 100%; 
+  height: 400px; 
+  object-fit: contain; 
   border-right: 2px solid #ddd;
+  box-sizing: border-box;
 }
+
 
 .carousel-item:last-child {
   border-right: none;
@@ -254,4 +258,8 @@
   border-radius: 10px;
   padding: 5px 10px;
   margin-right: 5px;
+}
+
+#copy-mobile {
+  margin-bottom: 60px;
 }

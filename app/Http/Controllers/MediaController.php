@@ -11,8 +11,8 @@ class MediaController extends Controller
 {
     public function show_media_table() {
         
-        $medias_banners = media::with('users')->where('type_media', 1)->orderBy('id_media', 'ASC')->get();
-        $medias_post = media::with('users')->where('type_media', 2)->orderBy('id_media', 'ASC')->get();
+        $medias_banners = media::with('users')->where('type_media', 1)->orderBy('id_media', 'DESC')->get();
+        $medias_post = media::with('users')->where('type_media', 2)->orderBy('id_media', 'DESC')->get();
 
         return view('admin.table.media', ['medias_banners' => $medias_banners, 'medias_post' => $medias_post]);
     }
@@ -27,10 +27,6 @@ class MediaController extends Controller
         // Verificar se já existem 5 mídias do tipo 1
         $countType1Media = media::where('type_media', 1)->count();
 
-        if ($countType1Media >= 5) {
-            return redirect()->back()->with('msg-warning', 'Já foram alcançadas as 5 mídias do tipo banner.');
-        }
-    
         $mediaCreate = new media;
         $mediaCreate->type_media = $request->type_media;
         $mediaCreate->link_media = $request->link_media;
@@ -38,6 +34,12 @@ class MediaController extends Controller
         $mediaCreate->description_media = $request->description_media;
         $mediaCreate->tags_media = $request->tags_media;
         $mediaCreate->id_user_fk = $request->id_user_fk;
+        
+       
+
+        if ($mediaCreate->type_media == 1 && $countType1Media >= 5) {
+            return redirect()->back()->with('msg-warning', 'Já foram alcançadas as 5 mídias do tipo banner.');     
+        }
         
         // Image Upload
         if($request->hasFile('img_media') && $request->file('img_media')->isValid()) {
