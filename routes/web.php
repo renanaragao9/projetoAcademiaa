@@ -14,6 +14,7 @@ use App\Http\Controllers\StatisticsController;
 use App\Http\Controllers\MediaController;
 use App\Http\Controllers\monthlyTypeController;
 use App\Http\Controllers\paymentsController;
+use App\Http\Controllers\ExpensesController;
 use Illuminate\Support\Facades\Route;
 use PHPUnit\Framework\Attributes\Group;
 
@@ -81,6 +82,15 @@ Route::middleware(['auth'])->group(function() {
             Route::get('/fichas-por-mes', [StatisticsController::class, 'fichasPorMes']);
             Route::get('/assessment-por-mes', [StatisticsController::class, 'assessmentPorMes']);
             Route::get('/called-por-mes', [StatisticsController::class, 'calledPorMes']);
+        });
+
+        Route::prefix('admin/desepesas')->group(function() {
+            Route::get('lista-depesesas', [ExpensesController::class, 'show_expense_table'])->name('admin.table.expense');
+            Route::get('/criar', [ExpensesController::class, 'create'])->name('admin.register.expense');
+            Route::post('criar-despesa', [ExpensesController::class, 'store'])->name('admin.expense.store');
+            Route::get('/editar/{id}', [ExpensesController::class, 'edit'])->name('admin.expense.edit');
+            Route::put('/atualizar/{id}', [ExpensesController::class, 'update'])->name('admin.expense.update');
+            Route::delete('deletar/{id}', [ExpensesController::class, 'destroy'])->name('admin.expense.destroy');  
         });
 
         Route::prefix('admin/midia')->group(function() {
