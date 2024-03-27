@@ -82,7 +82,7 @@
   <table style="width: 100%; text-align: center;">
     <tr style="margin-botton: -20px;">
       <td colspan="2">
-        <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/israelj.png'))) }}" style="width: 420px; height: 90px"  />
+        <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/logo_sistema_prev.png'))) }}" style="width: 420px; height: 90px; object-fit: cover;"/>
       </td>
     </tr>
    

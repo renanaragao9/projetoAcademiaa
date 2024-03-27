@@ -219,4 +219,24 @@ class PDFController extends Controller
        
         return $dompdf->stream('Relatorio_Mensalidade.pdf');
     }
+
+    public function generateReceiptPDF($id) {
+        
+        $options = new Options();
+        $options->set('isHtml5ParserEnabled', true);
+        
+        $dompdf = new Dompdf($options);
+
+        $studentPayment = payment::with('monthly', 'user', 'userCreator')->where('id_payment', $id)->first();
+        
+        $html = View('users.pdf.receiptAluno')
+        ->with('studentPayment', $studentPayment)
+        ->render();
+        
+        $dompdf->loadHtml($html,);
+        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->render();
+       
+        return $dompdf->stream('Recibo'.$studentPayment->date.'.pdf');
+    }
 }

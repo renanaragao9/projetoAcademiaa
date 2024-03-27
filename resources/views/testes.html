@@ -1,44 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <title>Carousel com Materialize</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recibo de Pagamento - Academia XYZ</title>
 </head>
-<body>
-
-<div class="carousel">
-  <a class="carousel-item" href="#one!"><img src="https://via.placeholder.com/600"></a>
-  <a class="carousel-item" href="#two!"><img src="https://via.placeholder.com/600"></a>
-  <a class="carousel-item" href="#three!"><img src="https://via.placeholder.com/600"></a>
-  <a class="carousel-item" href="#four!"><img src="https://via.placeholder.com/600"></a>
-  <a class="carousel-item" href="#five!"><img src="https://via.placeholder.com/600"></a>
+<body style="font-family: Arial, sans-serif;">
+<div style="max-width: 600px; margin: 0 auto; padding: 20px; border: 2px solid #ccc; background-color: #f9f9f9;">
+    <div style="text-align: center; margin-bottom: 20px;">
+        <img src="/public/img/logo_sistema_prev.png" alt="Logo da Academia XYZ" style="max-width: 40%;">
+    </div>
+    <h2 style="text-align: center; margin-bottom: 20px;">Recibo de Pagamento</h2>
+    <div style="margin-bottom: 20px;">
+        <div style="display: inline-block; width: 50%;">Nome: Renan da Silva Aragao</div>
+        <div style="display: inline-block; width: 50%;">Data: 26/03/2024</div>
+    </div>
+    <div style="margin-bottom: 20px;">
+        <div style="display: inline-block; width: 50%;">Plano: Academia Bronze</div>
+        <div style="display: inline-block; width: 50%;">Valor: R$ 75,00</div>
+    </div>
+    <div style="margin-bottom: 20px;">
+        <div style="display: inline-block; ">Período: Março de 2024 Março de 2024 Março de 2024 Março de 2024</div>
+        <div style="display: inline-block; width: 50%; text-align: right;">Método de Pagamento: Cartão de Crédito</div>
+    </div>
+    <div style="margin-bottom: 20px;">
+      <div style="display: inline-block; width: 50%;">Funcionário: Janderson da Silva</div>
+    </div>
+    <hr style="border: 0; border-top: 1px solid #ccc; margin-bottom: 20px;">
+    <div style="text-align: right;">
+        Total: R$ 100,00
+    </div>
+    <div style="margin-top: 30px; text-align: center;">
+        <p style="font-size: 12px; color: #666;">Este recibo é válido como comprovante de pagamento. Guarde-o para futuras consultas.</p>
+        <p style="font-size: 12px; color: #666;">Academia Renan´s - Rua Pereiro 4785, Fortaleza, Ceará - Tel: (85) 98417-4827</p>
+    </div>
 </div>
-
-<!-- Controles para dispositivos móveis -->
-<div class="carousel-controls-mobile">
-  <a class="carousel-prev-mobile waves-effect waves-light btn">Anterior</a>
-  <a class="carousel-next-mobile waves-effect waves-light btn">Próximo</a>
-</div>
-
-<script>
-  $(document).ready(function(){
-    // Inicialize o carousel
-    $('.carousel').carousel();
-
-    // Controles para dispositivos móveis
-    $('.carousel-prev-mobile').click(function(){
-      $('.carousel').carousel('prev');
-    });
-
-    $('.carousel-next-mobile').click(function(){
-      $('.carousel').carousel('next');
-    });
-  });
-</script>
-
 </body>
 </html>

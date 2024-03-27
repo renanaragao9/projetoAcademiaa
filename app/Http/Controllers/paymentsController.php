@@ -30,7 +30,7 @@ class paymentsController extends Controller
 
         $type_payments = monthlyType::orderBy('name_monthly', 'asc')->get();
 
-        $form_payments = ['Dinheiro', 'Pix', 'Débito', 'Crédito', 'Boleto', 'Vale'];
+        $form_payments = ['Dinheiro', 'Pix', 'Cartão de Débito', 'Cartão de Crédito', 'Boleto', 'Vale'];
 
         return view('admin.register.payments', [
             'user' => $user,

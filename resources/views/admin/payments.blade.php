@@ -20,6 +20,7 @@
       <table class="highlight striped centered">
         <thead>
           <tr>
+            <th>Recibo</th>
             <th>ID</th>
             <th>Nome</th>
             <th>Mensalidade</th>
@@ -34,6 +35,7 @@
         <tbody id="table-body">
           @foreach( $payments as $payment)
             <tr>
+              <td><a href="{{ route('receiptDownload', $payment->id_payment) }}" class="btn-floating tooltipped cyan darken-4 btn-large waves-effect waves-light red" id="action-table-desktop" data-position="bottom" data-tooltip="Recibo"><i class="material-icons">download</i></a></td>
               <td id="td-text">{{ $payment->id_payment }}</td>
               <td id="td-text">{{ $payment->user->name }}</td>
               <td id="td-text">{{ $payment->monthly->name_monthly }}</td>

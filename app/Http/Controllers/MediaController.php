@@ -104,8 +104,8 @@ class MediaController extends Controller
             unlink($imagePath);
         }
 
-   // Excluir exercício do banco de dados
-   $media->delete();
+        // Excluir exercício do banco de dados
+        $media->delete();
        
        return redirect()->back()->with('msg-success', 'Mídia excluída com sucesso!');
    }

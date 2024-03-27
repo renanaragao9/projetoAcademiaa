@@ -51,6 +51,11 @@
                 </div>
               </div>
 
+              <div class="input-field col s12 l12">
+                <input name="observation" type="text" class="validate" id="icon_obs">
+                <label for="icon_obs">Observação</label>
+              </div>
+
               <input type="hidden" name="user_id" value="{{ $user->id }}">
               <input type="hidden" name="user_id_creator" value={{ Auth::user()->id }}>
 

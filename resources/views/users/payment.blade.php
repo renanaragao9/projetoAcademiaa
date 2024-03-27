@@ -57,6 +57,9 @@
                                     </tbody>
                                 </table>
                             </div>
+                            <div class="center">
+                                <a href="{{route('receiptDownload', $payments[0]->id_payment)}}" class="btn-small waves-effect waves-light deep-orange accent-3">Baixar Recibo <i class="material-icons right">download</i> </a>
+                            </div>
                         </div>
 
                         <div class="card-action">
@@ -73,7 +76,8 @@
                                                     Inicio do Plano: <br> <span id="text-profile-span"> -> {{date( 'd/m/Y' , strtotime($payment->date_payment))}} </span> <br>
                                                     Fim do plano: <br> <span id="text-profile-span"> -> {{date( 'd/m/Y' , strtotime($payment->date_due_payment))}} </span> <br>
                                                     Forma de Pagamento: <br> <span id="text-profile-span"> -> {{$payment->form_payment}} </span> <br>
-                                                    Registrado por: <br> <span id="text-profile-span"> -> {{$payment->userCreator->name}} </span>
+                                                    Registrado por: <br> <span id="text-profile-span"> -> {{$payment->userCreator->name}} </span> <br>
+                                                    <a href="{{route('receiptDownload', $payment->id_payment)}}" class="btn-small waves-effect waves-light deep-orange accent-3">Baixar Recibo <i class="material-icons right">download</i> </a>
                                                 </td>
                                             </tr>
                                         </tbody>

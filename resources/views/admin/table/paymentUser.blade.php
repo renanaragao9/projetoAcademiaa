@@ -21,13 +21,13 @@
         <table class="highlight striped centered">
           <thead>
             <tr>
+              <th>Recibo</th>
               <th>ID</th>
               <th>Mensalidade</th>
               <th>Data Pgto</th>
               <th>Forma Pgto</th>
               <th>Valor</th>
               <th>Data Vencimento</th>
-              <th class="hide-on-small-only">Criado</th>
               <th class="hide-on-small-only">Modificado</th>
               <th>Ações</th>
             </tr>
@@ -36,13 +36,13 @@
           <tbody id="table-body">
             @foreach( $payments as $payment)
               <tr>
+                <td><a href="{{ route('receiptDownload', $payment->id_payment) }}" class="btn-floating tooltipped cyan darken-4 btn-large waves-effect waves-light red" id="action-table-desktop" data-position="bottom" data-tooltip="Recibo"><i class="material-icons">download</i></a></td>
                 <td id="td-text">{{ $payment->id_payment }}</td>
                 <td id="td-text">{{ $payment->monthly->name_monthly }}</td>
                 <td id="td-text"> {{date( 'd/m/Y' , strtotime($payment->date_payment))}}</td>
                 <td id="td-text">{{ $payment->form_payment }}</td>
                 <td id="td-text">R$ {{ number_format($payment->value_payment, 2, ',', '.') }} </td>
                 <td id="td-text">{{date( 'd/m/Y' , strtotime($payment->date_due_payment))}}</td>
-                <td class="hide-on-small-only" id="td-text">{{ \Carbon\Carbon::parse($payment->created_at)->format('d/m/Y - H:i:s') }}</td>
                 <td class="hide-on-small-only" id="td-text">{{ \Carbon\Carbon::parse($payment->updated_at)->format('d/m/Y - H:i:s') }}</td>
                 <td>
                   <!-- Botão de ações Desktop-->
@@ -95,8 +95,8 @@
         let count = 0;
 
         for (let i = 0; i < rows.length; i++) {
-          let nome = rows[i].getElementsByTagName('td')[0].innerText.toLowerCase();
-          let acao = rows[i].getElementsByTagName('td')[1].innerText.toLowerCase();
+          let nome = rows[i].getElementsByTagName('td')[2].innerText.toLowerCase();
+          let acao = rows[i].getElementsByTagName('td')[3].innerText.toLowerCase();
 
           if (nome.indexOf(filter) > -1 || acao.indexOf(filter) > -1) {
             rows[i].style.display = '';

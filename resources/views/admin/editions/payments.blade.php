@@ -52,6 +52,12 @@
                     <span id="alert-img">*Cuidado, ao editar a mensalidade do aluno fique atento a data</span>
                   </div>
                 </div>
+
+                <div class="input-field col s12 l12">
+                  <input name="observation" type="text" class="validate" id="icon_obs" value="{{ $payment->observation }}">
+                  <label for="icon_obs">Observação</label>
+                </div>
+  
   
                 <input type="hidden" name="user_id" value="{{ $payment->user->id }}">
                 <input type="hidden" name="user_id_creator" value={{ Auth::user()->id }}>

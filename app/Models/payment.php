@@ -13,7 +13,7 @@ class payment extends Model
 
     protected $primaryKey = 'id_payment';
 
-    protected $fillable = ['form_payment', 'date_payment', 'date_due_payment', 'value_payment', 'monthly_type_id', 'user_id', 'user_id_creator', 'created_at', 'modified_at'];
+    protected $fillable = ['form_payment', 'date_payment', 'date_due_payment', 'value_payment', 'monthly_type_id', 'user_id', 'user_id_creator', 'observation', 'created_at', 'modified_at'];
 
     public function monthly() {
         return $this->belongsTo(monthlyType::class, 'monthly_type_id');

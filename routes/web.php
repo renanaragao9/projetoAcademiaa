@@ -170,6 +170,8 @@ Route::middleware(['auth'])->group(function() {
        Route::get('assessment-pdf/{id}', [PDFController::class, 'generateAssessmentPDF'])->name('assessmentDownload');
        route::get('post', [StudentsController::class, 'posts'])->name('students.posts');
        route::get('pagamentos', [StudentsController::class, 'payments'])->name('students.payment');
+       Route::get('receipt-pdf/{id}', [PDFController::class, 'generateReceiptPDF'])->name('receiptDownload');
+
     });
 });
 
