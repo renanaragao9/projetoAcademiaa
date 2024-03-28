@@ -50,7 +50,7 @@ class AssessmentController extends Controller
 
         Assessment::create($assessment);
 
-        return redirect()->back()->with('msg-success', 'Avaliação do aluno cadastrada com sucesso!');
+        return redirect()->back()->with('msg-success', 'Avaliação do aluno registrada com sucesso!');
         
     }
 
@@ -92,6 +92,6 @@ class AssessmentController extends Controller
 
         $assessmentUser->delete();
 
-        return redirect()->back()->with('msg-success', 'Exercício da ficha excluída com sucesso!');
+        return redirect()->back()->with('msg-success', 'Avaliação excluída com sucesso!');
     }
 }

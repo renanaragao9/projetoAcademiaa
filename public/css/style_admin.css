@@ -171,8 +171,30 @@ nav .brand-logo i.material-icons {
 }
 
 /* Index  */
+
+#card-expense-home {
+  height: 400px;
+}
+
 #blueColor {
   color: #0c3350;
+}
+
+#blueColor_assistent_enter {
+  color: #247e09;
+}
+
+#blueColor_assistent_exit { 
+  color: #bd0404;
+}
+
+#blueColor_assistent_all { 
+  color: #3498f5;
+}
+
+#count_expense_month {
+  font-size: 22px;
+  font-weight: bold;
 }
 
 #main {

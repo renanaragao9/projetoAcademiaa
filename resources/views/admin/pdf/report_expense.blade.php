@@ -97,29 +97,14 @@
     </tr>
     
     <tr style="margin: 2px 0;">
-      <td style="width: 50%; vertical-align: top; text-align: left;">
+      <td style="width: 100%; vertical-align: top; text-align: left;">
         <ul style="list-style: none; padding-left: 0; margin: 0;">
-          
-          <li> <strong style="font-size: 22px;">Registros Despesas: {{ count($dataExpenses) }}</strong> </li>
-          
           @if($dataReport['payments'] != 'Nao') 
-            <li> <strong style="font-size: 22px;">Registros Mensalidades: {{ count($dataPayments) }}</strong> </li> 
-            <?php $totalRegistro = 0;  $totalRegistro =  count($dataExpenses) + count($dataPayments) ?> 
-            <li> <strong style="font-size: 22px;">Total Registros: {{ $totalRegistro }}</strong> </li>  
+          <li> <strong style="font-size: 22px;">Total Mensalidades: R$ {{ number_format($dadoArray['totalMensalidades'], 2, ',', '.') }}</strong> </li> <br>
           @endif
-        </ul>
-      </td>
-
-      <td style="width: 50%; vertical-align: top; text-align: left;">
-        <ul style="list-style: none; padding-left: 0; margin: 0;">
-            
-          <li> <strong style="font-size: 22px;">Total Despesas: R$ {{ number_format($totalDespesas, 2, ',', '.') }}</strong> </li>
-  
-          @if($dataReport['payments'] != 'Nao') 
-            <li> <strong style="font-size: 22px;">Total Mensalidade: R$ {{ number_format($totalMensalidades, 2, ',', '.') }}</strong> </li>
-            <?php $totalReceita = 0;  $totalReceita = $totalDespesas + $totalMensalidades ?>
-            <li> <strong style="font-size: 22px;">Total Receita: R$ {{ number_format($totalReceita, 2, ',', '.') }}</strong> </li> 
-          @endif  
+          <li> <strong style="font-size: 22px;">Total Entradas: R$ {{ number_format($dadoArray['totalEntrada'], 2, ',', '.') }}</strong> </li> <br>
+          <li> <strong style="font-size: 22px;">Total Saídas: R$ {{ number_format($dadoArray['totalSaida'], 2, ',', '.') }}</strong> </li> <br>
+          <li> <strong style="font-size: 22px;">Total Receita: R$ {{ number_format($dadoArray['totalGeral'], 2, ',', '.') }}</strong> </li>
         </ul>
       </td>
     </tr>

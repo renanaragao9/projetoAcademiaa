@@ -129,10 +129,12 @@
                                 </li>
 
                                 <li class="collapsible"></li>
-
-                                <li>
-                                    <a href="{{ route('admin.payments.report') }}"> Relatório <i class="material-icons">radio_button_unchecked</i> </a>
-                                </li>
+                                
+                                @if(Auth::user()->profile === 2) 
+                                    <li>
+                                        <a href="{{ route('admin.payments.report') }}"> Relatório <i class="material-icons">radio_button_unchecked</i> </a>
+                                    </li>
+                                @endif
                             </ul>
                         </div>
                     </li>
@@ -156,10 +158,11 @@
                                 </li>
 
                                 <li class="collapsible"></li>
-
-                                <li>
-                                    <a href="{{ route('admin.expense.report') }}"> Relatório <i class="material-icons">radio_button_unchecked</i> </a>
-                                </li>
+                                @if(Auth::user()->profile === 2) 
+                                    <li>
+                                        <a href="{{ route('admin.expense.report') }}"> Relatório <i class="material-icons">radio_button_unchecked</i> </a>
+                                    </li>
+                                @endif    
                             </ul>
                         </div>
                     </li>
@@ -255,11 +258,17 @@
                     <a class="collapsible-header waves-effect">Relatórios <i class="material-icons">summarize</i><i class="material-icons right">arrow_drop_down</i> </a>
                     <div class="collapsible-body light-blue darken-4">
                         <ul>
-                            <li>
-                                <a href="{{ route('admin.payments.report') }}"> Mensalidade <i class="material-icons">radio_button_unchecked</i> </a>
-                            </li>
+                            @if(Auth::user()->profile === 2) 
+                                <li>
+                                    <a href="{{ route('admin.payments.report') }}"> Relatório <i class="material-icons">radio_button_unchecked</i> </a>
+                                </li>
 
-                            <li class="collapsible"></li>
+                                <li class="collapsible"></li>
+
+                                <li>
+                                    <a href="{{ route('admin.expense.report') }}"> Relatório <i class="material-icons">radio_button_unchecked</i> </a>
+                                </li>
+                            @endif
 
                             <li>
                                 <a href="{{ route('admin.user.report') }}"> Alunos <i class="material-icons">radio_button_unchecked</i> </a>

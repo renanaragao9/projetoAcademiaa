@@ -58,7 +58,7 @@ class ExpensesController extends Controller
 
         Expense::findOrFail($request->id_expense)->update($expenseData);
 
-        return redirect()->back()->with('msg-success', 'Receira editado com sucesso!');
+        return redirect()->back()->with('msg-success', 'Receita editada com sucesso!');
     }
 
     public function destroy($id) {

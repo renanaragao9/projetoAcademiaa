@@ -46,7 +46,7 @@
 
               <div class="input-field col s12 l6" id="select-report">
                 <select name="form_expense" class="browser-default" id="for_expense" required>
-                  <option value="all" selected>Selecione</option>
+                  <option value="Todos" selected>Selecione</option>
                   @foreach ($form_payments as $form_payment)
                     <option value="{{ $form_payment }}">{{ $form_payment }}</option>
                   @endforeach
@@ -56,8 +56,7 @@
 
               <div class="input-field col s12 l6" id="select-report">
                 <select name="payments" class="browser-default" id="payments" required>
-                  <option value="all" >Selecione</option>
-                  <option value="Sim" >Sim</option>
+                  <option value="Sim" selected>Sim</option>
                   <option value="Nao" >Não</option> 
                 </select>
                 <label id="labelSpacing"><h11>*</h11>Incluir Mensalidades</label>

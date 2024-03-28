@@ -16,14 +16,14 @@ class FichaController extends Controller
     public function show_table_exercise_user($id) {
     
         $fichaUsers = ficha::join('training_division', 'fichas.id_training_fk', '=', 'training_division.id_training')
-            ->with(['muscleGroup', 'user', 'fichasCreator', 'trainingDivision'])
-            ->select('fichas.*', 'training_division.name_training as name_training')
-            ->where('fichas.id_user_fk', $id)
-            ->orderBy('name_training', 'asc')
-            ->orderBy('order', 'asc')
+        ->with(['muscleGroup', 'user', 'fichasCreator', 'trainingDivision'])
+        ->select('fichas.*', 'training_division.name_training as name_training')
+        ->where('fichas.id_user_fk', $id)
+        ->orderBy('name_training', 'asc')
+        ->orderBy('order', 'asc')
         ->get();
 
-         // Verificar se há resultados na consulta
+        // Verificar se há resultados na consulta
         if ($fichaUsers->isEmpty()) {
             return redirect()->back()->with('msg-warning', 'Aluno sem ficha.');
         }
@@ -92,16 +92,16 @@ class FichaController extends Controller
             ]);
         }
         
-        return redirect()->route('admin.users')->with('msg-success', 'Ficha criada com sucesso!');
+        return redirect()->route('admin.users')->with('msg-success', 'Ficha registrada com sucesso!');
     }
     
     // Redireciona as mensages de sucesso ou erro na criação da ficha.
     public function redirect_success() {
-        return redirect()->back()->with('msg-success', 'Ficha criada com sucesso');
+        return redirect()->back()->with('msg-success', 'Ficha registrada com sucesso');
     }
     
     public function redirect_error() {
-        return redirect()->back()->with('msg-error', 'Não foi possível cadastrar a ficha, verifique se não há algum campo vazio');
+        return redirect()->back()->with('msg-error', 'Não foi possível registrar a ficha, verifique se não há algum campo vazio');
     }
 
     public function edit($id) {
@@ -140,7 +140,7 @@ class FichaController extends Controller
             'id_training_fk.required' => 'O campo treino é obrigatorio',
             'id_gmuscle_fk_to_ficha.required' => 'O campo grupo muscular é obrigatorio',
             'id_exercise_fk.required' => 'O campo exercício é obrigatorio',
-            'serie.required' => 'O campo serie é obrigatorio',
+            'serie.required' => 'O campo série é obrigatorio',
             'repetition.required' => 'O campo repetição é obrigatorio',
         ]);
 
@@ -168,7 +168,7 @@ class FichaController extends Controller
         // Exclui todas as fichas relacionadas ao usuário
         $user->fichas()->delete();
     
-        return redirect()->back()->with('msg-success', 'Todas as fichas do aluno foram excluídas com sucesso.');
+        return redirect()->back()->with('msg-success', 'Todos os exercícios da ficha do aluno foram excluídas com sucesso.');
     }
 
     

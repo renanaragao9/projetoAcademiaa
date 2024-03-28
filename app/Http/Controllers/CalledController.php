@@ -35,7 +35,7 @@ class CalledController extends Controller
 
         called::create($request->all());
 
-        return redirect()->back()->with('msg-success', 'Chamado cadastrado com sucesso!');
+        return redirect()->back()->with('msg-success', 'Chamado registrado com sucesso!');
     }
 
     public function destroy($id) {

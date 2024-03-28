@@ -60,7 +60,7 @@ class paymentsController extends Controller
 
         payment::create($request->all());
 
-        return redirect()->back()->with('msg-success', 'Mensalidade cadastrada com sucesso!');
+        return redirect()->back()->with('msg-success', 'Mensalidade registrada com sucesso!');
     }
 
     public function edit($id) {

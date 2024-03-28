@@ -11,64 +11,64 @@
       <a href="{{ route('admin.home') }}" class="waves-effect waves-light btn left light-blue darken-4 col s12 l3" id="bottom-form-action"><i class="material-icons right">arrow_back</i>Voltar</a>
     </div>
   </div>
-
-  <!-- Inicio de conteudo -->
-  <div class="row">
-    <div class="col s12">
-      <div class="card ">
-        <canvas id="graficoExpensePorMes" width="400" height="200"></canvas>
+  @if(Auth::user()->profile === 2) 
+    <!-- Inicio de conteudo -->
+    <div class="row">
+      <div class="col s12">
+        <div class="card ">
+          <canvas id="graficoExpensePorMes" width="400" height="200"></canvas>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="row">
-    <div class="col s12">
-      <div class="card ">
-        <canvas id="graficoMensalidadePorMes" width="400" height="200"></canvas>
-      </div>
+    <div class="row">
+      <div class="col s12">
+        <div class="card ">
+          <canvas id="graficoMensalidadePorMes" width="400" height="200"></canvas>
+        </div>
 
-      <div class="card">
-        <div class="row">
-          <div class="col s12 l12">
-            <div class="table-scroll">
-              <table class="highlight">
-                <h4>Informações do Gráfico Receita e Mensalidade</h4>              
-                  <tbody>
-                    <tr>
-                      <?php $total = $total + DB::table('payments')->sum(DB::raw('CAST(value_payment AS DECIMAL(10,2))')) ?>
-                      <td id="text-profile" class="s12 l1">Total Entrada: <br> R$ {{ number_format( $entrada, 2, ',', '.') }}</td>
-                      <td id="text-profile" class="s12 l1">Total Mensalidades: <br> R$ {{ number_format(DB::table('payments')->sum(DB::raw('CAST(value_payment AS DECIMAL(10,2))')), 2, ',', '.') }}</td>
-                      <td id="text-profile" class="s12 l1">Total Saída: <br> R$ {{ number_format( $saida, 2, ',', '.') }}</td>
-                      <td id="text-profile" class="s12 l1">Total Receita: <br> R$ {{ number_format( $total, 2, ',', '.') }}</td>
-                    </tr>
+        <div class="card">
+          <div class="row">
+            <div class="col s12 l12">
+              <div class="table-scroll">
+                <table class="highlight">
+                  <h4>Informações do Gráfico Receita e Mensalidade</h4>              
+                    <tbody>
+                      <tr>
+                        <?php $total = $total + DB::table('payments')->sum(DB::raw('CAST(value_payment AS DECIMAL(10,2))')) ?>
+                        <td id="text-profile" class="s12 l1">Total Entrada: <br> R$ {{ number_format( $entrada, 2, ',', '.') }}</td>
+                        <td id="text-profile" class="s12 l1">Total Mensalidades: <br> R$ {{ number_format(DB::table('payments')->sum(DB::raw('CAST(value_payment AS DECIMAL(10,2))')), 2, ',', '.') }}</td>
+                        <td id="text-profile" class="s12 l1">Total Saída: <br> R$ {{ number_format( $saida, 2, ',', '.') }}</td>
+                        <td id="text-profile" class="s12 l1">Total Receita: <br> R$ {{ number_format( $total, 2, ',', '.') }}</td>
+                      </tr>
 
-                    <tr>
-                      <td id="text-profile" class="s12 l1">Pgto em Dinheiro: R$ {{ number_format(DB::table('payments')->where('form_payment', 'Dinheiro')->sum(DB::raw('CAST(value_payment AS DECIMAL(10,2))')), 2, ',', '.') }} <br> Total: {{ DB::table('payments')->where('form_payment', 'Dinheiro')->count(DB::raw('CAST(value_payment AS DECIMAL(10,2))')) }} </td>
-                      <td id="text-profile" class="s12 l1">Pgto em Pix: R$ {{ number_format(DB::table('payments')->where('form_payment', 'Pix')->sum(DB::raw('CAST(value_payment AS DECIMAL(10,2))')), 2, ',', '.') }} <br> Total: {{ DB::table('payments')->where('form_payment', 'Pix')->count(DB::raw('CAST(value_payment AS DECIMAL(10,2))')) }} </td>
-                      <td id="text-profile" class="s12 l1">Pgto no Débido: R$ {{ number_format(DB::table('payments')->where('form_payment', 'Débito')->sum(DB::raw('CAST(value_payment AS DECIMAL(10,2))')), 2, ',', '.') }} <br> Total: {{ DB::table('payments')->where('form_payment', 'Débito')->count(DB::raw('CAST(value_payment AS DECIMAL(10,2))')) }} </td>
-                      <td id="text-profile" class="s12 l1">Pgto no Crédito: R$ {{ number_format(DB::table('payments')->where('form_payment', 'Crédito')->sum(DB::raw('CAST(value_payment AS DECIMAL(10,2))')), 2, ',', '.') }} <br> Total: {{ DB::table('payments')->where('form_payment', 'Crédito')->count(DB::raw('CAST(value_payment AS DECIMAL(10,2))')) }} </td>
-                    </tr>
-                    
-                    <tr>
-                      <td id="text-profile" class="s12 l1">Pgto no Boleto: R$ {{ number_format(DB::table('payments')->where('form_payment', 'Boleto')->sum(DB::raw('CAST(value_payment AS DECIMAL(10,2))')), 2, ',', '.') }} <br> Total: {{ DB::table('payments')->where('form_payment', 'Boleto')->count(DB::raw('CAST(value_payment AS DECIMAL(10,2))')) }} </td>
-                      <td id="text-profile" class="s12 l1">Pgto em Vale: R$ {{ number_format(DB::table('payments')->where('form_payment', 'Vale')->sum(DB::raw('CAST(value_payment AS DECIMAL(10,2))')), 2, ',', '.') }} <br> Total: {{ DB::table('payments')->where('form_payment', 'Vale')->count(DB::raw('CAST(value_payment AS DECIMAL(10,2))')) }} </td>
-                      <td id="text-profile" class="s12 l1">Total: {{ DB::table('payments')->count(DB::raw('CAST(value_payment AS DECIMAL(10,2))'))}}</td>
-                    </tr>
+                      <tr>
+                        <td id="text-profile" class="s12 l1">Pgto em Dinheiro: R$ {{ number_format(DB::table('payments')->where('form_payment', 'Dinheiro')->sum(DB::raw('CAST(value_payment AS DECIMAL(10,2))')), 2, ',', '.') }} <br> Total: {{ DB::table('payments')->where('form_payment', 'Dinheiro')->count(DB::raw('CAST(value_payment AS DECIMAL(10,2))')) }} </td>
+                        <td id="text-profile" class="s12 l1">Pgto em Pix: R$ {{ number_format(DB::table('payments')->where('form_payment', 'Pix')->sum(DB::raw('CAST(value_payment AS DECIMAL(10,2))')), 2, ',', '.') }} <br> Total: {{ DB::table('payments')->where('form_payment', 'Pix')->count(DB::raw('CAST(value_payment AS DECIMAL(10,2))')) }} </td>
+                        <td id="text-profile" class="s12 l1">Pgto no Débido: R$ {{ number_format(DB::table('payments')->where('form_payment', 'Débito')->sum(DB::raw('CAST(value_payment AS DECIMAL(10,2))')), 2, ',', '.') }} <br> Total: {{ DB::table('payments')->where('form_payment', 'Débito')->count(DB::raw('CAST(value_payment AS DECIMAL(10,2))')) }} </td>
+                        <td id="text-profile" class="s12 l1">Pgto no Crédito: R$ {{ number_format(DB::table('payments')->where('form_payment', 'Crédito')->sum(DB::raw('CAST(value_payment AS DECIMAL(10,2))')), 2, ',', '.') }} <br> Total: {{ DB::table('payments')->where('form_payment', 'Crédito')->count(DB::raw('CAST(value_payment AS DECIMAL(10,2))')) }} </td>
+                      </tr>
+                      
+                      <tr>
+                        <td id="text-profile" class="s12 l1">Pgto no Boleto: R$ {{ number_format(DB::table('payments')->where('form_payment', 'Boleto')->sum(DB::raw('CAST(value_payment AS DECIMAL(10,2))')), 2, ',', '.') }} <br> Total: {{ DB::table('payments')->where('form_payment', 'Boleto')->count(DB::raw('CAST(value_payment AS DECIMAL(10,2))')) }} </td>
+                        <td id="text-profile" class="s12 l1">Pgto em Vale: R$ {{ number_format(DB::table('payments')->where('form_payment', 'Vale')->sum(DB::raw('CAST(value_payment AS DECIMAL(10,2))')), 2, ',', '.') }} <br> Total: {{ DB::table('payments')->where('form_payment', 'Vale')->count(DB::raw('CAST(value_payment AS DECIMAL(10,2))')) }} </td>
+                        <td id="text-profile" class="s12 l1">Total: {{ DB::table('payments')->count(DB::raw('CAST(value_payment AS DECIMAL(10,2))'))}}</td>
+                      </tr>
 
-                    <tr>
-                      @foreach ($contagemPayments as $contagemPayment)
-                      <td id="text-profile" class="s12 l1">Tipo mensalidade: {{$contagemPayment->monthly->name_monthly}} <br> Total: {{$contagemPayment->total}}</td>
-                      @endforeach
-                    </tr>
-                  </tbody>                 
-              </table>
+                      <tr>
+                        @foreach ($contagemPayments as $contagemPayment)
+                        <td id="text-profile" class="s12 l1">Tipo mensalidade: {{$contagemPayment->monthly->name_monthly}} <br> Total: {{$contagemPayment->total}}</td>
+                        @endforeach
+                      </tr>
+                    </tbody>                 
+                </table>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-
+  @endif
   <div class="row">
     <div class="col s12">
       <div class="card ">

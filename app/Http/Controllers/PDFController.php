@@ -101,7 +101,6 @@ class PDFController extends Controller
 
     public function generateReportPayment(Request $request)
     {
-
         $options = new Options();
         
         $options->set('isHtml5ParserEnabled', true);
@@ -251,8 +250,6 @@ class PDFController extends Controller
         $dompdf = new Dompdf($options);
 
         $dataReport = $request->all();
-
-        //dd($dataReport);
         
         if ($dataReport['period'] === 'Mês' ) {
             
@@ -292,11 +289,12 @@ class PDFController extends Controller
             $endDate = $temp;
             }
 
-            if($dataReport['form_payment'] == 'all' || $dataReport['form_payment'] == 'Todos') {
+            if($dataReport['form_expense'] == 'all' || $dataReport['form_expense'] == 'Todos') {
 
                 $dataExpenses = expense::whereBetween('data_expense', [$startDate, $endDate])->get();
                 $dataPayments = Payment::whereBetween('date_payment', [$startDate, $endDate])->get();     
             }
+            
             elseif($dataReport['form_expense'] == 'Entrada') {
                 
                 $dataExpenses = expense::whereBetween('data_expense', [$startDate, $endDate])->where('tipo_expense', 1)->get();
@@ -309,22 +307,44 @@ class PDFController extends Controller
         }
 
         $totalMensalidades = 0;
-        $totalDespesas = 0;
+        $totalEntrada = 0;
+        $totalSaida = 0;
+        $totalGeral = 0;
 
         foreach ($dataPayments as $payment) {
             $totalMensalidades += $payment->value_payment; 
         }
 
         foreach ($dataExpenses as $expense) {
-            $totalDespesas += $expense->value_expense; 
+            
+            if ($expense->tipo_expense == 1) {
+               
+                $totalEntrada += $expense->value_expense;
+            
+            } elseif ($expense->tipo_expense == 2) {
+                
+                $totalSaida += $expense->value_expense;
+            }
         }
 
+        $totalGeral = $totalEntrada - $totalSaida;
+
+        if($dataReport['payments'] != 'Nao') {
+            $totalGeral += $totalMensalidades;
+        }
+
+        $dadoArray = array(
+            'totalMensalidades' => $totalMensalidades,
+            'totalEntrada' => $totalEntrada,
+            'totalSaida' => $totalSaida,
+            'totalGeral' => $totalGeral
+        );
+        
         $html = View('admin.pdf.report_expense')
+        ->with('dadoArray', $dadoArray)
+        ->with('dataReport', $dataReport)
         ->with('dataExpenses', $dataExpenses)
         ->with('dataPayments', $dataPayments)
-        ->with('totalMensalidades', $totalMensalidades)
-        ->with('totalDespesas', $totalDespesas)
-        ->with('dataReport', $dataReport)
         ->render();
         
         $dompdf->loadHtml($html,);

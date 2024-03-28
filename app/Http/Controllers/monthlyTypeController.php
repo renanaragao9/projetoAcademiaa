@@ -30,7 +30,7 @@ class monthlyTypeController extends Controller
         
         monthlyType::create($request->all());
 
-        return redirect()->back()->with('msg-success', 'Tipo Mensalidade cadastrado com sucesso!');
+        return redirect()->back()->with('msg-success', 'Tipo Mensalidade registrado com sucesso!');
     }
 
     public function edit($id) {
@@ -53,7 +53,6 @@ class monthlyTypeController extends Controller
         $monthlyTypeData =  $request->all();
 
         monthlyType::findOrFail($request->id_monthly_type)->update($monthlyTypeData);
-
 
         return redirect()->back()->with('msg-success', 'Tipo Mensalidade editado com sucesso!');
     }

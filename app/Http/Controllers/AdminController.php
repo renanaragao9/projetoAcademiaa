@@ -43,6 +43,7 @@ class AdminController extends Controller
         $entryPayment = 0;
         $exitMonthCurrent = 0;
         $totalCurrentMonth = 0;
+        $totalPayment = 0;
 
         $mesAtual = date('m');
         
@@ -57,6 +58,9 @@ class AdminController extends Controller
         }
 
         foreach ($payments as $payment) {
+
+            $totalPayment += $payment->value_payment;
+
             if (date('m', strtotime($payment->date_payment)) == $mesAtual) {
                 $entryPayment += $payment->value_payment;
             }
@@ -71,21 +75,27 @@ class AdminController extends Controller
             'totalCurrentMonth' => $totalCurrentMonth
         );
 
-        /*
-        $entradaTotal = 0;
-        $saidaTotal = 0;
+        
+        $inputTotal = 0;
+        $exitTotal = 0;
 
         foreach ($expenses as $expense) {
             if ($expense->tipo_expense == 1) {
-                $entradaTotal += $expense->value_expense;
+                $inputTotal += $expense->value_expense;
             } elseif ($expense->tipo_expense == 2) {
-                $saidaTotal += $expense->value_expense;
+                $exitTotal += $expense->value_expense;
             }
         }
 
-        $totalMesAtual = $entradaMesAtual - $saidaMesAtual;
-        $totalGeral = $entradaTotal - $saidaTotal;
-        */
+        $totalGeral = $inputTotal + $totalPayment - $exitTotal;
+
+        $expenseAll = array(
+            'inputTotal' => $inputTotal,
+            'exitTotal' => $exitTotal,
+            'totalPayment' => $totalPayment,
+            'totalGeral' => $totalGeral
+        );
+        
         return view('admin.home', [
             'users' => $users,
             'fichas' => $fichas,
@@ -95,7 +105,8 @@ class AdminController extends Controller
             'statistics' => $statistics,
             'media' => $media,
             'payments' => $payments,
-            'expenseCurrent' => $expenseCurrent
+            'expenseCurrent' => $expenseCurrent,
+            'expenseAll' => $expenseAll
         ]);
     }
 

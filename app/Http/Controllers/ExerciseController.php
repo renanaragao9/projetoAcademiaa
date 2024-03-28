@@ -84,7 +84,7 @@ class ExerciseController extends Controller
 
         $exerciseCreate->save();
 
-        return redirect()->back()->with('msg-success', 'Exercício cadastrado com sucesso!');
+        return redirect()->back()->with('msg-success', 'Exercício registrado com sucesso!');
     }
 
     public function edit($id) {
@@ -138,7 +138,7 @@ class ExerciseController extends Controller
          $isUsedInFicha = ficha::where('id_exercise_fk', $id)->exists();
         
          if ($isUsedInFicha) {
-             return redirect()->back()->with('msg-warning', 'Este exercício está associado a fichas e não pode ser excluído. Entre em contato com o administrador do sistema!');
+             return redirect()->back()->with('msg-warning', 'Este exercício está associado a fichas e não pode ser excluído.');
          }
 
         $exercise = Exercise::findOrFail($id);

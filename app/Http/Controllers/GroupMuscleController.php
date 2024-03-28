@@ -74,7 +74,7 @@ class GroupMuscleController extends Controller
         $isUsedInExercises = exercise::where('id_gmuscle_fk', $id)->exists();
         
         if ($isUsedInExercises) {
-            return redirect()->back()->with('msg-warning', 'Este grupo muscular está associado a exercícios e não pode ser excluído. Entre em contato com o administrador do sistema!');
+            return redirect()->back()->with('msg-warning', 'Este grupo muscular está associado a exercícios e não pode ser excluído.');
         }
 
         // Excluir exercício do banco de dados
