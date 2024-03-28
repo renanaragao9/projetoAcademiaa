@@ -9,7 +9,7 @@
     <div class="card white">
       <div class="card-content">           
         <div class="row">
-          <form class="col s12" id="form_media" action="{{ route('admin.media.store') }}" method="POST" enctype="multipart/form-data">
+          <form class="col s12" id="form_media" action="{{ route('admin.expense.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row">
               <div class="input-field col s12 l12" id="input-exercicio">
@@ -31,12 +31,12 @@
               </div>
 
               <div class="input-field col s12 l6" id="input-title">
-                <input name="value_expense" id="icon-value" type="text" class="validate" >
+                <input name="value_expense" id="icon-value" type="tel" class="validate" >
                 <label for="icon-value">Valor:</label>
               </div>
               
               <div class="input-field col s12 l6" id="input-description">
-                <input name="description_media" id="icon-descricao" type="text" class="validate">
+                <input name="description_expense" id="icon-descricao" type="text" class="validate">
                 <label for="icon-descricao">Descrição:</label>
               </div>
 
@@ -52,7 +52,7 @@
                   <i class="material-icons right">save</i>
                 </button>
                   
-                <a href="{{ route('admin.table.media') }}" class="waves-effect waves-light btn right light-blue darken-4 col s12 l5" id=""><i class="material-icons right">table_rows</i>Listar Registros</a>
+                <a href="{{ route('admin.table.expense') }}" class="waves-effect waves-light btn right light-blue darken-4 col s12 l5" id=""><i class="material-icons right">table_rows</i>Listar Registros</a>
       
                 <div class="input-field col s12 l12">
                   <a href="{{ route('admin.home') }}" class="waves-effect waves-light btn left light-blue darken-4 col s12 l5" id="bottom-form-action"><i class="material-icons right">arrow_back</i>Voltar</a>
@@ -68,13 +68,13 @@
   <div id="modal-alerta" class="modal">
     <div class="modal-content">
         <i class="material-icons" id="modal-icon-alert">info</i>
-        <h4>Confirmação de Publicação</h4>
-        <p>Deseja realmente publicar a midia ?</p>
+        <h4>Confirmação de Registro</h4>
+        <p>Deseja realmente lançar essa despesa ?</p>
     </div>
 
     <div class="modal-footer">
         <a href="#" class="modal-close waves-effect waves-green btn-flat right" id="cancelBtn">Cancelar</a>
-        <a href="#" class="modal-close waves-effect waves-green btn light-blue darken-4 left" id="sendBtn">Publicar</a>
+        <a href="#" class="modal-close waves-effect waves-green btn light-blue darken-4 left" id="sendBtn">Sim</a>
     </div>
   </div>
 
@@ -105,6 +105,19 @@
       sendBtn.addEventListener('click', function() {
         form.submit();
       });
+
+      var valueInput = document.getElementById('icon-value')
+
+      valueInput.addEventListener('input', function() {
+
+        this.value = this.value.replace(/[^0-9.]/g, '');
+
+
+        if (this.value.split('.').length > 2) {
+          this.value = this.value.slice(0, -1);
+        }
+        
+      });
     });
 
     selected = document.getElementById("select-type")
@@ -129,6 +142,14 @@
       $("#select-type").removeClass("browser-default");
     }
 
-  </script>
+    var today = new Date();
 
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0');
+    var yyyy = today.getFullYear();
+
+    today = yyyy + '-' + mm + '-' + dd;
+
+    document.getElementById("icon-data").value = today;
+  </script>
 @endsection

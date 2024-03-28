@@ -158,7 +158,7 @@
                                 <li class="collapsible"></li>
 
                                 <li>
-                                    <a href="{{ route('admin.payments.report') }}"> Relatório <i class="material-icons">radio_button_unchecked</i> </a>
+                                    <a href="{{ route('admin.expense.report') }}"> Relatório <i class="material-icons">radio_button_unchecked</i> </a>
                                 </li>
                             </ul>
                         </div>

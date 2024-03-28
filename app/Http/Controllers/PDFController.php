@@ -11,6 +11,7 @@ use App\Models\called;
 use App\Models\statistics;
 use App\Models\user;
 use App\Models\payment;
+use App\Models\expense;
 use Carbon\Carbon;
 
 use function Psy\debug;
@@ -238,5 +239,101 @@ class PDFController extends Controller
         $dompdf->render();
        
         return $dompdf->stream('Recibo'.$studentPayment->date.'.pdf');
+    }
+
+    public function generateReportExpense(Request $request)
+    {
+
+        $options = new Options();
+        
+        $options->set('isHtml5ParserEnabled', true);
+        
+        $dompdf = new Dompdf($options);
+
+        $dataReport = $request->all();
+
+        //dd($dataReport);
+        
+        if ($dataReport['period'] === 'Mês' ) {
+            
+            $dateMonthly = $dataReport['date_monthly'];
+
+            list($year, $month) = explode('-', $dateMonthly);
+
+            $startDate = Carbon::createFromDate($year, $month, 1);
+            $endDate = $startDate->copy()->endOfMonth();
+
+            if($dataReport['form_expense'] == 'all' || $dataReport['form_expense'] == 'Todos') {
+               
+                $dataExpenses = expense::whereBetween('data_expense', [$startDate, $endDate])->get();
+                $dataPayments = Payment::whereBetween('date_payment', [$startDate, $endDate])->get();
+            }
+            elseif($dataReport['form_expense'] == 'Entrada') {
+                
+                $dataExpenses = expense::whereBetween('data_expense', [$startDate, $endDate])->where('tipo_expense', 1)->get();
+                $dataPayments = Payment::whereBetween('date_payment', [$startDate, $endDate])->get();
+            }
+            else {
+                $dataExpenses = expense::whereBetween('data_expense', [$startDate, $endDate])->where('tipo_expense', 2)->get();
+                $dataPayments = Payment::whereBetween('date_payment', [$startDate, $endDate])->get();
+            }
+            
+        } else {
+            
+            $dateInterval1 = $dataReport['date_interval1'];
+            $dateInterval2 = $dataReport['date_interval2'];
+
+            $startDate = Carbon::parse($dateInterval1);
+            $endDate = Carbon::parse($dateInterval2);
+
+            if ($startDate > $endDate) {
+            $temp = $startDate;
+            $startDate = $endDate;
+            $endDate = $temp;
+            }
+
+            if($dataReport['form_payment'] == 'all' || $dataReport['form_payment'] == 'Todos') {
+
+                $dataExpenses = expense::whereBetween('data_expense', [$startDate, $endDate])->get();
+                $dataPayments = Payment::whereBetween('date_payment', [$startDate, $endDate])->get();     
+            }
+            elseif($dataReport['form_expense'] == 'Entrada') {
+                
+                $dataExpenses = expense::whereBetween('data_expense', [$startDate, $endDate])->where('tipo_expense', 1)->get();
+                $dataPayments = Payment::whereBetween('date_payment', [$startDate, $endDate])->get();
+            }
+            else {
+                $dataExpenses = expense::whereBetween('data_expense', [$startDate, $endDate])->where('tipo_expense', 2)->get();
+                $dataPayments = Payment::whereBetween('date_payment', [$startDate, $endDate])->get();
+            }
+        }
+
+        $totalMensalidades = 0;
+        $totalDespesas = 0;
+
+        foreach ($dataPayments as $payment) {
+            $totalMensalidades += $payment->value_payment; 
+        }
+
+        foreach ($dataExpenses as $expense) {
+            $totalDespesas += $expense->value_expense; 
+        }
+
+        $html = View('admin.pdf.report_expense')
+        ->with('dataExpenses', $dataExpenses)
+        ->with('dataPayments', $dataPayments)
+        ->with('totalMensalidades', $totalMensalidades)
+        ->with('totalDespesas', $totalDespesas)
+        ->with('dataReport', $dataReport)
+        ->render();
+        
+        $dompdf->loadHtml($html,);
+        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->render();
+        header('Content-Type: application/pdf');
+        header('Content-Disposition: inline; filename="arquivo.pdf"');
+        echo $dompdf->output();
+       
+        return $dompdf->stream('Relatorio_Mensalidade.pdf');
     }
 }

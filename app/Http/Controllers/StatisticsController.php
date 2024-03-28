@@ -11,6 +11,7 @@ use App\Models\user;
 use App\Models\called;
 use App\Models\payment;
 use App\Models\monthlyType;
+use App\Models\expense;
 
 use function Psy\debug;
 
@@ -141,6 +142,7 @@ class StatisticsController extends Controller
         $contagemPayments = payment::select('monthly_type_id', \DB::raw('count(*) as total'))
         ->with('monthly')
         ->groupBy('monthly_type_id')
+        ->orderBy('monthly_type_id', 'ASC')
         ->get();
 
         // Fichas criadas
@@ -159,7 +161,24 @@ class StatisticsController extends Controller
         ->groupBy('goal')
         ->get();
 
-        //dd($contagemAvaliacoes);
+        $expenses = expense::all();
+        
+        $entrada = 0;
+        $saida = 0;
+        $total = 0;
+
+        foreach($expenses as $expense) {
+            
+            if($expense->tipo_expense == 1) {
+                $entrada += $expense->value_expense;
+            }
+            
+            elseif($expense->tipo_expense == 2) {
+                $saida += $expense->value_expense;
+            }
+
+            $total = $entrada - $saida;
+        }
         
         return view('admin.statistics', [
             'statistics' => $statistics,
@@ -168,8 +187,10 @@ class StatisticsController extends Controller
             'contagemPayments' => $contagemPayments,
             'contagemUsuarios' => $contagemUsuarios,
             'contagemTreinamentos' => $contagemTreinamentos,
-            'contagemAvaliacoes' => $contagemAvaliacoes
-
+            'contagemAvaliacoes' => $contagemAvaliacoes,
+            'entrada' => $entrada,
+            'saida' => $saida,
+            'total' => $total
         ]);
     }
 
@@ -211,11 +232,44 @@ class StatisticsController extends Controller
     }
 
     public function paymentPorMes() {
-        $paymentPorMes = payment::selectRaw('COUNT(*) as total_payment, MONTH(created_at) as month')
-            ->groupByRaw('YEAR(created_at), MONTH(created_at)')
-            ->orderByRaw('YEAR(created_at), MONTH(created_at)')
-            ->get();
+        $paymentPorMes = Payment::selectRaw('SUM(value_payment) as total_payment, MONTH(date_payment) as month')
+        ->groupByRaw('YEAR(date_payment), MONTH(date_payment)')
+        ->orderByRaw('YEAR(date_payment), MONTH(date_payment)')
+        ->get();
 
         return response()->json($paymentPorMes);
+    }
+
+    public function expensePorMes() {
+        
+        $expensePorMes = Expense::selectRaw('MONTH(data_expense) as month, 
+        SUM(CASE WHEN tipo_expense = 1 THEN value_expense ELSE 0 END) as total_entradas,
+        SUM(CASE WHEN tipo_expense = 2 THEN value_expense ELSE 0 END) as total_saidas')
+        ->groupByRaw('YEAR(data_expense), MONTH(data_expense)')
+        ->orderByRaw('YEAR(data_expense), MONTH(data_expense)')
+        ->get();
+
+        $paymentPorMes = Payment::selectRaw('SUM(value_payment) as total_payment, MONTH(date_payment) as month')
+        ->groupByRaw('YEAR(date_payment), MONTH(date_payment)')
+        ->orderByRaw('YEAR(date_payment), MONTH(date_payment)')
+        ->get();
+
+        foreach ($expensePorMes as $index => $expense) {
+        
+            $matchingPayment = $paymentPorMes->where('month', $expense->month)->first();
+
+            if ($matchingPayment) {
+            
+                $expense->total_entradas = $expense->total_entradas + $matchingPayment->total_payment;
+            $expensePorMes[$index]->despesa_total = $expense->total_entradas - $expense->total_saidas ;
+
+            } else {
+
+                $expensePorMes[$index]->despesa_total = $expense->total_entradas - $expense->total_saidas;
+            }
+        }
+
+        return response()->json($expensePorMes);
+
     }
 }

@@ -79,6 +79,7 @@ Route::middleware(['auth'])->group(function() {
             route::get('/inicio', [StatisticsController::class, 'statistic'])->name('admin.statistic');
             Route::get('/users-por-mes', [StatisticsController::class, 'usersPorMes']);
             Route::get('/payment-por-mes', [StatisticsController::class, 'paymentPorMes']);
+            Route::get('/expense-por-mes', [StatisticsController::class, 'expensePorMes']);
             Route::get('/fichas-por-mes', [StatisticsController::class, 'fichasPorMes']);
             Route::get('/assessment-por-mes', [StatisticsController::class, 'assessmentPorMes']);
             Route::get('/called-por-mes', [StatisticsController::class, 'calledPorMes']);
@@ -90,7 +91,9 @@ Route::middleware(['auth'])->group(function() {
             Route::post('criar-despesa', [ExpensesController::class, 'store'])->name('admin.expense.store');
             Route::get('/editar/{id}', [ExpensesController::class, 'edit'])->name('admin.expense.edit');
             Route::put('/atualizar/{id}', [ExpensesController::class, 'update'])->name('admin.expense.update');
-            Route::delete('deletar/{id}', [ExpensesController::class, 'destroy'])->name('admin.expense.destroy');  
+            Route::delete('deletar/{id}', [ExpensesController::class, 'destroy'])->name('admin.expense.destroy');
+            Route::get('/relatorio', [ExpensesController::class, 'report'])->name('admin.expense.report');
+            Route::post('despesas-pdf', [PDFController::class, 'generateReportExpense'])->name('admin.expense.report-pdf');
         });
 
         Route::prefix('admin/midia')->group(function() {

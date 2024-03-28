@@ -38,6 +38,79 @@
     </div>
   </div>
   
+  <!-- Grafico para Administrador -->
+  @if(Auth::user()->profile === 2) 
+    <div class="row">
+      <div class="col s12 m6 l3 ">
+        <a href="{{ route('admin.users') }}" class="black-text">
+          <div class="card-panel center">
+           
+            <i class="material-icons medium" id="blueColor">paid</i>
+            <i class="material-icons medium" id="blueColor">arrow_upward</i>
+            
+            <h5>Entrada Mensalidades</h5>
+            <h3 class="count">R$ {{ number_format( $expenseCurrent['entryPayment'], 2, ',', '.') }}</h3>
+            
+            <div class="progress grey lighten-1">
+              <div class="determinate blue accent-2" style="width: 35%;"></div>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="col s12 m6 l3 ">
+        <a href="{{ route('admin.payments.index') }}" class="black-text">
+          <div class="card-panel center">
+            
+            <i class="material-icons medium" id="blueColor">paid</i>
+            <i class="material-icons medium" id="blueColor">arrow_upward</i>
+            
+            <h5>Entrada Outros</h5>
+            <h3 class="count">R$ {{ number_format( $expenseCurrent['entryCurrentMonth'], 2, ',', '.') }}</h3>
+            
+            <div class="progress grey lighten-1">
+              <div class="determinate blue accent-2" style="width: 35%;"></div>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="col s12 m6 l3">
+        <a href="{{ route('admin.called') }}" class="black-text">
+          <div class="card-panel center">
+           
+            <i class="material-icons medium" id="blueColor">paid</i>
+            <i class="material-icons medium" id="blueColor">south</i>
+           
+            <h5>Saídas</h5>
+            <h3 class="count">R$ {{ number_format( $expenseCurrent['exitMonthCurrent'], 2, ',', '.') }}</h3>
+           
+            <div class="progress grey lighten-1">
+              <div class="determinate blue accent-2" style="width: 54%;"></div>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="col s12 m6 l3">
+        <a href="{{ route('admin.table.media') }}" class="black-text">
+          <div class="card-panel center ">
+           
+            <i class="material-icons medium" id="blueColor">paid</i>
+            <i class="material-icons medium" id="blueColor">swap_vert</i>
+           
+            <h5>Total</h5>
+            <h3 class="count">R$ {{ number_format( $expenseCurrent['totalCurrentMonth'], 2, ',', '.') }}</h3>
+           
+            <div class="progress grey lighten-1">
+              <div class="determinate blue accent-2" style="width: 61%;"></div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  @endif
+  
   <!--Divs para estatísticas aluno, fichas, chamados etc... -->
   <div class="row">
     <div class="col s12 m6 l3 ">

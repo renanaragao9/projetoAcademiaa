@@ -13,7 +13,62 @@
   </div>
 
   <!-- Inicio de conteudo -->
-  
+  <div class="row">
+    <div class="col s12">
+      <div class="card ">
+        <canvas id="graficoExpensePorMes" width="400" height="200"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col s12">
+      <div class="card ">
+        <canvas id="graficoMensalidadePorMes" width="400" height="200"></canvas>
+      </div>
+
+      <div class="card">
+        <div class="row">
+          <div class="col s12 l12">
+            <div class="table-scroll">
+              <table class="highlight">
+                <h4>Informações do Gráfico Receita e Mensalidade</h4>              
+                  <tbody>
+                    <tr>
+                      <?php $total = $total + DB::table('payments')->sum(DB::raw('CAST(value_payment AS DECIMAL(10,2))')) ?>
+                      <td id="text-profile" class="s12 l1">Total Entrada: <br> R$ {{ number_format( $entrada, 2, ',', '.') }}</td>
+                      <td id="text-profile" class="s12 l1">Total Mensalidades: <br> R$ {{ number_format(DB::table('payments')->sum(DB::raw('CAST(value_payment AS DECIMAL(10,2))')), 2, ',', '.') }}</td>
+                      <td id="text-profile" class="s12 l1">Total Saída: <br> R$ {{ number_format( $saida, 2, ',', '.') }}</td>
+                      <td id="text-profile" class="s12 l1">Total Receita: <br> R$ {{ number_format( $total, 2, ',', '.') }}</td>
+                    </tr>
+
+                    <tr>
+                      <td id="text-profile" class="s12 l1">Pgto em Dinheiro: R$ {{ number_format(DB::table('payments')->where('form_payment', 'Dinheiro')->sum(DB::raw('CAST(value_payment AS DECIMAL(10,2))')), 2, ',', '.') }} <br> Total: {{ DB::table('payments')->where('form_payment', 'Dinheiro')->count(DB::raw('CAST(value_payment AS DECIMAL(10,2))')) }} </td>
+                      <td id="text-profile" class="s12 l1">Pgto em Pix: R$ {{ number_format(DB::table('payments')->where('form_payment', 'Pix')->sum(DB::raw('CAST(value_payment AS DECIMAL(10,2))')), 2, ',', '.') }} <br> Total: {{ DB::table('payments')->where('form_payment', 'Pix')->count(DB::raw('CAST(value_payment AS DECIMAL(10,2))')) }} </td>
+                      <td id="text-profile" class="s12 l1">Pgto no Débido: R$ {{ number_format(DB::table('payments')->where('form_payment', 'Débito')->sum(DB::raw('CAST(value_payment AS DECIMAL(10,2))')), 2, ',', '.') }} <br> Total: {{ DB::table('payments')->where('form_payment', 'Débito')->count(DB::raw('CAST(value_payment AS DECIMAL(10,2))')) }} </td>
+                      <td id="text-profile" class="s12 l1">Pgto no Crédito: R$ {{ number_format(DB::table('payments')->where('form_payment', 'Crédito')->sum(DB::raw('CAST(value_payment AS DECIMAL(10,2))')), 2, ',', '.') }} <br> Total: {{ DB::table('payments')->where('form_payment', 'Crédito')->count(DB::raw('CAST(value_payment AS DECIMAL(10,2))')) }} </td>
+                    </tr>
+                    
+                    <tr>
+                      <td id="text-profile" class="s12 l1">Pgto no Boleto: R$ {{ number_format(DB::table('payments')->where('form_payment', 'Boleto')->sum(DB::raw('CAST(value_payment AS DECIMAL(10,2))')), 2, ',', '.') }} <br> Total: {{ DB::table('payments')->where('form_payment', 'Boleto')->count(DB::raw('CAST(value_payment AS DECIMAL(10,2))')) }} </td>
+                      <td id="text-profile" class="s12 l1">Pgto em Vale: R$ {{ number_format(DB::table('payments')->where('form_payment', 'Vale')->sum(DB::raw('CAST(value_payment AS DECIMAL(10,2))')), 2, ',', '.') }} <br> Total: {{ DB::table('payments')->where('form_payment', 'Vale')->count(DB::raw('CAST(value_payment AS DECIMAL(10,2))')) }} </td>
+                      <td id="text-profile" class="s12 l1">Total: {{ DB::table('payments')->count(DB::raw('CAST(value_payment AS DECIMAL(10,2))'))}}</td>
+                    </tr>
+
+                    <tr>
+                      @foreach ($contagemPayments as $contagemPayment)
+                      <td id="text-profile" class="s12 l1">Tipo mensalidade: {{$contagemPayment->monthly->name_monthly}} <br> Total: {{$contagemPayment->total}}</td>
+                      @endforeach
+                    </tr>
+                  </tbody>                 
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="row">
     <div class="col s12">
       <div class="card ">
@@ -41,49 +96,6 @@
                       <td id="text-profile" class="s12 l2">Alunos com 41+ anos: {{$user_dados[7]['total']}}</td>
                     </tr>
                 </tbody>                 
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  
-
-  <div class="row">
-    <div class="col s12">
-      <div class="card ">
-        <canvas id="graficoMensalidadePorMes" width="400" height="200"></canvas>
-      </div>
-
-      <div class="card">
-        <div class="row">
-          <div class="col s12 l12">
-            <div class="table-scroll">
-              <table class="highlight">
-                <h4>Informações do Gráfico Mensalidades</h4>                   
-                  <tbody>                         
-                    <tr>
-                        <td id="text-profile" class="s12 l1">Total de Receita: <br> R$ {{ number_format(DB::table('payments')->sum(DB::raw('CAST(value_payment AS DECIMAL(10,2))')), 2, ',', '.') }}</td>
-                        <td id="text-profile" class="s12 l1">Pgto em Dinheiro: R$ {{ number_format(DB::table('payments')->where('form_payment', 'Dinheiro')->sum(DB::raw('CAST(value_payment AS DECIMAL(10,2))')), 2, ',', '.') }} <br> Total: {{ DB::table('payments')->where('form_payment', 'Dinheiro')->count(DB::raw('CAST(value_payment AS DECIMAL(10,2))')) }} </td>
-                        <td id="text-profile" class="s12 l1">Pgto em Pix: R$ {{ number_format(DB::table('payments')->where('form_payment', 'Pix')->sum(DB::raw('CAST(value_payment AS DECIMAL(10,2))')), 2, ',', '.') }} <br> Total: {{ DB::table('payments')->where('form_payment', 'Pix')->count(DB::raw('CAST(value_payment AS DECIMAL(10,2))')) }} </td>
-                        <td id="text-profile" class="s12 l1">Pgto no Débido: R$ {{ number_format(DB::table('payments')->where('form_payment', 'Débito')->sum(DB::raw('CAST(value_payment AS DECIMAL(10,2))')), 2, ',', '.') }} <br> Total: {{ DB::table('payments')->where('form_payment', 'Débito')->count(DB::raw('CAST(value_payment AS DECIMAL(10,2))')) }} </td>
-                    </tr>
-                    
-                    <tr>
-                      <td id="text-profile" class="s12 l1">Pgto no Crédito: R$ {{ number_format(DB::table('payments')->where('form_payment', 'Crédito')->sum(DB::raw('CAST(value_payment AS DECIMAL(10,2))')), 2, ',', '.') }} <br> Total: {{ DB::table('payments')->where('form_payment', 'Crédito')->count(DB::raw('CAST(value_payment AS DECIMAL(10,2))')) }} </td>
-                      <td id="text-profile" class="s12 l1">Pgto no Boleto: R$ {{ number_format(DB::table('payments')->where('form_payment', 'Boleto')->sum(DB::raw('CAST(value_payment AS DECIMAL(10,2))')), 2, ',', '.') }} <br> Total: {{ DB::table('payments')->where('form_payment', 'Boleto')->count(DB::raw('CAST(value_payment AS DECIMAL(10,2))')) }} </td>
-                      <td id="text-profile" class="s12 l1">Pgto em Vale: R$ {{ number_format(DB::table('payments')->where('form_payment', 'Vale')->sum(DB::raw('CAST(value_payment AS DECIMAL(10,2))')), 2, ',', '.') }} <br> Total: {{ DB::table('payments')->where('form_payment', 'Vale')->count(DB::raw('CAST(value_payment AS DECIMAL(10,2))')) }} </td>
-                      <td id="text-profile" class="s12 l1">Total: {{ DB::table('payments')->count(DB::raw('CAST(value_payment AS DECIMAL(10,2))'))}}</td>
-                    </tr>
-
-                    <tr>
-                      @foreach ($contagemPayments as $contagemPayment)
-                      <td id="text-profile" class="s12 l1">Tipo mensalidade: {{$contagemPayment->monthly->name_monthly}} <br> Total: {{$contagemPayment->total}}</td>
-                      @endforeach
-                    </tr>
-                  </tbody>                 
               </table>
             </div>
           </div>
@@ -225,8 +237,8 @@
 
 @section('script')
 <script>
-  // Função para filtrar os registros da tabela
-  function filterTable() {
+     // Função para filtrar os registros da tabela
+    function filterTable() {
       let input = document.getElementById('search');
       let filter = input.value.toLowerCase();
       let rows = document.getElementById('table-body').getElementsByTagName('tr');
@@ -262,6 +274,7 @@
 
 
     document.addEventListener("DOMContentLoaded", function() {
+     
       fetch('/estatisticas/users-por-mes')
         .then(response => response.json())
         .then(data => {
@@ -296,6 +309,61 @@
         });
     });
 
+    fetch('/estatisticas/expense-por-mes')
+    .then(response => response.json())
+    .then(data => {
+        const meses = [];
+        const total_entradas = [];
+        const total_saidas = [];
+        const expenseTotal = [];
+        const total_payment = [];
+    
+        data.forEach(item => {
+            meses.push(`Mês ${item.month}`);
+            total_entradas.push(item.total_entradas);
+            total_saidas.push(item.total_saidas);
+            expenseTotal.push(item.despesa_total);
+            total_payment.push(item.total_payment);
+        });
+        
+        var ctx = document.getElementById('graficoExpensePorMes').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: meses,
+                datasets: [{
+                    label: 'Entradas registrada no Mês',
+                    data: total_entradas,
+                    backgroundColor: 'rgba(0, 128, 0, 0.5)', 
+                    borderColor: 'rgba(0, 128, 0, 1)',
+                    borderWidth: 1
+                },
+                {
+                    label: 'Saídas registrada no Mês',
+                    data: total_saidas,
+                    backgroundColor: 'rgba(350, 99, 71, 0.5)',
+                    borderColor: 'rgba(350, 99, 71, 1)',
+                    borderWidth: 1
+                },
+                {
+                    label: 'Total de Receita no Mês',
+                    data: expenseTotal,
+                    backgroundColor: 'rgba(100, 216, 230, 0.5)',
+                    borderColor: 'rgba(173, 216, 230, 1)', 
+                    borderWidth: 1
+                }]
+                
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    });
+
     fetch('/estatisticas/payment-por-mes')
         .then(response => response.json())
         .then(data => {
@@ -313,7 +381,7 @@
             data: {
                 labels: meses,
                 datasets: [{
-                    label: 'Mensalidades Criados por Mês',
+                    label: 'Total de Mensalidades no mês',
                     data: Mensalidades_Pagas,
                     backgroundColor: 'rgba(75, 192, 192, 0.5)',
                     borderColor: 'rgba(75, 192, 192, 1)',

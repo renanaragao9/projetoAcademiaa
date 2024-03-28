@@ -30,6 +30,7 @@ class ExpensesController extends Controller
             'tipo_expense.required' => 'O campo Tipo da Receita não pode está vazio',
             'value_expense.required' => 'O campo valor não pode está vazio ou quebrado'
         ]);
+
         
         Expense::create($request->all());
 
@@ -57,7 +58,6 @@ class ExpensesController extends Controller
 
         Expense::findOrFail($request->id_expense)->update($expenseData);
 
-
         return redirect()->back()->with('msg-success', 'Receira editado com sucesso!');
     }
 
@@ -68,5 +68,17 @@ class ExpensesController extends Controller
         $expenseData->delete();
 
         return redirect()->back()->with('msg-success', 'Receita excluída com sucesso!');
+    }
+
+    public function report() {
+        
+        $periods = ['Mês', 'Intervalo'];
+
+        $form_payments = ['Todos', 'Saída', 'Entrada'];
+
+        return view('admin.report.expense', [
+            'periods' => $periods,
+            'form_payments' => $form_payments
+        ]);
     }
 }

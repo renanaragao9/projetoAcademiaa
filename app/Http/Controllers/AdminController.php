@@ -9,6 +9,7 @@ use App\Models\called;
 use App\Models\statistics;
 use App\Models\media;
 use App\Models\payment;
+use App\Models\expense;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -21,6 +22,7 @@ class AdminController extends Controller
         $called = called::all();
         $media = media::all();
         $payments = payment::all();
+        $expenses = expense::all();
 
         $calleds = called::join('users as users_user', 'calleds.id_user_fk', '=', 'users_user.id')
         ->join('users as users_instrutor', 'calleds.id_instructor_fk', '=', 'users_instrutor.id')
@@ -37,6 +39,53 @@ class AdminController extends Controller
         ->take(5)
         ->get();
 
+        $entryCurrentMonth = 0;
+        $entryPayment = 0;
+        $exitMonthCurrent = 0;
+        $totalCurrentMonth = 0;
+
+        $mesAtual = date('m');
+        
+        foreach ($expenses as $expense) {
+            if (date('m', strtotime($expense->data_expense)) == $mesAtual) {
+                if ($expense->tipo_expense == 1) {
+                    $entryCurrentMonth += $expense->value_expense;
+                } elseif ($expense->tipo_expense == 2) {
+                    $exitMonthCurrent += $expense->value_expense;
+                }
+            }
+        }
+
+        foreach ($payments as $payment) {
+            if (date('m', strtotime($payment->date_payment)) == $mesAtual) {
+                $entryPayment += $payment->value_payment;
+            }
+        }
+
+        $totalCurrentMonth += $entryPayment +  $entryCurrentMonth - $exitMonthCurrent;
+
+        $expenseCurrent = array(
+            'entryCurrentMonth' => $entryCurrentMonth,
+            'entryPayment' => $entryPayment,
+            'exitMonthCurrent' => $exitMonthCurrent,
+            'totalCurrentMonth' => $totalCurrentMonth
+        );
+
+        /*
+        $entradaTotal = 0;
+        $saidaTotal = 0;
+
+        foreach ($expenses as $expense) {
+            if ($expense->tipo_expense == 1) {
+                $entradaTotal += $expense->value_expense;
+            } elseif ($expense->tipo_expense == 2) {
+                $saidaTotal += $expense->value_expense;
+            }
+        }
+
+        $totalMesAtual = $entradaMesAtual - $saidaMesAtual;
+        $totalGeral = $entradaTotal - $saidaTotal;
+        */
         return view('admin.home', [
             'users' => $users,
             'fichas' => $fichas,
@@ -45,7 +94,8 @@ class AdminController extends Controller
             'calleds' => $calleds,
             'statistics' => $statistics,
             'media' => $media,
-            'payments' => $payments
+            'payments' => $payments,
+            'expenseCurrent' => $expenseCurrent
         ]);
     }
 
