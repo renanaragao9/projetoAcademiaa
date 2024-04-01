@@ -16,6 +16,8 @@ class CalledController extends Controller
         ->orderBy('created_at', 'DESC')
         ->get();
 
+        dd($calleds);
+
         return view('admin.called', ['calleds' => $calleds]);
     }
 
@@ -38,6 +40,26 @@ class CalledController extends Controller
         return redirect()->back()->with('msg-success', 'Chamado registrado com sucesso!');
     }
 
+    public function createCount(Request $request) {
+       
+        $called = new Called();
+    
+        $called->user_name = $request->input('nome');
+        $called->urgency = 'Urgente';
+        $called->title = 'Novo Acesso';
+        $called->subject = 'Solicitante '.$request->input('nome').' com email '.$request->input('email').' solicita acesso ao aplicativo';
+        $saved = $called->save();
+    
+        if ($saved) {
+            
+            return redirect()->back()->with('msg-success', 'SOlicitação criada com sucesso.');
+        
+        } else {
+            
+            return redirect()->back()->with('msg-error', 'Erro ao a solicitação. Tente novamente mais tarde');
+        }
+    }
+   
     public function destroy($id) {
         
         $called = called::findOrFail($id);

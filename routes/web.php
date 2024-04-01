@@ -33,6 +33,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+
 Route::middleware(['auth'])->group(function() {
     Route::middleware(['checkProfile'])->group(function() {
     
@@ -48,9 +50,11 @@ Route::middleware(['auth'])->group(function() {
             route::post('/cadastrar', [UserController::class,'store'])->name('admin.user.store');
             route::get('/editar/{id}', [UserController::class, 'edit'])->name('admin.user.edit');
             Route::put('/atualizar/{id}', [UserController::class, 'update'])->name('admin.user.update');
+            Route::get('resetar-senha/{id}', [UserController::class, 'resetPassword'])->name('admin.user.resetPassword');
             Route::delete('deletar/{id}', [UserController::class, 'destroy'])->name('admin.user.destroy');
             Route::get('/relatorio', [UserController::class, 'report'])->name('admin.user.report');
             Route::post('relatorio-alunos-pdf', [PDFController::class, 'generateReportUser'])->name('admin.user.reportUser-pdf');
+
         });
         
         Route::prefix('admin/fichas/')->group(function() {
@@ -169,6 +173,9 @@ Route::middleware(['auth'])->group(function() {
 
 });
 
+// Rota para chamado de alunos sem conta
+Route::post('criar-conta', [CalledController::class, 'createCount'])->name('admin.createCount.store');
+
 Route::middleware(['auth'])->group(function() {
     Route::prefix('alunos/')->group(function() {
        route::get('inicio', [StudentsController::class, 'index'])->name('students.start');
@@ -184,7 +191,8 @@ Route::middleware(['auth'])->group(function() {
        route::get('post', [StudentsController::class, 'posts'])->name('students.posts');
        route::get('pagamentos', [StudentsController::class, 'payments'])->name('students.payment');
        Route::get('receipt-pdf/{id}', [PDFController::class, 'generateReceiptPDF'])->name('receiptDownload');
-
+       route::get('redefinir-senha', [StudentsController::class, 'reset_password'])->name('students.resetPass');
+       route::post('redefinido', [StudentsController::class, 'reset'])->name('students.reset');
     });
 });
 

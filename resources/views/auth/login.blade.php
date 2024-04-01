@@ -4,78 +4,106 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script
-      src="https://kit.fontawesome.com/64d58efce2.js"
-      crossorigin="anonymous"
-    ></script>
+    <!-- Icones e Fontes -->
+    <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+    
+    <!-- Estilo -->
     <link rel="stylesheet" href="css/style_login.css" />
+    
     <title>Login</title>
   </head>
   <body>
     <div class="container">
       <div class="forms-container">
         <div class="signin-signup">
-          <!-- Primeira parte (TELA DE LOGIN) -->
+        <!-- Primeira parte (TELA DE LOGIN) -->
 
           <form action="{{ route('login') }}" method="POST" class="sign-in-form">
             @csrf
+            
             <h1  id="title-name">Personal Trainer</h1>
-            <h1  id="title-name">Israel Dantas</h1>
+            <h1  id="title-name">Israel Dantas</h1>  
+            
+            @if (session('status'))
+              <div class="custom-message success">
+                <p>Senha redefinida com sucesso!</p>
+              </div>
+            @endif
+        
             <div class="input-field">
               <i class="fas fa-user"></i>
               <input name="email" type="email" placeholder="Email" required/>
             </div>
+
             <div class="input-field">
               <i class="fas fa-lock"></i>
               <input name="password" type="password" placeholder="Senha" required/>
             </div>
+
             <x-input-error :messages="$errors->get('email')" class="flash-message-login" />
             @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">
-                    {{ __('Esqueceu a senha ?') }}
-                </a>
+              <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">
+                  {{ __('Esqueceu a senha ?') }}
+              </a>
             @endif
+
             <input type="submit" value="Entrar" class="btn solid" />
+            
             <p class="social-text">Conheça nossas redes sociais</p>
+
             <div class="social-media">
               <a href="#" class="social-icon">
                 <i class="fab fa-facebook"></i>
               </a>
+
               <a href="https://www.instagram.com/israeltrainingg/" target="blank" class="social-icon">
                 <i class="fab fa-instagram"></i>
               </a>
+
               <a href="#" class="social-icon">
                 <i class="fab fa-twitter"></i>
               </a>
+
               <a href="https://api.whatsapp.com/send?phone=5585988718063" target="blank" class="social-icon">
                 <i class="fab fa-whatsapp"></i>
               </a>
+
             </div>
           </form>
 
           <!-- Segunda parte (TELA DE CADASTRO) -->
-          <form class="sign-up-form">
+          <form class="sign-up-form" method="POST" action="{{ route('admin.createCount.store') }}">
+          @csrf
+            
             <h2 class="title">Solicitar Acesso</h2>
+            
             <div class="input-field">
               <i class="fas fa-user"></i>
-              <input type="text" placeholder="Nome" id="message"/>
+              <input name="nome" type="text" placeholder="Nome" />
             </div>
+            
             <div class="input-field">
               <i class="fas fa-envelope"></i>
-              <input type="email" placeholder="Email" id="message2"/>
+              <input name="email" type="email" placeholder="Email" />
             </div>
-            <button class="btn" value="Solicitar" id="by-link">Solicitar</button>
+            
+            <input type="submit" value="Solicitar" class="btn solid" />
+            
             <p class="social-text">Conheceça nossas redes sociais</p>
+            
             <div class="social-media">
               <a href="#" class="social-icon">
                 <i class="fab fa-facebook"></i>
               </a>
+              
               <a href="https://www.instagram.com/israeltrainingg/" target="blank" class="social-icon">
                 <i class="fab fa-instagram"></i>
               </a>
+              
               <a href="#" class="social-icon">
                 <i class="fab fa-twitter"></i>
               </a>
+              
               <a href="https://api.whatsapp.com/send?phone=5585988718063" target="blank" class="social-icon">
                 <i class="fab fa-whatsapp"></i>
               </a>
@@ -120,8 +148,9 @@
     </footer>
 
     <script src="js/login.js"></script>
+  </body>
 
-    <!--API WhatsAppp Script-->
+  <!--API WhatsAppp Script-->
 <script>
   let phone = document.getElementById('phone')
   let message = document.getElementById('message')

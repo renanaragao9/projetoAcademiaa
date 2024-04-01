@@ -13,6 +13,7 @@ use App\Models\media;
 use App\Models\payment;
 use App\Models\monthlyType;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Hash;
 
 
 class StudentsController extends Controller
@@ -297,5 +298,43 @@ class StudentsController extends Controller
         $posts = Media::with('users')->where('type_media', 2)->orderBy('id_media', 'DESC')->get();
 
         return view('users.post', ['posts' => $posts, 'fichas' => $fichas]);
+    }
+
+    public function reset_password() {
+
+        $userId = auth()->user()->id;
+
+        // envia a relação de fichas do aluno. OBS: Esse codigo terá que ir em todos as views para o leyout funcionar bem
+        $fichas = Ficha::where('id_user_fk', $userId)
+        ->select('fichas.id_training_fk', 'training_division.name_training')
+        ->join('training_division', 'fichas.id_training_fk', '=', 'training_division.id_training')
+        ->distinct()
+        ->get();
+        
+        return view('users.reset', ['fichas' => $fichas]);
+    }
+
+    public function reset(Request $request) {
+        
+        $userId = auth()->user()->id;
+
+        $request->validate([
+            'password' => 'required|string|min:8',
+        ]);
+    
+        $user = User::find($userId);
+    
+        if ($user) {
+
+            $user->password = Hash::make($request->password);
+            
+            $user->save();
+    
+            return redirect()->back()->with('msg-success', 'Senha atualizada com sucesso!');
+        }
+         else {
+            
+            return redirect()->back()->with('msg-warning', 'Usuário não encontrado!');
+        }
     }
 }

@@ -285,6 +285,17 @@ form.sign-in-form {
   pointer-events: all;
 }
 
+.custom-message {
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+}
+
+.success {
+  background-color: #28a745; /* Verde */
+  color: white;
+}
+
 @media (max-width: 870px) {
   .container {
     min-height: 800px;

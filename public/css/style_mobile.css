@@ -263,3 +263,13 @@
 #copy-mobile {
   margin-bottom: 60px;
 }
+
+#reset-form {
+  max-width: 400px;
+  width: 90%;
+}
+
+#show_password_1, #show_password_2 {
+  margin-left: 85%;
+  color: #424242;
+}

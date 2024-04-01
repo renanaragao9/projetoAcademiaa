@@ -191,4 +191,26 @@ class UserController extends Controller
             'periods' => $periods
         ]);
     }
+
+    public function resetPassword($id) {
+        
+        $userId = $id;
+    
+        $user = User::find($userId);
+
+        $password = 'Academia@123';
+    
+        if ($user) {
+
+            $user->password = Hash::make($password);
+            
+            $user->save();
+    
+            return redirect()->back()->with('msg-success', 'Senha atualizada com sucesso!');
+        
+        } else {
+            
+            return redirect()->back()->with('msg-warning', 'Usuário não encontrado!');
+        }
+    }
 }

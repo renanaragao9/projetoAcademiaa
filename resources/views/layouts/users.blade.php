@@ -91,6 +91,8 @@
       @foreach ($fichas as $ficha)
         <li class="collapsible"><a href="{{ route('students.ficha', $ficha->id_training_fk) }}" class="waves-effect" id="mobile-side"> {{$ficha->name_training}} <i class="material-icons">fitness_center</i></a></li>
       @endforeach
+
+      <li class="collapsible"><a href="{{ route('students.resetPass', Auth::user()->id) }}" class="waves-effect" id="mobile-side"> Trocar Senha <i class="material-icons">lock_reset</i></a></li>
     </ul>       
   </header>
 
@@ -114,6 +116,7 @@
               <i class="material-icons">close</i>
             </button>
           </div>               
+        
         @elseif(session('msg-success'))
           <div class="flash-message-success">
             <div class="flash-message-content">
@@ -125,6 +128,7 @@
               <i class="material-icons">close</i>
             </button>
           </div>
+        
         @elseif(session('msg-warning'))
           <div class="flash-message-warning">
             <div class="flash-message-content">
@@ -136,6 +140,7 @@
               <i class="material-icons">close</i>
             </button>
           </div>                
+        
         @elseif($errors->any())
           <div class="flash-message-warning">
             <div class="flash-message-content">
