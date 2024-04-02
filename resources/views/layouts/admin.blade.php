@@ -189,6 +189,12 @@
                             <li class="collapsible"></li>
 
                             <li>
+                                <a href="{{ route('admin.register.expense') }}"> Receita <i class="material-icons">radio_button_unchecked</i> </a>
+                            </li>
+
+                            <li class="collapsible"></li>
+
+                            <li>
                                 <a href="{{ route('admin.register.monthlyType') }}"> Tipo Mensalidade <i class="material-icons">radio_button_unchecked</i> </a>
                             </li>
 
@@ -233,6 +239,12 @@
                                 <li class="collapsible"></li>
 
                                 <li>
+                                    <a href="{{ route('admin.table.expense') }}"> Receita <i class="material-icons">radio_button_unchecked</i> </a>
+                                </li>
+
+                                <li class="collapsible"></li>
+
+                                <li>
                                     <a href="{{ route('admin.table.exercise') }}"> Exercícios <i class="material-icons">radio_button_unchecked</i> </a>
                                 </li>
 
@@ -269,7 +281,9 @@
                                     <a href="{{ route('admin.expense.report') }}"> Relatório <i class="material-icons">radio_button_unchecked</i> </a>
                                 </li>
                             @endif
-
+                            
+                            <li class="collapsible"></li>
+                            
                             <li>
                                 <a href="{{ route('admin.user.report') }}"> Alunos <i class="material-icons">radio_button_unchecked</i> </a>
                             </li>

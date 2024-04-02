@@ -12,11 +12,34 @@
             </div>
             
             <div class="col s3">
-                <img src="/img/profile_photo_path/{{$user->profile_photo_path}}" alt="Foto do Aluno" class="hide-on-small-only" id="view-img">
-            </div>
+                <img src="/img/profile_photo_path/{{ $user->profile_photo_path ? $user->profile_photo_path : 'image_default.png' }}" alt="Foto do Aluno" class="hide-on-small-only" id="view-img">            </div>
            
-            <div class="col s12 l6">
+            <div class="col s12 l6 center">
+                
                 <h3 class="center" id="homeTitle">{{ $user->name }}</h3>
+                
+                @if ($user->due_date)
+                    @php
+                        $dueDate = \Carbon\Carbon::parse($user->due_date);
+                        $today = \Carbon\Carbon::now();
+            
+                        if ($dueDate->isPast()) {
+                            $statusClass = 'red lighten-2';
+                            $statusText = 'Atrasado';
+                        } elseif ($dueDate->isToday()) {
+                            $statusClass = 'yellow lighten-2';
+                            $statusText = 'Vence Hoje';
+                        } elseif ($dueDate->isFuture()) {
+                            $statusClass = 'green lighten-2';
+                            $statusText = 'Em dias';
+                        }
+                    @endphp
+                    
+                        <p class="badge {{ $statusClass }}" id="status-table-user">{{ $statusText }}</p>
+                    
+                    @else  
+                        <p class="badge grey" id="status-table-user">Sem Pgto</p>
+                @endif
             </div>
         </div>
         

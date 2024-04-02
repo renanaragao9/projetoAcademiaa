@@ -54,9 +54,9 @@ class UserController extends Controller
 
     public function users() {
 
-         // Chama os registro do banco de dados e envia para a tabela por ordem de nome crescente (A-Z)
-        $users = User::paginate(10);
-
+        // Chama os registro do banco de dados e envia para a tabela por ordem de nome crescente (A-Z)
+        $users = User::all();
+        
         return view('admin.users', ['users' => $users]);
     }
 

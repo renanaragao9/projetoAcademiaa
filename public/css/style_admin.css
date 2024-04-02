@@ -494,6 +494,14 @@ nav .brand-logo i.material-icons {
   margin-bottom: 10px; /* Espaço entre as linhas de botões */
 }
 
+#status-table-user {
+  padding: 5px 10px;
+  border: 2px solid #333;
+  border-radius: 10px;
+  display: inline-block;
+  font-size: 17px;
+}
+
 /* Cards */
 #card-title {
   font-size: 30px;

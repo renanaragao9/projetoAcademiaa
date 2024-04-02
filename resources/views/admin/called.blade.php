@@ -19,9 +19,9 @@
           <ul class="collection">
             <li class="collection-item avatar">
               <img src="/img/profile_photo_path/{{$called->user_photo }}" class="circle responsive-img" alt="Imagem de Perfil" class="circle" id="called_photo">
-              <span class="title"> <strong id="strong">Nome:</strong> {{ $called->user_name }} </span>
+              <span class="title"> <strong id="strong">Nome:</strong> <strong>{{ $called->user_name }}</strong> </span>
               <p><strong id="strong">Urgencia:</strong> {{  $called->urgency }}</p>
-              <p><strong id="strong">Titulo:</strong> {{ $called->title }}</p>
+              <p><strong id="strong">Titulo:</strong> <strong>{{ $called->title }}</strong> </p>
               <p><strong id="strong">Assunto:</strong> {{ $called->subject }}</p>
               <p><strong id="strong">Professor:</strong> {{ $called->instrutor_name }}</p>                  
               <form action="{{ route('admin.called.destroy', $called->id_called) }}" method="POST" class="delete-form">

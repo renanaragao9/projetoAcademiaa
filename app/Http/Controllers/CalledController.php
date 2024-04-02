@@ -16,8 +16,6 @@ class CalledController extends Controller
         ->orderBy('created_at', 'DESC')
         ->get();
 
-        dd($calleds);
-
         return view('admin.called', ['calleds' => $calleds]);
     }
 
@@ -52,7 +50,7 @@ class CalledController extends Controller
     
         if ($saved) {
             
-            return redirect()->back()->with('msg-success', 'SOlicitação criada com sucesso.');
+            return redirect()->back()->with('msg-success', 'Solicitação criada com sucesso.');
         
         } else {
             

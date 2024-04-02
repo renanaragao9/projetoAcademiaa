@@ -48,18 +48,20 @@ class paymentsController extends Controller
             'form_payment.required' => 'Defina uma forma de pagamento',
             'monthly_type_id.required' => 'Defina um Tipo de Mensalidade válido'
         ]);
-
-
+    
         $date = Carbon::parse($request->date_payment);
-
-        $meses = monthlyType::where('id_monthly_type', $request->monthly_type_id)->first();
-
+        $meses = MonthlyType::where('id_monthly_type', $request->monthly_type_id)->first();
         $due_date = $date->copy()->addMonths($meses->months);
-
+    
         $request->merge(['date_due_payment' => $due_date->toDateString()]); 
-
-        payment::create($request->all());
-
+    
+        $payment = Payment::create($request->all());
+    
+        // Atualize o usuário correspondente
+        $user = User::find($request->user_id);
+        $user->due_date = $due_date->toDateString();
+        $user->save();
+    
         return redirect()->back()->with('msg-success', 'Mensalidade registrada com sucesso!');
     }
 

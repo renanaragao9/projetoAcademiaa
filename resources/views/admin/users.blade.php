@@ -20,6 +20,7 @@
             <tr>
               <th>ID</th>
               <th>Nome</th>
+              <th class="hide-on-small-only">Situação</th>
               <th class="hide-on-small-only">Email</th>
               <th>Ações</th>
             </tr>
@@ -29,6 +30,30 @@
               <tr>
                 <td id="td-text">{{ $user->id }}</td>
                 <td id="td-text">{{ $user->name }}</td>
+                <td id="td-text" class="hide-on-small-only">
+                  @if ($user->due_date)
+                      @php
+                        $dueDate = \Carbon\Carbon::parse($user->due_date);
+                        $today = \Carbon\Carbon::now();
+            
+                        if ($dueDate->isPast()) {
+                            $statusClass = 'red lighten-2'; // Vermelho para atrasado
+                            $statusText = 'Atrasado';
+                        } elseif ($dueDate->isToday()) {
+                            $statusClass = 'yellow lighten-2'; // Amarelo para vence hoje
+                            $statusText = 'Vence Hoje';
+                        } elseif ($dueDate->isFuture()) {
+                            $statusClass = 'green lighten-2'; // Verde para em dia
+                            $statusText = 'Em dias';
+                        }
+                      @endphp
+                      
+                      <p class="badge {{ $statusClass }}" id="status-table-user">{{ $statusText }}</p>
+                  @else
+                    <p class="badge grey" id="status-table-user">Sem Pgto</p>
+                  @endif
+                </td>
+              
                 <td class="hide-on-small-only" id="td-text">{{ $user->email }}</td>
                 <td>
                   <div class="action-buttons">
@@ -49,10 +74,6 @@
                 </td>
               </tr>
             @endforeach
-
-            {{ $users->links() }}
-
-            <!-- Adicione mais registros aqui -->
           </tbody>
         </table>
 
@@ -107,13 +128,17 @@
       let count = 0;
 
       for (let i = 0; i < rows.length; i++) {
+        
         let nome = rows[i].getElementsByTagName('td')[0].innerText.toLowerCase();
         let acao = rows[i].getElementsByTagName('td')[1].innerText.toLowerCase();
+        let situacao = rows[i].getElementsByTagName('td')[2].innerText.toLowerCase();
+        let email = rows[i].getElementsByTagName('td')[3].innerText.toLowerCase();
 
-        if (nome.indexOf(filter) > -1 || acao.indexOf(filter) > -1) {
+        if (nome.indexOf(filter) > -1 || acao.indexOf(filter) > -1 || situacao.indexOf(filter) > -1 || email.indexOf(filter) > -1) {
           rows[i].style.display = '';
           resultsFound = true;
           count++;
+        
         } else {
           rows[i].style.display = 'none';
         }
@@ -128,17 +153,17 @@
       totalRecords.innerText = "Total de registros encontrados: " + count;
     }
 
-    // Evento de input para acionar a filtragem ao digitar na caixa de pesquisa
     document.getElementById('search').addEventListener('input', filterTable); 
   
-    // Inicio da função do alerta modal ao excluír dados
     document.addEventListener('DOMContentLoaded', function() {
+      
       let modal = document.getElementById('modal-alerta');
       let instance = M.Modal.init(modal);
       let deleteButtons = document.querySelectorAll('.delete-button');
 
       deleteButtons.forEach(function(button) {
         button.addEventListener('click', function(event) {
+          
           event.preventDefault();
           let form = button.closest('.delete-form');
           instance.open();
@@ -151,7 +176,7 @@
           let confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
           confirmDeleteBtn.addEventListener('click', function() {
             form.submit();
-            instance.close(); // Fechar o modal após a exclusão ser confirmada e o formulário ser enviado.
+            instance.close();
           });
         });
       });
@@ -161,18 +186,13 @@
       $('.modal').modal();
 
       $('#myCheckbox').on('click', function(){
-        // Exibe o modal
         $('#modalConfirmation').modal('open');
       });
 
-      // Quando o botão "Sim" é clicado
       $('#confirmBtn').on('click', function(){
-        // Faça a lógica necessária para mudar o status do checkbox aqui
       });
 
-      // Quando o botão "Cancelar" é clicado
       $('#cancelBtn').on('click', function(){
-        // Desmarca o checkbox
         $('#myCheckbox').prop('checked', false);
       });
     });
