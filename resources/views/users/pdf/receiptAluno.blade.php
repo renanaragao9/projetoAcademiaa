@@ -26,7 +26,7 @@ $meses = array(
 <body style="font-family: Arial, sans-serif;">
 <div style="max-width: 600px; margin: 0 auto; padding: 20px; border: 2px solid #ccc; background-color: #f9f9f9;">
     <div style="text-align: center; margin-bottom: 20px;">
-        <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/logo_sistema_prev.png'))) }}" alt="Logo da Academia" style="max-width: 40%;">
+        <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/logo_sistema_final.png'))) }}" style="width: 200px; height: 150px"/>
     </div>
     <h2 style="text-align: center; margin-bottom: 20px;">Recibo de Pagamento</h2>
     <div style="margin-bottom: 20px;">

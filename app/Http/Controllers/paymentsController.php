@@ -93,6 +93,11 @@ class paymentsController extends Controller
         $paymentsData =  $request->all();
 
         payment::findOrFail($request->id_payment)->update($paymentsData);
+    
+        // Atualize o usuário correspondente
+        $user = User::find($request->user_id);
+        $user->due_date = $due_date->toDateString();
+        $user->save();
 
 
         return redirect()->back()->with('msg-success', 'Mensalidade editada com sucesso!');

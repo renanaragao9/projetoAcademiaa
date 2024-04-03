@@ -9,7 +9,7 @@ use App\Models\called;
 use App\Models\statistics;
 use App\Models\media;
 use App\Models\payment;
-use App\Models\Expense;
+use App\Models\expense;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller

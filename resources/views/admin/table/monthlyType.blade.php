@@ -19,7 +19,7 @@
           <tr>
             <th>Nome</th>
             <th>Valor</th>
-            <th class="hide-on-small-only">Criado</th>
+            <th class="hide-on-small-only">Qtd de Mês</th>
             <th class="hide-on-small-only">Atualizado</th>
             <th>Ação</th>
           </tr>
@@ -30,7 +30,7 @@
             <tr>
               <td id="td-text">{{ $monthlyType->name_monthly }}</td>
               <td id="td-text">R$ {{ $monthlyType->value }}</td>
-              <td class="hide-on-small-only" id="td-text">{{ $monthlyType->created_at->format('d/m/Y - H:i:s') }}</td>
+              <td id="td-text">{{ $monthlyType->months }}</td>
               <td class="hide-on-small-only" id="td-text">{{ $monthlyType->updated_at->format('d/m/Y - H:i:s') }}</td>
               <td>    
                 <!-- Botão de ações-->

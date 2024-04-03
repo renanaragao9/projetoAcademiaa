@@ -199,9 +199,19 @@ class PDFController extends Controller
 
             $startDate = Carbon::createFromDate($year, $month, 1);
             $endDate = $startDate->copy()->endOfMonth();
-               
-            $dataUsers = user::whereBetween('created_at', [$startDate, $endDate])->get();
             
+            if($dataReport['situacao'] == 'Em Aberto') {
+                $dataUsers = user::whereBetween('created_at', [$startDate, $endDate])->where('due_date', '>=', Carbon::now()->endOfMonth())->get();
+            }
+            elseif($dataReport['situacao'] == 'Atrasado') {
+                $dataUsers = user::whereBetween('created_at', [$startDate, $endDate])->where('due_date', '<', Carbon::now())->get();
+            }
+            elseif($dataReport['situacao'] == 'semPgto') {
+                $dataUsers = user::whereBetween('created_at', [$startDate, $endDate])->whereNull('due_date')->get();
+            } else {
+                $dataUsers = user::whereBetween('created_at', [$startDate, $endDate])->get();
+            }
+
         } else {
             
             if(empty($dataReport['date_interval1']) || empty($dataReport['date_interval2'])) {
@@ -221,6 +231,18 @@ class PDFController extends Controller
             }
   
             $dataUsers = user::whereBetween('created_at', [$startDate, $endDate])->get();
+
+            if($dataReport['situacao'] == 'Em Aberto') {
+                $dataUsers = user::whereBetween('created_at', [$startDate, $endDate])->where('due_date', '>=', Carbon::now()->endOfMonth())->get();
+            }
+            elseif($dataReport['situacao'] == 'Atrasado') {
+                $dataUsers = user::whereBetween('created_at', [$startDate, $endDate])->where('due_date', '<', Carbon::now())->get();
+            }
+            elseif($dataReport['situacao'] == 'semPgto') {
+                $dataUsers = user::whereBetween('created_at', [$startDate, $endDate])->whereNull('due_date')->get();
+            } else {
+                $dataUsers = user::whereBetween('created_at', [$startDate, $endDate])->get();
+            }
         }
 
         $html = View('admin.pdf.report_user ')

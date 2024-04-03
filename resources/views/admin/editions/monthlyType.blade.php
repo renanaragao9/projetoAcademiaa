@@ -30,18 +30,18 @@
               <div class="input-field col s12 l6" id="select-month">
                 <select name="months" id="id_months" class="browser-default" required>
                   <option value="" disabled selected>Selecione</option>
-                  <option value="1" >Um Mês</option>
-                  <option value="2" >Dois Meses</option>
-                  <option value="3" >Tres Meses</option>
-                  <option value="4" >Quatro Meses</option>
-                  <option value="5" >Cinco Meses</option>
-                  <option value="6" >Seis Meses</option>
-                  <option value="7" >Sete Meses</option>
-                  <option value="8" >Oito Meses</option>
-                  <option value="9" >Nove Meses</option>
-                  <option value="10" >Dez Meses</option>
-                  <option value="11" >Onze Meses</option>
-                  <option value="12" >Doze Meses</option>
+                  <option value="1" {{$monthlyType->months == 1 ? "selected='selected'" : "" }}>Um Mês</option>
+                  <option value="2" {{$monthlyType->months == 2 ? "selected='selected'" : "" }}>Dois Meses</option>
+                  <option value="3" {{$monthlyType->months == 3 ? "selected='selected'" : "" }}>Tres Meses</option>
+                  <option value="4" {{$monthlyType->months == 4 ? "selected='selected'" : "" }}>Quatro Meses</option>
+                  <option value="5" {{$monthlyType->months == 5 ? "selected='selected'" : "" }}>Cinco Meses</option>
+                  <option value="6" {{$monthlyType->months == 6 ? "selected='selected'" : "" }}>Seis Meses</option>
+                  <option value="7" {{$monthlyType->months == 7 ? "selected='selected'" : "" }}>Sete Meses</option>
+                  <option value="8" {{$monthlyType->months == 8 ? "selected='selected'" : "" }}>Oito Meses</option>
+                  <option value="9" {{$monthlyType->months == 9 ? "selected='selected'" : "" }}>Nove Meses</option>
+                  <option value="10" {{$monthlyType->months == 10 ? "selected='selected'" : "" }}>Dez Meses</option>
+                  <option value="11" {{$monthlyType->months == 11 ? "selected='selected'" : "" }}>Onze Meses</option>
+                  <option value="12" {{$monthlyType->months == 12 ? "selected='selected'" : "" }}>Doze Meses</option>
                 </select>
                 <label id="labelSpacing" id="labelSpacing"><h11>*</h11> Quantidade de Meses</label>
               </div>

@@ -409,6 +409,14 @@
         </div>
     </div>
 
+    <!-- Código da VLibras -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+        <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+
   <!-- Inicio das chamdas de Scripts -->
     
     <!-- Jquery-->
@@ -416,19 +424,24 @@
     
     <!-- Materialize-->
     <script src="/js/materialize.js"></script>
+
     
     <!-- Funcoes -->
     <script src="/js/funcoes.js"></script>
-
+    
     <!-- Bloco de anotações -->
     <script src="/js/BlocoDeAnotacoes.js"></script>
-
+    
     <!-- Editor de texto -->
     <script src="https://cdn.ckeditor.com/4.11.1/standard/ckeditor.js"></script>
+    
+    <!-- VLIBRAS -->
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
 
     @yield('script')
 
     <script>
+       new window.VLibras.Widget('https://vlibras.gov.br/app');
 
       // Dados de exemplo
       let data = {

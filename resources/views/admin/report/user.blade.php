@@ -50,8 +50,9 @@
               <div class="input-field col s12 l6" id="select-report">
                 <select name="situacao" class="browser-default" id="situacao" required>
                   <option value="todos" selected>Todos</option>
-                  <option value="Em Aberto">Em Aberto</option>
-                  <option value="Atrasado" >Atrasado</option> 
+                  <option value="Em Aberto">Em Dias</option>
+                  <option value="Atrasado" >Atrasado</option>
+                  <option value="semPgto" >Sem Pgto</option> 
                 </select>
                 <label id="labelSpacing"><h11>*</h11> Situação</label>
               </div>

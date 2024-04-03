@@ -46,11 +46,13 @@ class CalledController extends Controller
         $called->urgency = 'Urgente';
         $called->title = 'Novo Acesso';
         $called->subject = 'Solicitante '.$request->input('nome').' com email '.$request->input('email').' solicita acesso ao aplicativo';
+        $called->id_instructor_fk = 1;
+        $called->id_user_fk = 1;
         $saved = $called->save();
     
         if ($saved) {
             
-            return redirect()->back()->with('msg-success', 'Solicitação criada com sucesso.');
+            return redirect()->back()->with('called', 'Solicitação enviada com sucesso.');
         
         } else {
             

@@ -1,61 +1,63 @@
 $(document).ready(function(){
 
-    // Chamada para o botao flutuante
-    $('.fixed-action-btn').floatingActionButton({
-      hoverEnabled: false
+  //new window.VLibras.Widget('https://vlibras.gov.br/app');
+
+  // Chamada para o botao flutuante
+  $('.fixed-action-btn').floatingActionButton({
+    hoverEnabled: false
+  });
+
+  // Chamada para ativar o sidenav lateral
+  $('.sidenav').sidenav();
+
+  // Chamada para ativar o dropdown da navbar
+  $('.collapsible').collapsible();
+
+  /*
+    $(".dropdown-trigger").dropdown({ 
+      coverTrigger: false,
     });
+    
+    $(".dropdown-table").dropdown({ 
+      coverTrigger: false,
+    });
+  */
+  // Chamada para o Modal
+  $('.modal').modal();
 
-    // Chamada para ativar o sidenav lateral
-    $('.sidenav').sidenav();
+  // Chamada para ampliação da imagem
+  $('.materialboxed').materialbox();
 
-    // Chamada para ativar o dropdown da navbar
-    $('.collapsible').collapsible();
+  // Chamada para o scroll lateral
+  $('.scrollspy').scrollSpy();
 
-    /*
-      $(".dropdown-trigger").dropdown({ 
-        coverTrigger: false,
-      });
-      
-      $(".dropdown-table").dropdown({ 
-        coverTrigger: false,
-      });
-    */
-    // Chamada para o Modal
-    $('.modal').modal();
+  // Chamada para os selects
+  $('select').formSelect();
 
-    // Chamada para ampliação da imagem
-    $('.materialboxed').materialbox();
+  // Chamada para a descrição dos icones na tabela
+  $('.tooltipped').tooltip();
 
-    // Chamada para o scroll lateral
-    $('.scrollspy').scrollSpy();
+  //CKEDITOR.replace('body');
 
-    // Chamada para os selects
-    $('select').formSelect();
+  // Chamada para o limite do textarea
+  $('input#input_text, textarea#observation').characterCounter();
 
-    // Chamada para a descrição dos icones na tabela
-    $('.tooltipped').tooltip();
-
-    //CKEDITOR.replace('body');
-
-    // Chamada para o limite do textarea
-    $('input#input_text, textarea#observation').characterCounter();
-
-    /*
-    $('.datepicker').pickadate({
-      monthsFull: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
-      monthsShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
-      weekdaysFull: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabádo'],
-      weekdaysShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
-      today: 'Hoje',
-      clear: 'Limpar',
-      close: 'Pronto',
-      labelMonthNext: 'Próximo mês',
-      labelMonthPrev: 'Mês anterior',
-      labelMonthSelect: 'Selecione um mês',
-      labelYearSelect: 'Selecione um ano',
-      selectMonths: true, 
-      selectYears: 15 
-      });
+  /*
+  $('.datepicker').pickadate({
+    monthsFull: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+    monthsShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+    weekdaysFull: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabádo'],
+    weekdaysShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
+    today: 'Hoje',
+    clear: 'Limpar',
+    close: 'Pronto',
+    labelMonthNext: 'Próximo mês',
+    labelMonthPrev: 'Mês anterior',
+    labelMonthSelect: 'Selecione um mês',
+    labelYearSelect: 'Selecione um ano',
+    selectMonths: true, 
+    selectYears: 15 
+    });
   */
 });
 

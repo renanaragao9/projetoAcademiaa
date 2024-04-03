@@ -167,6 +167,14 @@
     </div>
   </footer>
 
+  <!-- Código da VLibras -->
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+    <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+
   <!-- Inicio das chamdas de Scripts -->
     
     <!-- Jquery-->
@@ -184,9 +192,15 @@
     <!-- Editor de texto -->
     <script src="https://cdn.ckeditor.com/4.11.1/standard/ckeditor.js"></script>
 
+    <!-- VLIBRAS -->
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+
     @yield('script')
 
     <script>
+      
+      new window.VLibras.Widget('https://vlibras.gov.br/app');
+
       document.addEventListener('DOMContentLoaded', function() {
         let elems = document.querySelectorAll('.fixed-mobile');
         let instances = M.FloatingActionButton.init(elems, {

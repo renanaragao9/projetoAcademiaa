@@ -79,7 +79,7 @@
   <table style="width: 100%; text-align: center;">
     <tr style=" ">
       <td colspan="2">
-        <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/israelj.png'))) }}" style="width: 420px; height: 90px"/>
+        <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/logo_sistema_final.png'))) }}" style="width: 200px; height: 150px"/>
       </td>
     </tr>
    
@@ -113,6 +113,7 @@
             <thead>
               <tr>
                 <th>Nome</th>
+                <th>Situacão</th>
                 <th>Data</th>
                 <th>Sexo</th>
                 <th>Email</th>
@@ -123,6 +124,29 @@
               @foreach ($dataUsers as $user)
                 <tr>
                   <td> {{ $user->name }}</td>
+                  <td> 
+                    @if ($user->due_date)
+                      @php
+                        $dueDate = \Carbon\Carbon::parse($user->due_date);
+                        $today = \Carbon\Carbon::now();
+            
+                        if ($dueDate->isPast()) {
+                            $statusClass = 'red lighten-2'; // Vermelho para atrasado
+                            $statusText = 'Atrasado';
+                        } elseif ($dueDate->isToday()) {
+                            $statusClass = 'yellow lighten-2'; // Amarelo para vence hoje
+                            $statusText = 'Vence Hoje';
+                        } elseif ($dueDate->isFuture()) {
+                            $statusClass = 'green lighten-2'; // Verde para em dia
+                            $statusText = 'Em dias';
+                        }
+                      @endphp
+                    
+                      <p class="badge {{ $statusClass }}" id="status-table-user">{{ $statusText }}</p>
+                    @else
+                      <p class="badge grey" id="status-table-user">Sem Pgto</p>
+                    @endif
+                  </td>
                   <td> {{date( 'd/m/Y' , strtotime($user->date))}}</td>
                   <td> {{ $user->sexo }}</td>
                   <td> {{ $user->email }}</td>

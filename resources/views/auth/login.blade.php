@@ -29,6 +29,12 @@
                 <p>Senha redefinida com sucesso!</p>
               </div>
             @endif
+
+            @if (session('called'))
+              <div class="custom-message success">
+                <p>Solicitação enviada com sucesso!</p>
+              </div>
+            @endif
         
             <div class="input-field">
               <i class="fas fa-user"></i>

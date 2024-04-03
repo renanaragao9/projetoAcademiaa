@@ -17,6 +17,7 @@ use App\Http\Controllers\paymentsController;
 use App\Http\Controllers\ExpensesController;
 use Illuminate\Support\Facades\Route;
 use PHPUnit\Framework\Attributes\Group;
+use App\Http\Middleware\CheckCheckerMiddleware;
 
 /*
 |--------------------------------------------------------------------------
@@ -158,8 +159,12 @@ Route::middleware(['auth'])->group(function() {
             Route::delete('/deletar/{id}', [ExerciseController::class, 'destroy'])->name('admin.exercise.destroy');
         });
     });
+    
+    Route::middleware(['checkChecker'])->group(function() {
+        
+    });
 
-    // ACESSOS SEM O CHECAGEM DO PERFIL
+    // ACESSOS SEM A CHECAGEM DO PERFIL
     Route::prefix('admin/chamados')->group(function() {
         Route::get('lista-chamados', [CalledController::class, 'called'])->name('admin.called');
         Route::post('criar-chamado', [CalledController::class, 'store'])->name('admin.called.store');
