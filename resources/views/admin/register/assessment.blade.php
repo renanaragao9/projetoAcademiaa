@@ -30,7 +30,7 @@
                         <option value="Emagrecimento">Emagrecimento</option>
                         <option value="Condicionamento">Condicionamento</option>
                         </select>
-                        <label for="meta">Meta</label>
+                        <label for="meta"><h11>*</h11> Meta</label>
                     </div>
                     
                     <div class="input-field col s12 l6">
@@ -40,17 +40,17 @@
                         <option value="2 Meses">2 Meses</option>
                         <option value="3 Meses">3 Meses</option>
                         </select>
-                        <label for="prazo">Prazo</label>
+                        <label for="prazo"><h11>*</h11> Prazo</label>
                     </div>
                     
                     <div class="input-field col s12 l6">
                         <input name="weight" id="weight" type="text" class="validate" required>
-                        <label for="weight">Peso:</label>
+                        <label for="weight"><h11>*</h11> Peso:</label>
                     </div>
                     
                     <div class="input-field col s12 l6">
                       <input name="height" id="height" type="text" class="validate" required>
-                      <label for="height">Altura:</label>
+                      <label for="height"><h11>*</h11> Altura:</label>
                     </div>
 
                     <div class="input-field col s12 l4">

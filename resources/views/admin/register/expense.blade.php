@@ -22,7 +22,7 @@
                   <option value="1"> Entrada </option>
                   <option value="2"> Saída </option>     
                 </select> 
-                <label id="labelSpacing" id="labelSpacing"><h11>*</h11>Tipo de Despesa</label>
+                <label id="labelSpacing" id="labelSpacing"><h11>*</h11> Tipo de Despesa</label>
               </div>
 
               <div class="input-field col s12 l6" id="input-title">
@@ -32,12 +32,12 @@
 
               <div class="input-field col s12 l6" id="input-title">
                 <input name="value_expense" id="icon-value" type="tel" class="validate" >
-                <label for="icon-value">Valor:</label>
+                <label for="icon-value"><h11>*</h11> Valor:</label>
               </div>
               
               <div class="input-field col s12 l6" id="input-description">
                 <input name="description_expense" id="icon-descricao" type="text" class="validate">
-                <label for="icon-descricao">Descrição:</label>
+                <label for="icon-descricao"><h11>*</h11> Descrição:</label>
               </div>
 
               <div class="input-field col s12 l12" id="input-tag">

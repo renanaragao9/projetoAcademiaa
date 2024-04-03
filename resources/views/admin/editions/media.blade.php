@@ -22,7 +22,8 @@
                   <option disabled>Selecione o tipo de publicação:</option>
                   <option value="1" {{$media->type_media == 1 ? "selected='selected'" : "" }}> Banner </option>
                   <option value="2" {{$media->type_media == 2 ? "selected='selected'" : "" }}> Post </option>     
-                </select> 
+                </select>
+                <label id="labelSpacing" id="labelSpacing"><h11>*</h11> Tipo de Publicação</label>
               </div>
 
               <div class="file-field col s12 l12" >
@@ -38,7 +39,7 @@
 
               <div class="input-field col s12 l12" id="input-title">
                 <input name="title_media" id="icon-titulo" type="text" class="validate" value="{{ $media->title_media }}" required>
-                <label for="icon-titulo">Titulo:</label>
+                <label for="icon-titulo"><h11>*</h11> Titulo:</label>
               </div>
               
               <div class="input-field col s12 l12" id="input-description">

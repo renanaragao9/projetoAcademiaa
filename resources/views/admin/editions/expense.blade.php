@@ -23,7 +23,7 @@
                   <option value="1" {{$expense->tipo_expense == 1 ? "selected='selected'" : "" }}> Entrada </option>
                   <option value="2" {{$expense->tipo_expense == 2 ? "selected='selected'" : "" }}> Saída </option>     
                 </select> 
-                <label id="labelSpacing" id="labelSpacing"><h11>*</h11>Tipo de Despesa</label>
+                <label id="labelSpacing" id="labelSpacing"><h11>*</h11> Tipo de Despesa</label>
               </div>
 
               <div class="input-field col s12 l6" id="input-title">
@@ -34,12 +34,12 @@
 
               <div class="input-field col s12 l6" id="input-title">
                 <input name="value_expense" id="icon-value" type="tel" class="validate" value="{{ $expense->value_expense }}">
-                <label for="icon-value">Valor:</label>
+                <label for="icon-value"><h11>*</h11> Valor:</label>
               </div>
               
               <div class="input-field col s12 l6" id="input-description">
                 <input name="description_expense" id="icon-descricao" type="text" class="validate" value="{{ $expense->description_expense }}">
-                <label for="icon-descricao">Descrição:</label>
+                <label for="icon-descricao"><h11>*</h11> Descrição:</label>
               </div>
 
               <div class="input-field col s12 l12" id="input-tag">

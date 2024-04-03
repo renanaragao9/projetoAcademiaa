@@ -18,7 +18,7 @@
             <div class="input-field col s12 l6">
               <i class="material-icons prefix" id="iconeMobileName">account_circle</i>
               <input name="name" id="icon-nome" type="text" class="validate" required>
-              <label for="icon-nome" id="labelSpacing">Nome</label>
+              <label for="icon-nome" id="labelSpacing"><h11>*</h11> Nome</label>
             </div>
             
             <!-- SELECT DESKTOP -->
@@ -36,7 +36,7 @@
             <div class="input-field col s12 l6">
               <i class="material-icons prefix" id="iconeMobile">phone</i>
               <input name="phone" id="icon_telephone" type="text" class="validate">
-              <label for="icon_telephone" id="labelSpacing">Telefone</label>
+              <label for="icon_telephone" id="labelSpacing"><h11>*</h11> Telefone</label>
             </div>
           
             <div class="input-field col s12 l6">
@@ -47,7 +47,7 @@
             <div class="input-field col s12 l6">
               <i class="material-icons prefix" id="iconeMobile">mail</i>
               <input name="email" id="email" type="email" class="validate" required>
-              <label for="email">E-mail</label>
+              <label for="email"><h11>*</h11> E-mail</label>
               <span class="helper-text" data-error="Email Inválido" data-success="Email Valido"></span>
             </div>
           
@@ -67,7 +67,7 @@
                   <option value="2">Administrador(a)</option>
                 @endif
               </select>
-              <label>Perfil</label>
+              <label><h11>*</h11> Perfil</label>
             </div>
 
             <!-- SELECT MOBILE -->
@@ -90,7 +90,7 @@
                   <option value="2">Administrador(a)</option>
                 @endif
               </select>
-              <label>Perfil</label>
+              <label><h11>*</h11> Perfil</label>
             </div>
 
             <div class="input-field col s12 l12">      

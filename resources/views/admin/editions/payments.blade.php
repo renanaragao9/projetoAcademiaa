@@ -26,12 +26,12 @@
                     @endforeach
 
                   </select>
-                  <label id="labelSpacing" id="labelSpacing"><h11>*</h11>Tipo da Mensalidade</label>
+                  <label id="labelSpacing" id="labelSpacing"><h11>*</h11> Tipo da Mensalidade</label>
                 </div>
   
                 <div class="input-field col s12 l6">
                   <input name="value_payment" type="text" class="validate" id="icon_value" value="{{ $payment->value_payment }}" placeholder="R$ 00.00" readonly>
-                  <label for="icon_value"><h11>*</h11>Valor a Pagar</label>
+                  <label for="icon_value"><h11>*</h11> Valor a Pagar</label>
                 </div>
   
                 <div class="input-field col s12 l6" id="select-mensalidade">
@@ -42,7 +42,7 @@
                       <option value="{{ $form_payment }}" {{$payment->form_payment === $form_payment ? "selected='selected'" : "" }}> {{ $form_payment }}</option>
                     @endforeach
                   </select>
-                  <label id="labelSpacing" id="labelSpacing"><h11>*</h11>Forma de Pagamento</label>
+                  <label id="labelSpacing" id="labelSpacing"><h11>*</h11> Forma de Pagamento</label>
                 </div>
   
                 <div class="row">

@@ -32,7 +32,7 @@
                                         <option value="{{ $training->id_training }}"> {{ $training->name_training }}</option>
                                     @endforeach
                                 </select>
-                                <label id="labelSpacing" id="labelSpacing"><h11>*</h11>Treino</label>
+                                <label id="labelSpacing" id="labelSpacing"><h11>*</h11> Treino</label>
                             </div>
 
                             <!-- SELECT ORDEM DESKTOP -->
@@ -44,7 +44,7 @@
                                         <option value="{{ $number }}"> {{ $number }}° </option>
                                     @endforeach
                                 </select>
-                                <label id="labelSpacing"><h11>*</h11>Ordem do exercício</label>
+                                <label id="labelSpacing"><h11>*</h11> Ordem do exercício</label>
                             </div>
                             
                             <!-- GPM DESKTOP -->
@@ -56,14 +56,14 @@
                                         <option value="{{ $muscleGroup->id_gmuscle }}"> {{ $muscleGroup->name_gmuscle }}</option>
                                     @endforeach
                                 </select>
-                                <label id="labelSpacing"><h11>*</h11>Grupo Muscular</label>
+                                <label id="labelSpacing"><h11>*</h11> Grupo Muscular</label>
                             </div>
 
                             <div class="input-field col s12 l6">
                                 <select name="id_exercise_fk" id="id_exercise_fk" class="browser-default" required>
 
                                 </select>
-                                <label id="labelSpacing"><h11>*</h11>Exercício</label>
+                                <label id="labelSpacing"><h11>*</h11> Exercício</label>
                             </div>
 
                             <div class="input-field col s12">
@@ -72,12 +72,12 @@
 
                             <div class="input-field col s12 l6">
                                 <input name="serie" id="serie" type="text" class="validate" required>
-                                <label id="labelSpacing" for="serie"><h11>*</h11>Série:</label>
+                                <label id="labelSpacing" for="serie"><h11>*</h11> Série:</label>
                             </div>
 
                             <div class="input-field col s12 l6">
                                 <input name="repetition" id="repetition" type="text" class="validate" required>
-                                <label id="labelSpacing" for="repetition"><h11>*</h11>Repetição:</label>
+                                <label id="labelSpacing" for="repetition"><h11>*</h11> Repetição:</label>
                             </div>
 
                             <div class="input-field col s12 l6">
@@ -90,7 +90,7 @@
                                 <label id="labelSpacing" for="rest">Descanso:</label>
                             </div>
 
-                            <div class="input-field col s12 l6">
+                            <div class="input-field col s12 l6" >
                                 <input type="hidden" name="id_user_fk" id="id_user_fk" value="{{ $user->id }}">
                                 <input type="hidden" name="name" id="name" value="{{ $user->name }}">
                                 <input type="hidden" name="id_user_creator_fk" id="id_user_creator_fk" value="{{ Auth::user()->id }}">
@@ -117,6 +117,7 @@
                                 <th>Ação</th>
                             </tr>
                         </thead>
+                        
                         <tbody>
                             <!-- Os dados serão exibidos aqui -->
                         </tbody>
@@ -227,7 +228,6 @@
                 let nameExerciseSelected = $("#id_exercise_fk option:selected").text();
                 let serie = $("#serie").val();
                 let repetition = $("#repetition").val();
-                console.log(repetition)
                 let weight = $("#weight").val();
                 let rest = $("#rest").val();
                 let description = $("#description").val();

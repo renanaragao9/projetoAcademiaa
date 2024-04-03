@@ -30,6 +30,7 @@
               <div class="input-field col s12 l6" id="monthly">
                 <i class="material-icons prefix" id="iconeMobile">calendar_month</i>
                 <input name="date_monthly" type="date" class="datepicker">
+                <label id="labelSpacing" id="labelSpacing"><h11>*</h11> Mês</label>
                 <span id="alert-img">*Somente o mês é considerado</span>
               </div>
               
@@ -37,11 +38,13 @@
               <div class="input-field col s12 l6" id="interval" style="display:none;">
                 <i class="material-icons prefix" id="iconeMobile">calendar_month</i>
                 <input name="date_interval1" type="date" class="datepicker">
+                <label id="labelSpacing" id="labelSpacing"><h11>*</h11> Mês Início</label>
               </div>
               
               <div class="input-field col s12 l6" id="interval2" style="display:none;">
                 <i class="material-icons prefix" id="iconeMobile">calendar_month</i>
                 <input name="date_interval2" type="date" class="datepicker">
+                <label id="labelSpacing" id="labelSpacing"><h11>*</h11> Mês Fim</label>
               </div>
 
               <div class="input-field col s12" id="select-report">

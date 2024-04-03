@@ -26,22 +26,22 @@
 
                     <div class="input-field col s12 l6">
                       <input name="goal" id="goal" type="text" class="validate" value="{{ $assessment->goal }}" readonly  required>
-                      <label for="meta">Meta</label>
+                      <label for="meta"><h11>*</h11> Meta</label>
                     </div>
                     
                     <div class="input-field col s12 l6">
                       <input name="term" id="term" type="text" class="validate" value="{{ $assessment->term }}" readonly required>
-                      <label for="meta">Meta</label>
+                      <label for="meta"><h11>*</h11> Prazo</label>
                     </div>
                     
                     <div class="input-field col s12 l6">
                         <input name="weight" id="weight" type="text" class="validate" value="{{ $assessment->weight }}" required>
-                        <label for="weight">Peso:</label>
+                        <label for="weight"><h11>*</h11> Peso:</label>
                     </div>
                     
                     <div class="input-field col s12 l6">
                       <input name="height" id="height" type="text" class="validate" value="{{ $assessment->height }}" required>
-                      <label for="height">Altura:</label>
+                      <label for="height"><h11>*</h11> Altura:</label>
                     </div>
 
                     <div class="input-field col s12 l4">

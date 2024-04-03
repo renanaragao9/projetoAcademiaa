@@ -23,7 +23,7 @@
                 
                 <div class="input-field col s12 l12" id="input-exercicio">
                   <input name="name_exercise" type="text" class="validate" id="icon-nome" value="{{ $exercises->name_exercise }}" required>
-                  <label for="icon-nome">Nome:</label>
+                  <label for="icon-nome"><h11>*</h11> Nome:</label>
                 </div>
 
                 <div class="input-field col s12">
@@ -33,7 +33,8 @@
                     @foreach ($muscleGroups as $muscleGroup)
                         <option value="{{ $muscleGroup->id_gmuscle }}" {{$exercises->id_gmuscle_fk == $muscleGroup->id_gmuscle ? "selected='selected'" : "" }}>{{ $muscleGroup->name_gmuscle }}</option>
                     @endforeach          
-                  </select>       
+                  </select>
+                  <label id="labelSpacing" id="labelSpacing"><h11>*</h11> Grupo Muscular</label>
                 </div>
 
                 <div class="file-field col s12 l12">

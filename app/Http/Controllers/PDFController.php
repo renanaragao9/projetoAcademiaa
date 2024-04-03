@@ -110,6 +110,10 @@ class PDFController extends Controller
         $dataReport = $request->all();
         
         if ($dataReport['period'] === 'Mês' ) {
+
+            if(empty($dataReport['date_monthly'])) {
+                return redirect()->back()->with('msg-error', 'Selecione uma data válida.');
+            }
             
             $dateMonthly = $dataReport['date_monthly'];
 
@@ -128,6 +132,10 @@ class PDFController extends Controller
             }
             
         } else {
+
+            if(empty($dataReport['date_interval1']) || empty($dataReport['date_interval2'])) {
+                return redirect()->back()->with('msg-error', 'Selecione uma data válida.');
+            }
             
             $dateInterval1 = $dataReport['date_interval1'];
             $dateInterval2 = $dataReport['date_interval2'];
@@ -176,8 +184,14 @@ class PDFController extends Controller
         $dompdf = new Dompdf($options);
 
         $dataReport = $request->all();
+
+        //dd($dataReport);
         
         if ($dataReport['period'] === 'Mês' ) {
+
+            if(empty($dataReport['date_monthly'])) {
+                return redirect()->back()->with('msg-error', 'Selecione uma data válida.');
+            }
             
             $dateMonthly = $dataReport['date_monthly'];
 
@@ -190,6 +204,10 @@ class PDFController extends Controller
             
         } else {
             
+            if(empty($dataReport['date_interval1']) || empty($dataReport['date_interval2'])) {
+                return redirect()->back()->with('msg-error', 'Selecione uma data válida.');
+            }
+
             $dateInterval1 = $dataReport['date_interval1'];
             $dateInterval2 = $dataReport['date_interval2'];
 
@@ -253,6 +271,10 @@ class PDFController extends Controller
         
         if ($dataReport['period'] === 'Mês' ) {
             
+            if(empty($dataReport['date_monthly'])) {
+                return redirect()->back()->with('msg-error', 'Selecione uma data válida.');
+            }
+
             $dateMonthly = $dataReport['date_monthly'];
 
             list($year, $month) = explode('-', $dateMonthly);
@@ -276,6 +298,10 @@ class PDFController extends Controller
             }
             
         } else {
+
+            if(empty($dataReport['date_interval1']) || empty($dataReport['date_interval2'])) {
+                return redirect()->back()->with('msg-error', 'Selecione uma data válida.');
+            }
             
             $dateInterval1 = $dataReport['date_interval1'];
             $dateInterval2 = $dataReport['date_interval2'];

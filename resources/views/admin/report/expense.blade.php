@@ -23,13 +23,14 @@
                     <option value="{{ $period }}">{{ $period }}</option>
                   @endforeach
                 </select>
-                <label id="labelSpacing"><h11>*</h11>Período</label>
+                <label id="labelSpacing"><h11>*</h11> Período</label>
               </div>
               
               <!-- Se Mes -->
               <div class="input-field col s12 l6" id="monthly">
                 <i class="material-icons prefix" id="iconeMobile">calendar_month</i>
                 <input name="date_monthly" type="date" class="datepicker">
+                <label id="labelSpacing" id="labelSpacing"><h11>*</h11> Mês</label>
                 <span id="alert-img">*Somente o mês é considerado</span>
               </div>
               
@@ -37,11 +38,13 @@
               <div class="input-field col s12 l6" id="interval" style="display:none;">
                 <i class="material-icons prefix" id="iconeMobile">calendar_month</i>
                 <input name="date_interval1" type="date" class="datepicker">
+                <label id="labelSpacing" id="labelSpacing"><h11>*</h11> Mês Início</label>
               </div>
               
               <div class="input-field col s12 l6" id="interval2" style="display:none;">
                 <i class="material-icons prefix" id="iconeMobile">calendar_month</i>
                 <input name="date_interval2" type="date" class="datepicker">
+                <label id="labelSpacing" id="labelSpacing"><h11>*</h11> Mês Fim</label>
               </div>
 
               <div class="input-field col s12 l6" id="select-report">
@@ -51,7 +54,7 @@
                     <option value="{{ $form_payment }}">{{ $form_payment }}</option>
                   @endforeach
                 </select>
-                <label id="labelSpacing"><h11>*</h11>Forma de Pesquisa</label>
+                <label id="labelSpacing"><h11>*</h11> Forma de Pesquisa</label>
               </div>
 
               <div class="input-field col s12 l6" id="select-report">
@@ -59,7 +62,7 @@
                   <option value="Sim" selected>Sim</option>
                   <option value="Nao" >Não</option> 
                 </select>
-                <label id="labelSpacing"><h11>*</h11>Incluir Mensalidades</label>
+                <label id="labelSpacing"><h11>*</h11> Incluir Mensalidades</label>
               </div>
               
               <div class="input-field col s12 l12">      

@@ -19,12 +19,12 @@
 
               <div class="input-field col s12 l12">
                 <input name="name_monthly" type="text" class="validate" id="icon-nome" value="{{ $monthlyType->name_monthly }}" required>
-                <label for="icon-nome">Nome:</label>
+                <label for="icon-nome"><h11>*</h11> Nome:</label>
               </div>
 
               <div class="input-field col s12 l6">
                 <input name="value" type="text" class="validate" id="icon_value" value="{{ $monthlyType->value }}" required>
-                <label for="icon_value">Valor:</label>
+                <label for="icon_value"><h11>*</h11> Valor:</label>
               </div>
 
               <div class="input-field col s12 l6" id="select-month">
@@ -43,7 +43,7 @@
                   <option value="11" >Onze Meses</option>
                   <option value="12" >Doze Meses</option>
                 </select>
-                <label id="labelSpacing" id="labelSpacing">Quantidade de Meses</label>
+                <label id="labelSpacing" id="labelSpacing"><h11>*</h11> Quantidade de Meses</label>
               </div>
 
               <div class="input-field col s12 l12">

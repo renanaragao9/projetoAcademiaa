@@ -32,7 +32,7 @@
                           <option value="{{ $training->id_training }}" {{$ficha->id_training_fk == $training->id_training ? "selected='selected'" : "disabled" }} > {{$training->name_training}} </option>
                         @endforeach
                       </select>
-                      <label>Treino</label>
+                      <label><h11>*</h11> Treino</label>
                     </div>
                     
                     <div class="input-field col s12 l6">
@@ -43,7 +43,7 @@
                           <option value="{{$number}}" {{ $ficha->order == $number ? "selected='selected'" : "" }}> {{$number}}° </option>
                         @endforeach
                       </select>
-                      <label>Ordem do exercício</label>
+                      <label><h11>*</h11> Ordem do exercício</label>
                     </div>
 
                     <div class="input-field col s12 l6">
@@ -54,7 +54,7 @@
                           <option value="{{$muscleGroup->id_gmuscle}}" {{ $ficha->id_gmuscle_fk_to_ficha == $muscleGroup->id_gmuscle ? "selected='selected'" : "disabled" }}> {{$muscleGroup->name_gmuscle}} </option>
                         @endforeach
                       </select>
-                      <label>Grupo Muscular</label>
+                      <label><h11>*</h11> Grupo Muscular</label>
                     </div>
                     
                     <div class="input-field col s12 l6">
@@ -63,7 +63,7 @@
                           <option value="{{$exercise->id_exercise}}" {{ $ficha->id_exercise_fk == $exercise->id_exercise ? "selected='selected'" : "disabled" }}> {{$exercise->name_exercise}} - {{ $exercise->groupMuscle->name_gmuscle }} </option>
                         @endforeach
                       </select>
-                      <label>Exercício</label>
+                      <label><h11>*</h11> Exercício</label>
                     </div>
                     
                     <div class="input-field col s12">
@@ -72,12 +72,12 @@
                     
                     <div class="input-field col s12 l6">
                         <input name="serie" id="serie" type="text" class="validate" value="{{ $ficha->serie }}" required>
-                        <label for="serie">Série:</label>
+                        <label for="serie"><h11>*</h11> Série:</label>
                     </div>
                     
                     <div class="input-field col s12 l6">                      
                       <input name="repetition" id="repetition" type="text" class="validate" value="{{ $ficha->repetition }}" required>
-                      <label for="repetition">Repetição:</label>
+                      <label for="repetition"><h11>*</h11> Repetição:</label>
                     </div>
                     
                     <div class="input-field col s12 l6">

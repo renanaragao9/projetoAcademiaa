@@ -18,19 +18,22 @@
               
               <div class="input-field col s12 l12" id="input-exercicio">
                 <input name="name_exercise" id="icon-nome" type="text" class="validate" required>
-                <label for="icon-nome">Nome:</label>
+                <label for="icon-nome"><h11>*</h11> Nome:</label>
               </div>
 
+              <!-- Desktop -->
               <div class="input-field col s12" id="select-desktop">
                 <select name="id_gmuscle_fk" required>
                   <option selected disabled>Selecione o Grupo Muscular:</option>
                   
                   @foreach ($muscleGroups as $muscleGroup)
-                      <option value="{{ $muscleGroup->id_gmuscle }}">{{ $muscleGroup->name_gmuscle }}</option>
+                    <option value="{{ $muscleGroup->id_gmuscle }}">{{ $muscleGroup->name_gmuscle }}</option>
                   @endforeach          
                 </select> 
+                <label id="labelSpacing" id="labelSpacing"><h11>*</h11> Grupo Muscular</label>
               </div>
 
+              <!-- Mobile -->
               <div class="input-field col s12" id="select-mobile">
                 <select name="id_gmuscle_fk" class="browser-default" required>
                   <option selected disabled>Selecione o Grupo Muscular:</option>
@@ -39,6 +42,7 @@
                       <option value="{{ $muscleGroup->id_gmuscle }}">{{ $muscleGroup->name_gmuscle }}</option>
                   @endforeach          
                 </select> 
+                <label id="labelSpacing" id="labelSpacing"><h11>*</h11> Grupo Muscular</label>
               </div>
 
               <div class="file-field col s12 l12">

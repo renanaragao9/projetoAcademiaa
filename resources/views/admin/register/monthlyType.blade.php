@@ -18,12 +18,12 @@
 
               <div class="input-field col s12 l12">
                 <input name="name_monthly" type="text" class="validate" id="icon-nome" required>
-                <label for="icon-nome">Nome:</label>
+                <label for="icon-nome"><h11>*</h11> Nome:</label>
               </div>
 
               <div class="input-field col s12 l6">
                 <input name="value" type="text" class="validate" id="icon_value" required>
-                <label for="icon_value">Valor:</label>
+                <label for="icon_value"><h11>*</h11> Valor:</label>
               </div>
 
               <div class="input-field col s12 l6" id="select-month">
@@ -42,7 +42,7 @@
                   <option value="11" >Onze Meses</option>
                   <option value="12" >Doze Meses</option>
                 </select>
-                <label id="labelSpacing" id="labelSpacing">Quantidade de Meses</label>
+                <label id="labelSpacing" id="labelSpacing"><h11>*</h11> Quantidade de Meses</label>
               </div>
 
               <div class="input-field col s12 l12">
@@ -112,15 +112,15 @@
     });
 
     document.getElementById("icon_value").addEventListener("input", function() {
-        let inputValue = this.value;
-        // Remove todos os caracteres exceto números e pontos
-        inputValue = inputValue.replace(/[^0-9.]/g, "");
-        // Verifique se há mais de um ponto decimal consecutivo e remova-os
-        inputValue = inputValue.replace(/\.{2,}/g, ".");
-        // Verifique se há um ponto decimal seguido por um número e remova-os
-        inputValue = inputValue.replace(/\.(\D)/g, "$1");
-        // Atualize o valor do campo de entrada
-        this.value = inputValue;
+      let inputValue = this.value;
+      
+      inputValue = inputValue.replace(/[^0-9.]/g, "");
+      
+      inputValue = inputValue.replace(/\.{2,}/g, ".");
+      
+      inputValue = inputValue.replace(/\.(\D)/g, "$1");
+      
+      this.value = inputValue;
     });
 
     let larguraTela = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;

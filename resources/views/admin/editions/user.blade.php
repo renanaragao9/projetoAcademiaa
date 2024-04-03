@@ -25,7 +25,7 @@
               <div class="input-field col s12 l6">
                 <i class="material-icons prefix">account_circle</i>
                 <input name="name" id="icon-nome" type="text" class="validate" value="{{ $user->name }}">
-                <label for="icon-nome">Nome</label>
+                <label for="icon-nome"><h11>*</h11> Nome</label>
               </div>
             
               <div class="input-field col s12 l6">
@@ -42,7 +42,7 @@
               <div class="input-field col s12 l6">
                 <i class="material-icons prefix">phone</i>
                 <input name="phone" id="icon_telephone" type="tel" class="validate" value="{{ $user->phone }}">
-                <label for="icon_telephone">Telefone</label>
+                <label for="icon_telephone"><h11>*</h11> Telefone</label>
               </div>
             
               <div class="input-field col s12 l6">
@@ -53,7 +53,7 @@
               <div class="input-field col s12 l12">
                 <i class="material-icons prefix">mail</i>
                 <input name="email" id="email" type="email" class="validate" value="{{ $user->email }}">
-                <label for="email">E-mail</label>
+                <label for="email"><h11>*</h11> E-mail</label>
                 <span class="helper-text" data-error="Email Inválido" data-success="Email Valido"></span>
               </div>
 
@@ -66,7 +66,7 @@
                    <option value="2" {{ $user->profile == 2 ? "selected='selected'" : "" }}>Administrador(a)</option>
                   @endif
                 </select>
-                <label>Perfil</label>
+                <label><h11>*</h11> Perfil</label>
               </div>  
 
               <input type="hidden" name="id" value="{{ $user->id }}">
