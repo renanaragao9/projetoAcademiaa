@@ -21,8 +21,7 @@
           <form action="{{ route('login') }}" method="POST" class="sign-in-form">
             @csrf
             
-            <h1  id="title-name">Personal Trainer</h1>
-            <h1  id="title-name">Israel Dantas</h1>  
+            <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/logo_sistema_final.png'))) }}" style="width: 200px; height: 200px;"/>
             
             @if (session('status'))
               <div class="custom-message success">
@@ -80,7 +79,9 @@
           <!-- Segunda parte (TELA DE CADASTRO) -->
           <form class="sign-up-form" method="POST" action="{{ route('admin.createCount.store') }}">
           @csrf
-            
+ 
+           <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/logo_sistema_final.png'))) }}" style="width: 100px; height: 100px;"/>
+
             <h2 class="title">Solicitar Acesso</h2>
             
             <div class="input-field">
@@ -150,8 +151,12 @@
     </div>
 
     <footer style="text-align: center">
-        <p>Desenvolvido por: <strong>Renan Aragão</strong></p>
+      <p id="copy-mobile">&copy; 2024 - Renan Aragão 
+        <br> Todos os direitos reservados.
+        <br> Versão: 2.0.1
+      </p>
     </footer>
+
 
     <script src="js/login.js"></script>
   </body>

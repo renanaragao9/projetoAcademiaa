@@ -160,7 +160,7 @@
   <!-- Footer -->
   <footer class="footer">
     <div class="container">
-        <p id="copy-mobile">&copy; 2023 - Renan Aragão 
+        <p id="copy-mobile">&copy; 2024 - Renan Aragão 
             <br> Todos os direitos reservados.
             <br> Versão: 2.0.1
         </p>

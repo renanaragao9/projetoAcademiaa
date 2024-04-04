@@ -29,6 +29,10 @@
                     </div>
                     
                     <img src="/img/media/{{ $post->img_media }}" alt="Post Image" class="post-image">
+
+                    <div class="post-tags">
+                        <span class="tag">{{ $post->description_media }}</span>
+                    </div>
                     
                     <div class="post-tags">
                         <span class="tag">{{ $post->tags_media }}</span>
