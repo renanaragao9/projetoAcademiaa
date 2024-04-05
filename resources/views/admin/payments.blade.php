@@ -8,7 +8,7 @@
   <div class="card z-depth-5">
     <div class="card-content">
       <div class="col s12 l12">
-        <h3 class="center" id="homeTitle" >Listagem dos Pagamentos Gerais</h3>
+        <h3 class="center" id="homeTitle" >Listagem de Pagamentos Gerais</h3>
         <a href="{{ route('admin.home') }}" class="waves-effect waves-light btn left light-blue darken-4 col s12 l2" id="bottom-form-action"><i class="material-icons right">arrow_back</i>Voltar</a>
         <a href="{{ route('admin.table.monthlyType') }}" class="waves-effect waves-light btn right light-blue darken-4 col s12 l2" id="bottom-form-action">Tipo Mensalidade</a>
       </div>
@@ -17,47 +17,49 @@
     <div class="card-content">
       <div id="total-records" class="total-records"></div>
       <input type="text" id="search" placeholder="Pesquisar...">
-      <table class="highlight striped centered">
-        <thead>
-          <tr>
-            <th>Recibo</th>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Mensalidade</th>
-            <th class="hide-on-small-only">Data Pgto</th>
-            <th class="hide-on-small-only">Forma Pgto</th>
-            <th class="hide-on-small-only">Valor</th>
-            <th class="hide-on-small-only">Data Vencimento</th>
-            <th>Ações</th>
-          </tr>
-        </thead>
-        
-        <tbody id="table-body">
-          @foreach( $payments as $payment)
+      <div class="table-scroll">
+        <table class="highlight striped centered">
+          <thead>
             <tr>
-              <td><a href="{{ route('receiptDownload', $payment->id_payment) }}" class="btn-floating tooltipped cyan darken-4 btn-large waves-effect waves-light red" id="action-table-desktop" data-position="bottom" data-tooltip="Recibo"><i class="material-icons">download</i></a></td>
-              <td id="td-text">{{ $payment->id_payment }}</td>
-              <td id="td-text">{{ $payment->user->name }}</td>
-              <td id="td-text">{{ $payment->monthly->name_monthly }}</td>
-              <td class="hide-on-small-only" id="td-text"> {{date( 'd/m/Y' , strtotime($payment->date_payment))}}</td>
-              <td class="hide-on-small-only" id="td-text">{{ $payment->form_payment }}</td>
-              <td class="hide-on-small-only" id="td-text">R$ {{ $payment->value_payment }}</td>
-              <td class="hide-on-small-only" id="td-text">{{date( 'd/m/Y' , strtotime($payment->date_due_payment))}}</td>
-              <td>
-                <!-- Botão de ações Desktop-->
-                <a href="{{ route('admin.payments.edit', $payment->id_payment) }}" class="btn-floating tooltipped orange darken-4 btn-large waves-effect waves-light red" id="action-table-desktop" data-position="bottom" data-tooltip="Editar"><i class="material-icons">edit</i></a>
-                
-                <form action="{{ route('admin.payments.destroy' , $payment->id_payment) }}" method="POST" class="delete-form">
-                  @csrf
-                  @method('DELETE')
-                  <input type="hidden" name="id" value="$fichaUser->id_ficha">
-                  <button class="btn-floating tooltipped red darken-4 btn-large waves-effect waves-light red delete-button" id="bottom-table-action" data-position="bottom" data-tooltip="Excluir"><i class="material-icons">delete_forever</i></button>
-                </form>
-              </td>
+              <th>Recibo</th>
+              <th>ID</th>
+              <th>Nome</th>
+              <th>Mensalidade</th>
+              <th class="hide-on-small-only">Data Pgto</th>
+              <th class="hide-on-small-only">Forma Pgto</th>
+              <th class="hide-on-small-only">Valor</th>
+              <th class="hide-on-small-only">Data Vencimento</th>
+              <th>Ações</th>
             </tr>
-          @endforeach
-        </tbody>
-      </table>
+          </thead>
+          
+          <tbody id="table-body">
+            @foreach( $payments as $payment)
+              <tr>
+                <td><a href="{{ route('receiptDownload', $payment->id_payment) }}" class="btn-floating tooltipped cyan darken-4 btn-large waves-effect waves-light red" id="action-table-desktop" data-position="bottom" data-tooltip="Recibo"><i class="material-icons">download</i></a></td>
+                <td id="td-text">{{ $payment->id_payment }}</td>
+                <td id="td-text">{{ $payment->user->name }}</td>
+                <td id="td-text">{{ $payment->monthly->name_monthly }}</td>
+                <td class="hide-on-small-only" id="td-text"> {{date( 'd/m/Y' , strtotime($payment->date_payment))}}</td>
+                <td class="hide-on-small-only" id="td-text">{{ $payment->form_payment }}</td>
+                <td class="hide-on-small-only" id="td-text">R$ {{ $payment->value_payment }}</td>
+                <td class="hide-on-small-only" id="td-text">{{date( 'd/m/Y' , strtotime($payment->date_due_payment))}}</td>
+                <td>
+                  <!-- Botão de ações Desktop-->
+                  <a href="{{ route('admin.payments.edit', $payment->id_payment) }}" class="btn-floating tooltipped orange darken-4 btn-large waves-effect waves-light red" id="action-table-desktop" data-position="bottom" data-tooltip="Editar"><i class="material-icons">edit</i></a>
+                  
+                  <form action="{{ route('admin.payments.destroy' , $payment->id_payment) }}" method="POST" class="delete-form">
+                    @csrf
+                    @method('DELETE')
+                    <input type="hidden" name="id" value="$fichaUser->id_ficha">
+                    <button class="btn-floating tooltipped red darken-4 btn-large waves-effect waves-light red delete-button" id="bottom-table-action" data-position="bottom" data-tooltip="Excluir"><i class="material-icons">delete_forever</i></button>
+                  </form>
+                </td>
+              </tr>
+            @endforeach
+          </tbody>
+        </table>
+      </div>
       <div id="no-results" class="no-results-message" style="display: none;">Nenhum registro encontrado</div>
       <div id="total-records" class="total-records"></div>
     </div>
@@ -93,10 +95,13 @@
         let count = 0;
 
         for (let i = 0; i < rows.length; i++) {
-          let nome = rows[i].getElementsByTagName('td')[0].innerText.toLowerCase();
           let acao = rows[i].getElementsByTagName('td')[1].innerText.toLowerCase();
+          let nome = rows[i].getElementsByTagName('td')[2].innerText.toLowerCase();
+          let plano = rows[i].getElementsByTagName('td')[3].innerText.toLowerCase();
+          let data = rows[i].getElementsByTagName('td')[4].innerText.toLowerCase();
+          let forma = rows[i].getElementsByTagName('td')[5].innerText.toLowerCase();
 
-          if (nome.indexOf(filter) > -1 || acao.indexOf(filter) > -1) {
+          if (nome.indexOf(filter) > -1 || acao.indexOf(filter) > -1 || plano.indexOf(filter) > -1 || data.indexOf(filter) > -1 || forma.indexOf(filter) > -1) {
             rows[i].style.display = '';
             resultsFound = true;
             count++;
@@ -117,8 +122,8 @@
       // Evento de input para acionar a filtragem ao digitar na caixa de pesquisa
       document.getElementById('search').addEventListener('input', filterTable);
         
-    // Inicio da função do alerta modal ao excluír dados
-    document.addEventListener('DOMContentLoaded', function() {
+      // Inicio da função do alerta modal ao excluír dados
+      document.addEventListener('DOMContentLoaded', function() {
       let modal = document.getElementById('modal-alerta');
       let instance = M.Modal.init(modal);
       let deleteButtons = document.querySelectorAll('.delete-button');

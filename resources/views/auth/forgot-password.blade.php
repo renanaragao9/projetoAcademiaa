@@ -38,6 +38,10 @@
       width: 90%;
     }
 
+    #voltar-link {
+      margin-top: 30px;
+    }
+
     footer {
       margin-top: 20px;
       font-size: 12px;
@@ -57,24 +61,29 @@
           <form id="form_password" method="POST" action="{{ route('password.email') }}">
             @csrf
             <div class="card-content">
-              <div class="input-field">
-                <input id="email" type="email" name="email" class="validate" required autofocus>
-                <span class="helper-text" data-error="Email Inválido"></span>
-                <label for="email">Email</label>
-                <x-input-error :messages="$errors->get('email')" class="mt-2" />
-                @if(session('status'))
-                    <div class="card-panel green lighten-2">
-                       <p> {{ session('status') }}</p>
-                    </div>
-                @endif
-              </div>
+                <div class="input-field">
+                    <input id="email" type="email" name="email" class="validate" required autofocus>
+                    <span class="helper-text" data-error="Email Inválido"></span>
+                    <label for="email">Email</label>
+                    <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                    @if(session('status'))
+                        <div class="card-panel green lighten-2">
+                            <p> {{ session('status') }}</p>
+                        </div>
+                    @endif
+                </div>
             </div>
             <div class="card-action center-align">
-              <button class="btn waves-effect waves-light grey darken-3" type="submit" name="action">Enviar Email
-                <i class="material-icons right">send</i>
-              </button>
+                <button class="btn waves-effect waves-light light-blue darken-4" type="submit" name="action">Enviar Email
+                    <i class="material-icons right">send</i>
+                </button>
+                <a href="{{ route('login') }}" class="btn waves-effect waves-light light-blue darken-4" id="voltar-link">
+                    Voltar
+                    <i class="material-icons left">arrow_back</i>
+                </a>
             </div>
           </form>
+        
           <footer class="card-content center-align">
             © 2024 Todos os direitos reservados
           </footer>

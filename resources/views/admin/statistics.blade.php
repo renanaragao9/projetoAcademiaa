@@ -35,6 +35,13 @@
                   <h4>Informações do Gráfico Receita e Mensalidade</h4>              
                     <tbody>
                       <tr>
+                        <td id="text-profile" class="s12 l1">Mês de Referência: <br> {{ \Carbon\Carbon::now()->format('m/Y') }} </td>
+                        <td id="text-profile" class="s12 l1">Mensal Entrada: <br> R$ {{ number_format( $expenseCurrent['entryCurrentMonth'], 2, ',', '.') }}</td>
+                        <td id="text-profile" class="s12 l1">Mensal Saída: <br> R$ {{ number_format( $expenseCurrent['exitMonthCurrent'], 2, ',', '.') }}</td>
+                        <td id="text-profile" class="s12 l1">Mensal Receita: <br> R$ {{ number_format( $expenseCurrent['totalCurrentMonth'], 2, ',', '.') }}</td>
+                      </tr>
+
+                      <tr>
                         <?php $total = $total + DB::table('payments')->sum(DB::raw('CAST(value_payment AS DECIMAL(10,2))')) ?>
                         <td id="text-profile" class="s12 l1">Total Entrada: <br> R$ {{ number_format( $entrada, 2, ',', '.') }}</td>
                         <td id="text-profile" class="s12 l1">Total Mensalidades: <br> R$ {{ number_format(DB::table('payments')->sum(DB::raw('CAST(value_payment AS DECIMAL(10,2))')), 2, ',', '.') }}</td>
@@ -207,7 +214,7 @@
   <div class="card">
     <div class="card-content">
       <div class="col s12 l12">
-        <h3 class="center" id="titleColor" >Ranking de Exercícios Finalizados</h3>
+        <h3 class="center" id="titleColor" >Ranking de exercícios finalizados</h3>
       </div>
 
       <table class="highlight striped centered" id="form_table_group_muscle">

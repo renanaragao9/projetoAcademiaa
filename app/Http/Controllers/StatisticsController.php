@@ -162,7 +162,8 @@ class StatisticsController extends Controller
         ->get();
 
         $expenses = expense::all();
-        
+        $payments = payment::all();
+
         $entrada = 0;
         $saida = 0;
         $total = 0;
@@ -179,6 +180,43 @@ class StatisticsController extends Controller
 
             $total = $entrada - $saida;
         }
+
+        $entryCurrentMonth = 0;
+        $entryPayment = 0;
+        $exitMonthCurrent = 0;
+        $totalCurrentMonth = 0;
+        $totalPayment = 0;
+
+        $mesAtual = date('m');
+        
+        foreach ($expenses as $expense) {
+            if (date('m', strtotime($expense->data_expense)) == $mesAtual) {
+                if ($expense->tipo_expense == 1) {
+                    $entryCurrentMonth += $expense->value_expense;
+                } elseif ($expense->tipo_expense == 2) {
+                    $exitMonthCurrent += $expense->value_expense;
+                }
+            }
+        }
+
+        foreach ($payments as $payment) {
+
+            $totalPayment += $payment->value_payment;
+
+            if (date('m', strtotime($payment->date_payment)) == $mesAtual) {
+                $entryPayment += $payment->value_payment;
+            }
+        }
+
+        $entryCurrentMonth += $entryPayment;
+
+        $totalCurrentMonth += $entryCurrentMonth - $exitMonthCurrent;
+
+        $expenseCurrent = array(
+            'entryCurrentMonth' => $entryCurrentMonth,
+            'exitMonthCurrent' => $exitMonthCurrent,
+            'totalCurrentMonth' => $totalCurrentMonth
+        );
         
         return view('admin.statistics', [
             'statistics' => $statistics,
@@ -190,7 +228,8 @@ class StatisticsController extends Controller
             'contagemAvaliacoes' => $contagemAvaliacoes,
             'entrada' => $entrada,
             'saida' => $saida,
-            'total' => $total
+            'total' => $total,
+            'expenseCurrent' => $expenseCurrent
         ]);
     }
 

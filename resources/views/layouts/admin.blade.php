@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/img/logo.ico" type="image/x-icon">
 
     <!-- Fontes -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -33,7 +34,7 @@
         
         <ul>
             <li>
-                <a class="btn-floating modal-trigger light-blue darken-4" href="#report-modal"><i class="material-icons">bug_report</i></a>
+                <a class="btn-floating light-blue darken-4" href="{{ route('admin.table.expense') }}"><i class="material-icons">paid</i></a>
             </li>
             
             <li>
@@ -234,6 +235,12 @@
 
                                 <li>
                                     <a href="{{ route('admin.table.media') }}"> Mídias <i class="material-icons">radio_button_unchecked</i> </a>
+                                </li>
+
+                                <li class="collapsible"></li>
+
+                                <li>
+                                    <a href="{{ route('admin.payments.index') }}"> Mensalidades <i class="material-icons">radio_button_unchecked</i> </a>
                                 </li>
 
                                 <li class="collapsible"></li>

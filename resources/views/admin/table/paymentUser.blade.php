@@ -83,71 +83,74 @@
 @endsection 
 
 @section('script')
-  <script>
-    // Função para filtrar os registros da tabela
-    function filterTable() {
-        let input = document.getElementById('search');
-        let filter = input.value.toLowerCase();
-        let rows = document.getElementById('table-body').getElementsByTagName('tr');
-        let noResultsMessage = document.getElementById('no-results');
-        let totalRecords = document.getElementById('total-records');
-        let resultsFound = false;
-        let count = 0;
+<script>
+  // Função para filtrar os registros da tabela
+  function filterTable() {
+      let input = document.getElementById('search');
+      let filter = input.value.toLowerCase();
+      let rows = document.getElementById('table-body').getElementsByTagName('tr');
+      let noResultsMessage = document.getElementById('no-results');
+      let totalRecords = document.getElementById('total-records');
+      let resultsFound = false;
+      let count = 0;
 
-        for (let i = 0; i < rows.length; i++) {
-          let nome = rows[i].getElementsByTagName('td')[2].innerText.toLowerCase();
-          let acao = rows[i].getElementsByTagName('td')[3].innerText.toLowerCase();
+      for (let i = 0; i < rows.length; i++) {
+        let acao = rows[i].getElementsByTagName('td')[1].innerText.toLowerCase();
+        let nome = rows[i].getElementsByTagName('td')[2].innerText.toLowerCase();
+        let plano = rows[i].getElementsByTagName('td')[3].innerText.toLowerCase();
+        let data = rows[i].getElementsByTagName('td')[4].innerText.toLowerCase();
+        let forma = rows[i].getElementsByTagName('td')[5].innerText.toLowerCase();
 
-          if (nome.indexOf(filter) > -1 || acao.indexOf(filter) > -1) {
-            rows[i].style.display = '';
-            resultsFound = true;
-            count++;
-          } else {
-            rows[i].style.display = 'none';
-          }
-        }
-
-        if (resultsFound) {
-          noResultsMessage.style.display = 'none';
+        if (nome.indexOf(filter) > -1 || acao.indexOf(filter) > -1 || plano.indexOf(filter) > -1 || data.indexOf(filter) > -1 || forma.indexOf(filter) > -1) {
+          rows[i].style.display = '';
+          resultsFound = true;
+          count++;
         } else {
-          noResultsMessage.style.display = 'block';
+          rows[i].style.display = 'none';
         }
-
-        totalRecords.innerText = "Total de registros encontrados: " + count;
       }
 
-      // Evento de input para acionar a filtragem ao digitar na caixa de pesquisa
-      document.getElementById('search').addEventListener('input', filterTable);
-        
+      if (resultsFound) {
+        noResultsMessage.style.display = 'none';
+      } else {
+        noResultsMessage.style.display = 'block';
+      }
+
+      totalRecords.innerText = "Total de registros encontrados: " + count;
+    }
+
+    // Evento de input para acionar a filtragem ao digitar na caixa de pesquisa
+    document.getElementById('search').addEventListener('input', filterTable);
+      
     // Inicio da função do alerta modal ao excluír dados
     document.addEventListener('DOMContentLoaded', function() {
-      let modal = document.getElementById('modal-alerta');
-      let instance = M.Modal.init(modal);
-      let deleteButtons = document.querySelectorAll('.delete-button');
+    let modal = document.getElementById('modal-alerta');
+    let instance = M.Modal.init(modal);
+    let deleteButtons = document.querySelectorAll('.delete-button');
 
-      deleteButtons.forEach(function(button) {
-        button.addEventListener('click', function(event) {
-          event.preventDefault();
-          let form = button.closest('.delete-form');
-          instance.open();
+    deleteButtons.forEach(function(button) {
+      button.addEventListener('click', function(event) {
+        event.preventDefault();
+        let form = button.closest('.delete-form');
+        instance.open();
 
-          let cancelBtn = document.querySelector('.modal-footer #cancelBtn');
-          cancelBtn.addEventListener('click', function() {
-            instance.close();
-          });
+        let cancelBtn = document.querySelector('.modal-footer #cancelBtn');
+        cancelBtn.addEventListener('click', function() {
+          instance.close();
+        });
 
-          let confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
-          confirmDeleteBtn.addEventListener('click', function() {
-            form.submit();
-            instance.close(); // Fechar o modal após a exclusão ser confirmada e o formulário ser enviado.
-          });
+        let confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
+        confirmDeleteBtn.addEventListener('click', function() {
+          form.submit();
+          instance.close(); // Fechar o modal após a exclusão ser confirmada e o formulário ser enviado.
         });
       });
     });
-    
-    {{-- 
-      o modal é estilizado usando as classes CSS fornecidas pelo Materialize CSS. Usamos a função M.Modal.init() para inicializar o modal e a função instance.open() para abrir o modal quando o formulário for submetido.
-      o evento submit é usado para interceptar o envio do formulário, e o modal é aberto nesse momento. Quando o botão "Enviar" dentro do modal é clicado, o formulário é enviado utilizando form.submit(). 
-      --}}
-  </script>
+  });
+  
+  {{-- 
+    o modal é estilizado usando as classes CSS fornecidas pelo Materialize CSS. Usamos a função M.Modal.init() para inicializar o modal e a função instance.open() para abrir o modal quando o formulário for submetido.
+    o evento submit é usado para interceptar o envio do formulário, e o modal é aberto nesse momento. Quando o botão "Enviar" dentro do modal é clicado, o formulário é enviado utilizando form.submit(). 
+    --}}
+</script>
 @endsection

@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Tabela das Divisões de treino')
+@section('title', 'Tabela de Receitas')
 
 @section('content')
 
@@ -9,49 +9,51 @@
     <div class="card-content">
       <div class="col s12 l12">
         <h3 class="center" id="homeTitle">Listagem de <br> Receitas</h3>
-        <a href="{{ route('admin.register.expense') }}" class="waves-effect waves-light btn left light-blue darken-4 col s12 l2" id="bottom-form-action"><i class="material-icons right">arrow_back</i>Voltar</a>
+        <a href="{{ route('admin.home') }}" class="waves-effect waves-light btn left light-blue darken-4 col s12 l2" id="bottom-form-action"><i class="material-icons right">arrow_back</i>Voltar</a>
+        <a href="{{ route('admin.register.expense') }}" class="waves-effect waves-light btn right light-blue darken-4 col s12 l2" id="bottom-form-action"><i class="material-icons right">add</i>Adicionar</a>
       </div>
       
       <input type="text" id="search" placeholder="Pesquisar...">
       <div id="total-records" class="total-records"></div>
-      <table class="highlight striped centered" id="form_table_group_muscle">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Tipo</th>
-            <th>Descrição</th>
-            <th>Valor</th>
-            <th>Data</th>
-            <th>Observação</th>
-            <th>Ação</th>
-          </tr>
-        </thead>
-        
-        <tbody id="table-body">
-          @foreach($expenses as $expense)
+      <div class="table-scroll">
+        <table class="highlight striped centered" id="form_table_group_muscle">
+          <thead>
             <tr>
-              <td id="td-text">{{ $expense->id_expense }}</td>
-              <td id="td-text">{{ $expense->tipo_expense == 1 ? 'Entrada' : 'Saída' }}</td>
-              <td id="td-text">{{ $expense->description_expense }}</td>
-              <td id="td-text">{{ 'R$ ' . number_format($expense->value_expense, 2, ',', '.') }}</td>
-              <td class="hide-on-small-only" id="td-text">{{ \Carbon\Carbon::parse($expense->data_expense)->format('d/m/Y') }}</td>
-              <td id="td-text">{{ $expense->observation_expense }}</td>
-              <td>    
-                <!-- Botão de ações-->
-                <a href="{{ route('admin.expense.edit', $expense->id_expense)}}" class="btn-floating tooltipped orange darken-4 btn-large waves-effect waves-light red" id="bottom-table-action" data-position="bottom" data-tooltip="Editar"><i class="material-icons">edit</i></a>
-                
-                <form action="{{ route('admin.expense.destroy', $expense->id_expense) }}" method="POST" class="delete-form">
-                  @csrf
-                  @method('DELETE')
-                  <input type="hidden" name="id" value="{{ $expense->id_expense }}" readonly>
-                  <button class="btn-floating tooltipped red darken-4 btn-large waves-effect waves-light red delete-button" id="bottom-table-action" data-position="bottom" data-tooltip="Excluir"><i class="material-icons">delete_forever</i></button>
-                </form>
-              </td>
+              <th>ID</th>
+              <th>Tipo</th>
+              <th>Descrição</th>
+              <th>Valor</th>
+              <th>Data</th>
+              <th>Observação</th>
+              <th>Ação</th>
             </tr>
-          @endforeach
-        </tbody>
-      </table>
-
+          </thead>
+          
+          <tbody id="table-body">
+            @foreach($expenses as $expense)
+              <tr>
+                <td id="td-text">{{ $expense->id_expense }}</td>
+                <td id="td-text">{{ $expense->tipo_expense == 1 ? 'Entrada' : 'Saída' }}</td>
+                <td id="td-text">{{ $expense->description_expense }}</td>
+                <td id="td-text">{{ 'R$ ' . number_format($expense->value_expense, 2, ',', '.') }}</td>
+                <td id="td-text">{{ \Carbon\Carbon::parse($expense->data_expense)->format('d/m/Y') }}</td>
+                <td id="td-text">{{ $expense->observation_expense }}</td>
+                <td>    
+                  <!-- Botão de ações-->
+                  <a href="{{ route('admin.expense.edit', $expense->id_expense)}}" class="btn-floating tooltipped orange darken-4 btn-large waves-effect waves-light red" id="bottom-table-action" data-position="bottom" data-tooltip="Editar"><i class="material-icons">edit</i></a>
+                  
+                  <form action="{{ route('admin.expense.destroy', $expense->id_expense) }}" method="POST" class="delete-form">
+                    @csrf
+                    @method('DELETE')
+                    <input type="hidden" name="id" value="{{ $expense->id_expense }}" readonly>
+                    <button class="btn-floating tooltipped red darken-4 btn-large waves-effect waves-light red delete-button" id="bottom-table-action" data-position="bottom" data-tooltip="Excluir"><i class="material-icons">delete_forever</i></button>
+                  </form>
+                </td>
+              </tr>
+            @endforeach
+          </tbody>
+        </table>
+      </div>
       <!-- Chamada para o botao de pesquisar... -->
       <div id="no-results" class="no-results-message" style="display: none;">Nenhum registro encontrado</div>
       <div id="total-records" class="total-records"></div>

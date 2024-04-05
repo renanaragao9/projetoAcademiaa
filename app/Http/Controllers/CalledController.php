@@ -39,6 +39,14 @@ class CalledController extends Controller
     }
 
     public function createCount(Request $request) {
+
+        $request->validate([
+            'nome' => 'required',
+            'email' => 'required'
+        ] , [
+            'nome.required' => 'O campo nome não pode está vazio',
+            'email.required' => 'O campo email não pode está vazio',
+        ]);
        
         $called = new Called();
     

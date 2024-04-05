@@ -64,7 +64,7 @@
                     <a href="{{ route('admin.assessment.create', $user->id) }}" class="btn-floating tooltipped cyan accent-4 btn-large waves-effect waves-light red" id="action-buttons-desktop" data-position="bottom" data-tooltip="Avaliação"><i class="material-icons">assignment</i></a>
                     <a href="{{ route('admin.user.resetPassword', $user->id) }}" class="btn-floating tooltipped green lighten-2 btn-large waves-effect waves-light red"  id="action-buttons-desktop" data-position="bottom" data-tooltip="Resetar senha" ><i class="material-icons">lock_reset</i></a>
                     <a href="{{ route('admin.user.edit', $user->id) }}" class="btn-floating tooltipped orange darken-4 btn-large waves-effect waves-light red" id="action-buttons-desktop" data-position="bottom" data-tooltip="Editar"><i class="material-icons">edit</i></a>
-                    <form action="{{ route('admin.user.destroy', $user->id) }}" method="POST" class="delete-form"  id="action-buttons-desktop">
+                    <form action="{{ route('admin.user.destroy', $user->id) }}" method="POST" class="delete-form">
                       @csrf
                       @method('DELETE')
                       <input type="hidden" name="id" value="{{ $user->id }}">

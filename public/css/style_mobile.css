@@ -105,7 +105,7 @@
 
 .carousel-item {
   width: 100%; 
-  height: 400px; 
+  height: 300px; 
   object-fit: contain; 
   border-right: 2px solid #ddd;
   box-sizing: border-box;

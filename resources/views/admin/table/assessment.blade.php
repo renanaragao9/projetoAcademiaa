@@ -21,7 +21,6 @@
         <table class="highlight striped centered">
           <thead>
             <tr>
-              <th>Nome: </th>
               <th>Data</th>
               <th>Meta</th>
               <th>Prazo</th>
@@ -34,7 +33,6 @@
           <tbody id="table-body">
             @foreach( $userAssessments as $userAssessment)
               <tr>
-                <td id="td-text">{{ $userAssessment->user->name }}</td>
                 <td id="td-text">{{ $userAssessment->created_at->format('d/m/Y') }}</td>
                 <td id="td-text">{{ $userAssessment->goal }}</td>
                 <td id="td-text">{{ $userAssessment->term }}</td>

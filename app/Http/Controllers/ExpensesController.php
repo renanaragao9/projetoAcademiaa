@@ -34,7 +34,7 @@ class ExpensesController extends Controller
         
         Expense::create($request->all());
 
-        return redirect()->back()->with('msg-success', 'Receita registrada com sucesso!');
+        return redirect()->back()->with('msg-success', 'Receita lançada com sucesso!');
     }  
 
     public function edit($id) {

@@ -150,6 +150,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Icones e Fontes -->
     <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+    <link rel="shortcut icon" href="/img/logo.ico" type="image/x-icon">
     
     <!-- Estilo -->
     <link rel="stylesheet" href="css/style_login.css" />
@@ -191,9 +192,10 @@
 
             <x-input-error :messages="$errors->get('email')" class="flash-message-login" />
             @if (Route::has('password.request'))
-              <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">
-                  {{ __('Esqueceu a senha ?') }}
-              </a>
+            <a class="underline text-sm text-black hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
+              {{ __('Esqueceu a senha ?') }}
+            </a>
+          
             @endif
 
             <input type="submit" value="Entrar" class="btn solid" />
@@ -205,7 +207,7 @@
                 <i class="fab fa-facebook"></i>
               </a>
 
-              <a href="https://www.instagram.com/israeltrainingg/" target="blank" class="social-icon">
+              <a href="https://www.instagram.com/aslasoftware/" target="blank" class="social-icon">
                 <i class="fab fa-instagram"></i>
               </a>
 
@@ -213,7 +215,7 @@
                 <i class="fab fa-twitter"></i>
               </a>
 
-              <a href="https://api.whatsapp.com/send?phone=5585988718063" target="blank" class="social-icon">
+              <a href="https://api.whatsapp.com/send?phone=5585997373462" target="blank" class="social-icon">
                 <i class="fab fa-whatsapp"></i>
               </a>
 
@@ -230,12 +232,12 @@
             
             <div class="input-field">
               <i class="fas fa-user"></i>
-              <input name="nome" type="text" placeholder="Nome" />
+              <input name="nome" type="text" placeholder="Nome" required/>
             </div>
             
             <div class="input-field">
               <i class="fas fa-envelope"></i>
-              <input name="email" type="email" placeholder="Email" />
+              <input name="email" type="email" placeholder="Email" required/>
             </div>
             
             <input type="submit" value="Solicitar" class="btn solid" />
@@ -247,7 +249,7 @@
                 <i class="fab fa-facebook"></i>
               </a>
               
-              <a href="https://www.instagram.com/israeltrainingg/" target="blank" class="social-icon">
+              <a href="https://www.instagram.com/aslasoftware/" target="blank" class="social-icon">
                 <i class="fab fa-instagram"></i>
               </a>
               
@@ -255,7 +257,7 @@
                 <i class="fab fa-twitter"></i>
               </a>
               
-              <a href="https://api.whatsapp.com/send?phone=5585988718063" target="blank" class="social-icon">
+              <a href="https://api.whatsapp.com/send?phone=5585997373462" target="blank" class="social-icon">
                 <i class="fab fa-whatsapp"></i>
               </a>
             </div>
