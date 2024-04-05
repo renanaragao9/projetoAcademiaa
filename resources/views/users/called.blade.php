@@ -76,14 +76,14 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="col s12 m12">
-      <div class="card z-depth-5">
-        <div class="card-content">
-          <div class="col s12 l12">
-            <h3 class="center" id="homeUserTitle" >Meu chamados</h3>
-          </div>
   
+  <div class="col s12 m12">
+    <div class="card z-depth-5">
+      <div class="card-content">
+        <div class="col s12 l12">
+          <h3 class="center" id="homeUserTitle" >Meu chamados</h3>
+        </div>
+        <div class="table-scroll">
           <table class="highlight striped centered" id="form_table_group_muscle">
             <thead>
               <tr>

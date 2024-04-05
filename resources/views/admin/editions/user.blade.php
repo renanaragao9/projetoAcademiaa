@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Cadastro de Aluno')
+@section('title', 'Edição de Aluno')
 
 @section('content')
 
@@ -22,13 +22,13 @@
                   </div>
               </div>
               
-              <div class="input-field col s12 l6">
+              <div class="input-field col s12 l6" >
                 <i class="material-icons prefix">account_circle</i>
                 <input name="name" id="icon-nome" type="text" class="validate" value="{{ $user->name }}">
                 <label for="icon-nome"><h11>*</h11> Nome</label>
               </div>
             
-              <div class="input-field col s12 l6">
+              <div class="input-field col s12 l6" id="select-desktop">
                 <i class="material-icons prefix">wc</i>
                 <select name="sexo">
                   <option value="" disabled selected>Opção</option>
@@ -57,7 +57,7 @@
                 <span class="helper-text" data-error="Email Inválido" data-success="Email Valido"></span>
               </div>
 
-              <div class="input-field col s12">
+              <div class="input-field col s12" id="select-mobile-desktop">
                 <i class="material-icons prefix">assignment_ind</i>
                 <select name="profile">
                   <option value="0" {{ $user->profile == 0 ? "selected='selected'" : "" }}>Aluno(a)</option>
@@ -67,7 +67,30 @@
                   @endif
                 </select>
                 <label><h11>*</h11> Perfil</label>
-              </div>  
+              </div>
+              
+              <!-- SELECT MOBILE -->
+            <div class="input-field col s12 l6" id="select-mobile">
+              <select name="sexo" class="browser-default">
+                <option value="" disabled selected>Opção</option>
+                <option value="Masculino" {{ $user->sexo == "Masculino" ? "selected='selected'" : "" }}>Masculino</option>
+                <option value="Feminino" {{ $user->sexo == "Feminino" ? "selected='selected'" : "" }}>Feminino</option>
+                <option value="Outros">Outros</option>
+              </select>
+              <label id="label-select-desktop">Sexo</label>
+            </div>
+
+            <!-- SELECT MOBILE -->
+            <div class="input-field col s12" id="select-mobile-profile">
+              <select name="profile" class="browser-default">
+                <option value="0" {{ $user->profile == 0 ? "selected='selected'" : "" }}>Aluno(a)</option>
+                <option value="1" {{ $user->profile == 1 ? "selected='selected'" : "" }}>Professor(a)</option>
+                @if(Auth::user()->profile === 2)
+                 <option value="2" {{ $user->profile == 2 ? "selected='selected'" : "" }}>Administrador(a)</option>
+                @endif
+              </select>
+              <label><h11>*</h11> Perfil</label>
+            </div>
 
               <input type="hidden" name="id" value="{{ $user->id }}">
               <input type="hidden" name="password" value="{{$user->password}}">
@@ -133,11 +156,23 @@
         form.submit();
       });
     });
+
+    let larguraTela = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
     
-    {{-- 
-      o modal é estilizado usando as classes CSS fornecidas pelo Materialize CSS. Usamos a função M.Modal.init() para inicializar o modal e a função instance.open() para abrir o modal quando o formulário for submetido.
-      o evento submit é usado para interceptar o envio do formulário, e o modal é aberto nesse momento. Quando o botão "Enviar" dentro do modal é clicado, o formulário é enviado utilizando form.submit(). 
-      --}}
+    // Define a classe com base na largura da tela
+    if (larguraTela > 700) {
+      document.getElementById("select-desktop").style.display = "block";
+      document.getElementById("select-mobile").style.display = "none";
+      document.getElementById("select-mobile-desktop").style.display = "block";
+      document.getElementById("select-mobile-profile").style.display = "none";
+    } 
+    else 
+      {
+        document.getElementById("select-desktop").style.display = "none";
+        document.getElementById("select-mobile").style.display = "block";
+        document.getElementById("select-mobile-desktop").style.display = "none";
+        document.getElementById("select-mobile-profile").style.display = "block";
+      }
   </script>
 
 @endsection

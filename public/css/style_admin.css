@@ -652,6 +652,11 @@ footer#fixar-rodape {
   width: 100%;
 }
 
+#image-footer {
+  width: 400px; 
+  height: 200px;
+}
+
 
 /* Algumas medidas para desktops pequenos */
 @media only screen and (min-width: 993px) {
@@ -726,6 +731,12 @@ footer#fixar-rodape {
     font-weight: bolder;
     font-size: 17px;
     margin-block: -8px;
+  }
+
+  /* footer */
+  #image-footer {
+    width: 100%;
+    height: 200px;
   }
 }
 

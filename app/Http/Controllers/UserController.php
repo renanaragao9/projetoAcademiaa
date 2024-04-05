@@ -206,7 +206,7 @@ class UserController extends Controller
             
             $user->save();
     
-            return redirect()->back()->with('msg-success', 'Senha atualizada com sucesso!');
+            return redirect()->back()->with('msg-success', 'Senha atualizada com sucesso!' . PHP_EOL . 'Pré senha é Academia@123');
         
         } else {
             

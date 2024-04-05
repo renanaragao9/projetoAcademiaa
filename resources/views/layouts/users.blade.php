@@ -12,8 +12,6 @@
   <!-- Links dos Icones-->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   
   <!-- Link para chamar o chartJS-->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -160,10 +158,10 @@
   <!-- Footer -->
   <footer class="footer">
     <div class="container">
-        <p id="copy-mobile">&copy; 2024 - Renan Aragão 
-            <br> Todos os direitos reservados.
-            <br> Versão: 2.0.1
-        </p>
+      <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/footer.png'))) }}" id="image-footer"/> 
+      <p id="copy-mobile">&copy; Todos os direitos reservados.
+        <br> Versão: 2.0.1
+      </p>
     </div>
   </footer>
 

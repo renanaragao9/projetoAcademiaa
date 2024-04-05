@@ -89,8 +89,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
 
-/* Chamada pro Preloader   */ 
-let myVar;
+
       
 function myFunction() {
     myVar = setTimeout(showPage); // aumentei o tempo para ilustração

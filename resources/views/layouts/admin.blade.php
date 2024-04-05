@@ -68,7 +68,7 @@
                     </li>
                 </ul>
                 
-                <a href="{{ route('admin.home') }}" class="brand-logo center"><i class="material-icons left" >fitness_center</i>Academia Renan´s</a>
+                <a href="{{ route('admin.home') }}" class="brand-logo center"><i class="material-icons left" >fitness_center</i><span class="hide-on-small-only">Academia</span> Renan´s</a>
 
                 <ul class="right hide-on-med-and-down">               
                     <li>
@@ -367,12 +367,12 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p id="copy-mobile">&copy; 2024 - Renan Aragão 
-                <br> Todos os direitos reservados.
-                <br> Versão: 2.0.1
-              </p>
+          <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/footer.png'))) }}" id="image-footer"/> 
+          <p id="copy-mobile">&copy; Todos os direitos reservados.
+            <br> Versão: 2.0.1
+          </p>
         </div>
-    </footer>
+      </footer>
 
    <!-- Janelas modais -->
 
