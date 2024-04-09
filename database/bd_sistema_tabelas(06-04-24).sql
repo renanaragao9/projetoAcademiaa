@@ -16,8 +16,7 @@
 
 
 -- Copiando estrutura do banco de dados para academia
-CREATE DATABASE IF NOT EXISTS `academia` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `academia`;
+
 
 -- Copiando estrutura para tabela academia.assessments
 CREATE TABLE IF NOT EXISTS `assessments` (

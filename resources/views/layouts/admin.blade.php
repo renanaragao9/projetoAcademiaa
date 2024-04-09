@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="/img/logo.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('img/logo.ico') }}" type="image/x-icon">
 
     <!-- Fontes -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -19,11 +19,11 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
     <!-- Links de customização-->
-    <link rel="stylesheet" href="/css/materialize.css">
-    <link rel="stylesheet" href="/css/style_admin.css">
-    <link rel="stylesheet" href="/css/style_mobile.css">
+    <link rel="stylesheet" href="{{ asset('css/materialize.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style_admin.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style_mobile.css') }}">
     
-    <title>@yield('title', 'Israel Dantas')</title>
+    <title>@yield('title', 'Academia Renan´s')</title>
 </head>
 
 <body class="grey lighten-5" onload="myFunction()">
@@ -82,8 +82,7 @@
                     </li>
                     
                     <li class="dropdown-trigger" data-target="dropdown">
-                        <img src="/img/profile_photo_path/{{Auth::user()->profile_photo_path}}" alt="imagem-perfil" id="nav-image" class="circle responsive-img">
-                    </li>
+                        <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/profile_photo_path/') . Auth::user()->profile_photo_path)) }}" alt="imagem-perfil" id="nav-image" class="circle responsive-img">                    </li>
 
                     <li>
                         <a href="#" class="tooltipped" id="logout-link" data-position="left" data-tooltip="Sair"><i class="material-icons right">logout</i></a>
@@ -427,17 +426,16 @@
   <!-- Inicio das chamdas de Scripts -->
     
     <!-- Jquery-->
-    <script src="/js/jquery.js"></script> 
+    <script src="{{ asset('js/jquery.js') }}"></script>
     
     <!-- Materialize-->
-    <script src="/js/materialize.js"></script>
+    <script src="{{ asset('js/materialize.js') }}"></script>
 
-    
     <!-- Funcoes -->
-    <script src="/js/funcoes.js"></script>
+    <script src="{{ asset('js/funcoes.js') }}"></script>
     
     <!-- Bloco de anotações -->
-    <script src="/js/BlocoDeAnotacoes.js"></script>
+    <script src="{{ asset('js/BlocoDeAnotacoes.js') }}"></script>
     
     <!-- Editor de texto -->
     <script src="https://cdn.ckeditor.com/4.11.1/standard/ckeditor.js"></script>

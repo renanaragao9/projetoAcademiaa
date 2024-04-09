@@ -4,16 +4,10 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <!-- Outras tags head aqui -->
-  <link rel="apple-touch-icon" sizes="180x180" href="/img/icons/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/img/icons/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/img/icons/favicon-16x16.png">
-  <link rel="manifest" href="/img/icons/site.webmanifest">
-  <link rel="mask-icon" href="/img/icons/safari-pinned-tab.svg" color="#5bbad5">
-  <link rel="shortcut icon" href="/img/icons/favicon.ico">
-  <meta name="msapplication-TileColor" content="#ffffff">
-  <meta name="msapplication-config" content="/img/icons/browserconfig.xml">
-  <meta name="theme-color" content="#ffffff">
+  <link rel="shortcut icon" href="{{ asset('img/logo.ico') }}" type="image/x-icon">
+
   
   <!-- LINK DA FONT --> 
   <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -27,9 +21,10 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
   <!-- Links de customização-->
-  <link rel="stylesheet" href="/css/materialize.css">
-  <link rel="stylesheet" href="/css/style_admin.css">
-  <link rel="stylesheet" href="/css/style_mobile.css">
+  <link rel="stylesheet" href="{{ asset('css/materialize.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/style_admin.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/style_mobile.css') }}">
+
   
   <title>@yield('title', 'Inicio')</title>
 </head>
@@ -72,7 +67,7 @@
       <li class="center">
         <div class="user-view">
           <div class="background">
-            <img src="/img/ocean.jpg">
+            <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/ocean.jpg')))}}">
           </div>
           <div class="center">
             <a href="#user"><img class="circle" id="img-perfil-mobile" src="/img/profile_photo_path/{{Auth::user()->profile_photo_path}}"></a>
