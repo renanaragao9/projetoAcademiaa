@@ -1,6 +1,6 @@
 @extends('layouts.users')
 
-@section('title', 'Painel do Aluno')
+@section('title', 'Alterar Senha')
 
 @section('content')
     <div class="container">
@@ -62,5 +62,5 @@
 @endsection
 
 @section('script')
-    <script src="/js/mobile/resetPassword.js"></script>
+    <script src="{{ asset('js/mobile/resetPassword.js') }}"></script> 
 @endsection

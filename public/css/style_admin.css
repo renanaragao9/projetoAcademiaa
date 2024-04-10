@@ -237,16 +237,20 @@ nav .brand-logo i.material-icons {
 #text-ficha {
   font-weight: bold;
   font-size: 22px;
+  width: 220px;
+  display: inline-block;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
 }
 
 #image-ficha {
   object-fit: cover;
 }
 
-#text-dados-ficha {
-  font-size: 24px;
-  font-weight: bolder;
+#text-ficha-dados {
   white-space: pre-wrap;
+  overflow-wrap: break-word;
+  color: #0c3350;
 }
 
 #text-profile {

@@ -1,6 +1,6 @@
 @extends('layouts.users')
 
-@section('title', 'Painel do Aluno')
+@section('title', 'Posts')
 
 @section('content')
 
@@ -19,7 +19,7 @@
                 <div class="post-container">
             
                     <div class="post-header">
-                        <img src="/img/profile_photo_path/{{ $post->users->profile_photo_path }}" alt="Avatar" class="avatar">
+                        <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/profile_photo_path/') . $post->users->profile_photo_path)) }}" alt="Avatar" class="avatar">
                         <div class="username">{{ $post->users->name }}</div>
                         <div class="post-time">{{ \Carbon\Carbon::parse($post->created_at)->locale('pt_BR')->diffForHumans() }}</div>
                     </div>
@@ -28,7 +28,7 @@
                         {{$post->title_media}}
                     </div>
                     
-                    <img src="/img/media/{{ $post->img_media }}" alt="Post Image" class="post-image">
+                    <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/media/') . $post->img_media)) }}" alt="Post Imagem" class="post-image">
 
                     <div class="post-tags">
                         <span class="tag">{{ $post->description_media }}</span>

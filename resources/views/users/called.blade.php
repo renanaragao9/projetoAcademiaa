@@ -1,6 +1,6 @@
 @extends('layouts.users')
 
-@section('Chamado', 'Painel do Aluno')
+@section('Chamado', 'Chamados')
 
 @section('content')
 

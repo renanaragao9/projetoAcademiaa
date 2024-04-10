@@ -1,6 +1,6 @@
 @extends('layouts.users')
 
-@section('title', 'Painel do Aluno')
+@section('title', 'Avaliação')
 
 @section('content')
 
@@ -26,7 +26,7 @@
                         <a href="#!">
                             <div class="card horizontal z-depth-3 waves-light" id="assessment-mobile">
                                 <div class="card-image">
-                                    <img src="/img/img_icon/prancheta.png" class="responsive-img circle" id="assessment-icon-img" alt="">
+                                    <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/img_icon/prancheta.png'))) }}" class="responsive-img circle" id="assessment-icon-img" alt="Imagem da Prancheta de Avaliação">
                                 </div>
                                 
                                 <div class="card-stacked">
@@ -44,7 +44,7 @@
                         <a href="#!">
                             <div class="card horizontal z-depth-3 waves-light" id="assessment-mobile">
                                 <div class="card-image">
-                                    <img src="/img/img_icon/calendario.png" class="responsive-img circle" id="assessment-icon-img" alt="">
+                                    <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/img_icon/calendario.png'))) }}" class="responsive-img circle" id="assessment-icon-img" alt="Imagem do Calendario">
                                 </div>
                                 
                                 <div class="card-stacked">
@@ -62,7 +62,7 @@
                         <a href="#!">
                             <div class="card horizontal z-depth-3 waves-light" id="assessment-mobile">
                                 <div class="card-image">
-                                    <img src="/img/img_icon/altura.png" class="responsive-img circle" id="assessment-icon-img" alt="">
+                                    <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/img_icon/altura.png'))) }}" class="responsive-img circle" id="assessment-icon-img" alt="Imagem da Altura">
                                 </div>
                                 
                                 <div class="card-stacked">
@@ -80,7 +80,7 @@
                         <a href="#!">
                             <div class="card horizontal z-depth-3 waves-light" id="assessment-mobile">
                                 <div class="card-image">
-                                    <img src="/img/img_icon/balanca.png" class="responsive-img circle" id="assessment-icon-img" alt="">
+                                    <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/img_icon/balanca.png'))) }}" class="responsive-img circle" id="assessment-icon-img" alt="Imagem da Balança">
                                 </div>
                                 
                                 <div class="card-stacked">
@@ -98,7 +98,7 @@
                         <a href="#!">
                             <div class="card horizontal z-depth-3 waves-light" id="assessment-mobile">
                                 <div class="card-image">
-                                    <img src="/img/img_icon/musculo.png" class="responsive-img circle" id="assessment-icon-img" alt="">
+                                    <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/img_icon/musculo.png'))) }}" class="responsive-img circle" id="assessment-icon-img" alt="Imagem do Musculo do Braço">
                                 </div>
                                 
                                 <div class="card-stacked">
@@ -116,7 +116,7 @@
                         <a href="#!">
                             <div class="card horizontal z-depth-3 waves-light" id="assessment-mobile">
                                 <div class="card-image">
-                                    <img src="/img/img_icon/antebraco.png" class="responsive-img circle" id="assessment-icon-img" alt="">
+                                    <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/img_icon/antebraco.png'))) }}" class="responsive-img circle" id="assessment-icon-img" alt="Imagem do Musculo do Antebraço">
                                 </div>
                                     
                                 <div class="card-stacked">
@@ -134,7 +134,7 @@
                         <a href="#!">
                             <div class="card horizontal z-depth-3 waves-light" id="assessment-mobile">
                                 <div class="card-image">
-                                    <img src="/img/img_icon/peito.png" class="responsive-img circle" id="assessment-icon-img" alt="">
+                                    <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/img_icon/peito.png'))) }}" class="responsive-img circle" id="assessment-icon-img" alt="Imagem do Peito">
                                 </div>
                                     
                                 <div class="card-stacked">
@@ -152,7 +152,7 @@
                         <a href="#!">
                             <div class="card horizontal z-depth-3 waves-light" id="assessment-mobile">
                                 <div class="card-image">
-                                    <img src="/img/img_icon/costas.png" class="responsive-img circle" id="assessment-icon-img" alt="">
+                                    <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/img_icon/costas.png'))) }}" class="responsive-img circle" id="assessment-icon-img" alt="Imagem Costas">
                                 </div>
                                 
                                 <div class="card-stacked">
@@ -170,7 +170,7 @@
                         <a href="#!">
                             <div class="card horizontal z-depth-3 waves-light" id="assessment-mobile">
                                 <div class="card-image">
-                                    <img src="/img/img_icon/cintura.png" class="responsive-img circle" id="assessment-icon-img" alt="">
+                                    <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/img_icon/cintura.png'))) }}" class="responsive-img circle" id="assessment-icon-img" alt="Imagem da Cintura">
                                 </div>
                                 
                                 <div class="card-stacked">
@@ -188,7 +188,7 @@
                         <a href="#!">
                             <div class="card horizontal z-depth-3 waves-light" id="assessment-mobile">
                                 <div class="card-image">
-                                    <img src="/img/img_icon/gluteos.png" class="responsive-img circle" id="assessment-icon-img" alt="">
+                                    <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/img_icon/gluteos.png'))) }}" class="responsive-img circle" id="assessment-icon-img" alt="Imagem do Glúteo">
                                 </div>
                                 
                                 <div class="card-stacked">
@@ -206,7 +206,7 @@
                         <a href="#!">
                             <div class="card horizontal z-depth-3 waves-light" id="assessment-mobile">
                                 <div class="card-image">
-                                    <img src="/img/img_icon/quadril.png" class="responsive-img circle" id="assessment-icon-img" alt="">
+                                    <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/img_icon/quadril.png'))) }}" class="responsive-img circle" id="assessment-icon-img" alt="Imagem do Quadril">
                                 </div>
                                 
                                 <div class="card-stacked">
@@ -224,7 +224,7 @@
                         <a href="#!">
                             <div class="card horizontal z-depth-3 waves-light" id="assessment-mobile">
                                 <div class="card-image">
-                                    <img src="/img/img_icon/coxa.png" class="responsive-img circle" id="assessment-icon-img" alt="">
+                                    <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/img_icon/coxa.png'))) }}" class="responsive-img circle" id="assessment-icon-img" alt="Imagem da Coxa">
                                 </div>
                                 
                                 <div class="card-stacked">
@@ -242,7 +242,7 @@
                         <a href="#!">
                             <div class="card horizontal z-depth-3 waves-light" id="assessment-mobile">
                                 <div class="card-image">
-                                    <img src="/img/img_icon/panturrilha.png" class="responsive-img circle" id="assessment-icon-img" alt="">
+                                    <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/img_icon/panturrilha.png'))) }}" class="responsive-img circle" id="assessment-icon-img" alt="Imagem da Panturrilha">
                                 </div>
                                 
                                 <div class="card-stacked">

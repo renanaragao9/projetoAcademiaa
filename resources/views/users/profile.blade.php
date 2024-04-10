@@ -1,6 +1,6 @@
 @extends('layouts.users')
 
-@section('title', 'Painel do Aluno')
+@section('title', 'Perfil')
 
 @section('content')
 
@@ -28,7 +28,7 @@
                         <!-- Imagem de perfil -->
                         <div class="image-container">
                             <div class="image-preview" id="card-image center">
-                                <img src="/img/profile_photo_path/{{Auth::user()->profile_photo_path}}" class="circle responsive-img materialboxed" id="profile-img-mobile" alt="Imagem de Perfil">
+                                <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/profile_photo_path/') . Auth::user()->profile_photo_path)) }}" class="circle responsive-img materialboxed" id="profile-img-mobile" alt="Imagem de Perfil">
                             </div>
                             
                             <input name="profile_photo_path" type="file" id="file-input" style="display: none">
@@ -192,5 +192,5 @@
 @endsection
 
 @section('script')
-    <script src="/js/mobile/profile.js"></script>
+    <script src="{{ asset('js/mobile/profile.js') }}"></script>
 @endsection

@@ -67,10 +67,10 @@
       <li class="center">
         <div class="user-view">
           <div class="background">
-            <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/ocean.jpg')))}}">
+            <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/ocean.jpg')))}}" alt="Imagem de Fundo Oceano">
           </div>
           <div class="center">
-            <a href="#user"><img class="circle" id="img-perfil-mobile" src="/img/profile_photo_path/{{Auth::user()->profile_photo_path}}"></a>
+            <a href="#user"><img class="circle" id="img-perfil-mobile" src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/profile_photo_path/') . Auth::user()->profile_photo_path)) }}" alt="Imagem de Perfil"></a>
             <a href="#name"><span class="white-text name" id="perfil-mobile-text">{{ auth()->user()->name }}</span></a>
             <a href="#email"><span class="white-text email">{{ auth()->user()->email }}</span></a>
             <a href="#email"><span class="white-text email">ID: {{ auth()->user()->id }}</span></a>
@@ -163,7 +163,7 @@
   <!-- Footer -->
   <footer class="footer">
     <div class="container">
-      <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/footer.png'))) }}" id="image-footer"/> 
+      <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/footer.png'))) }}" alt="Rodapé" id="image-footer"/> 
       <p id="copy-mobile">&copy; Todos os direitos reservados.
         <br> Versão: 2.0.1
       </p>
@@ -182,16 +182,16 @@
   <!-- Inicio das chamdas de Scripts -->
     
     <!-- Jquery-->
-    <script src="/js/jquery.js"></script> 
+    <script src="{{ asset('js/jquery.js') }}"></script> 
     
     <!-- Materialize-->
-    <script src="/js/materialize.js"></script>
+    <script src="{{ asset('js/materialize.js') }}"></script> 
     
     <!-- Funcoes -->
-    <script src="/js/funcoes.js"></script>
+    <script src="{{ asset('js/funcoes.js') }}"></script> 
 
     <!-- Bloco de anotações -->
-    <script src="/js/BlocoDeAnotacoes.js"></script>
+    <script src="{{ asset('js/BlocoDeAnotacoes.js') }}"></script> 
 
     <!-- Editor de texto -->
     <script src="https://cdn.ckeditor.com/4.11.1/standard/ckeditor.js"></script>

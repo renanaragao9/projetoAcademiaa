@@ -1,6 +1,6 @@
 @extends('layouts.users')
 
-@section('title', 'Painel do Aluno')
+@section('title', 'Ficha ' . $fichaNome->name_training)
 
 @section('content')
 
@@ -20,7 +20,7 @@
                 <div class="col s12 m7">
                     <div class="card" id="card-{{ $index }}">
                         <div class="card-image">
-                            <img class="materialboxed" id="image-ficha" src="/img/exercise/{{ $studentFicha->image_exercise }}">
+                            <img class="materialboxed" id="image-ficha" src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/exercise/') . $studentFicha->image_exercise)) }}" alt="Imagem do exercício {{$studentFicha->name_exercise}}">
                             <a class="modal-trigger btn-floating halfway-fab waves-effect waves-light red" href="#modal{{$index}}"><i class="material-icons">movie</i></a>
                         </div>
                         
@@ -30,33 +30,27 @@
                             <table class="highlight">
                                 <tbody>
                                     <tr>
-                                        <td id="text-ficha">Serie:</td>
-                                        <td id="text-dados-ficha">{{ $studentFicha->serie }}x</td>
+                                        <td id="text-ficha">Serie: <span id="text-ficha-dados">{{ $studentFicha->serie }}x</span></td>
                                     </tr>
                                     
                                     <tr>
-                                        <td id="text-ficha">Repetição:</td>
-                                        <td id="text-dados-ficha">{{ $studentFicha->repetition }}</td>
+                                        <td id="text-ficha">Repetição: <span id="text-ficha-dados">{{ $studentFicha->repetition }}</span></td>
                                     </tr>
                                 
                                     <tr>
-                                        <td id="text-ficha">Carga:</td>
-                                        <td id="text-dados-ficha">{{ isset($studentFicha->weight) ? $studentFicha->weight : 'Livre' }} </td>
+                                        <td id="text-ficha">Carga: <span id="text-ficha-dados">{{ isset($studentFicha->weight) ? $studentFicha->weight : 'Livre' }}</span></td>
                                     </tr>
                                     
                                     <tr>
-                                        <td id="text-ficha">Descanso:</td>
-                                        <td id="text-dados-ficha">{{ isset($studentFicha->rest) ? $studentFicha->rest : '00:30' }}</td>
+                                        <td id="text-ficha">Descanso: <span id="text-ficha-dados">{{ isset($studentFicha->rest) ? $studentFicha->rest : '00:30' }}</span></td>
                                     </tr>
                                 
                                     <tr>
-                                        <td id="text-ficha">Observação:</td>
-                                        <td id="text-dados-ficha">{{ isset($studentFicha->description) ? $studentFicha->description : 'Nenhuma' }}{{ $studentFicha->description }}</td>
+                                        <td id="text-ficha">Observação: <span  id="text-ficha-dados">{{ isset($studentFicha->description) ? $studentFicha->description : 'Nenhuma' }}{{ $studentFicha->description }}</span></td>
                                     </tr>
                                     
                                     <tr>
-                                        <td id="text-ficha">Criado por:</td>
-                                        <td id="text-dados-ficha">{{ $firstName }}</td>
+                                        <td id="text-ficha">Criado por: <span  id="text-ficha-dados">{{ $firstName }}</span></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -95,7 +89,7 @@
                 <h4 id="card-title">{{ $studentFicha->name_exercise }}</h4>
                 <div class="card">
                     <div class="card-image">
-                    <img src="/img/exercise/gif/{{ $studentFicha->gif_exercise }}">
+                    <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/exercise/gif/') . $studentFicha->gif_exercise)) }}">
                     </div>
                 </div>
             </div>

@@ -82,8 +82,7 @@
                     </li>
                     
                     <li class="dropdown-trigger" data-target="dropdown">
-                        <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/profile_photo_path/') . Auth::user()->profile_photo_path)) }}" alt="imagem-perfil" id="nav-image" class="circle responsive-img">                    </li>
-
+                        <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/profile_photo_path/') . Auth::user()->profile_photo_path)) }}" alt="imagem-perfil" id="nav-image" class="circle responsive-img"></li>
                     <li>
                         <a href="#" class="tooltipped" id="logout-link" data-position="left" data-tooltip="Sair"><i class="material-icons right">logout</i></a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

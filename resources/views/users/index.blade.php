@@ -1,6 +1,6 @@
 @extends('layouts.users')
 
-@section('title', 'Painel do Aluno')
+@section('title', 'Início')
 
 @section('content')
  
@@ -34,7 +34,7 @@
       <div class="carousel-container">
         <div class="carousel-slide">
           @foreach ($mediaBanners as $media)
-            <img src="/img/media/{{$media->img_media}}" alt="{{$media->title_media}}" class="carousel-item">
+            <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/media/') . $media->img_media )) }}" alt="{{$media->title_media}}" class="carousel-item">
           @endforeach
         </div>
         
@@ -203,5 +203,5 @@
   <script>
     const firstName = "{{ $firstName }}";
   </script>
-  <script src="/js/mobile/index.js"></script>
+  <script src="{{ asset('js/mobile/index.js') }}"></script>
 @endsection
