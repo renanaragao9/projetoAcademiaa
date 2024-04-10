@@ -153,7 +153,7 @@
     <link rel="shortcut icon" href="/img/logo.ico" type="image/x-icon">
     
     <!-- Estilo -->
-    <link rel="stylesheet" href="css/style_login.css" />
+    <link rel="stylesheet" href="css/style_login.css"/>
     
     <title>Login</title>
   </head>

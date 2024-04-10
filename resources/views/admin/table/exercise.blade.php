@@ -34,7 +34,7 @@
           @foreach( $exercises as $exercise)
             <tr>
               <td id="td-text" class="hide-on-small-only">{{ $exercise->id_exercise }}</td>
-              <td id="td-text" class="hide-on-small-only"> <img src="/img/exercise/{{$exercise->image_exercise}}" alt="" class="circle materialboxed" id="table-image"></td>
+              <td id="td-text" class="hide-on-small-only"><img src="{{ $exercise->image_exercise ? 'data:image/jpeg;base64,' . base64_encode(file_get_contents(public_path('img/exercise/') . $exercise->image_exercise)) : 'data:image/jpeg;base64,' . base64_encode(file_get_contents(public_path('img/exercise/default_image.jpg'))) }}" alt="" class="circle materialboxed" id="table-image"></td>
               <td id="td-text">{{ $exercise->name_exercise }}</td>
               <td class="grupo-muscular" data-grupo="{{ $exercise->groupMuscle->name_gmuscle }}" id="td-text">{{ $exercise->groupMuscle->name_gmuscle }}</td>
               <td class="hide-on-small-only" id="td-text">{{ \Carbon\Carbon::parse($exercise->created_at)->format('d/m/Y - H:i:s') }}</td>

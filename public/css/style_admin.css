@@ -245,6 +245,12 @@ nav .brand-logo i.material-icons {
 
 #image-ficha {
   object-fit: cover;
+  max-height: 400px;
+}
+
+#image-gif {
+  object-fit: cover;
+  max-height: 300px;
 }
 
 #text-ficha-dados {

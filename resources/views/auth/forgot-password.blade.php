@@ -55,32 +55,34 @@
       <div class="row" id="reset-form">
         <div class="card z-depth-5" id="card-form">
           <header class="card-content center-align">
-            <img src="/img/logo_sistema_final.png" class="image-responsive" id="logo" alt="Logo">
+            <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/logo_sistema_final.png'))) }}" class="image-responsive" id="logo" alt="Logo">
             <h4 id="title">Redefinir Senha</h4>
           </header>
           <form id="form_password" method="POST" action="{{ route('password.email') }}">
             @csrf
             <div class="card-content">
                 <div class="input-field">
-                    <input id="email" type="email" name="email" class="validate" required autofocus>
-                    <span class="helper-text" data-error="Email Inválido"></span>
-                    <label for="email">Email</label>
-                    <x-input-error :messages="$errors->get('email')" class="mt-2" />
-                    @if(session('status'))
-                        <div class="card-panel green lighten-2">
-                            <p> {{ session('status') }}</p>
-                        </div>
-                    @endif
+                  <input id="email" type="email" name="email" class="validate" required autofocus>
+                  <span class="helper-text" data-error="Email Inválido"></span>
+                  <label for="email">Email</label>
+                  <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                  @if(session('status'))
+                    <div class="card-panel green lighten-2">
+                      <p> {{ session('status') }}</p>
+                    </div>
+                  @endif
                 </div>
             </div>
             <div class="card-action center-align">
-                <button class="btn waves-effect waves-light light-blue darken-4" type="submit" name="action">Enviar Email
-                    <i class="material-icons right">send</i>
-                </button>
-                <a href="{{ route('login') }}" class="btn waves-effect waves-light light-blue darken-4" id="voltar-link">
-                    Voltar
-                    <i class="material-icons left">arrow_back</i>
-                </a>
+                
+              <button class="btn waves-effect waves-light light-blue darken-4" type="submit" name="action">Enviar Email
+                <i class="material-icons right">send</i>
+              </button>
+              <br>
+              <a href="{{ route('login') }}" class="btn waves-effect waves-light light-blue darken-4" id="voltar-link">
+                Voltar
+                <i class="material-icons left">arrow_back</i>
+              </a>
             </div>
           </form>
         

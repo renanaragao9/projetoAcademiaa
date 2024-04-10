@@ -34,7 +34,7 @@
           @foreach( $medias_banners as $media)
             <tr>
               <td class="hide-on-small-only" id="td-text">{{ $media->id_media }}</td>
-              <td class="hide-on-small-only" id="td-text"> <img src="/img/media/{{$media->img_media}}" alt="" class="circle materialboxed" id="table-image"></td>
+              <td class="hide-on-small-only" id="td-text"> <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/media/') . $media->img_media)) }}" alt="Imagem do Banner {{$media->title_media}}" class="circle materialboxed" id="table-image"></td>
               <td class="hide-on-small-only" id="td-text">{{ $media->users->name }}</td>
               <td class="grupo-muscular" id="td-text">{{ $media->title_media }}</td>
               <td class="hide-on-small-only" id="td-text">{{ \Carbon\Carbon::parse($media->created_at)->format('d/m/Y - H:i:s') }}</td>
@@ -82,15 +82,15 @@
           @foreach( $medias_post as $media)
             <tr>
               <td class="hide-on-small-only" id="td-text">{{ $media->id_media }}</td>
-              <td class="hide-on-small-only" id="td-text" > <img src="/img/media/{{$media->img_media}}" alt="" class="circle materialboxed" id="table-image"></td>
+              <td class="hide-on-small-only" id="td-text" > <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/media/') . $media->img_media)) }}" alt="" class="circle materialboxed" id="table-image"></td>
               <td class="hide-on-small-only" id="td-text">{{ $media->users->name }}</td>
               <td class="grupo-muscular" id="td-text">{{ $media->title_media }}</td>
               <td class="hide-on-small-only" id="td-text">{{ \Carbon\Carbon::parse($media->created_at)->format('d/m/Y - H:i:s') }}</td>
               <td class="hide-on-small-only" id="td-text">{{ \Carbon\Carbon::parse($media->updated_at)->format('d/m/Y - H:i:s') }}</td>
               <td>
                 <!-- Botão de ações Desktop-->
-                <a href="{{ route('admin.edit.exercise', $media->id_media)}}" class="btn-floating tooltipped orange darken-4 btn-large waves-effect waves-light red" id="action-table-desktop" data-position="bottom" data-tooltip="Editar"><i class="material-icons">edit</i></a>
-                
+                <a href="{{ route('admin.media.edit', $media->id_media)}}" class="btn-floating tooltipped orange darken-4 btn-large waves-effect waves-light red" id="action-table-desktop" data-position="bottom" data-tooltip="Editar"><i class="material-icons">edit</i></a>
+                                
                 <form action="{{ route('admin.media.destroy', $media->id_media) }}" method="POST" class="delete-form">
                   @csrf
                   @method('DELETE')

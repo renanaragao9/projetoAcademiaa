@@ -20,7 +20,7 @@
                 <div class="col s12 m7">
                     <div class="card" id="card-{{ $index }}">
                         <div class="card-image">
-                            <img class="materialboxed" id="image-ficha" src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/exercise/') . $studentFicha->image_exercise)) }}" alt="Imagem do exercício {{$studentFicha->name_exercise}}">
+                            <img class="materialboxed" id="image-ficha" src="{{ $studentFicha->image_exercise ? 'data:image/jpeg;base64,' . base64_encode(file_get_contents(public_path('img/exercise/') . $studentFicha->image_exercise)) : 'data:image/jpeg;base64,' . base64_encode(file_get_contents(public_path('img/exercise/default_image.jpg'))) }}" alt="Imagem do exercício {{$studentFicha->name_exercise}}">
                             <a class="modal-trigger btn-floating halfway-fab waves-effect waves-light red" href="#modal{{$index}}"><i class="material-icons">movie</i></a>
                         </div>
                         
@@ -89,7 +89,7 @@
                 <h4 id="card-title">{{ $studentFicha->name_exercise }}</h4>
                 <div class="card">
                     <div class="card-image">
-                    <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/exercise/gif/') . $studentFicha->gif_exercise)) }}">
+                        <img src="{{ $studentFicha->gif_exercise ? 'data:image/jpeg;base64,' . base64_encode(file_get_contents(public_path('img/exercise/gif/') . $studentFicha->gif_exercise)) : 'data:image/jpeg;base64,' . base64_encode(file_get_contents(public_path('img/exercise/gif/default_gif.jpg'))) }}" id="image-gif" alt="Exercise GIF">
                     </div>
                 </div>
             </div>

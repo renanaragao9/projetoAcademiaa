@@ -18,7 +18,7 @@
         @foreach ($calleds as $called)
           <ul class="collection">
             <li class="collection-item avatar">
-              <img src="/img/profile_photo_path/{{$called->user_photo }}" class="circle responsive-img" alt="Imagem de Perfil" class="circle" id="called_photo">
+              <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/profile_photo_path/') . $called->user_photo)) }}" alt="Imagem do Banner do perfil" class="circle responsive-img" alt="Imagem de Perfil" class="circle" id="called_photo">
               <span class="title"> <strong id="strong">Nome:</strong> <strong>{{ $called->user_name }}</strong> </span>
               <p><strong id="strong">Urgencia:</strong> {{  $called->urgency }}</p>
               <p><strong id="strong">Titulo:</strong> <strong>{{ $called->title }}</strong> </p>

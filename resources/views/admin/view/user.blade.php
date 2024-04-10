@@ -12,7 +12,7 @@
             </div>
             
             <div class="col s3">
-                <img src="/img/profile_photo_path/{{ $user->profile_photo_path ? $user->profile_photo_path : 'image_default.png' }}" alt="Foto do Aluno" class="hide-on-small-only" id="view-img">            </div>
+                <img src="{{ $user->profile_photo_path ? 'data:image/jpeg;base64,' . base64_encode(file_get_contents(public_path('img/profile_photo_path/') . $user->profile_photo_path)) : 'data:image/jpeg;base64,' . base64_encode(file_get_contents(public_path('img/profile_photo_path/image_default.png'))) }}" alt="Foto do Aluno" class="hide-on-small-only" id="view-img">            </div>
            
             <div class="col s12 l6 center">
                 

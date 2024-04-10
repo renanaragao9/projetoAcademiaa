@@ -60,11 +60,11 @@
                 </div>
 
                 <div class="input-field col s12 l6" id="input-exercicio">
-                  <img src="/img/exercise/{{$exercises->image_exercise}}" alt="" class="materialboxed" id="card-form-edit-image">
+                  <img src="{{ $exercises->image_exercise ? 'data:image/jpeg;base64,' . base64_encode(file_get_contents(public_path('img/exercise/') . $exercises->image_exercise)) : 'data:image/jpeg;base64,' . base64_encode(file_get_contents(public_path('img/exercise/default_image.jpg'))) }}" alt="" class="materialboxed" id="card-form-edit-image">
                 </div>
 
                 <div class="input-field col s12 l6" id="input-exercicio">
-                  <img src="/img/exercise/gif/{{$exercises->gif_exercise}}" alt="" class="materialboxed" id="card-form-edit-image">
+                  <img src="{{ $exercises->gif_exercise ? 'data:image/jpeg;base64,' . base64_encode(file_get_contents(public_path('img/exercise/gif/') . $exercises->gif_exercise)) : 'data:image/jpeg;base64,' . base64_encode(file_get_contents(public_path('img/exercise/gif/default_gif.jpg'))) }}" alt="" class="materialboxed" id="card-form-edit-image">
                 </div>
 
                 <div class="input-field col s12 l12">      

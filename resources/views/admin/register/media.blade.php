@@ -28,7 +28,7 @@
               <div class="file-field col s12 l12" >
                 <div class="btn light-blue darken-4" id="select-image">
                   <span>Imagem</span>
-                  <input name="img_media" type="file" class="validate" multiple>
+                  <input name="img_media" type="file" class="validate" multiple required>
                 </div>
 
                 <div class="file-path-wrapper" id="select-image-input">
