@@ -35,7 +35,7 @@ $meses = array(
     </div>
     <div style="margin-bottom: 20px;">
         <div style="display: inline-block; width: 50%;">Plano: {{ $studentPayment->monthly->name_monthly }}</div>
-        <div style="display: inline-block; width: 50%;">Valor: {{ 'R$ ' . number_format($studentPayment->monthly->value, 2, ',', '.') }}</div>
+        <div style="display: inline-block; width: 50%;">Valor: {{ 'R$ ' . number_format($studentPayment->value_payment, 2, ',', '.') }}</div>
     </div>
     <div style="margin-bottom: 20px;">
         <div style="display: inline-block;">Período:

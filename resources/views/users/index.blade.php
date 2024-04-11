@@ -194,6 +194,24 @@
           </div>
         </a>
       </div>
+
+
+      <!-- Card de Post -->
+      <div class="row">
+        <a href="{{ asset('seu_aplicativo.apk') }}">
+            <div class="card horizontal z-depth-3" id="card-mobile">
+                <div class="card-image">
+                    <i class="material-icons" id="icon-card-mobile">android</i>
+                </div>
+                <div class="card-stacked">
+                    <div class="card-content">
+                        <p>Aplicativo Android</p>
+                    </div>
+                </div>
+            </div>
+        </a>
+      </div>
+    
     </div>
   </div>
 

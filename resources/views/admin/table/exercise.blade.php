@@ -17,44 +17,45 @@
     <div class="card-content">
       <div id="total-records" class="total-records"></div>
       <input type="text" id="search" placeholder="Pesquisar...">
-      <table class="highlight striped centered">
-        <thead>
-          <tr>
-            <th class="hide-on-small-only">ID</th>
-            <th class="hide-on-small-only">Imagem</th>
-            <th>Nome</th>
-            <th>Grupo Muscular</th>
-            <th class="hide-on-small-only">Criado</th>
-            <th class="hide-on-small-only">Modificado</th>
-            <th>Ação</th>
-          </tr>
-        </thead>
-        
-        <tbody id="table-body">
-          @foreach( $exercises as $exercise)
+      <div class="table-scroll"> 
+        <table class="highlight striped centered">
+          <thead>
             <tr>
-              <td id="td-text" class="hide-on-small-only">{{ $exercise->id_exercise }}</td>
-              <td id="td-text" class="hide-on-small-only"><img src="{{ $exercise->image_exercise ? 'data:image/jpeg;base64,' . base64_encode(file_get_contents(public_path('img/exercise/') . $exercise->image_exercise)) : 'data:image/jpeg;base64,' . base64_encode(file_get_contents(public_path('img/exercise/default_image.jpg'))) }}" alt="" class="circle materialboxed" id="table-image"></td>
-              <td id="td-text">{{ $exercise->name_exercise }}</td>
-              <td class="grupo-muscular" data-grupo="{{ $exercise->groupMuscle->name_gmuscle }}" id="td-text">{{ $exercise->groupMuscle->name_gmuscle }}</td>
-              <td class="hide-on-small-only" id="td-text">{{ \Carbon\Carbon::parse($exercise->created_at)->format('d/m/Y - H:i:s') }}</td>
-              <td class="hide-on-small-only" id="td-text">{{ \Carbon\Carbon::parse($exercise->updated_at)->format('d/m/Y - H:i:s') }}</td>
-              <td>
-                <!-- Botão de ações Desktop-->
-                <a href="{{ route('admin.edit.exercise', $exercise->id_exercise)}}" class="btn-floating tooltipped orange darken-4 btn-large waves-effect waves-light red" id="action-table-desktop" data-position="bottom" data-tooltip="Editar"><i class="material-icons">edit</i></a>
-                
-                <form action="{{ route('admin.exercise.destroy', $exercise->id_exercise) }}" method="POST" class="delete-form">
-                  @csrf
-                  @method('DELETE')
-                  <input type="hidden" name="id" value="{{ $exercise->id_exercise }}">
-                  <button class="btn-floating tooltipped red darken-4 btn-large waves-effect waves-light red delete-button" id="bottom-table-action" data-position="bottom" data-tooltip="Excluir"><i class="material-icons">delete_forever</i></button>
-                </form>
-              </td>
+              <th class="hide-on-small-only">ID</th>
+              <th class="hide-on-small-only">Imagem</th>
+              <th>Nome</th>
+              <th>Grupo Muscular</th>
+              <th class="hide-on-small-only">Criado</th>
+              <th class="hide-on-small-only">Modificado</th>
+              <th>Ação</th>
             </tr>
-          @endforeach
-        </tbody>
-      </table>
-      
+          </thead>
+          
+          <tbody id="table-body">
+            @foreach( $exercises as $exercise)
+              <tr>
+                <td id="td-text" class="hide-on-small-only">{{ $exercise->id_exercise }}</td>
+                <td id="td-text" class="hide-on-small-only"><img src="{{ $exercise->image_exercise ? 'data:image/jpeg;base64,' . base64_encode(file_get_contents(public_path('img/exercise/') . $exercise->image_exercise)) : 'data:image/jpeg;base64,' . base64_encode(file_get_contents(public_path('img/exercise/default_image.jpg'))) }}" alt="" class="circle materialboxed" id="table-image"></td>
+                <td id="td-text">{{ $exercise->name_exercise }}</td>
+                <td class="grupo-muscular" data-grupo="{{ $exercise->groupMuscle->name_gmuscle }}" id="td-text">{{ $exercise->groupMuscle->name_gmuscle }}</td>
+                <td class="hide-on-small-only" id="td-text">{{ \Carbon\Carbon::parse($exercise->created_at)->format('d/m/Y - H:i:s') }}</td>
+                <td class="hide-on-small-only" id="td-text">{{ \Carbon\Carbon::parse($exercise->updated_at)->format('d/m/Y - H:i:s') }}</td>
+                <td>
+                  <!-- Botão de ações Desktop-->
+                  <a href="{{ route('admin.edit.exercise', $exercise->id_exercise)}}" class="btn-floating tooltipped orange darken-4 btn-large waves-effect waves-light red" id="action-table-desktop" data-position="bottom" data-tooltip="Editar"><i class="material-icons">edit</i></a>
+                  
+                  <form action="{{ route('admin.exercise.destroy', $exercise->id_exercise) }}" method="POST" class="delete-form">
+                    @csrf
+                    @method('DELETE')
+                    <input type="hidden" name="id" value="{{ $exercise->id_exercise }}">
+                    <button class="btn-floating tooltipped red darken-4 btn-large waves-effect waves-light red delete-button" id="bottom-table-action" data-position="bottom" data-tooltip="Excluir"><i class="material-icons">delete_forever</i></button>
+                  </form>
+                </td>
+              </tr>
+            @endforeach
+          </tbody>
+        </table>
+      </div> 
       <div id="no-results" class="no-results-message" style="display: none;">Nenhum registro encontrado</div>
       <div id="total-records" class="total-records"></div>
     </div>

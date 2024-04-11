@@ -277,7 +277,7 @@ class PDFController extends Controller
         $dompdf->setPaper('A4', 'portrait');
         $dompdf->render();
        
-        return $dompdf->stream('Recibo'.$studentPayment->date.'.pdf');
+        return $dompdf->stream('Recibo_'.$studentPayment->user->name.'.pdf');
     }
 
     public function generateReportExpense(Request $request)
