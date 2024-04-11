@@ -129,6 +129,9 @@
                                     <tr>
                                         <td id="text-profile">Referencia:</td>
                                         <td id="text-dados-profile"> {{$payment->monthly->name_monthly}} </td>
+                                    </tr>
+
+                                    <tr>
                                         <td id="text-profile">Data:</td>
                                         <td id="text-dados-profile"> {{\Carbon\Carbon::parse($payment->date_payment)->format('d/m/Y')}}</td>
                                     </tr>

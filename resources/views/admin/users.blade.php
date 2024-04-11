@@ -15,68 +15,81 @@
         
         <div id="total-records" class="total-records"></div>
         <input type="text" id="search" placeholder="Pesquisar...">
-        <table class="highlight striped centered">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Nome</th>
-              <th class="hide-on-small-only">Situação</th>
-              <th class="hide-on-small-only">Email</th>
-              <th>Ações</th>
-            </tr>
-          </thead>
-          <tbody id="table-body">
-            @foreach ($users as $user)
+        <div class="table-scroll">
+          <table class="highlight striped centered">
+            <thead>
               <tr>
-                <td id="td-text">{{ $user->id }}</td>
-                <td id="td-text">{{ $user->name }}</td>
-                <td id="td-text" class="hide-on-small-only">
-                  @if ($user->due_date)
+                <th>ID</th>
+                <th>Nome</th>
+                <th class="hide-on-small-only">Situação</th>
+                <th class="hide-on-small-only">Email</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody id="table-body">
+              @foreach ($users as $user)
+                <tr>
+                  <td id="td-text"> <span id="td-text-span">{{ $user->id }} </span></td>
+                  
+                  <td id="td-text"> <span id="td-text-span">{{ $user->name }}</span> </td>
+                  
+                  <td id="td-text" class="hide-on-small-only">
+                    @if ($user->due_date)
                       @php
                         $dueDate = \Carbon\Carbon::parse($user->due_date);
                         $today = \Carbon\Carbon::now();
             
                         if ($dueDate->isPast()) {
-                            $statusClass = 'red lighten-2'; // Vermelho para atrasado
-                            $statusText = 'Atrasado';
+                          $statusClass = 'red lighten-2'; // Vermelho para atrasado
+                          $statusText = 'Atrasado';
+                        
                         } elseif ($dueDate->isToday()) {
-                            $statusClass = 'yellow lighten-2'; // Amarelo para vence hoje
-                            $statusText = 'Vence Hoje';
+                          $statusClass = 'yellow lighten-2'; // Amarelo para vence hoje
+                          $statusText = 'Vence Hoje';
+                        
                         } elseif ($dueDate->isFuture()) {
-                            $statusClass = 'green lighten-2'; // Verde para em dia
-                            $statusText = 'Em dias';
+                          $statusClass = 'green lighten-2'; // Verde para em dia
+                          $statusText = 'Em dias';
                         }
+                      
                       @endphp
                       
-                      <p class="badge {{ $statusClass }} hide-on-small-only" id="status-table-user">{{ $statusText }}</p>
-                  @else
-                    <p class="badge grey hide-on-small-only" id="status-table-user">Sem Pgto</p>
-                  @endif
-                </td>
-              
-                <td class="hide-on-small-only" id="td-text">{{ $user->email }}</td>
-                <td id="td-form-desktop">
-                  <div class="action-buttons">
-                    <!-- Botão de ação Desktop-->
-                    <a href="{{ route('admin.users.view', $user->id) }}" class="btn-floating tooltipped cyan darken-4 btn-large waves-effect waves-light red" data-position="bottom" data-tooltip="Perfil"><i class="material-icons">person</i></a>
-                    <a href="{{ route('admin.payments.register', $user->id) }}" class="btn-floating tooltipped teal darken-4 btn-large waves-effect waves-light red" id="action-buttons-desktop" data-position="bottom" data-tooltip="Mensalidade"><i class="material-icons">payments</i></a>
-                    <a href="{{ route('admin.register.ficha', $user->id) }}" class="btn-floating tooltipped light-blue darken-4 btn-large waves-effect waves-light red" id="action-buttons-desktop" data-position="bottom" data-tooltip="Ficha"><i class="material-icons">backup_table</i></a>
-                    <a href="{{ route('admin.assessment.create', $user->id) }}" class="btn-floating tooltipped cyan accent-4 btn-large waves-effect waves-light red" id="action-buttons-desktop" data-position="bottom" data-tooltip="Avaliação"><i class="material-icons">assignment</i></a>
-                    <a href="{{ route('admin.user.resetPassword', $user->id) }}" class="btn-floating tooltipped green lighten-2 btn-large waves-effect waves-light red"  id="action-buttons-desktop" data-position="bottom" data-tooltip="Resetar senha" ><i class="material-icons">lock_reset</i></a>
-                    <a href="{{ route('admin.user.edit', $user->id) }}" class="btn-floating tooltipped orange darken-4 btn-large waves-effect waves-light red" id="action-buttons-desktop" data-position="bottom" data-tooltip="Editar"><i class="material-icons">edit</i></a>
-                    <form action="{{ route('admin.user.destroy', $user->id) }}" method="POST" class="delete-form">
-                      @csrf
-                      @method('DELETE')
-                      <input type="hidden" name="id" value="{{ $user->id }}">
-                      <button class="btn-floating tooltipped red darken-4 btn-large waves-effect waves-light red delete-button" data-position="bottom" data-tooltip="Excluir"><i class="material-icons">delete_forever</i></button>
-                    </form>
-                  </div>
-                </td>
-              </tr>
-            @endforeach
-          </tbody>
-        </table>
-
+                      <p class="badge {{ $statusClass }} hide-on-small-only" id="status-table-user"> <span id="td-text-span"> {{ $statusText }}</span> </p>
+                    @else
+                      <p class="badge grey hide-on-small-only" id="status-table-user"> <span id="td-text-span">Sem Pgto </span></p>
+                    @endif
+                  </td>
+                
+                  <td class="hide-on-small-only" id="td-text"><span id="td-text-span">{{ $user->email }} </span></td>
+                  
+                  <td id="td-form-desktop">
+                    <div class="action-buttons">
+                      <!-- Botão de ação Desktop-->
+                      <a href="{{ route('admin.users.view', $user->id) }}" class="btn-floating tooltipped cyan darken-4 btn-large waves-effect waves-light red" data-position="bottom" data-tooltip="Perfil"><i class="material-icons">person</i></a>
+                      
+                      <a href="{{ route('admin.payments.register', $user->id) }}" class="btn-floating tooltipped teal darken-4 btn-large waves-effect waves-light red" id="action-buttons-desktop" data-position="bottom" data-tooltip="Mensalidade"><i class="material-icons">payments</i></a>
+                      
+                      <a href="{{ route('admin.register.ficha', $user->id) }}" class="btn-floating tooltipped light-blue darken-4 btn-large waves-effect waves-light red" id="action-buttons-desktop" data-position="bottom" data-tooltip="Ficha"><i class="material-icons">backup_table</i></a>
+                      
+                      <a href="{{ route('admin.assessment.create', $user->id) }}" class="btn-floating tooltipped cyan accent-4 btn-large waves-effect waves-light red" id="action-buttons-desktop" data-position="bottom" data-tooltip="Avaliação"><i class="material-icons">assignment</i></a>
+                      
+                      <a href="{{ route('admin.user.resetPassword', $user->id) }}" class="btn-floating tooltipped green lighten-2 btn-large waves-effect waves-light red"  id="action-buttons-desktop" data-position="bottom" data-tooltip="Resetar senha" ><i class="material-icons">lock_reset</i></a>
+                      
+                      <a href="{{ route('admin.user.edit', $user->id) }}" class="btn-floating tooltipped orange darken-4 btn-large waves-effect waves-light red" id="action-buttons-desktop" data-position="bottom" data-tooltip="Editar"><i class="material-icons">edit</i></a>
+                      
+                      <form action="{{ route('admin.user.destroy', $user->id) }}" method="POST" class="delete-form">
+                        @csrf
+                        @method('DELETE')
+                        <input type="hidden" name="id" value="{{ $user->id }}">
+                        <button class="btn-floating tooltipped red darken-4 btn-large waves-effect waves-light red delete-button" data-position="bottom" data-tooltip="Excluir"><i class="material-icons">delete_forever</i></button>
+                      </form>
+                    </div>
+                  </td>
+                </tr>
+              @endforeach
+            </tbody>
+          </table>
+        </div>
         <!-- Chamada para o botao de pesquisar... -->
         <div id="no-results" class="no-results-message" style="display: none;">Nenhum registro encontrado</div>
         <div id="total-records" class="total-records"></div>

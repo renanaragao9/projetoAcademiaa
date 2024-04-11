@@ -461,6 +461,13 @@ nav .brand-logo i.material-icons {
   flex-wrap: wrap;
 }
 
+#td-text-span {
+  display: inline-block;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  max-width: 350px;
+}
+
 #bottom-table-action {
   margin: 5px;
 }
@@ -495,7 +502,6 @@ nav .brand-logo i.material-icons {
 .action-buttons {
   display: flex;
   flex-wrap: wrap;
-  margin-left: 100px;
 }
 
 .action-buttons a,
@@ -713,6 +719,11 @@ footer#fixar-rodape {
       font-weight: bolder;
     }
 
+    #td-text-span {
+      max-width: 150px;
+    }
+
+    
     .caret {
       display: none;
     }

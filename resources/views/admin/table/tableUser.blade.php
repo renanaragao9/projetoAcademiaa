@@ -3,25 +3,22 @@
 @section('title', 'Tabela de Exercicios do aluno')
 
 @section('content')
-  
-  <!-- Inicio de conteudo -->
-  <div class="card z-depth-5">
-    <div class="card-content">
-      <div class="col s12 l12">
-        <h3 class="center" id="homeTitle" >Listagem de Exercícios</h3>
-        <h4 class="center" id="homeTitle"> Aluno(a)   {{$userName->user->name}}</h4>
-        <a href="{{ route('admin.register.ficha', $userName->id_user_fk) }}" class="waves-effect waves-light btn left light-blue darken-4 col s12 l2" id="bottom-form-action"><i class="material-icons right">arrow_back</i>Voltar</a>
-      </div>
-    </div>
 
-    <div class="card-content">
-      <div id="total-records" class="total-records"></div>
-      <input type="text" id="search" placeholder="Pesquisar...">
-      <div class="table-scroll">
-        <table class="highlight striped centered">
+  <!-- Inicio de conteudo -->
+  @foreach($exerciciosPorDivisao as $nomeDivisao => $exercicios)
+    <div class="card z-depth-5">
+      <div class="card-content">
+        <div class="col s12 l12">
+          <h3 class="center" id="homeTitle"><a href="{{ route('admin.register.ficha', $fichaUsers[0]->id_user_fk) }}" class="waves-effect waves-light btn left light-blue darken-4 col s12 l2" id="bottom-form-action"><i class="material-icons right">arrow_back</i>Voltar</a> Listagem de Exercícios</h3>
+          <h5 class="center" id="homeTitle">Nome: {{$userName->user->name}}</h5>
+          <h4 class="center" id="homeTitle">Exercício: {{$nomeDivisao}}</h4>
+        </div>
+      </div>
+
+      <div class="card-content">
+        <table class="highlight striped">
           <thead>
             <tr>
-              <th>Div. Treino</th>
               <th>Exercício</th>
               <th>Ordem</th>
               <th class="hide-on-small-only">Criado</th>
@@ -31,9 +28,8 @@
           </thead>
           
           <tbody id="table-body">
-            @foreach( $fichaUsers as $fichaUser)
+            @foreach( $exercicios as $fichaUser)
               <tr>
-                <td id="td-text">{{ $fichaUser->trainingDivision->name_training }}</td>
                 <td id="td-text"> {{ $fichaUser->exercise->name_exercise }} </td>
                 <td id="td-text">{{ $fichaUser->order }}º</td>
                 <td class="hide-on-small-only" id="td-text">{{ \Carbon\Carbon::parse($fichaUser->created_at)->format('d/m/Y - H:i:s') }}</td>
@@ -54,10 +50,8 @@
           </tbody>
         </table>
       </div>
-      <div id="no-results" class="no-results-message" style="display: none;">Nenhum registro encontrado</div>
-      <div id="total-records" class="total-records"></div>
     </div>
-  </div>
+  @endforeach
   
   <!-- Fim de conteudo -->
   
@@ -78,40 +72,6 @@
 
 @section('script')
   <script>
-    // Função para filtrar os registros da tabela
-    function filterTable() {
-        let input = document.getElementById('search');
-        let filter = input.value.toLowerCase();
-        let rows = document.getElementById('table-body').getElementsByTagName('tr');
-        let noResultsMessage = document.getElementById('no-results');
-        let totalRecords = document.getElementById('total-records');
-        let resultsFound = false;
-        let count = 0;
-
-        for (let i = 0; i < rows.length; i++) {
-          let nome = rows[i].getElementsByTagName('td')[0].innerText.toLowerCase();
-          let acao = rows[i].getElementsByTagName('td')[1].innerText.toLowerCase();
-
-          if (nome.indexOf(filter) > -1 || acao.indexOf(filter) > -1) {
-            rows[i].style.display = '';
-            resultsFound = true;
-            count++;
-          } else {
-            rows[i].style.display = 'none';
-          }
-        }
-
-        if (resultsFound) {
-          noResultsMessage.style.display = 'none';
-        } else {
-          noResultsMessage.style.display = 'block';
-        }
-
-        totalRecords.innerText = "Total de registros encontrados: " + count;
-      }
-
-      // Evento de input para acionar a filtragem ao digitar na caixa de pesquisa
-      document.getElementById('search').addEventListener('input', filterTable);
         
     // Inicio da função do alerta modal ao excluír dados
     document.addEventListener('DOMContentLoaded', function() {

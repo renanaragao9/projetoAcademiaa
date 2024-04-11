@@ -15,13 +15,29 @@ class FichaController extends Controller
 
     public function show_table_exercise_user($id) {
     
+        // Inicialize um array associativo para armazenar os exercícios por divisão de treino
+        $exerciciosPorDivisao = [];
+
+        // Consulta ao banco de dados
         $fichaUsers = ficha::join('training_division', 'fichas.id_training_fk', '=', 'training_division.id_training')
-        ->with(['muscleGroup', 'user', 'fichasCreator', 'trainingDivision'])
-        ->select('fichas.*', 'training_division.name_training as name_training')
-        ->where('fichas.id_user_fk', $id)
-        ->orderBy('name_training', 'asc')
-        ->orderBy('order', 'asc')
-        ->get();
+            ->with(['muscleGroup', 'user', 'fichasCreator', 'trainingDivision'])
+            ->select('fichas.*', 'training_division.name_training as name_training')
+            ->where('fichas.id_user_fk', $id)
+            ->get();
+
+        // Iterar sobre as fichas e organizar os exercícios por divisão de treino
+        foreach ($fichaUsers as $ficha) {
+            $nomeDivisao = $ficha->name_training;
+
+            // Verificar se a divisão já existe no array
+            if (!isset($exerciciosPorDivisao[$nomeDivisao])) {
+                // Se não existir, inicialize um array vazio para essa divisão
+                $exerciciosPorDivisao[$nomeDivisao] = [];
+            }
+
+            // Adicione o exercício ao array correspondente à sua divisão
+            $exerciciosPorDivisao[$nomeDivisao][] = $ficha;
+        }   
 
         // Verificar se há resultados na consulta
         if ($fichaUsers->isEmpty()) {
@@ -35,7 +51,8 @@ class FichaController extends Controller
         return view('admin.table.tableUser', [
             'fichaUsers' => $fichaUsers, 
             'userName' => $userName,
-            'numbers' => $numbers
+            'numbers' => $numbers,
+            'exerciciosPorDivisao' => $exerciciosPorDivisao
         ]);
     }
 
