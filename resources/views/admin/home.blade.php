@@ -194,7 +194,7 @@
 
         @foreach ($calleds as $called)
           <li class="collection-item avatar">
-            <img src="/img/profile_photo_path/{{$called->user_photo }}" alt="Imagem de Perfil" class="circle" id="called_photo">
+            <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/profile_photo_path/') . $called->user_photo)) }}" alt="Imagem de Perfil" class="circle" id="called_photo">
             <span class="title">{{ $called->user_name }}</span>
             <p>{{ $called->title }}</p>
           </li>
@@ -244,7 +244,7 @@
 @section('script')
 <script>
   document.addEventListener("DOMContentLoaded", function() {
-    fetch('/admin/users-por-mes')
+    fetch('../admin/users-por-mes')
         .then(response => response.json())
         .then(data => {
             const meses = [];

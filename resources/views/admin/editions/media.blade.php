@@ -56,7 +56,7 @@
               <input type="hidden" name="id_media" id="id_media" value="{{ $media->id_media }}">
 
               <div class="input-field col s12 l6" id="input-exercicio">
-                <img src="/img/media/{{$media->img_media}}" alt="" class="materialboxed" id="card-form-edit-image">
+                <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/media/') . $media->img_media)) }}" alt="" class="materialboxed" id="card-form-edit-image">
               </div>
 
               <div class="input-field col s12 l12">      

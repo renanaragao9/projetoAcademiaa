@@ -48,14 +48,14 @@
                         }
                       @endphp
                       
-                      <p class="badge {{ $statusClass }}" id="status-table-user">{{ $statusText }}</p>
+                      <p class="badge {{ $statusClass }} hide-on-small-only" id="status-table-user">{{ $statusText }}</p>
                   @else
-                    <p class="badge grey" id="status-table-user">Sem Pgto</p>
+                    <p class="badge grey hide-on-small-only" id="status-table-user">Sem Pgto</p>
                   @endif
                 </td>
               
                 <td class="hide-on-small-only" id="td-text">{{ $user->email }}</td>
-                <td>
+                <td id="td-form-desktop">
                   <div class="action-buttons">
                     <!-- Botão de ação Desktop-->
                     <a href="{{ route('admin.users.view', $user->id) }}" class="btn-floating tooltipped cyan darken-4 btn-large waves-effect waves-light red" data-position="bottom" data-tooltip="Perfil"><i class="material-icons">person</i></a>

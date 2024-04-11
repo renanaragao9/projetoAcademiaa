@@ -282,7 +282,7 @@
 
     document.addEventListener("DOMContentLoaded", function() {
      
-      fetch('/estatisticas/users-por-mes')
+      fetch('../estatisticas/users-por-mes')
         .then(response => response.json())
         .then(data => {
         const meses = [];
@@ -316,7 +316,7 @@
         });
     });
 
-    fetch('/estatisticas/expense-por-mes')
+    fetch('../estatisticas/expense-por-mes')
     .then(response => response.json())
     .then(data => {
         const meses = [];
@@ -371,7 +371,7 @@
         });
     });
 
-    fetch('/estatisticas/payment-por-mes')
+    fetch('../estatisticas/payment-por-mes')
         .then(response => response.json())
         .then(data => {
         const meses = [];
@@ -405,7 +405,7 @@
         });
     });
 
-    fetch('/estatisticas/fichas-por-mes')
+    fetch('../estatisticas/fichas-por-mes')
             .then(response => response.json())
             .then(data => {
                 const meses = [];
@@ -439,7 +439,7 @@
                 });
             });
 
-            fetch('/estatisticas/assessment-por-mes')
+            fetch('../estatisticas/assessment-por-mes')
             .then(response => response.json())
             .then(data => {
                 const meses = [];
@@ -473,7 +473,7 @@
                 });
             });
             
-            fetch('/estatisticas/called-por-mes')
+            fetch('../estatisticas/called-por-mes')
             .then(response => response.json())
             .then(data => {
                 const meses = [];
