@@ -23,27 +23,27 @@
 
               <!-- Desktop -->
               <div class="input-field col s12" id="select-desktop">
-                <select name="id_gmuscle_fk" required>
-                  <option selected disabled>Selecione o Grupo Muscular:</option>
-                  
-                  @foreach ($muscleGroups as $muscleGroup)
-                    <option value="{{ $muscleGroup->id_gmuscle }}">{{ $muscleGroup->name_gmuscle }}</option>
-                  @endforeach          
+                <select name="id_gmuscle_fk" required onchange="syncMuscleGroup(this.value)">
+                    <option selected disabled>Selecione o Grupo Muscular:</option>
+                    
+                    @foreach ($muscleGroups as $muscleGroup)
+                        <option value="{{ $muscleGroup->id_gmuscle }}">{{ $muscleGroup->name_gmuscle }}</option>
+                    @endforeach          
                 </select> 
-                <label id="labelSpacing" id="labelSpacing"><h11>*</h11> Grupo Muscular</label>
+                <label id="labelSpacing"><h11>*</h11> Grupo Muscular</label>
               </div>
 
               <!-- Mobile -->
               <div class="input-field col s12" id="select-mobile">
-                <select name="id_gmuscle_fk" class="browser-default" required>
-                  <option selected disabled>Selecione o Grupo Muscular:</option>
-                  
-                  @foreach ($muscleGroups as $muscleGroup)
-                      <option value="{{ $muscleGroup->id_gmuscle }}">{{ $muscleGroup->name_gmuscle }}</option>
-                  @endforeach          
+                <select name="id_gmuscle_fk" class="browser-default" required onchange="syncMuscleGroup(this.value)">
+                    <option selected disabled>Selecione o Grupo Muscular:</option>
+                    
+                    @foreach ($muscleGroups as $muscleGroup)
+                        <option value="{{ $muscleGroup->id_gmuscle }}">{{ $muscleGroup->name_gmuscle }}</option>
+                    @endforeach          
                 </select> 
-                <label id="labelSpacing" id="labelSpacing"><h11>*</h11> Grupo Muscular</label>
-              </div>
+                <label id="labelSpacing"><h11>*</h11> Grupo Muscular</label>
+             </div>
 
               <div class="file-field col s12 l12">
                 <div class="btn light-blue darken-4">
@@ -141,6 +141,14 @@
         document.getElementById("select-desktop").style.display = "none";
         document.getElementById("select-mobile").style.display = "block";
       }
+
+    function syncMuscleGroup(value) {
+      var desktopSelect = document.getElementById("select-desktop").querySelector("select");
+      var mobileSelect = document.getElementById("select-mobile").querySelector("select");
+
+      desktopSelect.value = value;
+      mobileSelect.value = value;
+    }
   </script>
 
 @endsection

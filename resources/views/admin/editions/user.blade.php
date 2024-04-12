@@ -30,14 +30,14 @@
             
               <div class="input-field col s12 l6" id="select-desktop">
                 <i class="material-icons prefix">wc</i>
-                <select name="sexo">
-                  <option value="" disabled selected>Opção</option>
-                  <option value="Masculino" {{ $user->sexo == "Masculino" ? "selected='selected'" : "" }}>Masculino</option>
-                  <option value="Feminino" {{ $user->sexo == "Feminino" ? "selected='selected'" : "" }}>Feminino</option>
-                  <option value="Outros">Outros</option>
+                <select name="sexo" onchange="syncSelect(this.value)">
+                    <option value="" disabled selected>Opção</option>
+                    <option value="Masculino" {{ $user->sexo == "Masculino" ? "selected='selected'" : "" }}>Masculino</option>
+                    <option value="Feminino" {{ $user->sexo == "Feminino" ? "selected='selected'" : "" }}>Feminino</option>
+                    <option value="Outros">Outros</option>
                 </select>
                 <label>Sexo</label>
-              </div>                            
+              </div>                       
             
               <div class="input-field col s12 l6">
                 <i class="material-icons prefix">phone</i>
@@ -59,35 +59,35 @@
 
               <div class="input-field col s12" id="select-mobile-desktop">
                 <i class="material-icons prefix">assignment_ind</i>
-                <select name="profile">
-                  <option value="0" {{ $user->profile == 0 ? "selected='selected'" : "" }}>Aluno(a)</option>
-                  <option value="1" {{ $user->profile == 1 ? "selected='selected'" : "" }}>Professor(a)</option>
-                  @if(Auth::user()->profile === 2)
-                   <option value="2" {{ $user->profile == 2 ? "selected='selected'" : "" }}>Administrador(a)</option>
-                  @endif
+                <select name="profile" onchange="syncProfile(this.value)">
+                    <option value="0" {{ $user->profile == 0 ? "selected='selected'" : "" }}>Aluno(a)</option>
+                    <option value="1" {{ $user->profile == 1 ? "selected='selected'" : "" }}>Professor(a)</option>
+                    @if(Auth::user()->profile === 2)
+                    <option value="2" {{ $user->profile == 2 ? "selected='selected'" : "" }}>Administrador(a)</option>
+                    @endif
                 </select>
                 <label><h11>*</h11> Perfil</label>
               </div>
               
               <!-- SELECT MOBILE -->
-            <div class="input-field col s12 l6" id="select-mobile">
-              <select name="sexo" class="browser-default">
-                <option value="" disabled selected>Opção</option>
-                <option value="Masculino" {{ $user->sexo == "Masculino" ? "selected='selected'" : "" }}>Masculino</option>
-                <option value="Feminino" {{ $user->sexo == "Feminino" ? "selected='selected'" : "" }}>Feminino</option>
-                <option value="Outros">Outros</option>
-              </select>
-              <label id="label-select-desktop">Sexo</label>
+              <div class="input-field col s12 l6" id="select-mobile">
+                <select name="sexo" class="browser-default" onchange="syncSelect(this.value)">
+                    <option value="" disabled selected>Opção</option>
+                    <option value="Masculino" {{ $user->sexo == "Masculino" ? "selected='selected'" : "" }}>Masculino</option>
+                    <option value="Feminino" {{ $user->sexo == "Feminino" ? "selected='selected'" : "" }}>Feminino</option>
+                    <option value="Outros">Outros</option>
+                </select>
+                <label id="label-select-desktop">Sexo</label>
             </div>
 
             <!-- SELECT MOBILE -->
             <div class="input-field col s12" id="select-mobile-profile">
-              <select name="profile" class="browser-default">
-                <option value="0" {{ $user->profile == 0 ? "selected='selected'" : "" }}>Aluno(a)</option>
-                <option value="1" {{ $user->profile == 1 ? "selected='selected'" : "" }}>Professor(a)</option>
-                @if(Auth::user()->profile === 2)
-                 <option value="2" {{ $user->profile == 2 ? "selected='selected'" : "" }}>Administrador(a)</option>
-                @endif
+              <select name="profile" class="browser-default" onchange="syncProfile(this.value)">
+                  <option value="0" {{ $user->profile == 0 ? "selected='selected'" : "" }}>Aluno(a)</option>
+                  <option value="1" {{ $user->profile == 1 ? "selected='selected'" : "" }}>Professor(a)</option>
+                  @if(Auth::user()->profile === 2)
+                  <option value="2" {{ $user->profile == 2 ? "selected='selected'" : "" }}>Administrador(a)</option>
+                  @endif
               </select>
               <label><h11>*</h11> Perfil</label>
             </div>
@@ -173,6 +173,22 @@
         document.getElementById("select-mobile-desktop").style.display = "none";
         document.getElementById("select-mobile-profile").style.display = "block";
       }
+
+    function syncSelect(value) {
+      var desktopSelect = document.getElementById("select-desktop").querySelector("select");
+      var mobileSelect = document.getElementById("select-mobile").querySelector("select");
+
+      desktopSelect.value = value;
+      mobileSelect.value = value;
+    }
+
+    function syncProfile(value) {
+      var desktopSelect = document.getElementById("select-mobile-desktop").querySelector("select");
+      var mobileSelect = document.getElementById("select-mobile-profile").querySelector("select");
+
+      desktopSelect.value = value;
+      mobileSelect.value = value;
+    }
   </script>
 
 @endsection

@@ -198,8 +198,8 @@
 
       <!-- Card de Post -->
       <div class="row">
-        <a href="{{ asset('seu_aplicativo.apk') }}">
-            <div class="card horizontal z-depth-3" id="card-mobile">
+        <a href="{{ asset('Academia Renan´s.apk') }}">
+            <div class="card horizontal z-depth-3 modal_app" id="card-mobile">
                 <div class="card-image">
                     <i class="material-icons" id="icon-card-mobile">android</i>
                 </div>
@@ -211,7 +211,19 @@
             </div>
         </a>
       </div>
-    
+    </div>
+  </div>
+
+  <div id="modal-alerta" class="modal">
+    <div class="modal-content">
+      <i class="material-icons" id="modal-icon-alert">info</i>
+      <h4>Informação sobre o aplicativo</h4>
+      <p>Este aplicativo não está disponível na Play Store, mas pode ser baixado como um arquivo APK. Ele é completamente seguro e leve. Ao baixá-lo, serão solicitadas algumas permissões. Gostaria de prosseguir?</p>
+    </div>
+
+    <div class="modal-footer">
+      <a href="#" class="modal-close waves-effect waves-green btn-flat right" id="cancelBtn">Cancelar</a>
+      <a href="{{ asset('Academia Renan´s.apk') }}" class="modal-close waves-effect waves-green btn light-blue darken-4 left" id="confirmDeleteBtn">Sim</a>
     </div>
   </div>
 
@@ -220,6 +232,30 @@
 @section('script')
   <script>
     const firstName = "{{ $firstName }}";
+
+    document.addEventListener('DOMContentLoaded', function() {
+      let modal = document.getElementById('modal-alerta');
+      let instance = M.Modal.init(modal);
+      let deleteButtons = document.querySelectorAll('.modal_app');
+
+      deleteButtons.forEach(function(button) {
+        button.addEventListener('click', function(event) {
+          event.preventDefault();
+          let form = button.closest('.delete-form');
+          instance.open();
+
+          let cancelBtn = document.querySelector('.modal-footer #cancelBtn');
+          cancelBtn.addEventListener('click', function() {
+            instance.close();
+          });
+
+          let confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
+          confirmDeleteBtn.addEventListener('click', function() {
+            instance.close();
+          });
+        });
+      });
+    });
   </script>
   <script src="{{ asset('js/mobile/index.js') }}"></script>
 @endsection

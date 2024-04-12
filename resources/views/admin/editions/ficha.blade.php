@@ -25,7 +25,7 @@
                     </div>
 
                     <div class="input-field col s12 l6">
-                      <select name="id_training_fk" id="ficha" required>
+                      <select name="id_training_fk" class="browser-default" id="ficha" required>
                         <option value="" disabled selected>Selecione</option>
                         
                         @foreach ($trainings as $training)
@@ -36,7 +36,7 @@
                     </div>
                     
                     <div class="input-field col s12 l6">
-                      <select name="order" id="ficha" required>
+                      <select name="order" id="order" class="browser-default" required>
                         <option value="" disabled selected>Selecione</option>
                         
                         @foreach ($numbers as $number)
@@ -47,7 +47,7 @@
                     </div>
 
                     <div class="input-field col s12 l6">
-                      <select name="id_gmuscle_fk_to_ficha" id="groupMuscle"  required>
+                      <select name="id_gmuscle_fk_to_ficha" id="order" class="browser-default" required>
                         <option value="" disabled selected>Selecione</option>
                         
                         @foreach ($muscleGroups as $muscleGroup)
@@ -58,7 +58,7 @@
                     </div>
                     
                     <div class="input-field col s12 l6">
-                      <select name="id_exercise_fk" required>
+                      <select name="id_exercise_fk" class="browser-default" required>
                         @foreach ($exercises as $exercise)
                           <option value="{{$exercise->id_exercise}}" {{ $ficha->id_exercise_fk == $exercise->id_exercise ? "selected='selected'" : "disabled" }}> {{$exercise->name_exercise}} - {{ $exercise->groupMuscle->name_gmuscle }} </option>
                         @endforeach
@@ -191,9 +191,11 @@
       });
     });
     
-    {{-- 
-      o modal é estilizado usando as classes CSS fornecidas pelo Materialize CSS. Usamos a função M.Modal.init() para inicializar o modal e a função instance.open() para abrir o modal quando o formulário for submetido.
-      o evento submit é usado para interceptar o envio do formulário, e o modal é aberto nesse momento. Quando o botão "Enviar" dentro do modal é clicado, o formulário é enviado utilizando form.submit(). 
-      --}}
+    let larguraTela = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    
+      // Define a classe com base na largura da tela
+      if (larguraTela > 700) {
+        $("#order").removeClass("browser-default");
+      }
   </script>
 @endsection

@@ -10,7 +10,7 @@
       <div class="card-content">
         <div class="col s12 l12">
           <h3 class="center" id="homeTitle"><a href="{{ route('admin.register.ficha', $fichaUsers[0]->id_user_fk) }}" class="waves-effect waves-light btn left light-blue darken-4 col s12 l2" id="bottom-form-action"><i class="material-icons right">arrow_back</i>Voltar</a> Listagem de Exercícios</h3>
-          <h5 class="center" id="homeTitle">Nome: {{$userName->user->name}}</h5>
+          <h5 class="center col s12" id="homeTitle">Nome: {{$userName->user->name}}</h5>
           <h4 class="center" id="homeTitle">Exercício: {{$nomeDivisao}}</h4>
         </div>
       </div>

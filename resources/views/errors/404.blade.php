@@ -28,10 +28,10 @@
 </head>
 <body>
   <div class="error-container">
-    <img src="/img/404-error.png" alt="Imagem de erro">
+    <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/404-error.png'))) }}" alt="Imagem de erro">
     <h1>Página não encontrada</h1>
     <p>Desculpe, a página que você procura não está disponível.</p>
-    <a href="/alunos/inicio" class="btn waves-effect waves-light blue accent-4">Voltar para a Página Inicial</a>
+    <a href="{{ route('students.start') }}" class="btn waves-effect waves-light blue accent-4">Voltar para a Página Inicial</a>
   </div>
 
   <!-- Materialize JS -->

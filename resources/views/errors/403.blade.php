@@ -28,10 +28,10 @@
 </head>
 <body>
   <div class="error-container">
-    <img src="/img/403-error.png" alt="Imagem de erro">
+    <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/403-error.png'))) }}" alt="Imagem de erro">
     <h1>Acesso Negado!</h1>
     <p>A página pode ser acessada somente por professores ou administradores.</p>
-    <a href="/alunos/inicio" class="btn waves-effect waves-light blue accent-4">Voltar para a Página Inicial</a>
+    <a href="{{ route('students.start') }}" class="btn waves-effect waves-light blue accent-4">Voltar para a Página Inicial</a>
   </div>
 
   <!-- Materialize JS -->

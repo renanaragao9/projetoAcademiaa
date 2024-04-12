@@ -27,7 +27,7 @@
                 </div>
 
                 <div class="input-field col s12">
-                  <select name="id_gmuscle_fk" required>
+                  <select name="id_gmuscle_fk" class="browser-default" required>
                     <option selected disabled>Selecione o Grupo Muscular:</option>
                     
                     @foreach ($muscleGroups as $muscleGroup)

@@ -150,10 +150,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Icones e Fontes -->
     <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
-    <link rel="shortcut icon" href="/img/logo.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('img/logo.ico') }}" type="image/x-icon">
     
     <!-- Estilo -->
-    <link rel="stylesheet" href="css/style_login.css"/>
+    <link rel="stylesheet" href="{{ asset('css/style_login.css') }}"/>
     
     <title>Login</title>
   </head>
@@ -192,10 +192,9 @@
 
             <x-input-error :messages="$errors->get('email')" class="flash-message-login" />
             @if (Route::has('password.request'))
-            <a class="underline text-sm text-black hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-              {{ __('Esqueceu a senha ?') }}
-            </a>
-          
+              <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">
+                  {{ __('Esqueceu a senha ?') }}
+              </a>
             @endif
 
             <input type="submit" value="Entrar" class="btn solid" />
@@ -291,7 +290,7 @@
               Entrar
             </button>
           </div>
-          <img src="img/Gym-pana.svg" class="image" alt="" />
+          <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/Gym-pana.svg'))) }}" class="image" alt="" />
         </div>
       </div>
     </div>
@@ -312,7 +311,7 @@
     </footer>
 
 
-    <script src="js/login.js"></script>
+    <script src="{{ asset('js/login.js') }}" ></script>
     
      <!-- VLIBRAS -->  
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
