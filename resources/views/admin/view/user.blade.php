@@ -129,9 +129,6 @@
                                     <tr>
                                         <td id="text-profile">Referencia:</td>
                                         <td id="text-dados-profile"> {{$payment->monthly->name_monthly}} </td>
-                                    </tr>
-
-                                    <tr>
                                         <td id="text-profile">Data:</td>
                                         <td id="text-dados-profile"> {{\Carbon\Carbon::parse($payment->date_payment)->format('d/m/Y')}}</td>
                                     </tr>
@@ -167,10 +164,10 @@
                 <!-- Treinos Finalizados do Usuário -->
                 <div class="col s12 l7">
                     <table class="highlight">
-                        <h4>Treino Finalizado</h4>
+                        <h4>Treinos Finalizado</h4>
                         @if(!empty($statistics)) 
                             <tbody>
-                                @foreach ($statistics->take(5) as $statistic)      
+                                @foreach ($statistics->take(3) as $statistic)      
                                     <tr>
                                         <td id="text-profile">Ficha:</td>
                                         <td id="text-dados-profile"> {{ $statistic->name_training }} </td>

@@ -203,6 +203,48 @@
     </div>
   </div>
 
+  <div class="row">
+    <div class="col s12">      
+      <ul class="collection">   
+        <li class="collection-item avatar">
+          <h4 id="homeTitle">Aniversariantes do Dia</h4>
+        </li>
+
+        @foreach ($nivers as $niver)
+          @if($niver)
+            <li class="collection-item avatar">
+              <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/profile_photo_path/') . $niver->profile_photo_path)) }}" alt="Imagem de Perfil" class="circle" id="called_photo">
+              <span class="title">{{ $niver->name }}</span>
+              <p>{{ Carbon\Carbon::createFromFormat('Y-m-d', $niver->date)->format('d/m/Y') }}
+            </li>
+          @else
+            <li class="collection-item avatar">
+              <p>Não há Aniversariantes hoje!</p>
+            </li>
+          @endif
+        @endforeach
+
+        <li class="collection-item avatar">
+          <h4 id="homeTitle">Aniversariantes do Mês</h4>
+        </li>
+
+        @foreach ($niverMonths as $niver)
+          @if($niver)
+            <li class="collection-item avatar">
+              <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('img/profile_photo_path/') . $niver->profile_photo_path)) }}" alt="Imagem de Perfil" class="circle" id="called_photo">
+              <span class="title">{{ $niver->name }}</span>
+              <p>{{ Carbon\Carbon::createFromFormat('Y-m-d', $niver->date)->format('d/m/Y') }}
+            </li>
+          @else
+            <li class="collection-item avatar">
+              <p>Não há Aniversariantes pro mês!</p>
+            </li>
+          @endif
+        @endforeach
+      </ul>
+    </div>
+  </div>
+
   <!-- Inicio de conteudo -->
   <div class="row">
     <div class="card">

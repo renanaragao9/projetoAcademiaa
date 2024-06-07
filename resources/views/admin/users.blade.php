@@ -40,7 +40,7 @@
                         $today = \Carbon\Carbon::now();
             
                         if ($dueDate->isPast()) {
-                          $statusClass = 'red lighten-2'; // Vermelho para atrasado
+                          $statusClass = 'red accent-4'; // Vermelho para atrasado
                           $statusText = 'Atrasado';
                         
                         } elseif ($dueDate->isToday()) {
@@ -48,7 +48,7 @@
                           $statusText = 'Vence Hoje';
                         
                         } elseif ($dueDate->isFuture()) {
-                          $statusClass = 'green lighten-2'; // Verde para em dia
+                          $statusClass = 'teal darken-4'; // Verde para em dia
                           $statusText = 'Em dias';
                         }
                       
@@ -56,7 +56,7 @@
                       
                       <p class="badge {{ $statusClass }} hide-on-small-only" id="status-table-user"> <span id="td-text-span"> {{ $statusText }}</span> </p>
                     @else
-                      <p class="badge grey hide-on-small-only" id="status-table-user"> <span id="td-text-span">Sem Pgto </span></p>
+                      <p class="badge grey darken-4 hide-on-small-only" id="status-table-user"> <span id="td-text-span">Sem Pgto </span></p>
                     @endif
                   </td>
                 

@@ -11,6 +11,7 @@ use App\Models\media;
 use App\Models\payment;
 use App\Models\expense;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class AdminController extends Controller
 {
@@ -95,6 +96,12 @@ class AdminController extends Controller
             'totalPayment' => $totalPayment,
             'totalGeral' => $totalGeral
         );
+
+        $today = Carbon::now()->format('m-d');
+        $currentMonth = Carbon::now()->format('m');
+
+        $nivers = User::whereRaw('DATE_FORMAT(date, "%m-%d") = ?', [$today])->get();
+        $niverMonths = User::whereRaw('DATE_FORMAT(date, "%m") = ?', [$currentMonth])->get();
         
         return view('admin.home', [
             'users' => $users,
@@ -106,7 +113,9 @@ class AdminController extends Controller
             'media' => $media,
             'payments' => $payments,
             'expenseCurrent' => $expenseCurrent,
-            'expenseAll' => $expenseAll
+            'expenseAll' => $expenseAll,
+            'nivers' => $nivers,
+            'niverMonths' => $niverMonths
         ]);
     }
 
