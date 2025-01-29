@@ -20,17 +20,40 @@ git clone https://github.com/renanaragao9/projetoAcademiaa.git
 </pre>
 
 2. Navegue até o diretório do projeto:
-3.  cd projetoAcademiaa
-4. Instale as dependências do PHP:
-5.  composer install
-6. Instale as dependências do Node.js:
-7.  npm install
-8.  Configure o arquivo .env
-9.  Gere a chave da aplicação:
- php artisan key:generate
+<pre>
+    <code>
+cd projetoAcademiaa
+    </code>
+</pre>
+
+5. Instale as dependências do PHP:
+<pre>
+    <code>
+composer install
+    </code>
+</pre>
+8. Instale as dependências do Node.js:
+<pre>
+    <code>
+npm install
+    </code>
+</pre>
+11.  Configure o arquivo .env
+12.  Gere a chave da aplicação:
+<pre>
+    <code>
+php artisan key:generate
+    </code>
+</pre>
+
 7. Execute as migrações do banco de dados atraves dos aquivos sql dentro da pasta database (precisa atualizar para migrations:
-8.  Inicie o servidor de desenvolvimento:
-    php artisan serve
+  
+9. Inicie o servidor de desenvolvimento:
+<pre>
+    <code>
+php artisan serve
+    </code>
+</pre>
 
 Agora você pode acessar o sistema através do endereço `http://localhost:8000`.
 
