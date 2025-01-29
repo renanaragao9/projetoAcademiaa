@@ -13,8 +13,13 @@ Este é um projeto de um sistema de gerenciamento de academias desenvolvido em L
 Siga os passos abaixo para configurar o ambiente de desenvolvimento:
 
 1. Clone o repositório:
- git clone https://github.com/renanaragao9/projetoAcademiaa.git
-
+<div style="border: 1px solid #ccc; padding: 10px; border-radius: 5px; background-color: #f9f9f9;">
+    <pre>
+        <code>
+git clone https://github.com/renanaragao9/projetoAcademiaa.git
+        </code>
+    </pre>
+</div>
 2. Navegue até o diretório do projeto:
 3.  cd projetoAcademiaa
 4. Instale as dependências do PHP:
